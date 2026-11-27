@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 智能眼镜行业深度洞察与千问商业化汇报</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  :root {
+    --navy: #0F172A;
+    --navy-2: #1E293B;
+    --indigo: #4F46E5;
+    --indigo-dark: #3730A3;
+    --indigo-soft: #EEF2FF;
+    --cyan: #0284C7;
+    --cyan-soft: #E0F2FE;
+    --emerald: #059669;
+    --emerald-soft: #ECFDF5;
+    --amber: #D97706;
+    --amber-soft: #FFFBEB;
+    --rose: #DC2626;
+    --rose-soft: #FEF2F2;
+    --slate-900: #0F172A;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748B;
+    --slate-300: #CBD5E1;
+    --slate-200: #E2E8F0;
+    --slate-100: #F1F5F9;
+    --slate-50: #F8FAFC;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    font-family: "Noto Sans CJK SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #0B1120; color: var(--slate-700); overflow: hidden;
+  }
+  .deck-stage { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .slide-viewport { width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
+  .slide { width: 1280px; height: 720px; background: #FFFFFF; position: absolute; inset: 0; display: none; flex-direction: column; overflow: hidden; }
+  .slide.active { display: flex; }
+  .slide-inner { padding: 34px 50px 26px 50px; flex: 1; display: flex; flex-direction: column; }
+
+  body.overview-mode { overflow-y: auto; background: #0F172A; }
+  body.overview-mode .deck-stage { height: auto; min-height: 100vh; padding: 36px 36px 96px 36px; display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; align-items: start; overflow: visible; }
+  body.overview-mode .slide-viewport { display: contents; }
+  body.overview-mode .slide { display: flex !important; position: relative !important; width: 1280px; height: 720px; transform: scale(0.29); transform-origin: top left; margin-bottom: -511px; margin-right: -908px; border-radius: 14px; cursor: pointer; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+  body.overview-mode .slide:hover { outline: 10px solid #6366F1; }
+  body.overview-mode .slide.active { outline: 10px solid #38BDF8; }
+
+  .hud-bar { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 999; display: flex; align-items: center; gap: 10px; background: rgba(15, 23, 42, 0.86); backdrop-filter: blur(12px); border: 1px solid rgba(148, 163, 184, 0.25); padding: 7px 14px; border-radius: 999px; color: #E2E8F0; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); user-select: none; }
+  .hud-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); color: #F8FAFC; padding: 5px 11px; border-radius: 999px; cursor: pointer; font-size: 12px; font-family: inherit; }
+  .hud-btn:hover { background: rgba(99, 102, 241, 0.55); }
+  .hud-counter { font-weight: 700; color: #93C5FD; min-width: 64px; text-align: center; }
+  .hud-progress { width: 110px; height: 4px; background: rgba(255, 255, 255, 0.16); border-radius: 99px; overflow: hidden; }
+  .hud-progress-fill { height: 100%; background: linear-gradient(90deg, #6366F1, #38BDF8); width: 5%; transition: width 0.2s ease; }
+
+  @media print {
+    html, body { width: 1280px; height: auto; background: #FFFFFF; overflow: visible; }
+    .hud-bar { display: none !important; }
+    .deck-stage, .slide-viewport { display: block !important; width: 1280px; height: auto; transform: none !important; box-shadow: none !important; border-radius: 0 !important; overflow: visible !important; }
+    .slide { display: flex !important; position: relative !important; width: 1280px !important; height: 720px !important; page-break-after: always; break-after: page; }
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+  }
+
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .section-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--indigo-soft); color: var(--indigo); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+  .top-meta { font-size: 12px; color: var(--slate-500); font-weight: 500; }
+  .slide-title { font-size: 24.5px; font-weight: 800; color: var(--navy); line-height: 1.24; margin-bottom: 7px; letter-spacing: -0.3px; }
+  .slide-lead { font-size: 13.8px; color: var(--slate-600); line-height: 1.48; margin-bottom: 16px; }
+  .slide-lead strong { color: var(--indigo-dark); }
+  .slide-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 10px; }
+  .slide-footer { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--slate-200); display: flex; justify-content: space-between; align-items: center; font-size: 11.2px; color: var(--slate-500); }
+  .slide-footer .pg { font-weight: 700; color: var(--navy); }
+
+  .g-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .g-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .g-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .g-55-45 { display: grid; grid-template-columns: 1.22fr 1fr; gap: 22px; }
+  .g-60-40 { display: grid; grid-template-columns: 1.48fr 1fr; gap: 22px; }
+
+  .card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 12px; padding: 17px 19px; }
+  .card-white { background: #FFFFFF; border: 1px solid var(--slate-200); border-radius: 12px; padding: 17px 19px; }
+  .card-indigo { background: var(--indigo-soft); border: 1px solid #C7D2FE; border-radius: 12px; padding: 17px 19px; }
+  .card-emerald { background: var(--emerald-soft); border: 1px solid #A7F3D0; border-radius: 12px; padding: 17px 19px; }
+  .card-rose { background: var(--rose-soft); border: 1px solid #FECACA; border-radius: 12px; padding: 17px 19px; }
+  .card-amber { background: var(--amber-soft); border: 1px solid #FDE68A; border-radius: 12px; padding: 17px 19px; }
+  .card-dark { background: linear-gradient(155deg, #0F172A 0%, #1E1B4B 100%); color: #F8FAFC; border-radius: 12px; padding: 19px 21px; }
+
+  .card-h { font-size: 15.2px; font-weight: 800; color: var(--navy); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
+  .card-dark .card-h { color: #FFFFFF; }
+
+  .tag { display: inline-block; padding: 2.5px 8px; border-radius: 5px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .t-indigo { background: #E0E7FF; color: #3730A3; }
+  .t-cyan { background: #E0F2FE; color: #0369A1; }
+  .t-emerald { background: #D1FAE5; color: #065F46; }
+  .t-amber { background: #FEF3C7; color: #92400E; }
+  .t-rose { background: #FEE2E2; color: #991B1B; }
+  .t-slate { background: #E2E8F0; color: #334155; }
+
+  .kpi-card { background: #FFFFFF; border: 1px solid var(--slate-200); border-top: 4px solid var(--indigo); border-radius: 12px; padding: 20px 20px 18px 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 244px; }
+  .kpi-card.cyan { border-top-color: var(--cyan); }
+  .kpi-card.rose { border-top-color: var(--rose); }
+  .kpi-card.amber { border-top-color: var(--amber); }
+  .kpi-label { font-size: 12.6px; font-weight: 700; color: var(--slate-500); margin-bottom: 8px; }
+  .kpi-num { font-size: 31px; font-weight: 800; color: var(--navy); line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.6px; }
+  .kpi-card.rose .kpi-num { color: var(--rose); }
+  .kpi-card.cyan .kpi-num { color: var(--cyan); }
+  .kpi-card.amber .kpi-num { color: var(--amber); }
+  .kpi-desc { font-size: 12.5px; color: var(--slate-600); line-height: 1.52; padding-top: 12px; border-top: 1px solid var(--slate-200); }
+
+  ul.pts { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  ul.pts li { position: relative; padding-left: 16px; font-size: 13px; line-height: 1.52; color: var(--slate-700); }
+  ul.pts li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--indigo); }
+  .card-emerald ul.pts li::before { background: var(--emerald); }
+  .card-rose ul.pts li::before { background: var(--rose); }
+  .card-amber ul.pts li::before { background: var(--amber); }
+  .card-dark ul.pts li { color: #E2E8F0; }
+  .card-dark ul.pts li::before { background: #38BDF8; }
+  ul.pts li strong { color: var(--navy); }
+  .card-dark ul.pts li strong { color: #FFFFFF; }
+
+  table.clean-tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12.2px; line-height: 1.44; border: 1px solid var(--slate-200); border-radius: 10px; overflow: hidden; }
+  table.clean-tbl thead th { background: var(--navy); color: #FFFFFF; font-weight: 700; text-align: left; padding: 9px 12px; font-size: 12px; }
+  table.clean-tbl tbody td { padding: 8.5px 12px; border-top: 1px solid var(--slate-200); vertical-align: middle; color: var(--slate-700); }
+  table.clean-tbl.compact thead th { padding: 7.5px 10px; font-size: 11.6px; }
+  table.clean-tbl.compact tbody td { padding: 6.5px 10px; }
+  table.clean-tbl tbody tr:nth-child(even) td { background: var(--slate-50); }
+  table.clean-tbl tbody tr.hl td { background: #EEF2FF; }
+  .b { font-weight: 700; color: var(--navy); }
+
+  .callout-strip { background: linear-gradient(90deg, #EEF2FF 0%, #F8FAFC 100%); border-left: 4px solid var(--indigo); border-radius: 0 10px 10px 0; padding: 11px 16px; font-size: 12.8px; color: var(--navy); line-height: 1.5; margin-top: 12px; }
+
+  .cover-slide { background: linear-gradient(135deg, #090F1E 0%, #111D38 55%, #1E1B4B 100%); color: #FFFFFF; }
+</style>
+</head>
+<body>
+
+<div class="deck-stage">
+  <div class="slide-viewport" id="viewport">
+
+    <!-- ==================== SLIDE 01: COVER ==================== -->
+    <section class="slide cover-slide active">
+      <svg style="position:absolute; inset:0; width:100%; height:100%; opacity:0.65; pointer-events:none;" viewBox="0 0 1280 720">
+        <defs>
+          <radialGradient id="cg1" cx="84%" cy="28%" r="48%"><stop offset="0%" stop-color="#4F46E5" stop-opacity="0.5"/><stop offset="100%" stop-color="#090F1E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="cg2" cx="18%" cy="88%" r="40%"><stop offset="0%" stop-color="#0284C7" stop-opacity="0.32"/><stop offset="100%" stop-color="#090F1E" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1280" height="720" fill="url(#cg1)"/>
+        <rect width="1280" height="720" fill="url(#cg2)"/>
+        <g stroke="#818CF8" stroke-opacity="0.22" fill="none" stroke-width="1.2">
+          <circle cx="1010" cy="270" r="210"/><circle cx="1010" cy="270" r="145" stroke-dasharray="6 8"/><circle cx="1010" cy="270" r="85"/>
+          <polygon points="875,205 1145,205 1185,270 1145,335 875,335 835,270" stroke="#38BDF8" stroke-opacity="0.3"/>
+        </g>
+      </svg>
+
+      <div class="slide-inner" style="position:relative; z-index:2; padding:52px 70px 44px 70px; justify-content:space-between;">
+        <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(79,70,229,0.28); border:1px solid rgba(129,140,248,0.5); color:#C7D2FE; padding:7px 18px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:1px; width:fit-content;">
+          <span style="width:8px; height:8px; border-radius:50%; background:#38BDF8;"></span>
+          千问智能硬件团队 · 行业调研汇报 NO.01
+        </div>
+
+        <div style="max-width:880px;">
+          <div style="font-size:14px; font-weight:700; color:#38BDF8; letter-spacing:2.5px; margin-bottom:14px;">SMART GLASSES INDUSTRY &amp; COMMERCIALIZATION BRIEFING</div>
+          <h1 style="font-size:45px; font-weight:800; line-height:1.22; letter-spacing:-0.8px; color:#FFFFFF; margin-bottom:20px;">
+            2026 智能眼镜行业深度洞察<br/>与千问商业化汇报
+          </h1>
+          <p style="font-size:17.5px; color:#CBD5E1; line-height:1.65; border-left:4px solid #6366F1; padding-left:20px;">
+            基于公开统计口径与生产级目录价的深度洞察：拆解国内“量增额降”、视光门店净贡献账、<br/>
+            全链路可复算云端成本模型，以及千问自研与外部生态的错位拓展思路
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; background:rgba(15,23,42,0.72); border:1px solid rgba(148,163,184,0.25); border-radius:12px; padding:18px 24px;">
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">汇报对象</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">千问智能硬件行业总监</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">汇报角色与视角</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">行业新人 · 商业化与生态协同</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">核心数据基准</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">洛图 Q3 / Omdia H1 / 百炼目录价</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">汇报时点</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">2026 年 11 月</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 02: EXEC KPIs ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">核心速览 · 01 / 02</span>
+          <span class="top-meta">严格区分零售、出货、退货与成本四组口径</span>
+        </div>
+        <h2 class="slide-title">4 组核验数字，看懂 2026 智能眼镜的真实规模与结构分化</h2>
+        <p class="slide-lead">前三季度国内全渠道量额齐增，但三季度已现<strong>“量增额降、均价下探”</strong>；出货量、退货率与 30 日留存必须分开评估。</p>
+
+        <div class="slide-body" style="justify-content:center; gap:20px;">
+          <div class="g-4">
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-label">中国前三季度全渠道零售 (洛图)</div>
+                <div class="kpi-num">145.3万 / 27.2亿</div>
+              </div>
+              <div class="kpi-desc">销量 +50.4%、零售额 +49.1%；但 Q3 单季 54.4 万台（+14.3%）、8.4 亿元（-4.3%），拍摄款均价跌至 877 元。</div>
+            </div>
+
+            <div class="kpi-card cyan">
+              <div>
+                <div class="kpi-label">2026H1 阿里大陆出货份额 (Omdia)</div>
+                <div class="kpi-num">17.4% 第1</div>
+              </div>
+              <div class="kpi-desc">阿里居首，影目（14.6%）、小米（14.0%）分列二、三，前三合计仅 46.0%（原始精度舍入约 46.1%）仍分散；注：H1 统计不含 10 月开售的 N1 系列。</div>
+            </div>
+
+            <div class="kpi-card rose">
+              <div>
+                <div class="kpi-label">机构披露行业退货率区间 (洛图)</div>
+                <div class="kpi-num">30% – 70%</div>
+              </div>
+              <div class="kpi-desc">洛图披露电商渠道退货区间，未分平台公布样本均值；实操须区分“付款取消、签收后退货、激活后 30 日留存”。</div>
+            </div>
+
+            <div class="kpi-card amber">
+              <div>
+                <div class="kpi-label">两类配置 BOM 情景示例</div>
+                <div class="kpi-num" style="font-size:29px; padding-top:3px;">¥360 vs ¥1,730</div>
+              </div>
+              <div class="kpi-desc">对应纯音频与单绿光波导例（无屏拍摄国产低本例 ¥940，AR1 双芯参考 ¥1,060–1,180）；单绿光学约占 41.6%，未含 NRE/充电盒。</div>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:0;">
+            <strong>千问脉络对齐：</strong>2025.12 阿里合并原智能信息（夸克）与智能互联（天猫精灵）成立<strong>千问 C 端事业群</strong>；2026 上半年凭 <strong>G1 / S1</strong>（G1 标价 2,899 元 / 叠加限时优惠+国补到手 1,997 元起）建立大陆领先身位，10 月 13 日再发无屏旗舰 <strong>N1 / N1 Pro</strong>（标价 2,899 / 3,399 元，叠加限时优惠+国补到手 2,218 / 2,600 元起）及千问×Bose 耳夹耳机（1,099 元）。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>数据源：洛图科技 2026Q3 报告、Omdia 2026H1 大陆 AI 眼镜出货追踪；BOM 为第 9 页情景估算示例</span>
+          <span class="pg">02 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 03: 5 LAWS + 3 BD ANGLES ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">核心速览 · 02 / 02</span>
+          <span class="top-meta">经营规律（含验证指标）与千问商业化切入思路</span>
+        </div>
+        <h2 class="slide-title">决定 2026–2027 胜负的 5 个经营关键与 3 条商业化思路</h2>
+        <p class="slide-lead">把公开数据与商业判断明确拆开：每条规律均附可落地的<strong>一线验证指标</strong>，便于入职后结合团队真实数据校准。</p>
+
+        <div class="slide-body">
+          <div class="g-55-45" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:flex-start;">
+              <div class="card-h" style="margin-bottom:13px;">5 个行业底层经营判断（附验证抓手）</div>
+              <div style="display:flex; flex-direction:column; gap:13px; flex:1; justify-content:space-between;">
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-indigo" style="margin-top:2px;">01</span>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>出货起量 ≠ 持续留存：</strong>Q3 拍摄款均价已跌至 877 元、白牌冲量不冲额；应用<strong>激活后第 30 天仍使用 AI 的比例</strong>区分真需求与尝鲜。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-indigo" style="margin-top:2px;">02</span>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>形态四分清晰，成镜配重决定日戴门槛：</strong>评估佩戴须测<strong>装处方片后总重（>45–50g 易疲劳）</strong>；Q3 均价 AR（2,817 元，含分体观影）远高于拍摄（877 元）。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-indigo" style="margin-top:2px;">03</span>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>视光门店的核心是单笔净贡献账：</strong>硬件返点叠加按 <strong>50%–65% 配片率</strong>折算的镜片毛利，再扣 3–4 倍试戴、教学与售后工时，才算清真实主推意愿。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-indigo" style="margin-top:2px;">04</span>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>云端控本须算全链路且严守 API 规范：</strong>分开核算 ASR、<strong>TTS、VLM 与实时音视频流</strong>（TTS 与实时流最烧钱）；<strong>严禁将交互式 Token Plan 用于生产后端</strong>。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-indigo" style="margin-top:2px;">05</span>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>独立品牌普遍多模型化，抢高价值默认调用：</strong>如 Rokid 按地区/版本配置多模型，BD 应聚焦验证识物、翻译等视觉高频任务的准确率与延迟优势。</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div class="card-h" style="color:#93C5FD; margin-bottom:2px;">千问外部商业化的 3 条优先思路</div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(129,140,248,0.4); border-radius:10px; padding:13px 15px;">
+                <div style="font-size:13.8px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">思路 01 · 深化标杆视觉与出海托管（Rokid / 雷鸟）</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">Rokid（Style/Glasses 2/Color）与<strong>雷鸟 iO（2026.8 发、34g 轻光波导、国补 1,996 起、双 11 光波导单品 TOP1 且已接入通义千问）/ V3 / X3 Pro</strong> 标杆落地；重点抢占<strong>外文菜单、路牌识读与翻译</strong>的高毛利路由，并切入海外企业托管 API。</div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(56,189,248,0.4); border-radius:10px; padding:13px 15px;">
+                <div style="font-size:13.8px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">思路 02 · 借“芯片 RDK + 纯 ODM/IDH”小步验证 1 对 N</div>
+                <div style="font-size:12.5px; color:#CBD5E1; line-height:1.5;">区分大客定制 JDM、纯公版 ODM/IDH（亿境等）与带品牌/云竞合方，先用 <strong>1 款公版机型</strong>验证低功耗唤醒与百炼 SDK 交付成本，再向腰部垂类复制。</div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(52,211,153,0.4); border-radius:10px; padding:13px 15px;">
+                <div style="font-size:13.8px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">思路 03 · 直面竞合边界与插件分级开放</div>
+                <div style="font-size:12.5px; color:#CBD5E1; line-height:1.5;">正视千问自有眼镜覆盖 2,000–4,000 元盘的竞争现实，对外主打<strong>全彩旗舰/运动/跨境等低冲突垂类</strong>，同时推动对齐<strong>非核心生活插件分级开放</strong>与租户隔离。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 核心判断</span>
+          <span class="pg">03 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 04: MARKET GROWTH & SUBSIDY ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">01 · 市场全景</span>
+          <span class="top-meta">双口径辨析、2026 国补硬规则与 Q3 零售信号</span>
+        </div>
+        <h2 class="slide-title">国内 Q3 现“量增额降、均价骤降 25.4%”，须严守零售与出货口径边界</h2>
+        <p class="slide-lead">左图聚焦<strong>洛图 2026 国内全渠道零售分季实绩与全年预测</strong>；右栏对照 IDC 出货口径预测、Omdia 全球格局、双 11 战报与国补细则。</p>
+
+        <div class="slide-body">
+          <div class="g-60-40" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between; padding:15px 17px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                <span style="font-size:14.2px; font-weight:800; color:#0F172A;">2026 中国智能眼镜分季量额与均价拐点</span>
+                <span class="tag t-indigo">洛图全渠道零售口径</span>
+              </div>
+              <svg viewBox="0 0 640 306" style="width:100%; height:auto;">
+                <defs>
+                  <marker id="arrDrop" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#DC2626"/></marker>
+                </defs>
+                <!-- Legend -->
+                <rect x="44" y="6" width="13" height="13" rx="3" fill="#4F46E5"/>
+                <text x="62" y="17" font-size="11.8" fill="#334155" font-weight="600">全渠道销量（万台·左轴）</text>
+                <rect x="228" y="6" width="13" height="13" rx="3" fill="#0284C7"/>
+                <text x="246" y="17" font-size="11.8" fill="#334155" font-weight="600">全渠道销额（亿元·右轴）</text>
+                <line x1="414" y1="12" x2="438" y2="12" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="4 2"/>
+                <text x="444" y="17" font-size="11.8" fill="#991B1B" font-weight="700">均价拐点（元）</text>
+
+                <!-- Horizontal grid -->
+                <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="4 4">
+                  <line x1="50" y1="54" x2="588" y2="54"/><line x1="50" y1="107" x2="588" y2="107"/>
+                  <line x1="50" y1="160" x2="588" y2="160"/><line x1="50" y1="213" x2="588" y2="213"/>
+                </g>
+                <line x1="50" y1="266" x2="588" y2="266" stroke="#94A3B8" stroke-width="1.5"/>
+
+                <!-- Left Y-axis (0 - 240 万台, 0.8833 px/万台) -->
+                <g font-size="11" fill="#4F46E5" font-weight="600" text-anchor="end">
+                  <text x="43" y="58">240</text><text x="43" y="111">180</text><text x="43" y="164">120</text><text x="43" y="217">60</text><text x="43" y="270">0</text>
+                </g>
+                <!-- Right Y-axis (0 - 36 亿元, 5.889 px/亿元) -->
+                <g font-size="11" fill="#0284C7" font-weight="600" text-anchor="start">
+                  <text x="595" y="58">36亿</text><text x="595" y="111">27亿</text><text x="595" y="164">18亿</text><text x="595" y="217">9亿</text><text x="595" y="270">0</text>
+                </g>
+
+                <!-- Group 1: 2026 H1 (90.9万台 -> h=80, y=186; 18.8亿 -> h=111, y=155) -->
+                <rect x="86" y="186" width="52" height="80" rx="5" fill="#4F46E5"/>
+                <text x="112" y="178" font-size="12.5" font-weight="800" fill="#3730A3" text-anchor="middle">90.9万</text>
+                <rect x="144" y="155" width="52" height="111" rx="5" fill="#0284C7"/>
+                <text x="170" y="147" font-size="12.5" font-weight="800" fill="#0369A1" text-anchor="middle">18.8亿</text>
+                <text x="141" y="287" font-size="13" font-weight="800" fill="#0F172A" text-anchor="middle">2026 H1（1–6月）</text>
+                <text x="141" y="301" font-size="10.4" fill="#64748B" text-anchor="middle">上半年量额齐升</text>
+
+                <!-- Group 2: 2026 Q3 (54.4万台 -> h=48, y=218; 8.4亿 -> h=49, y=217) -->
+                <rect x="272" y="218" width="52" height="48" rx="5" fill="#6366F1"/>
+                <text x="298" y="210" font-size="12.5" font-weight="800" fill="#3730A3" text-anchor="middle">54.4万</text>
+                <rect x="330" y="217" width="52" height="49" rx="5" fill="#0EA5E9"/>
+                <text x="356" y="209" font-size="12.5" font-weight="800" fill="#0369A1" text-anchor="middle">8.4亿</text>
+                <text x="327" y="287" font-size="13" font-weight="800" fill="#991B1B" text-anchor="middle">2026 Q3（单季拐点）</text>
+                <text x="327" y="301" font-size="10.4" font-weight="700" fill="#DC2626" text-anchor="middle">量 +14.3% · 额 -4.3%</text>
+
+                <!-- ASP Drop Connector & Badges -->
+                <rect x="82" y="76" width="118" height="24" rx="12" fill="#EEF2FF" stroke="#818CF8"/>
+                <text x="141" y="92" font-size="11.6" font-weight="800" fill="#3730A3" text-anchor="middle">均价 ¥2,068</text>
+                <path d="M 202 88 Q 254 90 288 128" fill="none" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#arrDrop)"/>
+                <rect x="226" y="56" width="84" height="22" rx="11" fill="#DC2626"/>
+                <text x="268" y="71" font-size="11.2" font-weight="800" fill="#FFF" text-anchor="middle">骤降 -25.4%</text>
+                <rect x="262" y="132" width="136" height="24" rx="12" fill="#FEF2F2" stroke="#FCA5A5"/>
+                <text x="330" y="148" font-size="11.6" font-weight="800" fill="#991B1B" text-anchor="middle">均价跌至 ¥1,542</text>
+                <rect x="256" y="162" width="148" height="22" rx="6" fill="#FFFBEB" stroke="#FCD34D"/>
+                <text x="330" y="177" font-size="10.8" font-weight="800" fill="#92400E" text-anchor="middle">拍摄款腰斩至 ¥877</text>
+
+                <!-- Group 3: 2026E Full Year (145.3万已成 -> h=128, y=138; 全年205-215万 -> top y=80, h=186) -->
+                <rect x="466" y="80" width="66" height="58" rx="5" fill="#E0E7FF" stroke="#4F46E5" stroke-width="1.5" stroke-dasharray="4 3"/>
+                <rect x="466" y="138" width="66" height="128" rx="4" fill="#312E81"/>
+                <text x="499" y="72" font-size="12.5" font-weight="800" fill="#312E81" text-anchor="middle">205–215万E</text>
+                <text x="499" y="114" font-size="10.2" font-weight="700" fill="#4338CA" text-anchor="middle">Q4 冲刺</text>
+                <text x="499" y="206" font-size="10.8" font-weight="700" fill="#E0E7FF" text-anchor="middle">Q1–Q3</text>
+                <text x="499" y="220" font-size="10.8" font-weight="800" fill="#FFF" text-anchor="middle">145.3万</text>
+                <text x="499" y="287" font-size="13" font-weight="800" fill="#0F172A" text-anchor="middle">2026E 全年预测</text>
+                <text x="499" y="301" font-size="10.4" fill="#64748B" text-anchor="middle">Q1–Q3 销额 27.2 亿</text>
+              </svg>
+              <div style="font-size:10.5px; color:#64748B; line-height:1.38;">注：洛图 2026Q1–Q3 累计 145.3 万台 / 27.2 亿元（H1 90.9 万 / 18.8 亿；Q3 54.4 万 / 8.4 亿），预计全年零售 <strong>205–215 万台</strong>，不含 VR/MR 头显及部分 B 端（¥1,542 为洛图原始精度公布值，按 8.4 亿/54.4 万粗算约 ¥1,544）。</div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+              <div class="card" style="flex:1; padding:11px 14px;">
+                <div class="card-h" style="margin-bottom:4px; font-size:14px;"><span class="tag t-amber">口径对照</span> 出货口径预测与海外单极格局</div>
+                <p style="font-size:11.4px; line-height:1.42;"><strong>IDC 2025.11 出货口径预测（涵盖音频/拍摄/AR 眼镜，不含 VR/MR 头显，含渠道备货与 B 端，与洛图零售口径不可混算；IDC 2026.11 最新 2027 预测已将中国回调至 450.6 万台）</strong>：2026E 全球 <strong>2,368.7 万</strong> / 中国 <strong>491.5 万台</strong>；另据 Omdia 2026H1，<strong>Meta 独占全球 81.3%</strong>。</p>
+              </div>
+              <div class="card-indigo" style="flex:1; padding:11px 14px;">
+                <div class="card-h" style="margin-bottom:4px; font-size:14px;"><span class="tag t-indigo">国补与价格</span> 补贴硬规则与规范到手价</div>
+                <p style="font-size:11.6px; line-height:1.42;">扣除商家优惠后<strong>单件 ≤ 6,000 元享 15% 补贴、封顶 500 元</strong>（≥ 3,333 元拿满）。千问 G1 标价 2,899 元（叠优惠+国补到手 1,997 元起），N1 标 2,899 / N1 Pro 标 3,399 元（到手 2,218 / 2,600 元起）；华为 2,499–2,899 元。</p>
+              </div>
+              <div class="card-rose" style="flex:1; padding:11px 14px;">
+                <div class="card-h" style="color:#991B1B; margin-bottom:4px; font-size:14px;"><span class="tag t-rose">Q3 &amp; 双 11</span> 低价分化与光波导高增</div>
+                <p style="font-size:11.6px; line-height:1.42;">洛图 Q3 线上无屏现<strong>清野销量 16.5% 第 1（额 6.0%）vs 华为销额 30.1% 第 1</strong>，拍摄均价跌至 877 元；<strong>2026 双 11 光波导高增</strong>，<strong>雷鸟双 11 市占 37.2%、全球累计出货破百万台</strong>，头部品牌正靠光学体验守住溢价。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 市场全景与政策口径</span>
+          <span class="pg">04 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 05: DOMESTIC VS OVERSEAS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">01 · 市场全景</span>
+          <span class="top-meta">国内外智能眼镜的渠道、定价、OS 与出海变局</span>
+        </div>
+        <h2 class="slide-title">国内拼“生活生态与配镜”，海外迎“Meta + Android XR 落地”</h2>
+        <p class="slide-lead">海外生态加速收拢，国产出海品牌须同步兼顾多语言模型路由、数据合规条款与主流 XR 系统兼容。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <table class="clean-tbl">
+            <thead>
+              <tr>
+                <th style="width:16%;">核心维度</th>
+                <th style="width:42%;">中国本土市场（当前核心主战场）</th>
+                <th style="width:42%;">欧美日市场与代表标杆</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="b">价格参考</td>
+                <td>洛图 Q3 均价：<strong>音频 701 元 / 拍摄 877 元 / AR 2,817 元</strong>；大厂无屏旗舰多在 1,999–3,399 元（叠国补）</td>
+                <td>代表价约 <strong>2,150 – 5,750 元</strong>（Ray-Ban Meta 约 2,150 起 / Display 约 5,750 元，按 7.2 汇率折算）</td>
+              </tr>
+              <tr>
+                <td class="b">主流渠道结构</td>
+                <td>抖音短视频拉新 + 天猫/京东转化 + <strong>博士/宝岛等线下验配门店</strong></td>
+                <td><strong>依视路陆逊梯卡视光网络主导</strong>；独立出海品牌结合官网独立站、众筹与 Amazon 切入</td>
+              </tr>
+              <tr>
+                <td class="b">大模型与 OS 格局</td>
+                <td>阿里千问、华为小艺、小米、豆包、百度等并存；强绑本土高频生活服务</td>
+                <td>Meta 封闭生态占优（2026 新增无摄像头音频款）；<strong>XREAL AURA 采用有线分体 Android XR</strong></td>
+              </tr>
+              <tr>
+                <td class="b">收入与规模参照</td>
+                <td>品牌靠硬件销售获利，近视用户另配镜片；门店同时赚取镜片毛利与验配服务费</td>
+                <td>依视路陆逊梯卡披露 <strong>2025 年售出超 700 万副 AI 眼镜</strong>（含 Ray-Ban Meta 与 Oakley Meta）</td>
+              </tr>
+              <tr class="hl">
+                <td class="b">千问生态观察</td>
+                <td>自有眼镜直连高德/支付宝/淘宝/钉钉；外部品牌合作须对齐非核心生活插件分级开放边界与数据隔离</td>
+                <td>瞄准未获 Android XR 首批授权的国产出海品牌，主推<strong>阿里云新加坡/欧美托管 API 与 PTU</strong>（开源权重仅作端侧/开发者生态钩子）</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout-strip" style="background:#FFFBEB; border-left-color:#D97706;">
+            <strong>2026 底 – 2027 海外关键时间点核实：</strong>① <strong>XREAL AURA</strong> 为搭载 Android XR 的有线分体式空间计算眼镜；② <strong>Google 联名 Android XR 眼镜（定价参考 Warby Parker USD 395 / Gentle Monster USD 449）已于 11 月 12 日开启预购，计划 12 月 10 日正式上市</strong>；③ 苹果 <strong>N50</strong> 仍为媒体报道的研发项目，尚未公布官方上市日期。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 海内外市场对比</span>
+          <span class="pg">05 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 06: 4 FORM FACTORS & COMPLIANCE ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 形态与需求</span>
+          <span class="top-meta">四大产品形态边界、价格锚点与海内外隐私合规红线</span>
+        </div>
+        <h2 class="slide-title">产品形态四分：补齐分体观影盘，严守生物隐私与防偷拍新标杆</h2>
+        <p class="slide-lead">千问 G1 / N1 卡位无屏拍摄，S1 卡位单绿光波导；分体式 BirdBath 占国内 AR 线上出货基本盘，须与轻光波导分开研判。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-4" style="flex:1; gap:13px; align-items:stretch;">
+            <div class="card" style="padding:13px 14px; display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #64748B;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:7px;">
+                  <span class="tag t-slate">① 纯音频</span>
+                  <span style="font-size:11.5px; font-weight:800; color:#475569;">699–1,599 元</span>
+                </div>
+                <div style="font-size:15.5px; font-weight:800; color:#0F172A; margin-bottom:8px;">纯音频 AI 眼镜</div>
+                <ul class="pts" style="gap:6px;">
+                  <li style="font-size:11.8px; line-height:1.44;"><strong>代表：</strong>界环、米家音频、Meta 纯音频版（Q3 均价 701 元）。</li>
+                  <li style="font-size:11.8px; line-height:1.44;"><strong>体态：</strong>最贴近传统镜架，但无视觉感知，正面承压百元级 OWS/耳夹耳机替代。</li>
+                </ul>
+              </div>
+              <div style="margin-top:8px; padding-top:7px; border-top:1px solid #E2E8F0; font-size:11.3px; color:#475569;">
+                <strong>云切口：</strong>极低单机语音云本 + 离线唤醒
+              </div>
+            </div>
+
+            <div class="card-indigo" style="padding:13px 14px; display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #4F46E5;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:7px;">
+                  <span class="tag t-indigo">② 无屏拍摄/超感</span>
+                  <span style="font-size:11.5px; font-weight:800; color:#3730A3;">1,199–3,399 元</span>
+                </div>
+                <div style="font-size:15.5px; font-weight:800; color:#0F172A; margin-bottom:8px;">无屏拍摄与超感旗舰</div>
+                <ul class="pts" style="gap:6px;">
+                  <li style="font-size:11.8px; line-height:1.44;"><strong>代表：</strong><strong>千问 G1/N1/N1 Pro</strong>（50MP/眼动/虹膜/健康）、华为、小米、雷鸟 V3、Ray-Ban Meta。</li>
+                  <li style="font-size:11.8px; line-height:1.44;"><strong>场景：</strong>第一视角记录 + 实时识物翻译；Q3 拍摄均价跌至 877 元，低价白牌分化加剧。</li>
+                </ul>
+              </div>
+              <div style="margin-top:8px; padding-top:7px; border-top:1px solid #C7D2FE; font-size:11.3px; color:#3730A3;">
+                <strong>云切口：</strong>Qwen-VL 视觉精度 + 级联控本
+              </div>
+            </div>
+
+            <div class="card" style="padding:13px 14px; background:#F0F9FF; border-color:#BAE6FD; display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #0284C7;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:7px;">
+                  <span class="tag t-cyan">③ 轻光波导</span>
+                  <span style="font-size:11.5px; font-weight:800; color:#0369A1;">1,996–8,999 元</span>
+                </div>
+                <div style="font-size:15.5px; font-weight:800; color:#0F172A; margin-bottom:8px;">轻量化 AI+AR 光波导</div>
+                <ul class="pts" style="gap:6px;">
+                  <li style="font-size:11.4px; line-height:1.4;"><strong>代表：</strong>单绿（<strong>千问 S1</strong>、<strong>雷鸟 iO 34g</strong>、Rokid Glasses 2、影目 GO3）；全彩（Rokid Color 4,999 起/2027.04 交付、雷鸟 X3 Pro）；<strong>影目 Future（约 125g 主动风扇一体式空间计算，偏重度 AR）</strong>。</li>
+                  <li style="font-size:11.4px; line-height:1.4;"><strong>特点：</strong>主打提词/导航/字幕；扣优惠超 <strong>6,000 元</strong>不享国补，全彩与一体式装片配重挑战大。</li>
+                </ul>
+              </div>
+              <div style="margin-top:8px; padding-top:7px; border-top:1px solid #BAE6FD; font-size:11.3px; color:#0369A1;">
+                <strong>云切口：</strong>窄 FOV 极简短卡片 + 多语字幕
+              </div>
+            </div>
+
+            <div class="card-amber" style="padding:13px 14px; display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #D97706;">
+              <div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:7px;">
+                  <span class="tag t-amber">④ 分体观影/XR</span>
+                  <span style="font-size:11.5px; font-weight:800; color:#92400E;">1,999–5,999 元</span>
+                </div>
+                <div style="font-size:15.5px; font-weight:800; color:#0F172A; margin-bottom:8px;">分体 BirdBath / Micro-OLED</div>
+                <ul class="pts" style="gap:6px;">
+                  <li style="font-size:11.8px; line-height:1.44;"><strong>地位：</strong><strong>国内 AR 线上出货基本盘</strong>（与洛图 AR 2,817 元均价强相关），含雷鸟 Air、Rokid Max 及有线 <strong>XREAL AURA</strong>。</li>
+                  <li style="font-size:11.8px; line-height:1.44;"><strong>定位界定：</strong>重巨幕观影与空间计算，<strong>非千问语音/第一视角视觉主攻盘</strong>。</li>
+                </ul>
+              </div>
+              <div style="margin-top:8px; padding-top:7px; border-top:1px solid #FDE68A; font-size:11.3px; color:#92400E;">
+                <strong>策略：</strong>理清 AR 均价口径，不误投主力资源
+              </div>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:10px; padding:9px 14px; background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D; font-size:12px; line-height:1.45;">
+            <strong>隐私与合规红线升级：</strong>① <strong>国内生物/健康红线：</strong>N1 Pro 虹膜支付与健康监测属 <strong>PIPL 敏感个人信息</strong>，健康功能须严守 <strong>NMPA 非医疗器械</strong>宣称边界；② <strong>海外防偷拍新标杆：</strong>Google Android XR 已标配<strong>“遮挡指示灯强制停录 + AI 视觉查询上传云端前路人人脸自动打码”</strong>，出海方案必须前置区域数据驻留与边缘脱敏。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 四大产品形态与合规红线</span>
+          <span class="pg">06 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 07: RETURN RATES & PAIN POINTS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 形态与需求</span>
+          <span class="top-meta">退货口径核验、法理边界与四大硬核工程红线</span>
+        </div>
+        <h2 class="slide-title">线上退货与留存怎么看？先厘清口径，再直面 4 条硬核工程红线</h2>
+        <p class="slide-lead">行业仅披露整体退货区间（30%–70%），须拆开取消、退货与 30 日活跃；日戴门槛取决于<strong>重量、温升、续航与手机 OS 保活</strong>。</p>
+
+        <div class="slide-body">
+          <div class="g-2" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div class="card-h">退货与留存：已披露区间 vs 待一线核验口径</div>
+              <svg viewBox="0 0 520 232" style="width:100%; height:auto;">
+                <!-- Scale -->
+                <text x="8" y="18" font-size="11.5" font-weight="700" fill="#64748B">0%</text>
+                <text x="195" y="18" font-size="11.5" font-weight="700" fill="#64748B" text-anchor="middle">50%</text>
+                <text x="382" y="18" font-size="11.5" font-weight="700" fill="#64748B" text-anchor="end">100%</text>
+                <line x1="8" y1="24" x2="382" y2="24" stroke="#CBD5E1" stroke-width="1"/>
+
+                <!-- Row 1: Verified range -->
+                <text x="8" y="46" font-size="13" font-weight="800" fill="#991B1B">洛图披露行业退货区间（已公开）</text>
+                <rect x="8" y="54" width="374" height="24" rx="5" fill="#F1F5F9"/>
+                <rect x="120" y="54" width="150" height="24" rx="5" fill="#DC2626"/>
+                <text x="394" y="71" font-size="14.5" font-weight="800" fill="#DC2626">30%–70%</text>
+
+                <!-- Row 2: Online average -->
+                <text x="8" y="106" font-size="12.8" font-weight="700" fill="#0F172A">纯线上分平台退货均值（直播 vs 货架）</text>
+                <rect x="8" y="114" width="374" height="22" rx="5" fill="#FEF3C7" stroke="#FCD34D" stroke-dasharray="4 3"/>
+                <text x="195" y="129" font-size="11.2" font-weight="600" fill="#92400E" text-anchor="middle">须按签收单数、实际退回数与观察天数分平台建账</text>
+                <text x="394" y="130" font-size="12.5" font-weight="800" fill="#B45309">未公开均值</text>
+
+                <!-- Row 3: Cross-category -->
+                <text x="8" y="162" font-size="12.8" font-weight="700" fill="#0F172A">跨品类对比（对比手机 / TWS 耳机）</text>
+                <rect x="8" y="170" width="374" height="22" rx="5" fill="#F1F5F9" stroke="#CBD5E1" stroke-dasharray="4 3"/>
+                <text x="195" y="185" font-size="11.2" font-weight="600" fill="#475569" text-anchor="middle">须限定同一电商平台、同一促销周期方可横向比较</text>
+                <text x="394" y="186" font-size="12.5" font-weight="800" fill="#475569">待同口径</text>
+
+                <!-- Row 4: Offline optical -->
+                <text x="8" y="216" font-size="12.8" font-weight="800" fill="#065F46">线下视光验配成镜（博士 / 宝岛等）</text>
+                <text x="394" y="216" font-size="12.5" font-weight="800" fill="#059669">查重配与留存</text>
+              </svg>
+              <div style="font-size:11.6px; color:#475569; background:#F8FAFC; padding:10px 12px; border-radius:8px; line-height:1.5; border-left:3px solid #059669;">
+                <strong>法理与商业辨析：</strong>《消保法》第 25 条适用于网购等远程交易，消费者定作镜片属例外；线下无理由退货看门店承诺，质量问题按第 24 条处理。线下试戴的真实价值须用<strong>同款重配率 + 30 日 AI 活跃率</strong>交叉验证。
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; justify-content:space-between; gap:9px;">
+              <div class="card-rose" style="padding:10px 14px;">
+                <div style="font-size:13.6px; font-weight:800; color:#991B1B; margin-bottom:2px;">1. 成镜 >45–50g 佩戴疲劳线（近视片另增 10–15g）</div>
+                <div style="font-size:12px; color:#334155; line-height:1.44;">常规眼镜仅约 20g；如 <strong>55g 全彩机加配近视片即达 65–70g</strong>，极易压鼻梁、滑落与夹头，评估必须以“装片成镜重量+前后重心”为准。</div>
+              </div>
+              <div class="card-amber" style="padding:10px 14px;">
+                <div style="font-size:13.6px; font-weight:800; color:#92400E; margin-bottom:2px;">2. 镜腿 >43°C 温升红线 &amp; 连续录像 30–45min 续航极限</div>
+                <div style="font-size:12px; color:#334155; line-height:1.44;">连续录像/实时视觉流极速触发 <strong>43°C 表面温升红线</strong>与降频，实用续航仅 <strong>30–45 分钟</strong>；千问 G1/S1/N1 双电池热插拔换电直击此痛点。</div>
+              </div>
+              <div class="card-indigo" style="padding:10px 14px;">
+                <div style="font-size:13.6px; font-weight:800; color:#3730A3; margin-bottom:2px;">3. 手机 OS 后台蓝牙保活限制（独立眼镜头号工程硬伤）</div>
+                <div style="font-size:12px; color:#334155; line-height:1.44;"><strong>iOS / HarmonyOS / 澎湃</strong>严苛杀后台导致非手机大厂眼镜频繁断连、消息漏报与唤醒失灵，手机厂拥系统白名单优势，独立品牌须靠 SDK 重连优化缓解。</div>
+              </div>
+              <div class="card" style="padding:10px 14px;">
+                <div style="font-size:13.6px; font-weight:800; color:#0F172A; margin-bottom:2px;">4. 处方验配偏差与公共场景语音社交门槛</div>
+                <div style="font-size:12px; color:#334155; line-height:1.44;">瞳距/散光轴位偏差易致眩晕且交付周期长；通勤/办公区语音尴尬推动指环（Rokid Ring）、触控与眼动（N1 Pro）替代交互演进。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 退货与体验痛点</span>
+          <span class="pg">07 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 08: REAL VS FAKE DEMAND ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 形态与需求</span>
+          <span class="top-meta">场景优先级假设与 30 日留存检验框架</span>
+        </div>
+        <h2 class="slide-title">场景祛魅：聚焦“高频轻工具”，用 30 日留存排序投入优先级</h2>
+        <p class="slide-lead">脱离眼镜物理形态优势去硬塞手机已有功能极易吃灰；下述场景分类应按激活批次统计<strong>使用频次、次月留存与停用原因</strong>闭环检验。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-2" style="flex:1; align-items:stretch;">
+            <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:flex-start; padding-top:22px;">
+              <div class="card-h" style="color:#065F46; font-size:17px; margin-bottom:15px;">
+                <span class="tag t-emerald">高潜刚需假设</span> 优先投入测试的 4 类轻工具
+              </div>
+              <ul class="pts" style="gap:14px;">
+                <li><strong>解放双手第一视角记录：</strong>带娃、骑行、做饭与探店 Vlog，重点对比眼镜与手持拍摄的便利性、防抖与成片率。</li>
+                <li><strong>高频轻工具（提词 + 导航 + 翻译）：</strong>演讲隐形提词、骑行步行近眼导航、跨国外文菜单/路牌识读与实时字幕。</li>
+                <li><strong>免掏手机极速交互：</strong>“看一下”扫码/虹膜核身支付（N1 Pro）、车控互联（如理想）、重要通知 AI 播报。</li>
+                <li><strong>无感会议纪要与健康监测：</strong>随身录音直出待办；N1 Pro 切入心率/血氧/皮肤温度全天候监测。</li>
+              </ul>
+            </div>
+
+            <div class="card-rose" style="display:flex; flex-direction:column; justify-content:flex-start; padding-top:22px;">
+              <div class="card-h" style="color:#991B1B; font-size:17px; margin-bottom:15px;">
+                <span class="tag t-rose">高风险/受限场景</span> 须设边界与额度控制的 4 类需求
+              </div>
+              <ul class="pts" style="gap:14px;">
+                <li><strong>公共场合大声语音闲聊：</strong>地铁/办公区语音输入存在社交门槛，须实测高噪/公共场景的打开占比与放弃原因。</li>
+                <li><strong>长时间常开实时视频流：</strong>同步受限于发热、续航与高昂的每分钟云成本+RTC 带宽，必须评估免费时长封顶。</li>
+                <li><strong>微屏长文阅读与重办公：</strong>窄 FOV 轻光波导仅适合“瞥一眼（Glanceable）”极简短信息卡片，不宜替代手机屏。</li>
+                <li><strong>无业务闭环的偶发识物问答：</strong>仅停留在拍花草百科，须观察首周尝鲜后的重复打开率，警惕退化为纯蓝牙耳机。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>生态协同边界：</strong>千问自有眼镜具备贯通高德、支付宝、淘宝与钉钉的先天优势；面向外部合作机型时，实际能否调用生态工具取决于<strong>各业务线接口开放政策、授权协议与目标地区合规要求</strong>，留存增益须由激活后实测数据说话。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 场景祛魅</span>
+          <span class="pg">08 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 09: BOM BREAKDOWN ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">03 · 供应链与成本</span>
+          <span class="top-meta">BOM 严格等比拆解、芯片分层口径与整机 UE 压测</span>
+        </div>
+        <h2 class="slide-title">BOM 校准与整机 UE 压测：纯卖硬件已兜不住长期云端费用</h2>
+        <p class="slide-lead">区分<strong>国产低本芯 / AR1+恒玄双芯 / 三芯旗舰</strong>三档底座；计入税费、投流与退货折损后，硬件毛利已无力兜底每年上百元云费。</p>
+
+        <div class="slide-body">
+          <div class="g-55-45" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between; padding:14px 16px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                <span style="font-size:14.2px; font-weight:800; color:#0F172A;">三类配置 BOM 严格线性等比拆解（单位：元）</span>
+                <span class="tag t-indigo">比例尺 0.30 px/元</span>
+              </div>
+              <svg viewBox="0 0 600 292" style="width:100%; height:auto;">
+                <!-- Legend -->
+                <g font-size="11.2" fill="#334155" font-weight="600">
+                  <rect x="8" y="6" width="11" height="11" rx="2" fill="#4F46E5"/><text x="23" y="16">主控/存储</text>
+                  <rect x="104" y="6" width="11" height="11" rx="2" fill="#0284C7"/><text x="119" y="16">光学+微屏</text>
+                  <rect x="200" y="6" width="11" height="11" rx="2" fill="#059669"/><text x="215" y="16">摄像/传感</text>
+                  <rect x="296" y="6" width="11" height="11" rx="2" fill="#D97706"/><text x="311" y="16">声学/电池</text>
+                  <rect x="392" y="6" width="11" height="11" rx="2" fill="#94A3B8"/><text x="407" y="16">结构/组装</text>
+                </g>
+
+                <!-- Vertical scale gridlines: x = 8 + value * 0.30 -->
+                <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 3">
+                  <line x1="158" y1="30" x2="158" y2="268"/>
+                  <line x1="308" y1="30" x2="308" y2="268"/>
+                  <line x1="458" y1="30" x2="458" y2="268"/>
+                </g>
+                <line x1="8" y1="30" x2="8" y2="268" stroke="#CBD5E1" stroke-width="1.2"/>
+
+                <!-- Row 1: 纯音频 ¥360 -> 108px (33 + 25.5 + 49.5) -->
+                <text x="8" y="52" font-size="13" font-weight="800" fill="#0F172A">① 纯音频 AI 眼镜（区间约 ¥330–400）</text>
+                <rect x="8" y="62" width="33" height="32" rx="3" fill="#4F46E5"/><text x="24.5" y="82" font-size="10" fill="#FFF" font-weight="700" text-anchor="middle">110</text>
+                <rect x="41" y="62" width="25.5" height="32" fill="#D97706"/><text x="53.75" y="82" font-size="10" fill="#FFF" font-weight="700" text-anchor="middle">85</text>
+                <rect x="66.5" y="62" width="49.5" height="32" rx="3" fill="#94A3B8"/><text x="91.25" y="82" font-size="10.2" fill="#FFF" font-weight="700" text-anchor="middle">¥165</text>
+                <text x="125" y="82" font-size="12.5" font-weight="800" fill="#475569">示例合计 ¥360</text>
+
+                <!-- Row 2: 无屏拍摄(国产低本芯) ¥940 -> 282px (126 + 48 + 43.5 + 64.5) -->
+                <text x="8" y="132" font-size="13" font-weight="800" fill="#0F172A">② 无屏 AI 拍摄 · 国产低本芯（¥800–950，示例 ¥940）</text>
+                <rect x="8" y="142" width="126" height="32" rx="3" fill="#4F46E5"/><text x="71" y="162" font-size="10.8" fill="#FFF" font-weight="700" text-anchor="middle">芯/存 ¥420</text>
+                <rect x="134" y="142" width="48" height="32" fill="#059669"/><text x="158" y="162" font-size="10.2" fill="#FFF" font-weight="700" text-anchor="middle">¥160</text>
+                <rect x="182" y="142" width="43.5" height="32" fill="#D97706"/><text x="203.75" y="162" font-size="10" fill="#FFF" font-weight="700" text-anchor="middle">¥145</text>
+                <rect x="225.5" y="142" width="64.5" height="32" rx="3" fill="#94A3B8"/><text x="257.75" y="162" font-size="10.2" fill="#FFF" font-weight="700" text-anchor="middle">结构 ¥215</text>
+                <text x="298" y="156" font-size="12.5" font-weight="800" fill="#475569">示例 ¥940</text>
+                <text x="298" y="171" font-size="10.4" font-weight="700" fill="#4F46E5">AR1+恒玄双芯参考 ¥1,060–1,180</text>
+
+                <!-- Row 3: 轻量化单绿光波导 ¥1,730 -> 519px (141 + 216 + 43.5 + 43.5 + 75) -->
+                <text x="8" y="212" font-size="13" font-weight="800" fill="#0F172A">③ 轻量化 AI+AR 单绿光波导（区间约 ¥1,300–2,100）</text>
+                <rect x="8" y="222" width="141" height="32" rx="3" fill="#4F46E5"/><text x="78.5" y="242" font-size="10.5" fill="#FFF" font-weight="700" text-anchor="middle">AR1+存 ¥470*</text>
+                <rect x="149" y="222" width="216" height="32" fill="#0284C7"/><text x="257" y="242" font-size="11" fill="#FFF" font-weight="800" text-anchor="middle">MicroLED+光波导 ¥720 (41.6%)</text>
+                <rect x="365" y="222" width="43.5" height="32" fill="#059669"/><text x="386.75" y="242" font-size="9.8" fill="#FFF" font-weight="700" text-anchor="middle">¥145</text>
+                <rect x="408.5" y="222" width="43.5" height="32" fill="#D97706"/><text x="430.25" y="242" font-size="9.8" fill="#FFF" font-weight="700" text-anchor="middle">¥145</text>
+                <rect x="452" y="222" width="75" height="32" rx="3" fill="#94A3B8"/><text x="489.5" y="242" font-size="10.2" fill="#FFF" font-weight="700" text-anchor="middle">结构 ¥250</text>
+                <text x="534" y="242" font-size="12.5" font-weight="800" fill="#0369A1">¥1,730</text>
+
+                <!-- Bottom Scale Axis -->
+                <line x1="8" y1="268" x2="540" y2="268" stroke="#94A3B8" stroke-width="1.2"/>
+                <g font-size="10.5" fill="#64748B" font-weight="600">
+                  <text x="8" y="283">¥0</text>
+                  <text x="158" y="283" text-anchor="middle">¥500</text>
+                  <text x="308" y="283" text-anchor="middle">¥1,000</text>
+                  <text x="458" y="283" text-anchor="middle">¥1,500</text>
+                </g>
+              </svg>
+              <div style="font-size:10.7px; color:#64748B; line-height:1.42;">*口径注：单绿例 AR1+存 ¥470 暂按头部大批量基准示意，<strong>中小客 AR1+协处理器+存储实际约 ¥550–650</strong>；上述均为裸机物料基准，<strong>未含 NRE、模具、充电盒与组装良率损耗</strong>（双目全彩光波导 BOM 显著更高）。</div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+              <div class="card" style="flex:1; padding:12px 15px;">
+                <div class="card-h" style="margin-bottom:5px; font-size:14.2px;"><span class="tag t-indigo">芯片分层</span> 国产低本 vs AR1 双芯 vs 三芯旗舰</div>
+                <p style="font-size:12px; line-height:1.46;">① <strong>国产低本芯（恒玄/展锐+ISP）：</strong>无屏拍摄 ¥800–950（例 ¥940）；② <strong>高通 AR1+恒玄双芯：</strong>实测参考 ¥1,060–1,180（Wellsenn 拆解 Meta 单 AR1 整机 BOM 约 ¥1,181、仅高通套片+存储 ¥503）；③ <strong>三芯超感旗舰（如 N1 Pro）：</strong>叠加热插拔换电，BOM 与性能同步拉升。</p>
+              </div>
+              <div class="card" style="flex:1; padding:12px 15px;">
+                <div class="card-h" style="margin-bottom:5px; font-size:14.2px;"><span class="tag t-cyan">光学演进</span> 单绿量产 · 全彩良率仍在爬坡</div>
+                <p style="font-size:12px; line-height:1.46;">单色 MicroLED + 衍射光波导已支撑 3,000–4,000 元价位（示例光学占 41.6%）；双目全彩受限于光机与波导片良率，降本节奏仍取决于产线爬坡。</p>
+              </div>
+              <div class="card-rose" style="flex:1; padding:12px 15px;">
+                <div class="card-h" style="color:#991B1B; margin-bottom:5px; font-size:14.2px;"><span class="tag t-rose">整机 UE 警示</span> 硬件毛利兜不住长期云费</div>
+                <p style="font-size:12px; line-height:1.46;">计入 <strong>13% 增值税、20%+ 渠道投流与 40% 退货翻新折损</strong>后，1,999 元主流机与 877 元白牌纯卖硬件均承压甚至亏损，<strong>已无力兜底每年上百元云费</strong>；商业模式必须向<strong>“硬件预装基础额度包 + 增值功能（同传/会议/实时视觉）C 端订阅分成”</strong>演进。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · BOM 成本拆解</span>
+          <span class="pg">09 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10: SUPPLY CHAIN TIERED LEVER ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">03 · 供应链与成本</span>
+          <span class="top-meta">产业链分工：定制制造、芯片参考设计与独立方案商</span>
+        </div>
+        <h2 class="slide-title">产业链分层观察：区分定制 JDM 大厂与“RDK + IDH”公版杠杆</h2>
+        <p class="slide-lead">同一制造厂可能同时承接定制与参考设计项目，商务推进须先厘清<strong>预装权、NRE 适配费与后续固件维护责任</strong>。</p>
+
+        <div class="slide-body">
+          <div class="g-2" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h"><span class="tag t-slate">Tier-1 定制大厂</span> 头部 OEM / JDM 制造巨头</div>
+                <div style="font-size:14.2px; font-weight:800; color:#0F172A; margin-bottom:8px;">歌尔股份 · 立讯精密 · 龙旗科技 · 蓝思科技</div>
+                <ul class="pts">
+                  <li><strong>业务特点：</strong>深度服务头部大客（龙旗等亦具备纯硬件 ODM/IDH 整机能力），按品牌结构、产量与 NRE 工程费约定高度定制。</li>
+                  <li><strong>合作边界：</strong>并非无偿预装公版渠道，需依托大客户联合立项或明确订单承诺，书面界定客户授权与固件维护权责。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h"><span class="tag t-indigo">参考设计复用</span> 芯片原厂 RDK 平台</div>
+                <div style="font-size:14.2px; font-weight:800; color:#3730A3; margin-bottom:8px;">高通 AR1 · 恒玄 BES2800 · 紫光展锐 · 中科蓝讯</div>
+                <ul class="pts">
+                  <li><strong>业务特点：</strong>中小方案商广泛基于芯片原厂参考平台二次开发，再按整机配置验证功耗与认证。</li>
+                  <li><strong>切入抓手：</strong>在芯片 RDK 侧前置跑通<strong>低功耗唤醒/音频传输 + 百炼 SDK 联合认证</strong>，有效缩短下游量产周期。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card" style="background:#F0F9FF; border-color:#BAE6FD; display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h"><span class="tag t-cyan">角色精准拆解</span> 纯 ODM/IDH vs 品牌方案商 vs 云竞合</div>
+                <div style="font-size:13.4px; font-weight:800; color:#0369A1; margin-bottom:8px;">纯 ODM/IDH（亿境/龙旗等）· 品牌方（蜂巢/界环）· IoT 云（涂鸦）</div>
+                <ul class="pts">
+                  <li><strong>角色边界：</strong><strong>亿境虚拟、龙旗及深圳出海 IDH</strong> 为纯硬件交钥匙方案商，无品牌冲突是 1 对 N 优选；<strong>蜂巢科技</strong>自带“界环”品牌须防定位竞争；<strong>涂鸦</strong>属 IoT 云平台，存在明显云生态竞合。</li>
+                  <li><strong>验证路径：</strong>优先锁定纯 ODM/IDH，用 <strong>1 款公版机型</strong>跑通交付工时与转产成本后再扩面。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h"><span class="tag t-amber">体验协同器件</span> 光学微屏与硅负极电池</div>
+                <div style="font-size:14.5px; font-weight:800; color:#92400E; margin-bottom:9px;">JBD · 鲲游光电 · 光舟半导体 · 紫建电子</div>
+                <ul class="pts">
+                  <li><strong>决定上限：</strong>直接影响轻量化带屏眼镜的亮度、彩虹纹控制、成镜重量与续航表现。</li>
+                  <li><strong>云端适配：</strong>围绕窄 FOV 微屏输出千问极简短文本卡片规范与边缘抽帧策略，共同优化终端续航体感。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 供应链分层</span>
+          <span class="pg">10 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11: OPTICAL CHANNELS MOAT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">03 · 渠道结构性壁垒</span>
+          <span class="top-meta">视光配镜网络与门店单笔净贡献账</span>
+        </div>
+        <h2 class="slide-title">视光渠道壁垒：配镜网络已起势，胜负在门店单笔净贡献账</h2>
+        <p class="slide-lead">同一笔 O2O 订单带来镜片毛利与硬件返点，但须按<strong>50%–65% 处方配片率折算</strong>并扣<strong>3–4 倍试戴教学工时</strong>，方知真实净赚。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-white" style="padding:13px 16px;">
+            <svg viewBox="0 0 1120 194" style="width:100%; height:auto;">
+              <defs>
+                <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#DC2626"/></marker>
+                <marker id="arGrn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/></marker>
+              </defs>
+              <rect x="4" y="5" width="1112" height="80" rx="10" fill="#FEF2F2" stroke="#FECACA"/>
+              <text x="20" y="27" font-size="13.2" font-weight="800" fill="#991B1B">模式 A：纯线上购买裸机（须分平台建账核对退货与折损）</text>
+              <g font-size="12.8" text-anchor="middle">
+                <rect x="20" y="38" width="225" height="35" rx="6" fill="#FFF" stroke="#FCA5A5"/><text x="132" y="60" font-weight="700" fill="#0F172A">电商/直播下单裸机</text>
+                <line x1="250" y1="56" x2="282" y2="56" stroke="#DC2626" stroke-width="2.2" marker-end="url(#arRed)"/>
+                <rect x="290" y="38" width="240" height="35" rx="6" fill="#FFF" stroke="#FCA5A5"/><text x="410" y="60" font-weight="700" fill="#0F172A">脸型夹头 / 近视盲配不适</text>
+                <line x1="535" y1="56" x2="567" y2="56" stroke="#DC2626" stroke-width="2.2" marker-end="url(#arRed)"/>
+                <rect x="575" y="38" width="240" height="35" rx="6" fill="#FFF" stroke="#FCA5A5"/><text x="695" y="60" font-weight="800" fill="#DC2626">签收后退货（行业区间 30%–70%）</text>
+                <line x1="820" y1="56" x2="852" y2="56" stroke="#DC2626" stroke-width="2.2" marker-end="url(#arRed)"/>
+                <rect x="860" y="38" width="240" height="35" rx="6" fill="#DC2626"/><text x="980" y="60" font-weight="800" fill="#FFF">计入翻新折损与逆向物流</text>
+              </g>
+
+              <rect x="4" y="102" width="1112" height="84" rx="10" fill="#ECFDF5" stroke="#A7F3D0"/>
+              <text x="20" y="124" font-size="13.2" font-weight="800" fill="#065F46">模式 B：线上预约 + 线下视光验配（分别核算门店单笔净贡献与 30 日留存）</text>
+              <g font-size="12.8" text-anchor="middle">
+                <rect x="20" y="136" width="225" height="37" rx="6" fill="#FFF" stroke="#6EE7B7"/><text x="132" y="159" font-weight="700" fill="#0F172A">线上种草 → 到店试戴筛选</text>
+                <line x1="250" y1="154" x2="282" y2="154" stroke="#059669" stroke-width="2.2" marker-end="url(#arGrn)"/>
+                <rect x="290" y="136" width="240" height="37" rx="6" fill="#FFF" stroke="#6EE7B7"/><text x="410" y="159" font-weight="700" fill="#065F46">验光配镜（假设客单 ¥800）</text>
+                <line x1="535" y1="154" x2="567" y2="154" stroke="#059669" stroke-width="2.2" marker-end="url(#arGrn)"/>
+                <rect x="575" y="136" width="240" height="37" rx="6" fill="#FFF" stroke="#6EE7B7"/><text x="695" y="159" font-weight="800" fill="#059669">鼻托调校交付 · 跟踪重配售后</text>
+                <line x1="820" y1="154" x2="852" y2="154" stroke="#059669" stroke-width="2.2" marker-end="url(#arGrn)"/>
+                <rect x="860" y="136" width="240" height="37" rx="6" fill="#059669"/><text x="980" y="159" font-weight="800" fill="#FFF">检验 30 日 AI 真实活跃率</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="g-4" style="margin-top:12px;">
+            <div class="card" style="padding:13px 15px;">
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; margin-bottom:5px;">博士 / 宝岛眼镜</div>
+              <div style="font-size:11.9px; line-height:1.48; color:#475569;">博士眼镜承接<strong>千问 AI 眼镜</strong>验光配镜与售后，并合资雷鸟、承接小米配镜；多品牌概念店成线下体验枢纽。</div>
+            </div>
+            <div class="card-indigo" style="padding:13px 15px;">
+              <div style="font-size:13.8px; font-weight:800; color:#3730A3; margin-bottom:5px;">明月 / 康耐特镜片</div>
+              <div style="font-size:11.9px; line-height:1.48; color:#334155;">小米可在有品定制明月镜片，也可在博士/宝岛/千叶等 <strong>400 余家合作门店</strong>验配；康耐特服务多家头部高折轻薄片。</div>
+            </div>
+            <div class="card-amber" style="padding:13px 15px;">
+              <div style="font-size:13.8px; font-weight:800; color:#92400E; margin-bottom:5px;">门店单笔净贡献测算</div>
+              <div style="font-size:11.9px; line-height:1.48; color:#334155;">镜片毛利 520–600 元按 <strong>50%–65% 处方配片率</strong>折算，期望镜片毛利约 <strong>¥260–390</strong>；叠 <strong>15%–20% 硬件返点</strong>再扣 <strong>3–4 倍试戴/教学导购工时</strong>，才是真实净赚。</div>
+            </div>
+            <div class="card-dark" style="padding:13px 15px;">
+              <div style="font-size:13.8px; font-weight:800; color:#93C5FD; margin-bottom:5px;">传统眼镜品牌切口</div>
+              <div style="font-size:11.9px; line-height:1.48; color:#E2E8F0;">手握线下门店与时尚框型设计但缺 AI 团队的中型传统眼镜商，适合通过“纯 IDH 公版 + 千问开放能力”切入。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 视光渠道壁垒</span>
+          <span class="pg">11 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: 2x2 COMPETITIVE QUADRANT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">04 · 竞争格局</span>
+          <span class="top-meta">战略定位象限（定性分布 · 截至 2026.11）</span>
+        </div>
+        <h2 class="slide-title">竞争全景：国内尚分散但 Q3 量额错位，海外新增有线 Android XR</h2>
+        <p class="slide-lead">图示呈现显示形态与服务生态的定性站位；市场份额须严格按<strong>统计期间（H1 出货 vs Q3 零售）与品类</strong>分别解读。</p>
+
+        <div class="slide-body">
+          <div class="g-60-40" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="padding:12px 14px; display:flex; align-items:center;">
+              <svg viewBox="0 0 680 430" style="width:100%; height:auto;">
+                <defs>
+                  <marker id="arrQ" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#4F46E5"/></marker>
+                </defs>
+                <rect x="46" y="16" width="308" height="186" fill="#F8FAFC"/>
+                <rect x="354" y="16" width="308" height="186" fill="#EEF2FF"/>
+                <rect x="46" y="202" width="308" height="186" fill="#FFFFFF"/>
+                <rect x="354" y="202" width="308" height="186" fill="#F0F9FF"/>
+                <rect x="46" y="16" width="616" height="372" fill="none" stroke="#CBD5E1" stroke-width="1.5"/>
+                <line x1="46" y1="202" x2="662" y2="202" stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="6 4"/>
+                <line x1="354" y1="16" x2="354" y2="388" stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="6 4"/>
+
+                <text x="58" y="37" font-size="11.2" font-weight="700" fill="#64748B">象限 II · 超级生态 + 无屏拍摄</text>
+                <text x="648" y="37" font-size="11.2" font-weight="800" fill="#3730A3" text-anchor="end">象限 I · 超级生态 + 光显/XR</text>
+                <text x="58" y="376" font-size="11.2" font-weight="700" fill="#64748B">象限 III · 轻音频 / 垂类性价比</text>
+                <text x="648" y="376" font-size="11.2" font-weight="800" fill="#0369A1" text-anchor="end">象限 IV · 独立 AR 先锋（强光学 · 多模型）</text>
+
+                <text x="354" y="416" font-size="12.2" font-weight="800" fill="#0F172A" text-anchor="middle">硬件显示演进：纯音频 ──► 无屏拍摄 ──► 单绿光波导 ──► 双目全彩 / 空间计算</text>
+                <text x="18" y="202" font-size="12.2" font-weight="800" fill="#0F172A" text-anchor="middle" transform="rotate(-90 18 202)">AI 生态与服务闭环纵深 ▲</text>
+
+                <path d="M 346 98 Q 386 72 420 74" fill="none" stroke="#4F46E5" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#arrQ)"/>
+
+                <rect x="148" y="44" width="136" height="34" rx="17" fill="#0F172A"/>
+                <text x="216" y="59" font-size="11.4" font-weight="800" fill="#FFF" text-anchor="middle">Ray-Ban Meta</text>
+                <text x="216" y="72" font-size="8.8" fill="#CBD5E1" text-anchor="middle">无屏拍摄（兼纯音频）</text>
+
+                <rect x="226" y="84" width="120" height="38" rx="19" fill="#4F46E5"/>
+                <text x="286" y="101" font-size="11.8" font-weight="800" fill="#FFF" text-anchor="middle">千问 G1 / N1</text>
+                <text x="286" y="115" font-size="9.2" fill="#E0E7FF" text-anchor="middle">无屏拍摄（N1 10月发）</text>
+
+                <rect x="424" y="54" width="118" height="42" rx="21" fill="#3730A3"/>
+                <text x="483" y="72" font-size="12" font-weight="800" fill="#FFF" text-anchor="middle">千问 S1</text>
+                <text x="483" y="87" font-size="9.6" fill="#C7D2FE" text-anchor="middle">双目单绿光波导</text>
+
+                <rect x="212" y="128" width="128" height="34" rx="17" fill="#BE123C"/>
+                <text x="276" y="144" font-size="11.4" font-weight="700" fill="#FFF" text-anchor="middle">华为 AI (2026.4)</text>
+                <text x="276" y="156" font-size="8.9" fill="#FFE4E6" text-anchor="middle">Q3 无屏销额 30.1%</text>
+
+                <rect x="184" y="168" width="104" height="26" rx="13" fill="#EA580C"/>
+                <text x="236" y="185" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">小米 AI 眼镜</text>
+
+                <rect x="110" y="96" width="102" height="28" rx="14" fill="#0284C7"/>
+                <text x="161" y="114" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">小度 AI 眼镜</text>
+                <rect x="88" y="136" width="92" height="28" rx="14" fill="#059669"/>
+                <text x="134" y="154" font-size="11" font-weight="700" fill="#FFF" text-anchor="middle">理想 Livis</text>
+
+                <rect x="462" y="122" width="182" height="44" rx="22" fill="#1E293B"/>
+                <text x="553" y="140" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">Meta Display / XREAL AURA</text>
+                <text x="553" y="155" font-size="9.5" fill="#93C5FD" text-anchor="middle">AURA 为有线 Android XR</text>
+
+                <rect x="514" y="224" width="138" height="40" rx="20" fill="#0284C7"/>
+                <text x="583" y="242" font-size="11.3" font-weight="800" fill="#FFF" text-anchor="middle">雷鸟 iO / V3 / X3 Pro</text>
+                <text x="583" y="257" font-size="9.1" fill="#E0F2FE" text-anchor="middle">iO/V3 接千问 · 双11 37.2%</text>
+
+                <rect x="492" y="278" width="160" height="40" rx="20" fill="#0EA5E9"/>
+                <text x="572" y="296" font-size="11.2" font-weight="800" fill="#FFF" text-anchor="middle">Rokid Glasses 2 / Color</text>
+                <text x="572" y="311" font-size="9.0" fill="#E0F2FE" text-anchor="middle">2 现货 · Color 2027.04 交付</text>
+
+                <rect x="376" y="242" width="118" height="38" rx="19" fill="#38BDF8"/>
+                <text x="435" y="259" font-size="11.0" font-weight="800" fill="#0F172A" text-anchor="middle">影目 GO3 / Future</text>
+                <text x="435" y="273" font-size="9.0" fill="#0F172A" text-anchor="middle">单绿 / 约125g+风扇</text>
+
+                <rect x="378" y="308" width="98" height="28" rx="14" fill="#64748B"/>
+                <text x="427" y="327" font-size="10.8" font-weight="700" fill="#FFF" text-anchor="middle">魅族 / Even G2</text>
+
+                <rect x="64" y="242" width="90" height="28" rx="14" fill="#94A3B8"/><text x="109" y="261" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">界环 / 清野</text>
+                <rect x="170" y="276" width="88" height="28" rx="14" fill="#64748B"/><text x="214" y="295" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">闪极拍拍镜</text>
+                <rect x="242" y="316" width="84" height="28" rx="14" fill="#475569"/><text x="284" y="335" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">李未可</text>
+              </svg>
+            </div>
+
+            <div style="display:flex; flex-direction:column; justify-content:space-between; gap:11px;">
+              <div class="card-indigo" style="flex:1; padding:12px 15px;">
+                <div class="card-h" style="margin-bottom:4px; font-size:14.4px;">格局 1：大陆 H1 格局仍分散</div>
+                <p style="font-size:11.9px; line-height:1.46;">Omdia 2026H1 大陆 AI 眼镜出货前三为<strong>阿里（17.4%）、影目（14.6%）、小米（14.0%）</strong>，合计仅 <strong>46.0%（原始精度舍入约 46.1%）</strong>，未形成 Meta 全球 81.3% 式寡头垄断。</p>
+              </div>
+              <div class="card-rose" style="flex:1; padding:12px 15px;">
+                <div class="card-h" style="color:#991B1B; margin-bottom:4px; font-size:14.4px;">格局 2：Q3 量额错位 &amp; 双 11 光波导高增</div>
+                <p style="font-size:11.9px; line-height:1.46;">Q3 线上无屏现<strong>清野销量 16.5% 第 1（额 6.0%）vs 华为销额 30.1% 第 1</strong>（前四：华为/小米/雷鸟/千问）；<strong>2026 双 11 光波导高增</strong>，<strong>雷鸟双 11 市占 37.2%、全球累计出货破百万台</strong>（雷鸟 iO 夺光波导单品 TOP1）。</p>
+              </div>
+              <div class="card" style="flex:1; padding:12px 15px;">
+                <div class="card-h" style="margin-bottom:4px; font-size:14.4px;">格局 3：现货单绿走量 · 全彩交付待验</div>
+                <p style="font-size:11.9px; line-height:1.46;">现货单绿有<strong>雷鸟 iO（34g、国补 1,996 起，已接千问）</strong>与 <strong>Rokid Glasses 2（3,699 / 国补 3,199 现货）</strong>；全彩 <strong>Rokid Color（4,999 起，2027.04 国内交付）</strong>与影目 Future 卡在国补线内，Google 联名 12.10 上市。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 竞争定位象限</span>
+          <span class="pg">12 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13: TOP 6 BENCHMARKS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">04 · 竞争格局</span>
+          <span class="top-meta">六组代表机型对标（截至 2026.11 · 人民币）</span>
+        </div>
+        <h2 class="slide-title">代表机型对标：准确区分标价、国补边界与发售时间线</h2>
+        <p class="slide-lead">以下为代表产品横向对标（非销量排名），统一标明官方标价、叠加优惠与国补红线、发售时间线及核心挑战。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <table class="clean-tbl compact" style="font-size:11.2px; line-height:1.35;">
+            <thead>
+              <tr>
+                <th style="width:16%;">代表机型</th>
+                <th style="width:21%;">形态与价格参考</th>
+                <th style="width:13%;">核心大模型</th>
+                <th style="width:25%;">核心卖点与公开动态</th>
+                <th style="width:25%;">现实挑战 / 口径提示</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hl">
+                <td class="b">千问 G1 / N1 / S1<br/><span class="tag t-indigo">N1 10月开售</span></td>
+                <td>G1 标 2,899(叠优惠+国补 1,997 起)<br/>N1/Pro 标 2,899/3,399(叠优惠+国补 2,218/2,600 起) · S1 3,799 起</td>
+                <td><strong>通义千问</strong> + 阿里生态</td>
+                <td>N1 Pro 含 50MP+眼动+虹膜支付+健康；S1 双目单绿+热插拔换电；直连本土生活服务</td>
+                <td><strong>H1 排名（17.4%）不含 10 月开售的 N1</strong>；对外拓展须透明划清竞合与插件边界</td>
+              </tr>
+              <tr>
+                <td class="b">华为 AI 眼镜 /<br/>小米 AI 眼镜</td>
+                <td>无屏拍摄<br/>2,499 起 / 1,999(促1,599)</td>
+                <td>小艺 / 小米自研</td>
+                <td>华为 35.5g/12MP/鸿蒙，<strong>Q3 无屏销额 30.1% 第一</strong>；小米高性价比 + 400+ 门店明月配镜</td>
+                <td>华为<strong>非 HarmonyOS 6+（iOS/安卓）仅支持基础蓝牙音频通话，小艺 AI、视觉问答与闪拍同步等核心功能均受限</strong>；两家暂未规模铺开光波导</td>
+              </tr>
+              <tr class="hl">
+                <td class="b">雷鸟 iO / V3 /<br/>X3 Pro</td>
+                <td><strong>iO 轻光波导 国补 1,996 起</strong><br/>V3 无屏 1,799 / X3 Pro 全彩 <strong>8,999 元</strong></td>
+                <td><strong>iO / V3 均接入通义千问</strong></td>
+                <td><strong>iO（2026.8 发，34g）夺双 11 光波导单品 TOP1</strong>；雷鸟双 11 市占 <strong>37.2%</strong>、全球累计出货破百万台，合资博士拓展线下</td>
+                <td>X3 Pro 优惠后仍为 <strong>8,999 元，超 6,000 元门槛不适用国补</strong>；多机型并存下须守住千问默认视觉路由</td>
+              </tr>
+              <tr class="hl">
+                <td class="b">Rokid Glasses 2 /<br/>Rokid Color</td>
+                <td><strong>Glasses 2：3,699 / 国补 3,199 现货</strong><br/>Color 全彩 <strong>4,999–5,499 元</strong></td>
+                <td>YodaOS 多模型<br/>(<strong>支持千问</strong>)</td>
+                <td>Q3 线上 AR 销量前二；Style/Glasses 已支持千问；Color 约 55g 全彩 + Ring 指环（<strong>2027.04 国内交付</strong>，非现货）</td>
+                <td>多模型并行架构下，千问收入取决于视觉/翻译调用占比；须区分 <strong>Glasses 2 现货 vs Color 2027.04 交付</strong></td>
+              </tr>
+              <tr>
+                <td class="b">影目 GO3 /<br/>INMO Future (2026.11)</td>
+                <td>单绿官方 3,299(首发 2,999)<br/>Future <strong>4,999–5,999 元</strong>（<strong>约 125g+主动风扇</strong>）</td>
+                <td>智谱 + 移动九天等</td>
+                <td>Omdia 2026H1 占大陆 AI 眼镜出货 <strong>14.6%</strong>（第二）；Future 定位一体式空间计算（偏重度 AR），卡在国补线内</td>
+                <td><strong>约 125g+主动风扇</strong>远超第 7 页 >45–50g 日戴红线，非全天轻佩戴形态；亦缺 C 端生活交易闭环</td>
+              </tr>
+              <tr>
+                <td class="b">Ray-Ban Meta /<br/>Google Android XR</td>
+                <td>Meta 约 2,150/5,750 元<br/>Google 联名 <strong>USD 395/449</strong></td>
+                <td>Meta AI /<br/>Gemini</td>
+                <td>依视路 2025 售 AI 眼镜<strong>超 700 万副</strong>（Omdia 全球占 81.3%）；Google 联名 Warby Parker/GM 11.12 预购、12.10 上市</td>
+                <td>Meta 未正式入华；Android XR 标配<strong>遮挡指示灯强制停录 + AI 视觉查询上传云端前路人人脸自动打码</strong>；苹果 N50 无官方上市日</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="font-size:10.8px; color:#64748B; margin-top:4px;">
+            注：截至 2026 年 11 月；N1 / N1 Pro 于 2026.10.13 开售，所有到手价均受限时商家优惠及国补（15%、封顶 500 元）地区规则影响。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 代表机型对标</span>
+          <span class="pg">13 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14: MODEL PK QWEN VS DOUBAO ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 大模型选型与 POC 框架</span>
+          <span class="top-meta">阿里云千问（百炼）vs 火山引擎（豆包）客观对比与验证方法</span>
+        </div>
+        <h2 class="slide-title">模型选型：直面火山三大威胁与自研竞合，用同设备 POC 破局</h2>
+        <p class="slide-lead">不做主观打星，客观拆解<strong>火山引擎真实威胁</strong>、<strong>千问自研竞合死结</strong>与<strong>出海云商业化正轨</strong>，并用同设备盲测建信任。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <table class="clean-tbl" style="font-size:11.6px; line-height:1.4;">
+            <thead>
+              <tr>
+                <th style="width:16%;">选型核心维度</th>
+                <th style="width:42%; background:#312E81;">阿里云 · 通义千问（百炼生产 API）</th>
+                <th style="width:42%;">火山引擎 · 豆包（方舟 / RTC 实时方案）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="b">第一视角视觉 (VLM)</td>
+                <td style="background:#EEF2FF;"><strong>已有量产实战验证：</strong>Qwen-VL 落地雷鸟 iO/V3 与千问自研机；POC 用第一视角压测<strong>识物、外文菜单与遮挡答对率</strong>。</td>
+                <td>多模态迭代快、偏泛内容理解；POC 用同一批第一视角图文样本，对比<strong>答对率、拒答质量与端到端耗时</strong>。</td>
+              </tr>
+              <tr>
+                <td class="b">实时语音 &amp; RTC</td>
+                <td style="background:#EEF2FF;">支持百炼实时语音或分段级联（ASR→LLM→TTS）灵活降本；重点帮客户平衡<strong>首音延迟与高昂的 TTS/实时流单价</strong>。</td>
+                <td><strong>真实强项：RTC 低延迟音视频底座 + 端到端实时语音</strong>；须在同弱网与通勤高噪下实测断连恢复、拟人度与全链路年本。</td>
+              </tr>
+              <tr>
+                <td class="b">生产 API 计费</td>
+                <td style="background:#EEF2FF;"><strong>梯队透明：</strong><code>qwen-flash</code> ≤128K 输入 ¥0.15/输出 ¥1.5/M（<code>Qwen3.8-Flash</code> ¥0.80/¥2.70/M），配上下文缓存与资源包控本。</td>
+                <td>后付费单价激进、并发策略灵活；须核对同规格单价、TTS 计费口径与限流条款，按<strong>同一负载复算全年总账</strong>。</td>
+              </tr>
+              <tr>
+                <td class="b">开源 &amp; 出海变现</td>
+                <td style="background:#EEF2FF;"><strong>纠正商业逻辑：开源 Qwen 权重仅作开发者生态钩子与端侧标准（跑在 AWS 阿里云不收 API 钱）</strong>；出海变现聚焦<strong>阿里云新加坡/欧美企业托管 API 与 PTU</strong>，专打未获 Android XR 首批授权的国产出海品牌。</td>
+                <td>以闭源公有云 API 为主；出海须按目标国逐项核验海外可用地域、人脸脱敏合规与跨境数据处理审查边界。</td>
+              </tr>
+              <tr>
+                <td class="b">生态竞合 &amp; 威胁</td>
+                <td style="background:#EEF2FF;"><strong>直面竞合死结：</strong>阿里自研大陆第 1（G1/N1/N1 Pro/S1 覆盖 2,000–4,000 元），若生活接口全封闭则外部护城河落空；须向团队对齐<strong>非核心生活插件（高德轻导航/本地生活）分级开放边界</strong>。</td>
+                <td><strong>三大真实威胁：无自有眼镜包袱 + RTC 底座 + 抖音投流换模型</strong>；应对打法是将模型采购与渠道投流分开核算，用真实留单 CAC 与 30 日留存破局。</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout-strip" style="background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D; padding:9px 14px; font-size:11.9px; margin-top:8px;">
+            <strong>计费合规红线：</strong>线上眼镜后端必须采用获准生产的<strong>按量 API / 企业协议资源包</strong>；阿里云百炼 <strong>Token Plan / Coding Plan 明令仅限交互式开发工具</strong>，严禁作为硬件生产计费依据！（华为/小米偏封闭自研，讯飞重政企方言，DeepSeek 常作文本路由层。）
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 大模型选型对比</span>
+          <span class="pg">14 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 15: TCO MATH (100% REPRODUCIBLE!) ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 商业算账模型</span>
+          <span class="top-meta">按百炼北京公开目录价全链路可复算测算（人民币）</span>
+        </div>
+        <h2 class="slide-title">全链路云账升级：TTS 播报与实时音视频流才是真正成本黑洞</h2>
+        <p class="slide-lead">保留 ASR+LLM 底座，显式补齐无屏刚需 <strong>TTS 播报、会议总结、VLM 识图与全双工实时音频</strong>，帮客户把 TCO 压回盈利线。</p>
+
+        <div class="slide-body">
+          <div class="g-60-40" style="flex:1; align-items:stretch;">
+            <div style="display:flex; flex-direction:column; justify-content:space-between;">
+              <table class="clean-tbl" style="font-size:11.3px; line-height:1.36;">
+                <thead>
+                  <tr>
+                    <th style="width:19%; padding:7px 9px;">情景 / 链路模块</th>
+                    <th style="width:31%; padding:7px 9px;">年用量假设（180 活跃天/年）</th>
+                    <th style="width:23%; padding:7px 9px;">文件 / 低配方案</th>
+                    <th style="width:27%; padding:7px 9px; background:#312E81;">实时 / 主流高体验</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="b" style="padding:6.5px 9px;">情景 A 底座<br/><span class="tag t-slate">ASR + LLM</span></td>
+                    <td style="padding:6.5px 9px;">日均 10 轮问答（1,800 轮，语音共 7.5h）</td>
+                    <td style="padding:6.5px 9px;"><strong>2.97 元/年</strong><br/><span style="font-size:10.4px; color:#64748B;">文件 2.16 + 问答 0.81</span></td>
+                    <td style="padding:6.5px 9px; background:#EEF2FF;"><strong>7.29 元/年</strong><br/><span style="font-size:10.4px; color:#3730A3;">实时转写占 6.48 元</span></td>
+                  </tr>
+                  <tr>
+                    <td class="b" style="padding:6.5px 9px;">情景 B 底座<br/><span class="tag t-indigo">ASR + LLM</span></td>
+                    <td style="padding:6.5px 9px;">日均 30 轮（5,400 轮）+ 20min 会议（共 82.5h）</td>
+                    <td style="padding:6.5px 9px;"><strong>26.19 元/年</strong><br/><span style="font-size:10.4px; color:#64748B;">文件 23.76 + 问答 2.43</span></td>
+                    <td style="padding:6.5px 9px; background:#EEF2FF;"><strong>73.71 元/年</strong><br/><span style="font-size:10.4px; color:#3730A3;">实时转写占 71.28 元</span></td>
+                  </tr>
+                  <tr class="hl">
+                    <td class="b" style="padding:6px 9px;">情景 B 完整闭环<br/><span class="tag t-amber">补 TTS + 总结</span></td>
+                    <td style="padding:6px 9px;">补齐无屏 5,400 轮刚需 TTS + 60h 会议总结（180 场×3k/400 tok）与 <code>Qwen3.8-Flash</code> 价差</td>
+                    <td style="padding:6px 9px;"><strong>约 92.8 元/年</strong><br/><span style="font-size:9.8px; color:#475569;">含 <code>qwen-audio-3.1-tts-flash</code> <strong>+66.42</strong></span></td>
+                    <td style="padding:6px 9px; background:#FEF3C7;"><strong style="color:#92400E;">高达 251.9 元/年</strong><br/><span style="font-size:9.8px; color:#92400E;">实时+3.8Flash+CosyVoice <strong>+172.80</strong></span></td>
+                  </tr>
+                  <tr>
+                    <td class="b" style="padding:6px 9px;">情景 C 增量<br/><span class="tag t-rose">VLM / Live</span></td>
+                    <td style="padding:6px 9px;">VLM 识图（日均 5–10 张，1,500/200 tok）vs 全双工实时音频（活跃日仅 5 分钟）</td>
+                    <td style="padding:6px 9px; background:#ECFDF5;"><strong style="color:#065F46;">VLM +1.4–2.9 元/年</strong><br/><span style="font-size:9.9px; color:#059669;">Qwen-VL-Plus 北京价 0.8/2.0 元/M</span></td>
+                    <td style="padding:6px 9px; background:#FEF2F2;"><strong style="color:#991B1B;">Live +179.8 元/年</strong><br/><span style="font-size:9.9px; color:#991B1B;">qwen-audio-3.1-live 北京价·须封顶</span></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="callout-strip" style="margin-top:7px; padding:8px 13px; font-size:11.6px; line-height:1.42; background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D;">
+                <strong>核心洞察升级：</strong>王牌 <strong>VLM 拍照识图仅 +1.4–2.9 元/年</strong>，<strong>TTS 播报（+66.42–172.80 元）与全双工实时音视频流（Live +179.8 元/年起）才是成本黑洞</strong>！必须帮客户用“端侧轻 TTS / <code>qwen-audio-3.1-tts-flash</code> 降本 + 增值能力按次/会员封顶”将 TCO 压回可盈利区间。
+              </div>
+              <div style="font-size:9.6px; color:#64748B; line-height:1.34; margin-top:4px;">
+                * 复算口径（2026 北京标准价）：每轮 15s、1,000/200 tok；Paraformer v2 文件 0.288/实时 0.864 元/h；<code>qwen-flash</code> 0.15/1.5 元/M，<code>Qwen3.8-Flash</code> 0.80/2.70 元/M；会议总结 180 场×3k/400 tok；TTS <code>qwen-audio-3.1-tts-flash</code> 1.5/12 元/M（每轮 200/1,000 tok × 5,400 轮 = +66.42 元），<code>CosyVoice-v3.5-Flash</code> 0.8 元/万字符、200 汉字=400 字符（+172.80 元）；<code>Qwen-VL-Plus</code> 北京 0.8/2.0 元/M（1,500/200 tok）；<code>qwen-audio-3.1-live</code> 北京 0.00333 元/s × 300s × 180 天 ≈ +179.8 元（新加坡出海节点 0.005177 元/s ≈ +279.6 元；未含 RTC 带宽与云存储）。
+              </div>
+            </div>
+
+            <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between; padding:16px 18px;">
+              <div class="card-h" style="color:#93C5FD; margin-bottom:2px;">把全链路 TCO 压回盈利区的三级控本机制</div>
+              <div style="background:rgba(99,102,241,0.22); border:1px solid #818CF8; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13.1px; font-weight:800; color:#FFF;">① 端侧 KWS + 轻 TTS 降本拦截</div>
+                <div style="font-size:11.9px; color:#E0E7FF; margin-top:4px; line-height:1.46;">恒玄 MCU/DSP 跑离线唤醒与短指令；常规状态提示走<strong>端侧轻 TTS</strong>，云端播报首选 <strong>qwen-audio-3.1-tts-flash</strong> 替代高价音色，单台立省百元/年。</div>
+              </div>
+              <div style="background:rgba(2,132,199,0.22); border:1px solid #38BDF8; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13.1px; font-weight:800; color:#FFF;">② 以拍照 VLM 替代常开实时流</div>
+                <div style="font-size:11.9px; color:#BAE6FD; margin-top:4px; line-height:1.46;">优先用“按需拍照 + <strong>Qwen-VL-Plus</strong>”（仅 <strong>+1.4–2.9 元/年</strong>）承接高频识物翻译；高价全双工音视频流仅在用户显式触发时开启。</div>
+              </div>
+              <div style="background:rgba(5,150,105,0.22); border:1px solid #34D399; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13.1px; font-weight:800; color:#FFF;">③ 缓存降本 + 增值能力按次/会员封顶</div>
+                <div style="font-size:11.9px; color:#A7F3D0; margin-top:4px; line-height:1.46;">固定系统提示词走 Context Cache；对全双工通话、同传、会议总结与云相册前置免费额度封顶，超额转按次加油包或 C 端会员分成。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 可复算云端成本模型</span>
+          <span class="pg">15 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 16: OBJECTION ANALYSIS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 客户选型顾虑预判</span>
+          <span class="top-meta">基于公开资料拟定的 3 类高频异议与试点验证方法</span>
+        </div>
+        <h2 class="slide-title">预判外部客户最可能的 3 类顾虑，用最小试点（POC）破冰</h2>
+        <p class="slide-lead">模型效果、渠道获客与产品竞合分开拆账——不靠口号说服客户，而是用透明测试指标建立长期专业信任。</p>
+
+        <div class="slide-body">
+          <div class="g-3" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="border-top:4px solid #DC2626; padding:15px 17px;">
+              <div class="tag t-rose" style="margin-bottom:8px;">顾虑 01 · 火山无硬件包袱 + RTC + 抖音投流</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“火山不做自有眼镜，还给 RTC 底座和抖音投流换模型，为何选千问？”</div>
+              <ul class="pts" style="gap:8px;">
+                <li style="font-size:12.4px;"><strong>流量与模型分开算账：</strong>正视火山 RTC 优势与抖音冷启动价值，但须将直播单扣减退货折损算清真实留单 CAC，不拿底层模型换短期流量。</li>
+                <li style="font-size:12.4px;"><strong>同设备盲测打硬仗：</strong>用第一视角菜单/识物与高噪通勤语料同场压测千问 vs 豆包，比拼 VLM 准确度、端到端耗时与含 TTS 全链路 TCO。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="border-top:4px solid #D97706; padding:15px 17px;">
+              <div class="tag t-amber" style="margin-bottom:8px;">顾虑 02 · 自研覆盖 2,000–4,000 元竞合死结</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“阿里自研占大陆第 1（G1/N1/N1 Pro/S1），外部接入如何防冲突且拿生态？”</div>
+              <ul class="pts" style="gap:8px;">
+                <li style="font-size:12.4px;"><strong>坦诚划界 + 错位垂类：</strong>不回避 2,000–4,000 元主流盘交集，对外主攻<strong>全彩旗舰、户外运动、跨境出海、传统框型</strong>，以雷鸟 iO/V3 与 Rokid 案例及阿里云租户隔离背书。</li>
+                <li style="font-size:12.4px;"><strong>争取插件分级开放：</strong>若生活接口一概封闭则生态护城河落空，需对内对齐<strong>高德轻导航、本地生活等非核心插件的分级开放边界</strong>。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="border-top:4px solid #4F46E5; padding:15px 17px;">
+              <div class="tag t-indigo" style="margin-bottom:8px;">顾虑 03 · 多模型解耦与出海云变现路径</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“我们多模型路由且要出海，如何在合规、质量与云成本间选千问？”</div>
+              <ul class="pts" style="gap:8px;">
+                <li style="font-size:12.4px;"><strong>抢 VLM 子路由 + 瞄准出海托管：</strong>主打第一视角 <strong>Qwen-VL 识物/翻译</strong>默认路由；面向未获 Android XR 首批授权的国产出海品牌，主推<strong>阿里云新加坡/欧美托管 API 与 PTU</strong>（开源 Qwen 仅作生态钩子与端侧标准）。</li>
+                <li style="font-size:12.4px;"><strong>零水分全链路算账：</strong>严禁 Token Plan 充数，按生产目录价含 TTS/VLM 压测，前置人脸打码与数据驻留合规。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:12px; background:#0F172A; color:#F8FAFC; border-left-color:#38BDF8;">
+            <strong style="color:#93C5FD;">核心价值主张：</strong> 合作前先做小规模试点，与客户共同核对<strong>“第一视角视觉实测质量 + 含 TTS/VLM 生产级 TCO + 数据隔离与出海合规方案”</strong>，从拼单价升级为综合商业化伙伴。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 客户顾虑与试点方法</span>
+          <span class="pg">16 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 17: TARGET ACCOUNT MAP ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">06 · 客户生态地图与优先级</span>
+          <span class="top-meta">区分存量标杆深化、上游公版杠杆与新人补位切口</span>
+        </div>
+        <h2 class="slide-title">行业客户分层与盘子估算：深化标杆 VLM 子路由，沉淀 1 套 RDK 公版</h2>
+        <p class="slide-lead">在智能硬件<strong>三大赛道（录音设备 / 智能眼镜 / 儿童陪伴玩具）</strong>横向排序中，智能眼镜列<strong>“其次推进（仅次于录音设备）”</strong>——重在卡位高毛利视觉路由与低冲突外部增量。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-2" style="flex:1; gap:13px; align-items:stretch;">
+            <div class="card-indigo" style="padding:13px 16px;">
+              <div class="card-h" style="margin-bottom:6px; font-size:14.4px;"><span class="tag t-indigo">第 1 梯队 · 标杆深化（优先）</span> 头部独立 AR 先锋</div>
+              <div style="font-size:13.5px; font-weight:800; color:#3730A3; margin-bottom:6px;">乐奇 Rokid · 雷鸟创新 · 影目 INMO</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:11.8px; line-height:1.42;"><strong>Rokid &amp; 雷鸟（存量高优）：</strong>Rokid（Glasses 2 现货/Color 2027.04 交付）重点抢占<strong>外文菜单/路牌等 VLM 子路由</strong>默认权重；<strong>雷鸟 iO（2026.8 发、34g 轻光波导、国补 1,996 起、双 11 单品 TOP1）/ V3</strong> 均已接千问，延伸至 X3 Pro 与出海托管 API。</li>
+                <li style="font-size:12.1px; line-height:1.45;"><strong>影目（H1 14.6%）：</strong>先核实其现有模型供应商与出海语种缺口，再评估消费线视觉切入点。</li>
+              </ul>
+            </div>
+
+            <div class="card-emerald" style="padding:13px 16px;">
+              <div class="card-h" style="margin-bottom:6px; font-size:14.4px;"><span class="tag t-emerald">第 2 梯队 · 1 对 N 杠杆</span> 芯片 RDK 与纯 ODM/IDH</div>
+              <div style="font-size:13.5px; font-weight:800; color:#065F46; margin-bottom:6px;">高通 / 恒玄 / 展锐参考平台 · 亿境虚拟 · 深圳出海方案商</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:12.1px; line-height:1.45;"><strong>角色筛选与权责：</strong>优先对接无品牌冲突的纯 ODM/IDH，前置明确预装授权与固件维护责任。</li>
+                <li style="font-size:12.1px; line-height:1.45;"><strong>最小验证：</strong>先用 <strong>1 款公版机型</strong>沉淀可复用 RDK + 百炼 SDK 样板，量化开发工时与转产成本。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="padding:13px 16px;">
+              <div class="card-h" style="margin-bottom:6px; font-size:14.4px;"><span class="tag t-cyan">第 3 梯队 · 新人补位切口</span> 腰部垂类与传统眼镜转型</div>
+              <div style="font-size:13.5px; font-weight:800; color:#0369A1; margin-bottom:6px;">界环 · 李未可 · 闪极 · 致敬未知(户外) · 中型传统眼镜品牌</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:12.1px; line-height:1.45;"><strong>垂类错位：</strong>与千问大众盘冲突小，分别核对户外轨迹、轻音频低成本与办公记忆场景预算上限。</li>
+                <li style="font-size:12.1px; line-height:1.45;"><strong>传统眼镜商：</strong>手握线下门店但缺 AI 团队，适合打包“纯 IDH 公版 + 千问开放能力”。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="padding:13px 16px;">
+              <div class="card-h" style="margin-bottom:6px; font-size:14.4px;"><span class="tag t-amber">第 4 梯队 · 理性跟踪</span> 封闭手机/车企与海外站队阵营</div>
+              <div style="font-size:13.5px; font-weight:800; color:#92400E; margin-bottom:6px;">华为 · 小米 · 理想 · 星纪魅族 · XREAL（Android XR）</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:12.1px; line-height:1.45;"><strong>资源纪律：</strong>华为/小米/理想强绑自有生态，XREAL AURA 站队有线 Android XR；先核实接口边界，不投入主力硬攻底座替换，保持行业跟踪与轻量互通。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:10px; padding:9px 14px; font-size:11.6px; line-height:1.42;">
+            <strong>外部可触达云盘子情景估算（基于公开体量，待内部数据校准）：</strong>剔除自研及封闭手机大厂后，若按国内第三方年新增激活 <strong>30–50 万台</strong>、单机中度语音+视觉年云消耗 <strong>50–100 元</strong>粗测，现阶段外部纯 API 盘属<strong>千万级（约 1,500 万–5,000 万元）慢变量入口</strong>；因此重心不在短期摊大饼，而在抢占 <strong>Rokid / 雷鸟高毛利 VLM 子路由</strong>与沉淀 <strong>1 套可复用 RDK 公版</strong>（本汇报聚焦 C 端消费级盘；B 端工业/文旅眼镜 API 拟作后续专项补充）。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 客户生态地图</span>
+          <span class="pg">17 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 18: NEWCOMER ACTION PLAN & ALIGNMENT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">07 · 新人落地计划与内部对齐</span>
+          <span class="top-meta">向千问智能硬件行业总监汇报 · 脚踏实地、严守边界</span>
+        </div>
+        <h2 class="slide-title">新人 90 天可控推进计划、结构性风控与待请教的 3 个内部问题</h2>
+        <p class="slide-lead">深知硬件开案周期长（6–12 个月）、头部大客已有团队深耕——我愿<strong>先沉底对齐内部口径，再聚焦指定单一切口做出最小验证</strong>。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-white" style="padding:15px 20px;">
+            <div style="font-size:14.5px; font-weight:800; color:#0F172A; margin-bottom:10px;">90 天 100% 可控执行动作（严格服从团队分工与阶段目标）</div>
+            <div class="g-3" style="gap:16px;">
+              <div style="border-left:3.5px solid #0284C7; padding-left:13px;">
+                <div style="font-size:13.2px; font-weight:800; color:#0369A1;">前 30 天 · 对齐与校准</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:12.2px;">吃透千问 C 端硬件与百炼对外商业化分工、生产 API 阶梯价与存量客户状态；</li>
+                  <li style="font-size:12.2px;">申请旁听资深同事 5–10 场客户拜访，把目录价算账器校准为一线实用工具。</li>
+                </ul>
+              </div>
+              <div style="border-left:3.5px solid #4F46E5; padding-left:13px;">
+                <div style="font-size:13.2px; font-weight:800; color:#3730A3;">30–60 天 · 补位与摸排</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:12.2px;">协助准备 Rokid / 雷鸟等标杆客户 POC 视觉测试集、竞品拆解与异议 FAQ；</li>
+                  <li style="font-size:12.2px;">主动承接团队精力覆盖不足的<strong>腰部垂类品牌与深圳 IDH 方案商</strong>建档摸排。</li>
+                </ul>
+              </div>
+              <div style="border-left:3.5px solid #059669; padding-left:13px;">
+                <div style="font-size:13.2px; font-weight:800; color:#065F46;">60–90 天 · 最小闭环</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:12.2px;">在团队指导下，推动 <strong>1–2 家腰部垂类或出海方案商</strong>进入沙箱技术评估；</li>
+                  <li style="font-size:12.2px;">输出 1 份经一线验证的《眼镜垂类痛点与 TCO 破冰复盘》，尽快独立担责。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="g-2" style="margin-top:14px; gap:18px; flex:1; align-items:stretch;">
+            <div class="card-rose" style="padding:13px 16px;">
+              <div style="font-size:13.5px; font-weight:800; color:#991B1B; margin-bottom:6px;">3 条需持续警惕的行业结构性风险</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:12px; line-height:1.45;"><strong>补贴退坡与退货折损：</strong>持续跟踪国补周期与分渠道退货/翻新损耗，对中小客户坚持预付费资源包；</li>
+                <li style="font-size:12px; line-height:1.45;"><strong>海外 OS 生态收紧：</strong>Android XR（AURA / Google 联名）落地加快，出海客户需前置新加坡/欧美托管与接口兼容；</li>
+                <li style="font-size:11.8px; line-height:1.42;"><strong>隐私与生物特征红线：</strong>严守虹膜支付/健康监测的 <strong>PIPL 敏感信息与 NMPA 非医疗红线</strong>；出海对标 Android XR <strong>遮挡指示灯强制停录 + AI 视觉查询上传云端前路人人脸自动打码</strong>。</li>
+              </ul>
+            </div>
+            <div class="card-amber" style="padding:13px 16px;">
+              <div style="font-size:13.5px; font-weight:800; color:#92400E; margin-bottom:6px;">汇报口径边界 &amp; 待向总监请教的 3 个问题</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:12px; line-height:1.45;"><strong>竞合与插件开放边界：</strong>千问自研与对外赋能间哪些客群须避让？<strong>高德轻导航、本地生活等非核心生活插件</strong>能否分级开放？</li>
+                <li style="font-size:12px; line-height:1.45;"><strong>存量与价格政策：</strong>Rokid/雷鸟当前调用份额及针对硬件大客的生产 API 阶梯资源包（含 TTS/VLM）底价如何校准？</li>
+                <li style="font-size:12px; line-height:1.45;"><strong>新人优先切口：</strong>本季度团队最希望我先从哪一条细分客群（如深圳纯 IDH 或垂类品牌）单线切入补位？</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 汇报完（恳请总监批评指正）</span>
+          <span class="pg">18 / 18</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="hud-bar">
+  <button class="hud-btn" id="btnPrev" title="上一页 (←)">← 上一页</button>
+  <span class="hud-counter" id="counter">01 / 18</span>
+  <div class="hud-progress"><div class="hud-progress-fill" id="progressFill"></div></div>
+  <button class="hud-btn" id="btnNext" title="下一页 (→ / Space)">下一页 →</button>
+  <button class="hud-btn" id="btnOverview" title="网格总览 (G)">总览 (G)</button>
+  <button class="hud-btn" id="btnFull" title="全屏演示 (F)">全屏 (F)</button>
+  <button class="hud-btn" id="btnPrint" title="打印 / 另存为 16:9 PDF">导出 PDF</button>
+</div>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const viewport = document.getElementById('viewport');
+    const counter = document.getElementById('counter');
+    const progressFill = document.getElementById('progressFill');
+    const total = slides.length;
+    let current = 0;
+    function fitViewport() {
+      if (document.body.classList.contains('overview-mode')) { viewport.style.transform = ''; return; }
+      const scale = Math.min((window.innerWidth - 32) / 1280, (window.innerHeight - 76) / 720);
+      viewport.style.transform = `scale(${Math.max(0.2, Math.min(scale, 1.5))})`;
+    }
+    function showSlide(idx) {
+      current = Math.max(0, Math.min(total - 1, idx));
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+      progressFill.style.width = `${((current + 1) / total) * 100}%`;
+    }
+    function toggleOverview(forceOff) {
+      if (forceOff === true) document.body.classList.remove('overview-mode');
+      else document.body.classList.toggle('overview-mode');
+      fitViewport();
+    }
+    slides.forEach((s, idx) => s.addEventListener('click', () => {
+      if (document.body.classList.contains('overview-mode')) { showSlide(idx); toggleOverview(true); }
+    }));
+    document.getElementById('btnPrev').addEventListener('click', () => { toggleOverview(true); showSlide(current - 1); });
+    document.getElementById('btnNext').addEventListener('click', () => { toggleOverview(true); showSlide(current + 1); });
+    document.getElementById('btnOverview').addEventListener('click', () => toggleOverview());
+    document.getElementById('btnFull').addEventListener('click', () => {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    });
+    document.getElementById('btnPrint').addEventListener('click', () => { toggleOverview(true); window.print(); });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); toggleOverview(true); showSlide(current + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); toggleOverview(true); showSlide(current - 1); }
+      else if (e.key === 'Home') { toggleOverview(true); showSlide(0); }
+      else if (e.key === 'End') { toggleOverview(true); showSlide(total - 1); }
+      else if (e.key.toLowerCase() === 'g') { toggleOverview(); }
+      else if (e.key.toLowerCase() === 'f') { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
+      else if (e.key === 'Escape') { toggleOverview(true); }
+    });
+    window.addEventListener('resize', fitViewport);
+    showSlide(0);
+    fitViewport();
+  })();
+</script>
+</body>
+</html>

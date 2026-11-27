@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  :root {
+    --navy: #0F172A;
+    --indigo: #4F46E5;
+    --indigo-dark: #3730A3;
+    --indigo-soft: #EEF2FF;
+    --cyan: #0284C7;
+    --cyan-soft: #E0F2FE;
+    --emerald: #059669;
+    --emerald-dark: #065F46;
+    --emerald-soft: #ECFDF5;
+    --amber: #D97706;
+    --amber-soft: #FFFBEB;
+    --rose: #DC2626;
+    --rose-soft: #FEF2F2;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748B;
+    --slate-300: #CBD5E1;
+    --slate-200: #E2E8F0;
+    --slate-50: #F8FAFC;
+  }
+  html, body {
+    width: 100%; height: 100%;
+    font-family: "Noto Sans CJK SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #0B1120; color: var(--slate-700); overflow: hidden;
+  }
+  .deck-stage { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .slide-viewport { width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
+  .slide { width: 1280px; height: 720px; background: #FFFFFF; position: absolute; inset: 0; display: none; flex-direction: column; overflow: hidden; }
+  .slide.active { display: flex; }
+  .slide-inner { padding: 34px 50px 26px 50px; flex: 1; display: flex; flex-direction: column; }
+
+  body.overview-mode { overflow-y: auto; background: #0F172A; }
+  body.overview-mode .deck-stage { height: auto; min-height: 100vh; padding: 36px 36px 96px 36px; display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; align-items: start; overflow: visible; }
+  body.overview-mode .slide-viewport { display: contents; }
+  body.overview-mode .slide { display: flex !important; position: relative !important; width: 1280px; height: 720px; transform: scale(0.29); transform-origin: top left; margin-bottom: -511px; margin-right: -908px; border-radius: 14px; cursor: pointer; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+  body.overview-mode .slide:hover { outline: 10px solid #059669; }
+  body.overview-mode .slide.active { outline: 10px solid #34D399; }
+
+  .hud-bar { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 999; display: flex; align-items: center; gap: 10px; background: rgba(15, 23, 42, 0.86); backdrop-filter: blur(12px); border: 1px solid rgba(148, 163, 184, 0.25); padding: 7px 14px; border-radius: 999px; color: #E2E8F0; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); user-select: none; }
+  .hud-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); color: #F8FAFC; padding: 5px 11px; border-radius: 999px; cursor: pointer; font-size: 12px; font-family: inherit; }
+  .hud-btn:hover { background: rgba(5, 150, 105, 0.65); }
+  .hud-counter { font-weight: 700; color: #6EE7B7; min-width: 64px; text-align: center; }
+  .hud-progress { width: 110px; height: 4px; background: rgba(255, 255, 255, 0.16); border-radius: 99px; overflow: hidden; }
+  .hud-progress-fill { height: 100%; background: linear-gradient(90deg, #059669, #38BDF8); width: 5%; transition: width 0.2s ease; }
+
+  @media print {
+    html, body { width: 1280px; height: auto; background: #FFFFFF; overflow: visible; }
+    .hud-bar { display: none !important; }
+    .deck-stage, .slide-viewport { display: block !important; width: 1280px; height: auto; transform: none !important; box-shadow: none !important; border-radius: 0 !important; overflow: visible !important; }
+    .slide { display: flex !important; position: relative !important; width: 1280px !important; height: 720px !important; page-break-after: always; break-after: page; }
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+  }
+
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .section-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--emerald-soft); color: var(--emerald-dark); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+  .top-meta { font-size: 12px; color: var(--slate-500); font-weight: 500; }
+  .slide-title { font-size: 24.5px; font-weight: 800; color: var(--navy); line-height: 1.24; margin-bottom: 7px; letter-spacing: -0.3px; }
+  .slide-lead { font-size: 13.8px; color: var(--slate-600); line-height: 1.48; margin-bottom: 16px; }
+  .slide-lead strong { color: var(--emerald-dark); }
+  .slide-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 10px; }
+  .slide-footer { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--slate-200); display: flex; justify-content: space-between; align-items: center; font-size: 11.2px; color: var(--slate-500); }
+  .slide-footer .pg { font-weight: 700; color: var(--navy); }
+
+  .g-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .g-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .g-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .g-55-45 { display: grid; grid-template-columns: 1.22fr 1fr; gap: 22px; }
+  .g-60-40 { display: grid; grid-template-columns: 1.48fr 1fr; gap: 22px; }
+
+  .card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 12px; padding: 17px 19px; }
+  .card-white { background: #FFFFFF; border: 1px solid var(--slate-200); border-radius: 12px; padding: 17px 19px; }
+  .card-indigo { background: var(--indigo-soft); border: 1px solid #C7D2FE; border-radius: 12px; padding: 17px 19px; }
+  .card-cyan { background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 12px; padding: 17px 19px; }
+  .card-emerald { background: var(--emerald-soft); border: 1px solid #A7F3D0; border-radius: 12px; padding: 17px 19px; }
+  .card-rose { background: var(--rose-soft); border: 1px solid #FECACA; border-radius: 12px; padding: 17px 19px; }
+  .card-amber { background: var(--amber-soft); border: 1px solid #FDE68A; border-radius: 12px; padding: 17px 19px; }
+  .card-dark { background: linear-gradient(155deg, #06281E 0%, #0F172A 100%); color: #F8FAFC; border-radius: 12px; padding: 19px 21px; }
+
+  .card-h { font-size: 15.2px; font-weight: 800; color: var(--navy); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
+  .card-dark .card-h { color: #FFFFFF; }
+
+  .tag { display: inline-block; padding: 2.5px 8px; border-radius: 5px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .t-indigo { background: #E0E7FF; color: #3730A3; }
+  .t-cyan { background: #E0F2FE; color: #0369A1; }
+  .t-emerald { background: #D1FAE5; color: #065F46; }
+  .t-amber { background: #FEF3C7; color: #92400E; }
+  .t-rose { background: #FEE2E2; color: #991B1B; }
+  .t-slate { background: #E2E8F0; color: #334155; }
+
+  .kpi-card { background: #FFFFFF; border: 1px solid var(--slate-200); border-top: 4px solid var(--emerald); border-radius: 12px; padding: 20px 20px 18px 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 244px; }
+  .kpi-card.indigo { border-top-color: var(--indigo); }
+  .kpi-card.amber { border-top-color: var(--amber); }
+  .kpi-card.rose { border-top-color: var(--rose); }
+  .kpi-label { font-size: 12.6px; font-weight: 700; color: var(--slate-500); margin-bottom: 8px; }
+  .kpi-num { font-size: 31px; font-weight: 800; color: var(--navy); line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.6px; }
+  .kpi-card.emerald .kpi-num { color: var(--emerald); }
+  .kpi-card.indigo .kpi-num { color: var(--indigo); }
+  .kpi-card.amber .kpi-num { color: var(--amber); }
+  .kpi-card.rose .kpi-num { color: var(--rose); }
+  .kpi-desc { font-size: 12.5px; color: var(--slate-600); line-height: 1.52; padding-top: 12px; border-top: 1px solid var(--slate-200); }
+
+  ul.pts { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  ul.pts li { position: relative; padding-left: 16px; font-size: 13px; line-height: 1.52; color: var(--slate-700); }
+  ul.pts li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--emerald); }
+  .card-indigo ul.pts li::before { background: var(--indigo); }
+  .card-cyan ul.pts li::before { background: var(--cyan); }
+  .card-rose ul.pts li::before { background: var(--rose); }
+  .card-amber ul.pts li::before { background: var(--amber); }
+  .card-dark ul.pts li { color: #E2E8F0; }
+  .card-dark ul.pts li::before { background: #34D399; }
+  ul.pts li strong { color: var(--navy); }
+  .card-dark ul.pts li strong { color: #FFFFFF; }
+
+  table.clean-tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12.1px; line-height: 1.44; border: 1px solid var(--slate-200); border-radius: 10px; overflow: hidden; }
+  table.clean-tbl thead th { background: var(--navy); color: #FFFFFF; font-weight: 700; text-align: left; padding: 9px 12px; font-size: 12px; }
+  table.clean-tbl tbody td { padding: 8.5px 12px; border-top: 1px solid var(--slate-200); vertical-align: middle; color: var(--slate-700); }
+  table.clean-tbl tbody tr:nth-child(even) td { background: var(--slate-50); }
+  table.clean-tbl tbody tr.hl td { background: #ECFDF5; }
+  .b { font-weight: 700; color: var(--navy); }
+
+  .callout-strip { background: linear-gradient(90deg, #ECFDF5 0%, #F8FAFC 100%); border-left: 4px solid var(--emerald); border-radius: 0 10px 10px 0; padding: 11px 16px; font-size: 12.8px; color: var(--navy); line-height: 1.5; margin-top: 12px; }
+
+  .cover-slide { background: linear-gradient(135deg, #061D17 0%, #0D2E2A 52%, #132240 100%); color: #FFFFFF; }
+</style>
+</head>
+<body>
+
+<div class="deck-stage">
+  <div class="slide-viewport" id="viewport">
+
+    <!-- ==================== SLIDE 01: COVER ==================== -->
+    <section class="slide cover-slide active">
+      <svg style="position:absolute; inset:0; width:100%; height:100%; opacity:0.65; pointer-events:none;" viewBox="0 0 1280 720">
+        <defs>
+          <radialGradient id="tg1" cx="84%" cy="28%" r="48%"><stop offset="0%" stop-color="#059669" stop-opacity="0.52"/><stop offset="100%" stop-color="#061D17" stop-opacity="0"/></radialGradient>
+          <radialGradient id="tg2" cx="20%" cy="85%" r="42%"><stop offset="0%" stop-color="#4F46E5" stop-opacity="0.35"/><stop offset="100%" stop-color="#061D17" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1280" height="720" fill="url(#tg1)"/>
+        <rect width="1280" height="720" fill="url(#tg2)"/>
+        <g stroke="#34D399" stroke-opacity="0.26" fill="none" stroke-width="1.5">
+          <circle cx="1010" cy="260" r="155"/><circle cx="930" cy="145" r="46"/><circle cx="1090" cy="145" r="46"/>
+          <circle cx="965" cy="245" r="16" fill="#34D399" fill-opacity="0.18"/><circle cx="1055" cy="245" r="16" fill="#34D399" fill-opacity="0.18"/>
+          <path d="M975 305 Q1010 335 1045 305" stroke="#6EE7B7" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+
+      <div class="slide-inner" style="position:relative; z-index:2; padding:52px 70px 44px 70px; justify-content:space-between;">
+        <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(5,150,105,0.28); border:1px solid rgba(52,211,153,0.5); color:#A7F3D0; padding:7px 18px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:1px; width:fit-content;">
+          <span style="width:8px; height:8px; border-radius:50%; background:#34D399;"></span>
+          千问智能硬件团队 · 行业调研汇报 NO.03（有条件推进赛道）
+        </div>
+
+        <div style="max-width:880px;">
+          <div style="font-size:14px; font-weight:700; color:#34D399; letter-spacing:2.5px; margin-bottom:14px;">AI CHILDREN'S COMPANION TOY COMMERCIALIZATION BRIEFING</div>
+          <h1 style="font-size:45px; font-weight:800; line-height:1.22; letter-spacing:-0.8px; color:#FFFFFF; margin-bottom:20px;">
+            2026 智能儿童陪伴玩具行业洞察<br/>与千问商业化汇报
+          </h1>
+          <p style="font-size:17.5px; color:#CBD5E1; line-height:1.65; border-left:4px solid #34D399; padding-left:20px;">
+            拆透狭义大模型玩具真实体量、199 元退货亏损真相与 2 年活跃云账本，<br/>
+            严守中美儿童强监管与毛利底线，主攻千元硬壳视觉伴学与预付费模组生态池
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; background:rgba(6,29,23,0.72); border:1px solid rgba(148,163,184,0.25); border-radius:12px; padding:18px 24px;">
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">汇报对象</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">千问智能硬件行业总监</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">汇报角色与视角</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">行业新人 · 商业化与合规风控</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">核心数据基准</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">魔镜 / Sandalwood / 工信部 / 百炼价</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">编制时点</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">2026 年 11 月</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 02: EXEC KPIs ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">核心速览 · 01 / 02</span>
+          <span class="top-meta">严格区分宏观大盘、线上细分、成本假设与退货样本口径</span>
+        </div>
+        <h2 class="slide-title">4 组核心数字，看清 2026 AI 儿童玩具的真实体量与亏损真相</h2>
+        <p class="slide-lead">剥离广义早教大盘水分后，狭义线上规模仍在十亿级放量期；量增价跌叠加 30% 退货，已彻底证伪“199 元白牌靠投流赚钱”。</p>
+
+        <div class="slide-body" style="justify-content:center; gap:18px;">
+          <div class="g-4">
+            <div class="kpi-card emerald">
+              <div>
+                <div class="kpi-label">国内线上狭义推算 (2026E)</div>
+                <div class="kpi-num" style="font-size:28px;">约 ¥12.8 亿E</div>
+              </div>
+              <div class="kpi-desc">魔镜 MAT2025 线上 <strong>7.4 亿 / 160.4 万件</strong>（单款 BubblePal 占量 19.6%），按 26 年增速推算 <strong>~12.8 亿 / ~415 万件</strong>；与工信部广义盘（290/342 亿E）存在 <strong>25 年约 39 倍、26E 约 27 倍</strong>口径差。</div>
+            </div>
+
+            <div class="kpi-card indigo">
+              <div>
+                <div class="kpi-label">2026.1–7 线上量增 vs 均价跌</div>
+                <div class="kpi-num" style="font-size:27px;">+158.7% / -33.3%</div>
+              </div>
+              <div class="kpi-desc">据媒体转引 Sandalwood 监测，销量 <strong>+158.7%</strong>、销额 <strong>+72.7%</strong>、均价 <strong>-33.3%</strong>，低价纯语音毛绒加速洗牌，单机毛利持续恶化。</div>
+            </div>
+
+            <div class="kpi-card amber">
+              <div>
+                <div class="kpi-label">入门整机出厂成本 (不含税)</div>
+                <div class="kpi-num" style="font-size:28px;">约 ¥68–¥78</div>
+              </div>
+              <div class="kpi-desc">纯 Wi-Fi 模组 ¥12–18，完整电子机芯总成（含声学/电池/PCB/SMT）<strong>¥38–45</strong>，直接料 ~¥58，加人工包装出厂 ¥68–78（未含开模与 3C/SRRC 认证）。</div>
+            </div>
+
+            <div class="kpi-card rose">
+              <div>
+                <div class="kpi-label">199 元白牌 30% 退货实测</div>
+                <div class="kpi-num" style="font-size:28px;">实亏 ¥15–30/单</div>
+              </div>
+              <div class="kpi-desc">30% 退货率下净留 1 单需发 1.43 单且投流费不退，平台+投流+退损高达 ¥103–116，199 元纯白牌靠付费投流单单倒亏（第 8 页拆解）。</div>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:0;">
+            <strong>战略定位判断（轻人力 · 有条件推进）：</strong>按 2026 国内狭义 ~415 万件推算，千问占 10%–20% 份额对应年 API 盘子仅约 <strong>340 万–1,820 万元</strong>（待内部校准）；本赛道定位<strong>“有条件推进”</strong>——放弃百元语音红海，主攻<strong>千元硬壳视觉伴学</strong>与<strong>预付费模组生态池</strong>，严守合规与毛利底线。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>数据源：工信部 2025.11 发布会、魔镜洞察白皮书（MAT2025）、Sandalwood 线上监测报道与第 8 页情景模型</span>
+          <span class="pg">02 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 03: 5 JUDGMENTS + 3 PLAYS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">核心速览 · 02 / 02</span>
+          <span class="top-meta">五个核心商业规律（含 2026 新规）与三条商业化切入思路</span>
+        </div>
+        <h2 class="slide-title">决定 2026–2027 胜负的 5 条底层规律与 3 条务实切入主线</h2>
+        <p class="slide-lead">认清 199 元白牌亏损、2 年活跃云账与中美强监管拐点（<strong>中国 7.15《拟人化办法》+ 加州 SB 867/1119 及纽约州禁令</strong>），明确轻人力破局路径。</p>
+
+        <div class="slide-body">
+          <div class="g-55-45" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:flex-start;">
+              <div class="card-h" style="margin-bottom:12px;">5 条行业底层规律</div>
+              <div style="display:flex; flex-direction:column; gap:11px; flex:1; justify-content:space-between;">
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-emerald" style="margin-top:2px;">01</span>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>买单者（家长）≠ 使用者（儿童）：</strong>家长盯安全、护眼与 2.4GHz 无感配网；孩子盯 <strong>&lt;600ms</strong> 响应与防误唤醒，体验不过关即触发 30%+ 退货。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-emerald" style="margin-top:2px;">02</span>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>价格带剧烈分化：</strong>199 元白牌靠付费投流单单实亏 <strong>15–30 元</strong>；唯有千元硬壳探索机（灵宇宙 1,099–1,299）、强 IP 与潮玩守住毛利池。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-emerald" style="margin-top:2px;">03</span>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>“健身房卡模型”云账：</strong>5,000 轮吃灰基线仅 <strong>11.70–39.55 元/年</strong>，但高活 2 年模型+RTC 可破 <strong>115–342 元</strong>，须靠预付费固定轮次卡密兜底。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-emerald" style="margin-top:2px;">04</span>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>安全护栏与认证一票否决：</strong>2026.11 PIRG 复测显示 FoloToy 整改通过，但多款同测 AI 玩具长对话护栏仍易衰减；国内须配齐 <strong>3C + SRRC + CTA</strong> 及音频零留存方案。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-emerald" style="margin-top:2px;">05</span>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>先判产品能否销售，再定云部署：</strong>加州 <strong>SB 867/1119</strong> 与纽约州禁令已签署、中国 <strong>7.15 新规</strong>及新版 <strong>GB 6675</strong> 已实施，<strong>换云商改变不了产品禁售</strong>，且中小厂无力运维自托管。</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div class="card-h" style="color:#6EE7B7; margin-bottom:2px;">千问“有条件推进”的 3 条主线</div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(52,211,153,0.42); border-radius:10px; padding:12px 15px;">
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 01 · 主攻千元硬壳视觉伴学与早教龙头转型</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">绕开“火山+抖音”纯语音毛绒红海，以 <strong>Qwen-VL 绘本/识物</strong>主攻灵宇宙（1,099–1,299）及火火兔/阿尔法蛋转型视觉伴学新线。</div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(56,189,248,0.42); border-radius:10px; padding:12px 15px;">
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 02 · 1 对 N 预付费模组池 + 阿里鱼/淘天协同</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">借涂鸦/移远 30+ 芯片池轻人力走量，实行<strong>“出厂预付费卡密 + 满额降级”</strong>控坏账；联动<strong>阿里鱼 IP + 淘天母婴货架</strong>共创 599+ 新品。</div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(129,140,248,0.42); border-radius:10px; padding:12px 15px;">
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 03 · 存量审慎维护 + 出海合规分区试点</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">实丰 SF-Hola 降级为存量样板严防账期，奥飞/汤姆猫按子路由切入；出海主推<strong>东南亚/中东合规节点</strong>，欧美 &lt;16 岁禁售区严设法务白名单。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 核心判断</span>
+          <span class="pg">03 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 04: MARKET SCALE & PRICE TIERS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">01 · 市场全景</span>
+          <span class="top-meta">三套市场口径同框对齐与三大价格带分化</span>
+        </div>
+        <h2 class="slide-title">狭义线上 2026E 约 12.8 亿 / 415 万件：拆清与广义 342 亿的近 30 倍鸿沟</h2>
+        <p class="slide-lead">狭义大模型 AI 玩具仍处早期爆款驱动放量期（BubblePal 单款占量 19.6%）；广义大盘含大量不调云端大模型的传统早教设备，严禁混算云盘。</p>
+
+        <div class="slide-body">
+          <div class="g-60-40" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between; padding:14px 17px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span style="font-size:13.8px; font-weight:800; color:#0F172A;">国内线上狭义大模型 AI 玩具放量测算（主视觉）</span>
+                <span class="tag t-emerald">魔镜 MAT2025 + Sandalwood 26.1–7</span>
+              </div>
+              <svg viewBox="0 0 640 242" style="width:100%; height:auto;">
+                <!-- Left Panel: Revenue (亿元), scale: y=206 (0) to y=66 (15亿), 9.33px per 1亿 -->
+                <rect x="6" y="4" width="306" height="232" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
+                <text x="20" y="24" font-size="12" font-weight="800" fill="#065F46">线上销额（亿元）· 额增 +72.7%</text>
+                <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 3">
+                  <line x1="44" y1="66" x2="296" y2="66"/><line x1="44" y1="113" x2="296" y2="113"/><line x1="44" y1="160" x2="296" y2="160"/>
+                </g>
+                <line x1="44" y1="206" x2="296" y2="206" stroke="#94A3B8" stroke-width="1.3"/>
+                <g font-size="10.2" fill="#64748B" text-anchor="end">
+                  <text x="38" y="70">15</text><text x="38" y="117">10</text><text x="38" y="164">5</text><text x="38" y="210">0</text>
+                </g>
+                <!-- 7.4亿 -> 7.4 * 9.33 = 69.1px (y=136.9..206); BubblePal 1.2亿 -> 11.2px (y=194.8..206) -->
+                <rect x="74" y="136.9" width="66" height="69.1" rx="5" fill="#6EE7B7"/>
+                <rect x="74" y="194.8" width="66" height="11.2" rx="2" fill="#047857"/>
+                <text x="107" y="128" font-size="13.2" font-weight="800" fill="#065F46" text-anchor="middle">7.4 亿</text>
+                <text x="107" y="176" font-size="9.2" font-weight="700" fill="#064E3B" text-anchor="middle">BubblePal 1.2亿</text>
+                <text x="107" y="188" font-size="8.8" font-weight="700" fill="#047857" text-anchor="middle">(单款占 16.2%)</text>
+                <text x="107" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">MAT2025</text>
+                <!-- 12.8亿 -> 12.8 * 9.33 = 119.5px (y=86.5..206) -->
+                <rect x="196" y="86.5" width="66" height="119.5" rx="5" fill="#059669"/>
+                <text x="229" y="77" font-size="13.5" font-weight="800" fill="#065F46" text-anchor="middle">~12.8 亿E</text>
+                <rect x="184" y="38" width="90" height="20" rx="10" fill="#ECFDF5" stroke="#34D399"/>
+                <text x="229" y="51.5" font-size="10.2" font-weight="800" fill="#059669" text-anchor="middle">同比 +72.7%</text>
+                <text x="229" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">2026E 推算</text>
+
+                <!-- Right Panel: Volume (万件), scale: y=206 (0) to y=76 (450万), 0.2889px per 1万件 -->
+                <rect x="328" y="4" width="306" height="232" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
+                <text x="342" y="24" font-size="12" font-weight="800" fill="#3730A3">线上销量（万件）· 均价 -33.3%</text>
+                <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 3">
+                  <line x1="366" y1="76" x2="618" y2="76"/><line x1="366" y1="119.3" x2="618" y2="119.3"/><line x1="366" y1="162.7" x2="618" y2="162.7"/>
+                </g>
+                <line x1="366" y1="206" x2="618" y2="206" stroke="#94A3B8" stroke-width="1.3"/>
+                <g font-size="10.2" fill="#64748B" text-anchor="end">
+                  <text x="360" y="80">450</text><text x="360" y="123.3">300</text><text x="360" y="166.7">150</text><text x="360" y="210">0</text>
+                </g>
+                <!-- 160.4万 -> 160.4 * 0.2889 = 46.3px (y=159.7..206); BubblePal 31.4万 -> 9.1px (y=196.9..206) -->
+                <rect x="396" y="159.7" width="66" height="46.3" rx="5" fill="#A5B4FC"/>
+                <rect x="396" y="196.9" width="66" height="9.1" rx="2" fill="#3730A3"/>
+                <text x="429" y="150" font-size="13" font-weight="800" fill="#3730A3" text-anchor="middle">160.4 万</text>
+                <text x="429" y="191" font-size="9.0" font-weight="700" fill="#312E81" text-anchor="middle">31.4万(19.6%)</text>
+                <text x="429" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">MAT2025</text>
+                <!-- 415万 -> 415 * 0.2889 = 119.9px (y=86.1..206) -->
+                <rect x="518" y="86.1" width="66" height="119.9" rx="5" fill="#4F46E5"/>
+                <text x="551" y="77" font-size="13.5" font-weight="800" fill="#3730A3" text-anchor="middle">~415 万E</text>
+                <rect x="502" y="38" width="98" height="20" rx="10" fill="#EEF2FF" stroke="#818CF8"/>
+                <text x="551" y="51.5" font-size="10.2" font-weight="800" fill="#4F46E5" text-anchor="middle">量增 +158.7%</text>
+                <text x="551" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">2026E 推算</text>
+              </svg>
+              <div style="font-size:11.2px; color:#334155; background:#FFFBEB; border:1px solid #FDE68A; padding:8px 11px; border-radius:8px; line-height:1.45; margin-top:6px;">
+                <strong style="color:#92400E;">广义大盘辅助对照（与狭义差：25 年约 39 倍、26E 约 27 倍）：</strong>工信部 2025.11 披露广义 AI 玩具 2024 年 <strong>246 亿</strong> → 2025E <strong>290 亿</strong>（+17.9%）→ 2026E <strong>342 亿</strong>（作者等速外推）。广义口径包含大量<strong>传统早教机、故事机、点读笔及线下外贸</strong>，绝大部分不调用云端大模型，切忌拿 342 亿倒推千问 API 盘子！
+              </div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+              <div class="card-rose" style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:12px 15px; border-left:4px solid #DC2626;">
+                <div style="font-size:13.4px; font-weight:800; color:#991B1B;">99 – 299 元 · 白牌洗牌亏损区</div>
+                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.48;">开源“小智 AI”与百元毛绒打穿门槛，但 30% 退货下 199 元靠付费投流单单实亏 <strong>15–30 元</strong>（第 8 页拆解），无力承担持续云账。</div>
+              </div>
+              <div class="card-emerald" style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:12px 15px; border-left:4px solid #059669;">
+                <div style="font-size:13.4px; font-weight:800; color:#065F46;">399 – 699 元 · IP 与潮玩甜点带</div>
+                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.48;">BubblePal（399）、华为智能憨憨（399）、奥特曼对话器（599）与实丰中高端线（149–399）；可覆盖轻聊云费，高活全双工仍须严控。</div>
+              </div>
+              <div class="card-indigo" style="flex:1.25; display:flex; flex-direction:column; justify-content:center; padding:12px 15px; border-left:4px solid #4F46E5;">
+                <div style="font-size:13.4px; font-weight:800; color:#3730A3;">1,000 – 2,500 元 · 千元硬壳视觉与高阶带</div>
+                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.46;"><strong>灵宇宙“小方机”</strong>官方标价 <strong>~1,299 元（补贴到手 ~1,000–1,100 元）</strong>，双 11 登顶京东双榜第一、获 2 亿 Pre-A 轮（BOM ~230 元仅千元档可盈利）；汤姆猫 1,499–1,999 元；<strong>Ropet</strong> 为 <strong>USD 299–349（约 2,150–2,500 元</strong>，1,200–1,500 仅早期众筹早鸟价，面向成人 Z 世代）。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 市场全景与口径对齐</span>
+          <span class="pg">04 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 05: BUYER VS USER PARADOX ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 需求真相</span>
+          <span class="top-meta">购买决策（家长）与持续使用（儿童）的分离</span>
+        </div>
+        <h2 class="slide-title">底层商业悖论：“买单者（家长）≠ 使用者（儿童）”</h2>
+        <p class="slide-lead">家长决定首购成交，孩子决定次月留存；分开拆解两类诉求，才能用激活批次数据准确衡量续用与复购。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-2" style="flex:1; align-items:stretch;">
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:flex-start; padding-top:20px;">
+              <div class="card-h" style="color:#3730A3; font-size:16.5px; margin-bottom:13px;">
+                <span class="tag t-indigo">决策买单方</span> 家长真正掏钱的 4 个动因
+              </div>
+              <ul class="pts" style="gap:13px;">
+                <li><strong>无屏护眼（核心痛点）：</strong>主动减少 3–8 岁儿童对手机/平板的依赖；大龄段则须面对电话手表等随身入口分流。</li>
+                <li><strong>启蒙与语言输入：</strong>英语口语陪练、科普百科与绘本探索，把玩具支出合理化为“轻早教投入”。</li>
+                <li><strong>解放双手 + 家长可控：</strong>睡前讲故事与陪伴；要求家长端具备时长管控、角色筛选与使用记录查看能力。</li>
+                <li><strong>内容安全与物理卫生：</strong>零不当诱导、过 3C/防误吞测试、<strong>毛绒款支持内胆快拆水洗</strong>与锂电池安全防护。</li>
+              </ul>
+            </div>
+
+            <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:flex-start; padding-top:20px;">
+              <div class="card-h" style="color:#065F46; font-size:16.5px; margin-bottom:13px;">
+                <span class="tag t-emerald">实际使用方</span> 孩子愿意持续互动的 4 个要素
+              </div>
+              <ul class="pts" style="gap:13px;">
+                <li><strong>低延迟与可随时打断：</strong>低龄儿童耐心极短，等待过久或无法插嘴改口会迅速流失兴趣。</li>
+                <li><strong>熟悉 IP 与平等伙伴感：</strong>让喜欢的动漫角色“开口互动”，而非居高临下的成人说教机器。</li>
+                <li><strong>记住偏好与连续故事：</strong>在家长授权前提下记住昵称与故事进度，延续每日冒险体验。</li>
+                <li><strong>触感反馈与探索互动：</strong>抚摸/摇晃拟真反馈；硬壳随身设备外出拍绘本或花草实时讲解。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>留存口径严谨提示：</strong>公开市场材料并无“70% 设备 7 日后显著衰减”的可核验大样本；一线评估客户产品力时，应按激活批次追踪<strong>第 7 日与第 30 日留存率、每台活跃日均轮数</strong>，再核算真实单台云成本与复购模型。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 买单者与使用者拆解</span>
+          <span class="pg">05 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 06: 4 FORM FACTORS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 产品形态分化</span>
+          <span class="top-meta">四大主流物理形态图谱与视觉交互边界（2026.11）</span>
+        </div>
+        <h2 class="slide-title">四大形态分化：挂件/毛绒起量，硬壳探索机与大 IP 守高客单</h2>
+        <p class="slide-lead">视觉多模态对镜头防抖、取景角度与隐私提示要求高——软毛绒须顾及拆洗与卧室隐私，<strong>硬壳随身机与固定底座</strong>更适合测试视觉交互。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-4" style="flex:1; align-items:stretch;">
+            <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #059669;">
+              <div>
+                <span class="tag t-emerald" style="margin-bottom:9px;">形态 ① · 轻资产破圈</span>
+                <div style="font-size:17px; font-weight:800; color:#0F172A; margin-bottom:5px;">外挂挂件 &amp; 情绪潮玩</div>
+                <div style="font-size:12.2px; font-weight:700; color:#065F46; margin-bottom:9px;">BubblePal · 华为智能憨憨 / Fuzozo</div>
+                <p style="font-size:12.4px; line-height:1.52;">借壳旧毛绒或做掌心毛绒潮玩（华为联手珞博智能 399 元上线售罄、Fuzozo 联手涂鸦出海），避开复杂机械结构快速起量。</p>
+              </div>
+              <div style="font-size:11.6px; color:#065F46; border-top:1px solid #A7F3D0; padding-top:8px;">定位：399 元级爆款切口</div>
+            </div>
+
+            <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #0284C7;">
+              <div>
+                <span class="tag t-cyan" style="margin-bottom:9px;">形态 ② · 千元视觉主攻</span>
+                <div style="font-size:17px; font-weight:800; color:#0F172A; margin-bottom:5px;">硬壳多模态探索机</div>
+                <div style="font-size:12.2px; font-weight:700; color:#0369A1; margin-bottom:9px;">灵宇宙“小方机” · 标价 ~1,299 元</div>
+                <p style="font-size:12.2px; line-height:1.5;">补贴到手 ~1,000–1,100 元，双 11 登顶京东 AI 玩具双榜第一、获 2 亿 Pre-A 轮；挂脖拍绘本/实物并在 CES 2026 出海（~230 元 BOM 须千元档盈利）。</p>
+              </div>
+              <div style="font-size:11.6px; color:#0369A1; border-top:1px solid #E2E8F0; padding-top:8px;">定位：主攻 Qwen-VL 视觉伴学</div>
+            </div>
+
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #4F46E5;">
+              <div>
+                <span class="tag t-indigo" style="margin-bottom:9px;">形态 ③ · 高溢价护城河</span>
+                <div style="font-size:17px; font-weight:800; color:#0F172A; margin-bottom:5px;">经典大 IP 智能化</div>
+                <div style="font-size:12.2px; font-weight:700; color:#3730A3; margin-bottom:9px;">汤姆猫 · 奥飞 · 奥特曼对话器</div>
+                <p style="font-size:12.2px; line-height:1.5;">跃然奥特曼对话器参考价 599 元，汤姆猫 AI 童伴在 1,499–1,999 元高价带；评估品牌溢价须同步扣除授权、内容与售后成本。</p>
+              </div>
+              <div style="font-size:11.6px; color:#3730A3; border-top:1px solid #C7D2FE; padding-top:8px;">定位：三层儿童安全护栏刚需</div>
+            </div>
+
+            <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #D97706;">
+              <div>
+                <span class="tag t-amber" style="margin-bottom:9px;">形态 ④ · 跨龄延伸</span>
+                <div style="font-size:17px; font-weight:800; color:#0F172A; margin-bottom:5px;">走量毛绒 &amp; 成人桌宠</div>
+                <div style="font-size:12.2px; font-weight:700; color:#92400E; margin-bottom:9px;">实丰飞飞兔 / Ropet 情绪桌宠</div>
+                <p style="font-size:12.2px; line-height:1.5;">实丰飞飞兔（<strong>149–399 元</strong>）主攻礼赠与外贸；Ropet 零售 <strong>USD 299–349（约 2,150–2,500 元</strong>，1,200–1,500 仅早期众筹早鸟价），面向成人 Z 世代。</p>
+              </div>
+              <div style="font-size:11.6px; color:#92400E; border-top:1px solid #E2E8F0; padding-top:8px;">定位：严守儿童/成人合规边界</div>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>形态选择验证法：</strong>向客户推荐视觉方案前，先对比软毛绒加镜头（固定/取景/拆洗难题）与挂脖硬壳机、固定桌面伴学底座的<strong>识图准确率与家庭隐私体验</strong>，避免做出高成本低体验的错配形态。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 产品形态图谱</span>
+          <span class="pg">06 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 07: DEVIL IN THE DETAILS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 工程细节</span>
+          <span class="top-meta">儿童语音交互的四大工程门槛与原型测试指标</span>
+        </div>
+        <h2 class="slide-title">工程深水区：半秒级延迟标杆、2.4GHz 配网杀手与防误唤醒</h2>
+        <p class="slide-lead">传统玩具厂易误以为“接通 API 即可上市”，实操中<strong>延迟超标、老人配网崩溃与客厅误唤醒</strong>才是 30%–40% 高退货的真正元凶。</p>
+
+        <div class="slide-body">
+          <div class="g-2" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="border-left:4px solid #059669; padding:15px 18px;">
+              <div class="card-h"><span class="tag t-emerald">难点 01</span> 客厅电视/多娃防误唤醒与童声 ASR</div>
+              <p style="font-size:12.6px; line-height:1.52;">3–7 岁高音调、吐字不清叠加<strong>客厅电视与多娃嘈杂环境极易误唤醒</strong>（空耗云费且扰民）；须做端侧双麦降噪与唤醒阈值精调，<strong>中高端童声场景须用标准 ASR 而非极简 ASR</strong>（以同批童声集实测字错率）。</p>
+            </div>
+
+            <div class="card-white" style="border-left:4px solid #4F46E5; padding:15px 18px;">
+              <div class="card-h"><span class="tag t-indigo">难点 02</span> 分层延迟指标与全双工 AEC/VAD 联调</div>
+              <p style="font-size:12.6px; line-height:1.52;">2026 实时语音标杆已入半秒级，须分层设指标：<strong>百元半双工串联走量款 &lt;1.2 秒，中高端全双工实时打断 &lt;500–600ms</strong>（高延迟恰是 30%–40% 退货元凶）；须深度联调腔体声学、AEC 回声消除与 VAD。</p>
+            </div>
+
+            <div class="card-white" style="border-left:4px solid #0284C7; padding:15px 18px;">
+              <div class="card-h"><span class="tag t-cyan">难点 03</span> 2.4GHz 配网崩溃与 4G 成本权衡</div>
+              <p style="font-size:12.6px; line-height:1.52;"><strong>低龄家庭核心退货杀手：</strong>老人带娃遇家用 2.4G/5G 混频路由极易配网失败；须上 <strong>BLE/声波无感配网</strong>，或权衡改用 <strong>Cat.1 4G 模组（BOM +25–35 元及次年流量 15–25 元/年）</strong>兼顾户外断网兜底。</p>
+            </div>
+
+            <div class="card-white" style="border-left:4px solid #D97706; padding:15px 18px;">
+              <div class="card-h"><span class="tag t-amber">难点 04</span> 分龄安全护栏防衰减与拆洗合规</div>
+              <p style="font-size:12.6px; line-height:1.52;">3 岁与 8 岁认知迥异且长对话护栏易衰减，须在输入拦截、分龄知识库与输出复检三层强约束；毛绒内胆快拆水洗、防误吞及电池温升须按销售地强认证严格落实。</p>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>云端交付价值：</strong>针对研发偏薄弱的玩具品牌，阿里云百炼多模态开发套件已整合低延迟流式链路、标准童声 ASR 选型、儿童内容安全审核与 30+ 芯片适配，直击量产高退货工程痛点。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 儿童交互工程细节</span>
+          <span class="pg">07 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 08: BOM & 199 RMB FUNNEL (EXACT MATH!) ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">03 · 供应链与财务真相</span>
+          <span class="top-meta">两类 BOM 情景与 199 元一般计税单笔贡献测算（人民币）</span>
+        </div>
+        <h2 class="slide-title">199 元白牌财务真相：30% 退货叠加投流，单单实亏 ¥15–30</h2>
+        <p class="slide-lead">严拆“纯模组 vs 完整电子机芯总成 vs 整机出厂成本”；一般计税（13%）下计入 30% 退货（净留 1 单需发 1.43 单且投流费不退），证伪百元白牌投流盈利。</p>
+
+        <div class="slide-body">
+          <div class="g-55-45" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between; padding:15px 17px;">
+              <div class="card-h" style="margin-bottom:6px;">两类 AI 玩具成本拆解（严格等比标尺：2.1px / ¥1）</div>
+              <svg viewBox="0 0 600 272" style="width:100%; height:auto;">
+                <!-- Legend -->
+                <g font-size="10.8" fill="#334155" font-weight="600">
+                  <rect x="10" y="5" width="11" height="11" rx="2" fill="#059669"/><text x="25" y="14.5">模组/主控</text>
+                  <rect x="92" y="5" width="11" height="11" rx="2" fill="#0284C7"/><text x="107" y="14.5">声学</text>
+                  <rect x="145" y="5" width="11" height="11" rx="2" fill="#D97706"/><text x="160" y="14.5">电池</text>
+                  <rect x="198" y="5" width="11" height="11" rx="2" fill="#0D9488"/><text x="213" y="14.5">PCB/SMT</text>
+                  <rect x="278" y="5" width="11" height="11" rx="2" fill="#4F46E5"/><text x="293" y="14.5">镜头/屏/防抖</text>
+                  <rect x="378" y="5" width="11" height="11" rx="2" fill="#94A3B8"/><text x="393" y="14.5">外壳/毛绒</text>
+                  <rect x="462" y="5" width="11" height="11" rx="2" fill="#E2E8F0" stroke="#94A3B8" stroke-dasharray="2 1"/><text x="477" y="14.5">人工/彩盒/损耗</text>
+                </g>
+
+                <!-- Bar 1: 199 Entry Plush (Unified linear scale: 2.1px per RMB, x0=10) -->
+                <!-- Segs: 模组 18 (37.8), 声学 8 (16.8), 电池 10 (21.0), PCB/壳/SMT 6 (12.6) -> Electronic Core 42 (88.2px) -->
+                <!-- 毛绒辅料 16 (33.6) -> Direct BOM 58 (121.8px) -->
+                <!-- 缝制人工/彩盒/损耗 15 (31.5) -> Ex-factory 73 (153.3px, range 68-78) -->
+                <text x="10" y="45" font-size="12.6" font-weight="800" fill="#065F46">① 199 元入门毛绒（纯模组 ¥12–18 ｜ 机芯总成 ¥38–45 ｜ 直接料 ~¥58 ｜ 出厂 ¥68–78）</text>
+                <rect x="10" y="56" width="37.8" height="36" rx="3" fill="#059669"/>
+                <rect x="47.8" y="56" width="16.8" height="36" fill="#0284C7"/>
+                <rect x="64.6" y="56" width="21.0" height="36" fill="#D97706"/>
+                <rect x="85.6" y="56" width="12.6" height="36" fill="#0D9488"/>
+                <rect x="98.2" y="56" width="33.6" height="36" fill="#94A3B8"/>
+                <rect x="131.8" y="56" width="31.5" height="36" rx="3" fill="#E2E8F0" stroke="#64748B" stroke-width="1" stroke-dasharray="3 2"/>
+                <text x="28.9" y="78" font-size="10.2" fill="#FFF" font-weight="700" text-anchor="middle">¥18</text>
+                <text x="115.0" y="78" font-size="10" fill="#FFF" font-weight="700" text-anchor="middle">¥16</text>
+                <text x="147.6" y="78" font-size="10" fill="#334155" font-weight="700" text-anchor="middle">+¥15</text>
+                <text x="173" y="72" font-size="12.2" font-weight="800" fill="#065F46">直接料 ~¥58</text>
+                <text x="173" y="88" font-size="11.4" font-weight="700" fill="#475569">不含税出厂 ~¥73（¥68–78）</text>
+
+                <!-- Bracket showing Electronic Core Assembly ¥42 (x=10..98.2) -->
+                <path d="M10 96 L10 103 L98.2 103 L98.2 96" fill="none" stroke="#059669" stroke-width="1.3"/>
+                <text x="10" y="118" font-size="10.2" font-weight="700" fill="#065F46">完整电子机芯总成 ~¥42（模组18+声学8+电池10+PCB/壳/SMT 6）<tspan fill="#64748B" font-weight="600"> ｜ 毛绒 ¥16 + 人工/彩盒/损耗 ¥15</tspan></text>
+
+                <!-- Bar 2: High-end Hard-shell Visual Companion (Direct BOM 230 -> 230 * 2.1 = 483.0px, x=10..493) -->
+                <!-- Segs: 主控/4G 48 (100.8), 声学 22 (46.2), 镜头+屏/防抖 85 (178.5), 电池 25 (52.5), 硬壳结构 50 (105.0) -->
+                <text x="10" y="158" font-size="12.6" font-weight="800" fill="#0F172A">② 千元硬壳视觉伴学 / 桌宠（如灵宇宙 ¥1,099–1,299 · 直接料 ~¥230，千元档方可盈利）</text>
+                <rect x="10" y="169" width="100.8" height="38" rx="3" fill="#059669"/><text x="60.4" y="192" font-size="11.2" fill="#FFF" font-weight="700" text-anchor="middle">主控/4G ¥48</text>
+                <rect x="110.8" y="169" width="46.2" height="38" fill="#0284C7"/><text x="133.9" y="192" font-size="11.2" fill="#FFF" font-weight="700" text-anchor="middle">¥22</text>
+                <rect x="157.0" y="169" width="178.5" height="38" fill="#4F46E5"/><text x="246.2" y="192" font-size="11.2" fill="#FFF" font-weight="800" text-anchor="middle">镜头+屏/防抖结构 ¥85</text>
+                <rect x="335.5" y="169" width="52.5" height="38" fill="#D97706"/><text x="361.7" y="192" font-size="11.2" fill="#FFF" font-weight="700" text-anchor="middle">¥25</text>
+                <rect x="388.0" y="169" width="105.0" height="38" rx="3" fill="#94A3B8"/><text x="440.5" y="192" font-size="11.2" fill="#FFF" font-weight="700" text-anchor="middle">硬壳结构 ¥50</text>
+                <text x="502" y="186" font-size="12.6" font-weight="800" fill="#3730A3">合计 ~¥230</text>
+                <text x="502" y="201" font-size="10.2" font-weight="700" fill="#64748B">（直接料）</text>
+
+                <!-- Linear X-axis verification ruler -->
+                <line x1="10" y1="230" x2="493" y2="230" stroke="#CBD5E1" stroke-width="1.2"/>
+                <g font-size="10" fill="#64748B" text-anchor="middle">
+                  <line x1="10" y1="226" x2="10" y2="234" stroke="#94A3B8"/><text x="10" y="246">¥0</text>
+                  <line x1="115" y1="226" x2="115" y2="234" stroke="#94A3B8"/><text x="115" y="246">¥50</text>
+                  <line x1="220" y1="226" x2="220" y2="234" stroke="#94A3B8"/><text x="220" y="246">¥100</text>
+                  <line x1="325" y1="226" x2="325" y2="234" stroke="#94A3B8"/><text x="325" y="246">¥150</text>
+                  <line x1="430" y1="226" x2="430" y2="234" stroke="#94A3B8"/><text x="430" y="246">¥200</text>
+                  <line x1="493" y1="226" x2="493" y2="234" stroke="#4F46E5"/><text x="493" y="246" fill="#3730A3" font-weight="700">¥230</text>
+                </g>
+              </svg>
+              <div style="font-size:10.9px; color:#475569; background:#F8FAFC; padding:7px 10px; border-radius:7px; line-height:1.45;">
+                <strong>未摊销项提醒：</strong>以上均<strong>未含开模费（10–20 万）与 3C/SRRC 认证（5–8 万）摊销</strong>；加配 Cat.1 4G 模组+首年流量约增 25–35 元；正版 IP 授权另占零售价 8%–15%。
+              </div>
+            </div>
+
+            <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between; padding:17px 19px;">
+              <div class="card-h" style="color:#FCA5A5; margin-bottom:4px;">199 元纯白牌留单损益（30% 退货压测）</div>
+              <div style="display:flex; flex-direction:column; gap:7px; font-size:12.1px;">
+                <div style="display:flex; justify-content:space-between; padding:7px 11px; background:rgba(255,255,255,0.08); border-radius:8px;">
+                  <span>含税售价 ÷ 1.13 → 不含税销售收入</span><strong style="color:#FFFFFF;">¥199 → ¥176.1</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:7px 11px; background:rgba(255,255,255,0.05); border-radius:8px;">
+                  <span>整机不含税出厂成本（直接料 ~58 + 人工/彩盒）</span><strong style="color:#CBD5E1;">- ¥68 ~ ¥78</strong>
+                </div>
+                <div style="display:flex; flex-direction:column; gap:2px; padding:7px 11px; background:rgba(220,38,38,0.20); border:1px solid rgba(248,113,113,0.45); border-radius:8px;">
+                  <div style="display:flex; justify-content:space-between;">
+                    <span>30% 退货（发 1.43 单）投流+扣点+物流+报废</span><strong style="color:#FCA5A5;">- ¥103 ~ ¥116</strong>
+                  </div>
+                  <div style="font-size:10.5px; color:#FECACA;">按常态 ROI 3.5–3.0 算，仅不退还投流即 ¥77–89（扣 6% 进项税），叠加双向运费与毛绒报废</div>
+                </div>
+                <div style="display:flex; justify-content:space-between; padding:7px 11px; background:rgba(52,211,153,0.16); border:1px solid #34D399; border-radius:8px;">
+                  <span>预留基础纯语音 AI 云预算（低活跃假设）</span><strong style="color:#6EE7B7;">- ¥15 ~ ¥22</strong>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 11px; background:rgba(220,38,38,0.34); border:1px solid #F87171; border-radius:8px;">
+                  <span style="font-weight:700; color:#FFF; font-size:11.6px;">未扣模具/认证/研发/IP 单笔净贡献</span><strong style="color:#FDE047; font-size:12.4px; white-space:nowrap;">常态实亏 ¥15 – ¥30（中点 -24.9）</strong>
+                </div>
+              </div>
+              <div style="font-size:11.4px; color:#E2E8F0; line-height:1.48; margin-top:6px;">
+                <strong>中点复核：</strong><code>176.1 − 73 − 109.5 − 18.5 = -24.9</code> 元（极端高成本单亏近 40 元；即便仅扣直接料 58–62 元中点亦亏 <strong>-11.9 元</strong>）。彻底证伪“199 元白牌靠付费投流能赚钱”！
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · BOM 与单笔贡献测算</span>
+          <span class="pg">08 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 09: CHIP MODULES & CHENGHAI DECISION CHAIN ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">03 · 产业链与决策链</span>
+          <span class="top-meta">百炼 30+ 芯片适配基础 × 汕头试点与买单分工</span>
+        </div>
+        <h2 class="slide-title">产业链现实：百炼已支持 30+ 芯片平台，初访须先厘清云账单买单人</h2>
+        <p class="slide-lead">OEM、ODM 与 IDH 项目分工差异巨大——对品牌、方案商与制造厂分别核对<strong>谁定规格、谁付云费与谁维护固件</strong>。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-4">
+            <div class="card-emerald" style="padding:14px 16px;">
+              <div class="tag t-emerald" style="margin-bottom:7px;">开源与先锋首选</div>
+              <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:4px;">乐鑫科技</div>
+              <div style="font-size:11.8px; color:#065F46; font-weight:700; margin-bottom:6px;">ESP32-S3 + 开源“小智 AI”</div>
+              <p style="font-size:12.2px; line-height:1.48;">开源 <code>xiaozhi-esp32</code> 支持切换多模型，大幅拉低原型开发门槛；百炼已具备成熟 ESP 平台适配基础。</p>
+            </div>
+
+            <div class="card-indigo" style="padding:14px 16px;">
+              <div class="tag t-indigo" style="margin-bottom:7px;">免开发 PaaS 平台</div>
+              <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:4px;">涂鸦智能</div>
+              <div style="font-size:11.8px; color:#3730A3; font-weight:700; margin-bottom:6px;">T5 / T5-E1 / T5AI-Core</div>
+              <p style="font-size:12.2px; line-height:1.48;">已打通千问等多家大模型（并助力 Fuzozo 等出海），重点在平台侧提升千问推荐权重与标杆联调。</p>
+            </div>
+
+            <div class="card-cyan" style="padding:13px 15px;">
+              <div class="tag t-cyan" style="margin-bottom:7px;">Wi-Fi 6 &amp; 4G 模组</div>
+              <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:4px;">移远 &amp; 广和通</div>
+              <div style="font-size:11.3px; color:#0369A1; font-weight:700; margin-bottom:5px;">FCM665D(Wi-Fi6) · EC800M/EG915 · MagiCore</div>
+              <p style="font-size:11.8px; line-height:1.46;"><strong>区分制式：</strong>移远 <code>FCM665D</code> 为<strong>纯 Wi-Fi 6+BLE 5.4</strong>（无 4G）；移远 4G Cat.1 为 <strong>EC800M/EG915</strong>（奥飞喜羊羊 2.0），广和通 <strong>MagiCore</strong> 为 4G AI 模组。</p>
+            </div>
+
+            <div class="card" style="padding:13px 15px;">
+              <div class="tag t-amber" style="margin-bottom:7px;">极致低本 SoC</div>
+              <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:4px;">博通集成 / 蓝讯 / 全志</div>
+              <div style="font-size:11.8px; color:#92400E; font-weight:700; margin-bottom:5px;">BK7258 · AB6003G · R128</div>
+              <p style="font-size:12px; line-height:1.46;">提供面向语音交互的低成本方案；推进前须核对模组库存、SDK 支持度及方案商模型切换的工程成本。</p>
+            </div>
+          </div>
+
+          <div class="card-dark" style="margin-top:12px; padding:16px 19px; display:grid; grid-template-columns:1.18fr 1fr; gap:18px; align-items:center;">
+            <div>
+              <div class="tag t-emerald" style="margin-bottom:6px;">澄海商业现实 · 结算与出海边界</div>
+              <div style="font-size:15.5px; font-weight:800; color:#FFFFFF; margin-bottom:5px;">传统玩具厂绝不背开放式云账单，须用“预付费卡密”闭环</div>
+              <p style="font-size:12.1px; color:#CBD5E1; line-height:1.52;">
+                <strong>① 传统厂现金流现实：</strong>澄海线下/外贸出厂供货价仅占零售价 <strong>30%–40%</strong>，净利薄（<strong>5%–10%</strong>）且账期长达 <strong>60–120 天</strong>，绝不愿承担 2–3 年无上限云账单。<br/>
+                <strong>② 汕头跨境试点边界：</strong>东南亚试点将推理回传汕头合规算力专区，复制到其他市场前须逐地核查儿童隐私法规，严禁直套北美。
+              </p>
+            </div>
+            <div style="background:rgba(52,211,153,0.14); border:1px solid #34D399; border-radius:10px; padding:12px 14px;">
+              <div style="font-size:13.2px; font-weight:800; color:#6EE7B7; margin-bottom:5px;">落地结算机制与授信红线</div>
+              <p style="font-size:12px; color:#E2E8F0; line-height:1.5;">
+                对中小玩具厂与 IDH <strong>严禁开放无上限后付费授信</strong>；主推<strong>“出厂预付费固定轮次卡密（License Key）+ 满额优雅降级本地轻模型”</strong>，先锁定付费主体与固件维护责任，彻底隔离坏账风险。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 模组与决策分工</span>
+          <span class="pg">09 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10: 2x2 COMPETITIVE QUADRANT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">04 · 竞争格局</span>
+          <span class="top-meta">核心玩家产品布局象限（定性分组 · 2026.11）</span>
+        </div>
+        <h2 class="slide-title">竞争全景：儿童陪伴、硬壳探索与跨龄情绪潮玩并行分化</h2>
+        <p class="slide-lead">图示按产品形态、IP 资源与价格带定性分组（公开标价仅代表定价带，不能直接推出毛利率或复购率）。</p>
+
+        <div class="slide-body">
+          <div class="g-60-40" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="padding:12px 14px; display:flex; align-items:center;">
+              <svg viewBox="0 0 680 430" style="width:100%; height:auto;">
+                <rect x="46" y="16" width="308" height="186" fill="#F0F9FF"/>
+                <rect x="354" y="16" width="308" height="186" fill="#ECFDF5"/>
+                <rect x="46" y="202" width="308" height="186" fill="#FFFFFF"/>
+                <rect x="354" y="202" width="308" height="186" fill="#F8FAFC"/>
+                <rect x="46" y="16" width="616" height="372" fill="none" stroke="#CBD5E1" stroke-width="1.5"/>
+                <line x1="46" y1="202" x2="662" y2="202" stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="6 4"/>
+                <line x1="354" y1="16" x2="354" y2="388" stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="6 4"/>
+
+                <text x="58" y="37" font-size="11.2" font-weight="800" fill="#0369A1">象限 II · 多模态硬壳探索 / 新锐单品</text>
+                <text x="650" y="37" font-size="11.2" font-weight="800" fill="#065F46" text-anchor="end">象限 I · 国民 IP / 巨头背书高价带</text>
+                <text x="58" y="376" font-size="11.2" font-weight="700" fill="#64748B">象限 III · 百元白牌 / 开源小智生态</text>
+                <text x="650" y="376" font-size="11.2" font-weight="700" fill="#475569" text-anchor="end">象限 IV · 传统玩具大厂与出海品牌</text>
+
+                <text x="354" y="416" font-size="12.2" font-weight="800" fill="#0F172A" text-anchor="middle">IP 势能与品牌渠道掌控力：无 IP 白牌 ──► 联名借壳 ──► 自有国民级 IP / 巨头生态</text>
+                <text x="18" y="202" font-size="12.2" font-weight="800" fill="#0F172A" text-anchor="middle" transform="rotate(-90 18 202)">多模态交互深度与客单价位 ▲</text>
+
+                <rect x="478" y="48" width="168" height="42" rx="21" fill="#059669"/>
+                <text x="562" y="66" font-size="12" font-weight="800" fill="#FFF" text-anchor="middle">汤姆猫 AI 童伴</text>
+                <text x="562" y="81" font-size="9.2" fill="#D1FAE5" text-anchor="middle">1,499–1,999 · 自研MoE+多模</text>
+
+                <rect x="368" y="102" width="178" height="40" rx="20" fill="#4F46E5"/>
+                <text x="457" y="120" font-size="11.6" font-weight="800" fill="#FFF" text-anchor="middle">华为智能憨憨 / Fuzozo</text>
+                <text x="457" y="134" font-size="9.2" fill="#E0E7FF" text-anchor="middle">399–599 · 情绪潮玩</text>
+
+                <rect x="520" y="152" width="128" height="36" rx="18" fill="#0D9488"/>
+                <text x="584" y="174" font-size="11.5" font-weight="800" fill="#FFF" text-anchor="middle">奥飞娱乐 IP 矩阵</text>
+
+                <rect x="54" y="48" width="138" height="40" rx="20" fill="#0F172A"/>
+                <text x="123" y="65" font-size="11" font-weight="800" fill="#FFF" text-anchor="middle">Ropet (成人桌宠)</text>
+                <text x="123" y="79" font-size="8.8" fill="#CBD5E1" text-anchor="middle">USD 299–349 (¥2.2–2.5k)</text>
+
+                <rect x="198" y="48" width="148" height="42" rx="21" fill="#0284C7"/>
+                <text x="272" y="66" font-size="11.8" font-weight="800" fill="#FFF" text-anchor="middle">灵宇宙 小方机</text>
+                <text x="272" y="81" font-size="9.1" fill="#E0F2FE" text-anchor="middle">标价~1,299 · 双11榜一</text>
+
+                <rect x="172" y="104" width="170" height="40" rx="20" fill="#0EA5E9"/>
+                <text x="257" y="122" font-size="11.4" font-weight="800" fill="#FFF" text-anchor="middle">跃然 BubblePal / 奥特曼</text>
+                <text x="257" y="136" font-size="9.1" fill="#E0F2FE" text-anchor="middle">399–599 · 买断+送会员</text>
+
+                <rect x="56" y="152" width="166" height="36" rx="18" fill="#475569"/>
+                <text x="139" y="168" font-size="10.8" font-weight="700" fill="#FFF" text-anchor="middle">海外 Curio (Grok)</text>
+                <text x="139" y="181" font-size="8.6" fill="#CBD5E1" text-anchor="middle">USD 99+订阅 · 北美监管承压</text>
+
+                <rect x="466" y="220" width="178" height="40" rx="20" fill="#047857"/>
+                <text x="555" y="238" font-size="11.6" font-weight="800" fill="#FFF" text-anchor="middle">实丰文化 SF-Hola</text>
+                <text x="555" y="252" font-size="9.1" fill="#A7F3D0" text-anchor="middle">149–399 · 25年亏1.75亿</text>
+
+                <rect x="366" y="278" width="174" height="38" rx="19" fill="#6366F1"/>
+                <text x="453" y="295" font-size="11" font-weight="800" fill="#FFF" text-anchor="middle">字节“显眼包”生态催化</text>
+                <text x="453" y="308" font-size="8.7" fill="#E0E7FF" text-anchor="middle">带火豆包 + 纯语音毛绒</text>
+
+                <rect x="550" y="282" width="100" height="34" rx="17" fill="#64748B"/>
+                <text x="600" y="303" font-size="10.6" font-weight="700" fill="#FFF" text-anchor="middle">FoloToy 复售</text>
+
+                <rect x="74" y="234" width="194" height="36" rx="18" fill="#64748B"/>
+                <text x="171" y="256" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">开源“小智 AI”硬件生态</text>
+
+                <rect x="74" y="290" width="194" height="40" rx="20" fill="#DC2626"/>
+                <text x="171" y="308" font-size="11.8" font-weight="800" fill="#FFF" text-anchor="middle">百元白牌对话公仔军团</text>
+                <text x="171" y="322" font-size="9.4" fill="#FEE2E2" text-anchor="middle">99–199 元 · 投流单单实亏</text>
+              </svg>
+            </div>
+
+            <div style="display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
+              <div class="card-emerald" style="flex:1; padding:13px 16px;">
+                <div class="card-h" style="color:#065F46; margin-bottom:5px;">格局 1：千元硬壳视觉登顶，字节催化毛绒</div>
+                <p style="font-size:12.4px; line-height:1.5;">灵宇宙小方机以 <strong>1,099–1,299 元</strong>双 11 登顶京东双榜第一并获 2 亿 Pre-A 轮；Ropet 零售达 <strong>USD 299–349（约 2,150–2,500 元）</strong>；字节“显眼包”催化百元语音毛绒爆发。</p>
+              </div>
+              <div class="card-indigo" style="flex:1; padding:13px 16px;">
+                <div class="card-h" style="margin-bottom:5px;">格局 2：财报与模型格局须实事求是拆解</div>
+                <p style="font-size:12.4px; line-height:1.5;">实丰 2025 营收 4.17 亿、<strong>归母净亏 1.75 亿</strong>，SF-Hola 多模并行；汤姆猫核心为自研 MoE + 豆包/DeepSeek（行业估算 AI 机器人年销数千万）；选客须严审现金流实力。</p>
+              </div>
+              <div class="card-rose" style="flex:1; padding:13px 16px;">
+                <div class="card-h" style="color:#991B1B; margin-bottom:5px;">格局 3：北美强监管施压订阅与陪伴模式</div>
+                <p style="font-size:12.4px; line-height:1.5;">海外 Curio（Grok，USD 99+订阅）在北美强监管下承压；FoloToy 2026.11 PIRG 复测虽修补旧弱点，但立法门槛正加速洗牌。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 竞争象限</span>
+          <span class="pg">10 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11: TOP 6 BENCHMARKS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">04 · 竞争格局</span>
+          <span class="top-meta">六组代表品牌比较：形态、监测销量与合规动态（2026.11）</span>
+        </div>
+        <h2 class="slide-title">代表品牌硬核对标：补全财报真相、价格纠偏与海内外参照</h2>
+        <p class="slide-lead">客观披露上市公司实销体量与亏损风险，统一各品牌价格口径，精准识别千问真正的高毛利视觉与生态切口。</p>
+
+        <div class="slide-body">
+          <table class="clean-tbl" style="font-size:11.4px; line-height:1.4;">
+            <thead>
+              <tr>
+                <th style="width:17%; padding:8px 10px;">代表品牌 / 产品</th>
+                <th style="width:14.5%; padding:8px 10px;">参考售价（人民币）</th>
+                <th style="width:16.5%; padding:8px 10px;">公开规模 / 财报动态</th>
+                <th style="width:27%; padding:8px 10px;">产品形态与模型现状</th>
+                <th style="width:25%; padding:8px 10px;">千问切入与核查要点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hl">
+                <td class="b" style="padding:7px 10px;">灵宇宙（Ling）<br/>“小方机”</td>
+                <td style="padding:7px 10px;"><strong>标价 ~1,299 元</strong><br/>补贴 1,000–1,100</td>
+                <td style="padding:7px 10px;">双 11 京东双榜第一<br/>获 <strong>2 亿 Pre-A 轮</strong></td>
+                <td style="padding:7px 10px;">3–12 岁挂脖硬壳视觉探索机（BOM ~230 元，千元档方可盈利），拍绘本/实物并在 CES 2026 出海</td>
+                <td style="padding:7px 10px;"><strong>第 1 梯队标杆：</strong>主推 <strong>Qwen-VL 绘本识图</strong>、防抖低延迟与非美出海多语言</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7px 10px;">实丰文化 &amp;<br/>汤姆猫 AI 童伴</td>
+                <td style="padding:7px 10px;">实丰 <strong>149–399</strong><br/>汤姆猫 1,499–1,999</td>
+                <td style="padding:7px 10px;">实丰 25 营收 4.17 亿<br/><strong style="color:#DC2626;">归母净亏 1.75 亿</strong></td>
+                <td style="padding:7px 10px;">实丰 SF-Hola 同时接千问/豆包/文心；汤姆猫系<strong>联手西湖心辰自研 MoE</strong> + 豆包/DeepSeek（25 年报未单列，行业估算年销数千万 / 约 1.5–3 万台）</td>
+                <td style="padding:7px 10px;"><strong>存量审慎维护：</strong>警惕实丰现金流与账期风险、严守预付费；汤姆猫按子路由切入</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7px 10px;">跃然创新 Haivivi<br/>BubblePal / 奥特曼</td>
+                <td style="padding:7px 10px;">399 元 /<br/>奥特曼 599 元</td>
+                <td style="padding:7px 10px;">BubblePal <strong>31.4 万件</strong><br/>销额 1.2 亿（魔镜）</td>
+                <td style="padding:7px 10px;">单款占线上销量 19.6%，采用<strong>“买断 + 送基础/终身会员”</strong>模式；CocoMate 深绑火山豆包</td>
+                <td style="padding:7px 10px;">避开纯语音存量缠斗，在其视觉/出海新品中比拼多语言与合规节点</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7px 10px;">华为“智能憨憨” /<br/>珞博 Fuzozo / 显眼包</td>
+                <td style="padding:7px 10px;">399 – 599 元<br/>（显眼包催化毛绒）</td>
+                <td style="padding:7px 10px;">憨憨 399 售罄爆款<br/><strong>字节显眼包</strong>生态催化</td>
+                <td style="padding:7px 10px;">华为憨憨接小艺/鸿蒙；Fuzozo 联手涂鸦出海；字节“显眼包”带火火山豆包+纯语音毛绒生态</td>
+                <td style="padding:7px 10px;">严分成人潮玩与儿童线；依托涂鸦多模型底座与阿里鱼 IP 抢 599+ 新品</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7px 10px;">奥飞娱乐 IP 矩阵</td>
+                <td style="padding:7px 10px;">299 – 699 元</td>
+                <td style="padding:7px 10px;">国民国漫 IP 群<br/>喜羊羊 2.0 等落地</td>
+                <td style="padding:7px 10px;">喜羊羊 2.0 等采用移远 EC800M 4G 方案，对品牌声誉、价值观安全与未成年人合规要求极严</td>
+                <td style="padding:7px 10px;">主打<strong>三层分龄安全护栏 + 音频零留存合规包</strong>，消除 IP 翻车顾虑</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7px 10px;">海外参照：Curio<br/>&amp; FoloToy</td>
+                <td style="padding:7px 10px;">Curio USD 99+订阅<br/>FoloToy 按型询价</td>
+                <td style="padding:7px 10px;">Curio 北美监管承压<br/>FoloToy <strong>26.11 复测改善</strong></td>
+                <td style="padding:7px 10px;">Curio（Grok）硬件+订阅在北美强监管下承压；FoloToy 25.11 停售整改，<strong>26.11 PIRG 复测旧弱点已修正</strong></td>
+                <td style="padding:7px 10px;">出海合规范本：先审目的地禁售红线，每次模型升级必做长对话红队复测</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 标杆品牌对标</span>
+          <span class="pg">11 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: MODEL PK QWEN VS DOUBAO ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 供应商选型对比</span>
+          <span class="top-meta">阿里云千问（百炼）vs 火山引擎（豆包）同条件 POC 框架</span>
+        </div>
+        <h2 class="slide-title">千问 vs 豆包破局策略：正视火山四重闭环，打出视觉与阿里生态王牌</h2>
+        <p class="slide-lead">直面字节在纯语音毛绒红海的强压制，<strong>务实放弃“中小厂开源自托管”幻想</strong>，用 <strong>Qwen-VL + 阿里鱼 IP + 淘天母婴</strong>错位抢高毛利增量。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <table class="clean-tbl" style="font-size:11.6px; line-height:1.42;">
+            <thead>
+              <tr>
+                <th style="width:16%; padding:8px 10px;">竞争与破局维度</th>
+                <th style="width:42%; background:#065F46; padding:8px 10px;">阿里云 · 通义千问（差异化破局打法）</th>
+                <th style="width:42%; padding:8px 10px;">火山引擎 · 豆包（客观正视其强压制）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="b" style="padding:7.5px 10px;">纯语音与生态闭环</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;">百炼已适配 <strong>30+ 芯片</strong>并支持全双工打断；不与对手在百元毛绒打补贴战，专注标准童声 ASR 准确率与 <code>&lt;600ms</code> 实时实测。</td>
+                <td style="padding:7.5px 10px;"><strong>强压制四重闭环：</strong>芯片预集成（乐鑫/博通/蓝讯/移远）+ 火山 RTC 低延迟语音 + 扣子零代码编排 + 抖音流量闭环，深度统治纯语音红海。</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7.5px 10px;">千元级视觉伴学</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;"><strong>核心差异化王牌：</strong>以 <strong>Qwen-VL</strong> 主攻千元级硬壳视觉探索机与固定伴学底座，凭绘本翻页识读与实物科普抢占高 ARPU 增量。</td>
+                <td style="padding:7.5px 10px;">强项集中在端到端语音拟人陪伴；视觉伴学需用同批绘本与暗光实物集实测答对率、耗时与综合调用成本。</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7.5px 10px;">集团 IP 与渠道杠杆</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;"><strong>阿里独有生态牌：</strong>联动<strong>阿里鱼正版 IP 授权撮合</strong> + <strong>淘天母婴/潮玩货架流量协同</strong>，用高确定性搜索货架<strong>对冲抖音 30%+ 高退货</strong>！</td>
+                <td style="padding:7.5px 10px;">抖音直播/短视频脉冲起量极快，但退货率高且投流费不退，导致 199 元白牌难以留存利润。</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7.5px 10px;">部署模式与出海</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;"><strong>明确放弃中小厂自托管：</strong>中小玩具厂无力运维开源自托管（大厂自托管阿里云亦不创收）；主推<strong>东南亚/中东合规云节点</strong>，欧美先过法务白名单。</td>
+                <td style="padding:7.5px 10px;">以公有云托管为主；欧美出海同样受加州 SB 867/1119、纽约州禁令与 DOJ 数据规则严管，无法绕开产品准入红线。</td>
+              </tr>
+              <tr>
+                <td class="b" style="padding:7.5px 10px;">合规与结算控本</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;">标配<strong>原始音频零留存 + 禁训模型 + DPA 责任切割</strong>；推“出厂预付费固定轮次卡密 + 满额降级”，隔离中小厂坏账风险。</td>
+                <td style="padding:7.5px 10px;">同套分龄题库评测长对话护栏衰减；全周期核算须将模型单价、RTC 分钟费与 2 年活跃周期合并对账。</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="callout-strip" style="margin-top:10px;">
+            <strong>千问破局公式：</strong>绝不在百元纯语音毛绒里硬碰字节四重闭环——坚决打出<strong>“Qwen-VL 千元视觉伴学 + 阿里鱼正版 IP + 淘天母婴低退货货架 + 东南亚/中东合规云节点”</strong>四张错位王牌！
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 供应商选型</span>
+          <span class="pg">12 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13: TOY TOKEN COST MATH (UNIFIED 5000 TURNS!) ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 商业算账模型</span>
+          <span class="top-meta">统一按每台每年 5,000 轮可比测算（百炼后付费公开目录价）</span>
+        </div>
+        <h2 class="slide-title">云账深度压测：吃灰基线 11.70–39.55 元/年，真实高活 2 年叠加 RTC 可破 300 元</h2>
+        <p class="slide-lead">低价买断玩具本质是<strong>“吃灰用户补贴高活用户的健身房卡模型”</strong>；一旦叠加真实活跃 2 年周期与全双工 RTC 底座费，中低价买断机极易倒亏。</p>
+
+        <div class="slide-body">
+          <div class="g-60-40" style="flex:1; align-items:stretch; grid-template-columns:1.62fr 1fr; gap:18px;">
+            <div style="display:flex; flex-direction:column; justify-content:space-between;">
+              <table class="clean-tbl" style="font-size:10.8px; line-height:1.35;">
+                <thead>
+                  <tr>
+                    <th style="width:15%; padding:6px 8px;">功能配置档位</th>
+                    <th style="width:22%; padding:6px 8px;">百炼公开参考单价*</th>
+                    <th style="width:16%; background:#065F46; padding:6px 8px;">吃灰摊薄基线<br/>(5,000轮/年·5-7分/天)</th>
+                    <th style="width:16%; background:#991B1B; padding:6px 8px;">真实高活×2年<br/>(15,000轮/年×2年)</th>
+                    <th style="width:31%; padding:6px 8px;">盈利边界与增量提示</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="b" style="padding:6px 8px;">极简纯语音<br/><span class="tag t-slate">轻聊</span></td>
+                    <td style="padding:6px 8px;"><strong>2.34 元 / 千轮</strong><br/><span style="font-size:9.6px; color:#64748B;">ASR 0.05+TTS 0.09+聊 2.20</span></td>
+                    <td style="background:#ECFDF5; padding:6px 8px;"><strong>11.70 元 / 年</strong><br/><span class="tag t-emerald">摊薄基线</span></td>
+                    <td style="background:#FEF2F2; padding:6px 8px;"><strong style="color:#991B1B;">70.20 元 / 2年</strong><br/><span style="font-size:9.6px; color:#991B1B;">仅纯模型费</span></td>
+                    <td style="padding:6px 8px;">换标准童声 ASR（0.75 元/千轮）：5k 轮年增 <strong>3.5 元</strong>，高活 1.5 万轮年增 <strong>10.5 元</strong></td>
+                  </tr>
+                  <tr class="hl">
+                    <td class="b" style="padding:6px 8px;">中高端 IP<br/><span class="tag t-cyan">知识库</span></td>
+                    <td style="padding:6px 8px;"><strong>6.25 元 / 千轮</strong><br/><span style="font-size:9.6px; color:#64748B;">0.05+0.80+1.70+3.70</span></td>
+                    <td style="background:#ECFDF5; padding:6px 8px;"><strong>31.25 元 / 年</strong><br/><span class="tag t-amber">高活预警</span></td>
+                    <td style="background:#FEF2F2; padding:6px 8px;"><strong style="color:#991B1B;">187.50 元 / 2年</strong><br/><span style="font-size:9.6px; color:#991B1B;">+RTC 将超 230</span></td>
+                    <td style="padding:6px 8px;">399 买断机（不含税 353 元，扣 BOM/渠道毛利余约 120–160 元）若放开 2 年高活+RTC（233–293 元），将<strong>单台倒亏约 70–170 元</strong></td>
+                  </tr>
+                  <tr>
+                    <td class="b" style="padding:6px 8px;">硬壳视觉伴学<br/><span class="tag t-indigo">4:1 问答/拍</span></td>
+                    <td style="padding:6px 8px;">知识库 <strong>6.25</strong> / 千轮<br/>视觉高级版 <strong>14.55</strong> / 千轮*</td>
+                    <td style="background:#ECFDF5; padding:6px 8px;"><strong>39.55 元 / 年</strong><br/><span class="tag t-indigo">4k问答+1k拍照</span></td>
+                    <td style="background:#FEF2F2; padding:6px 8px;"><strong style="color:#991B1B;">237.30 元 / 2年</strong><br/><span style="font-size:9.6px; color:#991B1B;">+RTC 可破 300</span></td>
+                    <td style="padding:6px 8px;">仅 <strong>1,000+ 千元视觉机</strong>或付费内容包方可覆盖</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="callout-strip" style="margin-top:8px; padding:8px 12px; font-size:11.4px; line-height:1.42; border-left-color:#DC2626; background:linear-gradient(90deg, #FEF2F2 0%, #F8FAFC 100%);">
+                <strong style="color:#991B1B;">被严重低估的底座暗账（RTC + 流量 + 审核）：</strong>高活按 <strong>30 分/天 × 250 天 = 15,000 轮/年</strong>计，若用全双工 <strong>RTC 音频流（0.003–0.007 元/分钟）</strong>，2 年（1.5 万分钟）仅 RTC 费即达 <strong>45–105 元</strong>（占轻聊 2 年模型费 70.2 元的 0.6–1.5 倍，高档已反超模型本身！）；另须单计安全审核与 4G 次年流量（<strong>15–25 元/年</strong>）。
+              </div>
+              <div style="font-size:10.0px; color:#64748B; line-height:1.38; margin-top:5px;">
+                * 口径注：① <code>14.55 元/千轮</code> 为百炼官方轻量 ASR(0.05)+意图(0.80)+标准 TTS(1.70)+拍照问答高级版(12.00) 组合参考价（不含文本知识库）；② <code>2/5/10 元/台/年</code> 预付费资源包须严格核定轮次上限与超额降级机制，特定高级模型按倍率计费。
+              </div>
+            </div>
+
+            <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between; padding:16px 18px;">
+              <div class="card-h" style="color:#6EE7B7; margin-bottom:2px;">硬核风控与定价分层三红线</div>
+              <div style="background:rgba(220,38,38,0.20); border:1px solid #F87171; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13px; font-weight:800; color:#FFF;">① 399 元以下强制半双工 + 预付费卡密</div>
+                <div style="font-size:11.8px; color:#FEE2E2; margin-top:4px; line-height:1.46;">严禁开放高价 RTC 与无上限知识库；强制 <strong>WebSocket 半双工 + 出厂预付费固定轮次卡密 + 满额降级本地轻模型</strong>。</div>
+              </div>
+              <div style="background:rgba(99,102,241,0.22); border:1px solid #818CF8; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13px; font-weight:800; color:#FFF;">② 千元级视觉伴学机方开放高阶多模态</div>
+                <div style="font-size:11.8px; color:#E0E7FF; margin-top:4px; line-height:1.46;">仅在 1,000+ 硬壳伴学机或高溢价 IP 线开放 Qwen-VL 拍照、标准童声 ASR 与全双工 RTC，严守单机云费红线。</div>
+              </div>
+              <div style="background:rgba(52,211,153,0.16); border:1px solid #34D399; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13px; font-weight:800; color:#FFF;">③ 每日防沉迷熔断 + 固频音频走本地/CDN</div>
+                <div style="font-size:11.8px; color:#D1FAE5; margin-top:4px; line-height:1.46;">静态儿歌/睡前故事直走本地 Flash 或 CDN；借《拟人化办法》强制每日时长上限，从产品层锁死极端高活账单。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 云调用费情景测算</span>
+          <span class="pg">13 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14: GLOBAL COMPLIANCE (SB 867 + 7.15 RULE!) ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 安全与合规生命线</span>
+          <span class="top-meta">FoloToy 时间线复盘 × 中美欧 2026 最新监管红线</span>
+        </div>
+        <h2 class="slide-title">安全是一票否决项：补全中美儿童法规、强制认证与音频零留存方案</h2>
+        <p class="slide-lead">儿童基础法、拟人化禁令、无线电强制认证与隐私保护缺一不可；<strong>换云商无法绕开禁售令，须前置工程合规包与 DPA 责任切割</strong>。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-rose" style="padding:10px 15px; display:flex; align-items:center; gap:14px; border-left:5px solid #DC2626;">
+            <span class="tag t-rose" style="font-size:11px; padding:4px 8px;">2025–2026 警钟</span>
+            <div style="font-size:12px; color:#7F1D1D; line-height:1.46;">
+              <strong>FoloToy Kumma 熊完整时间线：</strong>2025.11 美国 PIRG 实测曝光不当回答，停售且遭 OpenAI 暂停开发者资格；整改复售后，<strong>2026.11 PIRG 复测确认旧弱点已修正</strong>，但长对话护栏衰减已直接催化欧美立法全面收紧。
+            </div>
+          </div>
+
+          <div class="g-3" style="flex:1; align-items:stretch; margin-top:11px; gap:15px;">
+            <div class="card-emerald" style="padding:13px 15px; display:flex; flex-direction:column; justify-content:flex-start;">
+              <div class="card-h" style="color:#065F46; font-size:14.2px; margin-bottom:7px;"><span class="tag t-emerald">中国法规与认证</span> 7.15 新规 + 强制国标</div>
+              <ul class="pts" style="gap:6px;">
+                <li style="font-size:11.8px; line-height:1.45;"><strong>7.15《拟人化办法》第 14 条：</strong>明禁向未成年人提供虚拟亲属/伴侣等亲密服务；&lt;14 岁须监护人同意，强制未成年人模式与情绪告警。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>儿童基础法与国标：</strong>叠加《<strong>儿童个人信息网络保护规定</strong>》《<strong>未成年人网络保护条例</strong>》及新版 <strong>GB 6675 强制国标（2026.11.1 已实施）</strong>。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>联网强制认证清单：</strong><strong>3C 认证 + SRRC 无线电型号核准（Wi-Fi/蓝牙必做）+ CTA 进网许可证（4G 蜂窝必做）</strong>，并验拆洗与电池安全。</li>
+              </ul>
+            </div>
+
+            <div class="card-indigo" style="padding:13px 15px; display:flex; flex-direction:column; justify-content:flex-start;">
+              <div class="card-h" style="color:#3730A3; font-size:14.2px; margin-bottom:7px;"><span class="tag t-indigo">欧美禁令与追责</span> SB 867 + SB 1119</div>
+              <ul class="pts" style="gap:6px;">
+                <li style="font-size:11.8px; line-height:1.45;"><strong>加州 SB 867（已签署）：</strong><strong>2027.1.1 起 4 年</strong>禁在加州产销面向 <strong>&lt;16 岁</strong>的陪伴聊天实体玩具（纽约州亦已签署 ≤12 岁 5 年禁令，2027.2.22 生效，违规最高罚 USD 1.5 万/天）；换云商改变不了禁售！</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>加州 SB 1119 ("Adam's Law")：</strong>同期签署，确立 AI 陪伴产品引发未成年人伤害的<strong>民事赔偿追责机制</strong>，出海风险急剧放大。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>联邦 &amp; 欧盟：</strong>美国 COPPA（&lt;13 岁可验证家长同意）、EO 14117 敏感数据跨境禁令及欧盟 GDPR 严审全链路留存与删除。</li>
+              </ul>
+            </div>
+
+            <div class="card-amber" style="padding:13px 15px; display:flex; flex-direction:column; justify-content:flex-start;">
+              <div class="card-h" style="color:#92400E; font-size:14.2px; margin-bottom:7px;"><span class="tag t-amber">百炼工程合规包</span> 零留存与责任切割</div>
+              <ul class="pts" style="gap:6px;">
+                <li style="font-size:11.8px; line-height:1.45;"><strong>音频零留存 &amp; 禁训：</strong>默认开启<strong>儿童原始音频零留存</strong>、合同承诺<strong>绝不用于模型训练</strong>，且<strong>严禁未成年人声纹克隆</strong>。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>DPA 责任清晰切割：</strong>合同明确云端底座安全护栏与客户自定义 Prompt/人设的 <strong>DPA 法律边界</strong>，版本更新必做红队复测。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>摄像头物理隐私：</strong>视觉拍摄须配物理触发与可见指示灯，向家长开放一键删除权，严禁软毛绒带镜头进入卧室场景。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 安全与合规专题</span>
+          <span class="pg">14 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 15: BD OBJECTION BATTLECARDS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 客户选型顾虑预判</span>
+          <span class="top-meta">基于公开调研拟定的 3 类高频异议与应对方法</span>
+        </div>
+        <h2 class="slide-title">预判玩具品牌与 IDH 的 3 大顾虑，用生态、卡密与工程合规破局</h2>
+        <p class="slide-lead">正视豆包语音闭环、工厂怕背云账单与内容追责焦虑——靠<strong>视觉伴学 + 阿里生态 + 出厂卡密 + 零留存合规包</strong>建立专业信任。</p>
+
+        <div class="slide-body">
+          <div class="g-3" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="border-top:4px solid #DC2626;">
+              <div class="tag t-rose" style="margin-bottom:9px;">顾虑 01 · 火山四重闭环强压制</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“火山有芯片+RTC+扣子+抖音一整套闭环，为什么还要接千问？”</div>
+              <ul class="pts">
+                <li><strong>错位拼视觉与货架生态：</strong>不在百元语音毛绒硬拼，用 <strong>Qwen-VL 千元视觉伴学</strong>切入高毛利新品，联动<strong>阿里鱼 IP + 淘天母婴货架</strong>对冲抖音 30%+ 退货。</li>
+                <li><strong>务实出海节点：</strong>面向东南亚/中东推区域合规托管节点，不误导中小厂做无力运维的开源自托管。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="border-top:4px solid #D97706;">
+              <div class="tag t-amber" style="margin-bottom:9px;">顾虑 02 · 工厂怕背开放式云账单</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“模组已接别家，而且传统厂净利薄、账期长，最怕背 2–3 年云账单？”</div>
+              <ul class="pts">
+                <li><strong>30+ 芯片轻切增量新品：</strong>百炼已适配乐鑫/涂鸦/移远（明确区分 Wi-Fi FCM665D 与 4G EC800M），不动老爆款，从新视觉/联名 SKU 起步。</li>
+                <li><strong>预付费固定轮次卡密兜底：</strong>采用<strong>出厂预付费 License Key + 满额降级本地轻模型</strong>，锁死工厂单机成本，零后付费失控风险。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="border-top:4px solid #059669;">
+              <div class="tag t-emerald" style="margin-bottom:9px;">顾虑 03 · 极度警惕安全追责</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“FoloToy 停售叠加 7.15 新规与加州 SB 867/1119，如何确保不毁 IP？”</div>
+              <ul class="pts">
+                <li><strong>百炼儿童硬件合规包：</strong>提供<strong>原始音频零留存 + 禁用于训练 + 禁未成年人声纹克隆</strong>，以 <strong>DPA 清晰切割</strong>云端与客户 Prompt 责任。</li>
+                <li><strong>可验证红队复测：</strong>POC 现场实测分龄高危题库与长对话防衰减，书面约定每次版本升级执行复测留档。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:12px; background:#06281E; color:#F8FAFC; border-left-color:#34D399;">
+            <strong style="color:#6EE7B7;">选型交付标准包：</strong> 面向客户一次性交付<strong>“2 年活跃+RTC 全周期 TCO 表 + 出厂预付费卡密方案 + Qwen-VL 绘本实测 + 音频零留存与红队复测报告”</strong>，彻底跳出低价同质内卷。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 客户顾虑与应对</span>
+          <span class="pg">15 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 16: TARGET ACCOUNT POOL ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">06 · 客户生态地图与优先级</span>
+          <span class="top-meta">按品牌、方案商与制造分工锁定真实买单人</span>
+        </div>
+        <h2 class="slide-title">云盘子估算与客群重排：轻人力主攻千元视觉伴学与预付费模组池</h2>
+        <p class="slide-lead">先用公开体量算清外部云盘天花板（夯实<strong>“有条件推进”</strong>财务依据），告别“单一押注实丰”，重排 4 大优先梯队与出海红线。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-dark" style="padding:10px 15px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; gap:14px;">
+            <div style="flex-shrink:0; background:rgba(52,211,153,0.2); border:1px solid #34D399; border-radius:8px; padding:6px 10px; text-align:center;">
+              <div style="font-size:11.2px; font-weight:800; color:#6EE7B7;">外部可触达云盘估算</div>
+              <div style="font-size:9.8px; color:#CBD5E1;">公开数据推算 · 待内部校准</div>
+            </div>
+            <div style="font-size:11.6px; color:#E2E8F0; line-height:1.45; flex:1;">
+              按 2026 国内线上狭义 <strong>~415 万件</strong> × <strong>70% 激活</strong>（~290.5 万台）× 单台年有效消耗 <strong>11.70–31.25 元</strong>测算，千问若占 <strong>10%–20% 份额</strong>，年 API 盘子仅约 <strong style="color:#FDE047; font-size:12.6px;">340 万–1,820 万元</strong> —— 这正是本赛道必须定性为<strong style="color:#6EE7B7;">“有条件推进（轻人力复用既有能力、绝不打低价战）”</strong>的核心财务依据！
+            </div>
+          </div>
+
+          <div class="g-2" style="flex:1; align-items:stretch; gap:13px;">
+            <div class="card-emerald" style="padding:12px 15px;">
+              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-emerald">新第 1 梯队 · 视觉增量</span> 千元级硬壳视觉伴学探索机</div>
+              <div style="font-size:12.6px; font-weight:800; color:#065F46; margin-bottom:5px;">灵宇宙（1,099–1,299） · 火火兔 / 阿尔法蛋传统早教转型线</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:11.6px; line-height:1.42;">避开百元纯语音红海，锚定自带镜头、毛利充裕的千元级硬壳探索机与早教龙头转型新品；</li>
+                <li style="font-size:11.6px; line-height:1.42;">以 <strong>Qwen-VL 绘本识读 / 户外识物 + 正版早教 RAG</strong> 抢占高 ARPU 增量 SKU。</li>
+              </ul>
+            </div>
+
+            <div class="card-indigo" style="padding:12px 15px;">
+              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-indigo">新第 1 梯队 · 生态走量</span> 预付费模组池 &amp; 阿里鱼/淘天协同</div>
+              <div style="font-size:12.6px; font-weight:800; color:#3730A3; margin-bottom:5px;">涂鸦 / 移远 1 对 N 模组池 + 阿里鱼 IP &amp; 淘天母婴 599+ 新品</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:11.6px; line-height:1.42;">依托 30+ 芯片适配以<strong>轻人力标准化走量</strong>，统一推行“出厂预付费固定轮次卡密 + 满额降级”；</li>
+                <li style="font-size:11.6px; line-height:1.42;">联动<strong>阿里鱼正版 IP 授权撮合 + 淘天母婴货架流量</strong>，打造 599+ 联名新品对冲抖音退货。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="padding:12px 15px;">
+              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-slate">第 2 梯队 · 存量审慎</span> 存量维护与多模型子路由切入</div>
+              <div style="font-size:12.6px; font-weight:800; color:#334155; margin-bottom:5px;">实丰文化 SF-Hola（降级为存量样板） · 奥飞娱乐 · 汤姆猫</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:11.6px; line-height:1.42;"><strong>实丰文化：</strong>2025 年净亏 <strong>1.75 亿</strong>，降级为存量联调样板，严控现金流账期与预付费红线；</li>
+                <li style="font-size:11.6px; line-height:1.42;"><strong>奥飞 / 汤姆猫：</strong>尊重多模型与自研 MoE 现状，以三层安全护栏与视觉子路由审慎切入。</li>
+              </ul>
+            </div>
+
+            <div class="card-amber" style="padding:12px 15px;">
+              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-amber">出海策略 · 合规分区</span> 东南亚/中东试点 + 欧美白名单拦截</div>
+              <div style="font-size:12.6px; font-weight:800; color:#92400E; margin-bottom:5px;">东南亚 / 中东合规云节点试点 · 欧美 &lt;16 岁禁售区严控</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:11.6px; line-height:1.42;">优先在<strong>东南亚、中东</strong>试点合规云节点托管与本地多语言，放弃无运维力的中小厂自托管；</li>
+                <li style="font-size:11.6px; line-height:1.42;"><strong>欧美 &lt;16 岁禁售区（加州 SB 867/1119 及纽约州 ≤12 岁禁令）严设法务白名单前置拦截</strong>，不合规不接入。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 客户生态地图</span>
+          <span class="pg">16 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 17: ANTI-DUST VALUE-ADD SOLUTION ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">06 · 破内卷与客单升级思路</span>
+          <span class="top-meta">严守物理、合规与单台财务边界的 3 个产品升级方向</span>
+        </div>
+        <h2 class="slide-title">跳出低价与订阅幻想：高客单视觉伴学 + 预付费卡密 + 实体防伪闭环</h2>
+        <p class="slide-lead">直面国内纯软件续费率极低与实体卡防伪成本现实，帮客户用<strong>“出厂预付费卡密 + 千元视觉伴学”</strong>跑通可验证的单机净利。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-3" style="flex:1; align-items:stretch;">
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="tag t-indigo" style="margin-bottom:9px;">升级 01 · 高客单视觉伴学</div>
+                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">千元硬壳探索机 / 固定伴学底座</div>
+                <ul class="pts">
+                  <li><strong>不给软毛绒硬塞镜头：</strong>规避防抖失焦、破坏水洗结构与卧室隐私争议。</li>
+                  <li>聚焦 <strong>1,000+ 挂脖硬壳机（如灵宇宙）与固定俯拍底座</strong>，靠 <strong>Qwen-VL 绘本/识物</strong>拉厚硬件毛利池，从源头覆盖多模态与 RTC 费用。</li>
+                </ul>
+              </div>
+              <div style="font-size:11.5px; color:#3730A3; border-top:1px solid #C7D2FE; padding-top:8px;"><strong>闭环：</strong>高客单硬件毛利 + 出厂预付费固定轮次卡密</div>
+            </div>
+
+            <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="tag t-emerald" style="margin-bottom:9px;">升级 02 · 合规零留存记忆</div>
+                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">故事进度记忆与音频零留存底座</div>
+                <ul class="pts">
+                  <li>仅在监护人授权下保存故事进度，并开放<strong>一键查看与彻底删除</strong>；默认执行<strong>原始音频零留存 + 禁训模型 + 禁未成年人声纹克隆</strong>。</li>
+                  <li>严守 7.15《拟人化办法》亲密关系禁令，用每日防沉迷熔断兼顾护眼与云费封顶。</li>
+                </ul>
+              </div>
+              <div style="font-size:11.5px; color:#065F46; border-top:1px solid #A7F3D0; padding-top:8px;"><strong>底线：</strong>合规护栏前置 + 每日时长上限锁死云账</div>
+            </div>
+
+            <div class="card-cyan" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="tag t-cyan" style="margin-bottom:9px;">升级 03 · 破除续费幻想</div>
+                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">直面软件低转化与实体 NFC 成本</div>
+                <ul class="pts">
+                  <li><strong>国内纯软件订阅转化极低（&lt;5%–10%）</strong>，绝不能指望次年会员费去填补低价硬件的亏损窟窿。</li>
+                  <li>借鉴 Toniebox 试销实体 IP 配件时，须严算<strong>防伪 NFC 芯片、开模与正版分成成本</strong>（严防廉价纸卡被盗版），优先靠买断+卡密兜底。</li>
+                </ul>
+              </div>
+              <div style="font-size:11.5px; color:#0369A1; border-top:1px solid #BAE6FD; padding-top:8px;"><strong>现实：</strong>放弃虚幻软件续费，严算实体防伪真实净利</div>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>商业化价值升维：</strong>帮客户彻底告别 199 元白牌亏本投流与虚幻的软件续费——以<strong>“千元硬壳视觉伴学 + 出厂预付费卡密 + 阿里鱼正版 IP 联名”</strong>建立区别于纯 API 价格战的核心专业度。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 客单与留存升级</span>
+          <span class="pg">17 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 18: NEWCOMER ACTION PLAN & ALIGNMENT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">07 · 新人落地计划与内部对齐</span>
+          <span class="top-meta">向千问智能硬件行业总监汇报 · 脚踏实地、严守合规底线</span>
+        </div>
+        <h2 class="slide-title">新人 90 天单线聚焦计划、结构性风控与待请教的 3 个问题</h2>
+        <p class="slide-lead">清晰认知本赛道年 API 天花板（估算约 340 万–1,820 万）与强监管红线——我愿<strong>轻人力沉底筑基，聚焦千元视觉与预付费模组池跑通闭环</strong>。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-white" style="padding:14px 18px;">
+            <div style="font-size:14.2px; font-weight:800; color:#0F172A; margin-bottom:9px;">90 天 100% 可控单线执行动作（严控人力投入，服从团队分工）</div>
+            <div class="g-3" style="gap:15px;">
+              <div style="border-left:3.5px solid #059669; padding-left:12px;">
+                <div style="font-size:13px; font-weight:800; color:#065F46;">前 30 天 · 对齐与筑基</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:11.9px; line-height:1.45;">吃透百炼多模态定价、RTC 分钟费、出厂预付费卡密机制、30+ 芯片 Wi-Fi/4G 制式及音频零留存规范；</li>
+                  <li style="font-size:11.9px; line-height:1.45;">随前辈拜访 10–15 家深圳/珠三角 IDH 与模组商，一线校准真实活跃轮次与配网痛点。</li>
+                </ul>
+              </div>
+              <div style="border-left:3.5px solid #4F46E5; padding-left:12px;">
+                <div style="font-size:13px; font-weight:800; color:#3730A3;">30–60 天 · 建账与聚焦</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:11.9px; line-height:1.45;">沉淀《2 年活跃+RTC 全周期 TCO 表》与《中美欧合规及 3C/SRRC/CTA 检查表》为一线工具；</li>
+                  <li style="font-size:11.9px; line-height:1.45;">重点摸排<strong>千元硬壳视觉伴学新锐、早教龙头转型线与涂鸦/移远模组池</strong>，审慎维护存量样本。</li>
+                </ul>
+              </div>
+              <div style="border-left:3.5px solid #0284C7; padding-left:12px;">
+                <div style="font-size:13px; font-weight:800; color:#0369A1;">60–90 天 · 最小闭环</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:11.9px; line-height:1.45;">配合资深同事与 SA，推动 <strong>1–2 家千元视觉伴学品牌或预付费模组伙伴</strong>完成 Qwen-VL 识图与红队评测；</li>
+                  <li style="font-size:11.9px; line-height:1.45;">输出 1 份经一线验证的《AI 玩具 2 年 TCO 与合规破冰复盘》，逐步独立跟单。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="g-2" style="margin-top:12px; gap:16px; flex:1; align-items:stretch;">
+            <div class="card-rose" style="padding:13px 16px;">
+              <div style="font-size:13.4px; font-weight:800; color:#991B1B; margin-bottom:6px;">3 条需严守的行业结构性风险底线</div>
+              <ul class="pts" style="gap:5.5px;">
+                <li style="font-size:11.9px; line-height:1.44;"><strong>强监管与认证红线：</strong>严守 7.15 新规、新版 GB 6675、加州 SB 867/1119 及纽约州禁令与 3C/SRRC/CTA，落实音频零留存与升级必复测；</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>白牌亏损与坏账风险：</strong>199 元白牌 30% 退货实亏 15–30 元，传统厂账期长，严禁对中小厂开放后付费授信；</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>高活 2 年与 RTC 反噬：</strong>399 以下强制 WebSocket 半双工 + 预付费卡密 + 防沉迷熔断，严防越活越亏。</li>
+              </ul>
+            </div>
+            <div class="card-amber" style="padding:13px 16px;">
+              <div style="font-size:13.4px; font-weight:800; color:#92400E; margin-bottom:6px;">汇报口径边界 &amp; 待向总监请教的 3 个问题</div>
+              <ul class="pts" style="gap:5.5px;">
+                <li style="font-size:11.9px; line-height:1.44;"><strong>合规白名单口径：</strong>法务对国内拟人化玩具及欧美禁售区（加州 SB 867/1119 及纽约州禁令）的正式准入审批边界？</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>阿里生态协同路径：</strong>面向 599–1,299 元新品，团队能否联动<strong>阿里鱼正版 IP 与淘天母婴货架</strong>做联合打法？</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>预付费卡密政策：</strong>面向涂鸦/移远模组池与中小玩具厂，百炼<strong>出厂预付费固定轮次卡密与满额降级</strong>的商务政策是什么？</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 汇报完（恳请总监批评指正）</span>
+          <span class="pg">18 / 18</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="hud-bar">
+  <button class="hud-btn" id="btnPrev" title="上一页 (←)">← 上一页</button>
+  <span class="hud-counter" id="counter">01 / 18</span>
+  <div class="hud-progress"><div class="hud-progress-fill" id="progressFill"></div></div>
+  <button class="hud-btn" id="btnNext" title="下一页 (→ / Space)">下一页 →</button>
+  <button class="hud-btn" id="btnOverview" title="网格总览 (G)">总览 (G)</button>
+  <button class="hud-btn" id="btnFull" title="全屏演示 (F)">全屏 (F)</button>
+  <button class="hud-btn" id="btnPrint" title="打印 / 另存为 16:9 PDF">导出 PDF</button>
+</div>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const viewport = document.getElementById('viewport');
+    const counter = document.getElementById('counter');
+    const progressFill = document.getElementById('progressFill');
+    const total = slides.length;
+    let current = 0;
+    function fitViewport() {
+      if (document.body.classList.contains('overview-mode')) { viewport.style.transform = ''; return; }
+      const scale = Math.min((window.innerWidth - 32) / 1280, (window.innerHeight - 76) / 720);
+      viewport.style.transform = `scale(${Math.max(0.2, Math.min(scale, 1.5))})`;
+    }
+    function showSlide(idx) {
+      current = Math.max(0, Math.min(total - 1, idx));
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+      progressFill.style.width = `${((current + 1) / total) * 100}%`;
+    }
+    function toggleOverview(forceOff) {
+      if (forceOff === true) document.body.classList.remove('overview-mode');
+      else document.body.classList.toggle('overview-mode');
+      fitViewport();
+    }
+    slides.forEach((s, idx) => s.addEventListener('click', () => {
+      if (document.body.classList.contains('overview-mode')) { showSlide(idx); toggleOverview(true); }
+    }));
+    document.getElementById('btnPrev').addEventListener('click', () => { toggleOverview(true); showSlide(current - 1); });
+    document.getElementById('btnNext').addEventListener('click', () => { toggleOverview(true); showSlide(current + 1); });
+    document.getElementById('btnOverview').addEventListener('click', () => toggleOverview());
+    document.getElementById('btnFull').addEventListener('click', () => {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    });
+    document.getElementById('btnPrint').addEventListener('click', () => { toggleOverview(true); window.print(); });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); toggleOverview(true); showSlide(current + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); toggleOverview(true); showSlide(current - 1); }
+      else if (e.key === 'Home') { toggleOverview(true); showSlide(0); }
+      else if (e.key === 'End') { toggleOverview(true); showSlide(total - 1); }
+      else if (e.key.toLowerCase() === 'g') { toggleOverview(); }
+      else if (e.key.toLowerCase() === 'f') { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
+      else if (e.key === 'Escape') { toggleOverview(true); }
+    });
+    window.addEventListener('resize', fitViewport);
+    showSlide(0);
+    fitViewport();
+  })();
+</script>
+</body>
+</html>

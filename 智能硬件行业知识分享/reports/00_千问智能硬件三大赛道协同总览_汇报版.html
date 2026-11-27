@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 千问智能硬件三大赛道协同格局与商业化总览</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  :root {
+    --navy: #0F172A;
+    --indigo: #4F46E5;
+    --indigo-dark: #3730A3;
+    --indigo-soft: #EEF2FF;
+    --cyan: #0284C7;
+    --cyan-soft: #E0F2FE;
+    --emerald: #059669;
+    --emerald-dark: #065F46;
+    --emerald-soft: #ECFDF5;
+    --amber: #D97706;
+    --amber-soft: #FFFBEB;
+    --rose: #DC2626;
+    --rose-soft: #FEF2F2;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748B;
+    --slate-200: #E2E8F0;
+    --slate-50: #F8FAFC;
+  }
+  html, body {
+    width: 100%; height: 100%;
+    font-family: "Noto Sans CJK SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #0B1120; color: var(--slate-700); overflow: hidden;
+  }
+  .deck-stage { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .slide-viewport { width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
+  .slide { width: 1280px; height: 720px; background: #FFFFFF; position: absolute; inset: 0; display: none; flex-direction: column; overflow: hidden; }
+  .slide.active { display: flex; }
+  .slide-inner { padding: 30px 48px 22px 48px; flex: 1; display: flex; flex-direction: column; }
+
+  body.overview-mode { overflow-y: auto; background: #0F172A; }
+  body.overview-mode .deck-stage { height: auto; min-height: 100vh; padding: 36px 36px 96px 36px; display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; align-items: start; overflow: visible; }
+  body.overview-mode .slide-viewport { display: contents; }
+  body.overview-mode .slide { display: flex !important; position: relative !important; width: 1280px; height: 720px; transform: scale(0.29); transform-origin: top left; margin-bottom: -511px; margin-right: -908px; border-radius: 14px; cursor: pointer; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+  body.overview-mode .slide:hover { outline: 10px solid #6366F1; }
+  body.overview-mode .slide.active { outline: 10px solid #38BDF8; }
+
+  .hud-bar { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 999; display: flex; align-items: center; gap: 10px; background: rgba(15, 23, 42, 0.86); backdrop-filter: blur(12px); border: 1px solid rgba(148, 163, 184, 0.25); padding: 7px 14px; border-radius: 999px; color: #E2E8F0; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); user-select: none; }
+  .hud-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); color: #F8FAFC; padding: 5px 11px; border-radius: 999px; cursor: pointer; font-size: 12px; font-family: inherit; }
+  .hud-btn:hover { background: rgba(99, 102, 241, 0.6); }
+  .hud-counter { font-weight: 700; color: #93C5FD; min-width: 64px; text-align: center; }
+  .hud-progress { width: 110px; height: 4px; background: rgba(255, 255, 255, 0.16); border-radius: 99px; overflow: hidden; }
+  .hud-progress-fill { height: 100%; background: linear-gradient(90deg, #4F46E5, #0284C7, #059669); width: 20%; transition: width 0.2s ease; }
+
+  @media print {
+    html, body { width: 1280px; height: auto; background: #FFFFFF; overflow: visible; }
+    .hud-bar { display: none !important; }
+    .deck-stage, .slide-viewport { display: block !important; width: 1280px; height: auto; transform: none !important; box-shadow: none !important; border-radius: 0 !important; overflow: visible !important; }
+    .slide { display: flex !important; position: relative !important; width: 1280px !important; height: 720px !important; page-break-after: always; break-after: page; }
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+  }
+
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .section-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--navy); color: #FFFFFF; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+  .top-meta { font-size: 12px; color: var(--slate-500); font-weight: 500; }
+  .slide-title { font-size: 23.5px; font-weight: 800; color: var(--navy); line-height: 1.24; margin-bottom: 6px; letter-spacing: -0.3px; }
+  .slide-lead { font-size: 13.4px; color: var(--slate-600); line-height: 1.46; margin-bottom: 13px; }
+  .slide-lead strong { color: var(--indigo-dark); }
+  .slide-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 8px; }
+  .slide-footer { margin-top: auto; padding-top: 9px; border-top: 1px solid var(--slate-200); display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--slate-500); }
+  .slide-footer .pg { font-weight: 700; color: var(--navy); }
+
+  .g-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .g-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  .card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 12px; padding: 14px 16px; }
+  .card-white { background: #FFFFFF; border: 1px solid var(--slate-200); border-radius: 12px; padding: 14px 18px; }
+  .card-indigo { background: var(--indigo-soft); border: 1px solid #C7D2FE; border-radius: 12px; padding: 14px 16px; }
+  .card-cyan { background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 12px; padding: 14px 16px; }
+  .card-emerald { background: var(--emerald-soft); border: 1px solid #A7F3D0; border-radius: 12px; padding: 14px 16px; }
+  .card-amber { background: var(--amber-soft); border: 1px solid #FDE68A; border-radius: 12px; padding: 13px 16px; }
+  .card-dark { background: linear-gradient(145deg, #0F172A 0%, #1E1B4B 100%); color: #F8FAFC; border-radius: 12px; padding: 15px 18px; }
+
+  .tag { display: inline-block; padding: 2.5px 8px; border-radius: 5px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .t-indigo { background: #E0E7FF; color: #3730A3; }
+  .t-cyan { background: #E0F2FE; color: #0369A1; }
+  .t-emerald { background: #D1FAE5; color: #065F46; }
+  .t-rose { background: #FEE2E2; color: #991B1B; }
+  .t-amber { background: #FEF3C7; color: #92400E; }
+
+  ul.pts { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+  ul.pts li { position: relative; padding-left: 15px; font-size: 12.1px; line-height: 1.46; color: var(--slate-700); }
+  ul.pts li::before { content: ""; position: absolute; left: 0; top: 6.5px; width: 5.5px; height: 5.5px; border-radius: 50%; background: var(--indigo); }
+  .card-cyan ul.pts li::before { background: var(--cyan); }
+  .card-emerald ul.pts li::before { background: var(--emerald); }
+  .card-amber ul.pts li::before { background: var(--amber); }
+  ul.pts li strong { color: var(--navy); }
+
+  table.clean-tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 11px; line-height: 1.38; border: 1px solid var(--slate-200); border-radius: 10px; overflow: hidden; }
+  table.clean-tbl thead th { background: var(--navy); color: #FFFFFF; font-weight: 700; text-align: left; padding: 7.5px 10px; font-size: 11.2px; }
+  table.clean-tbl tbody td { padding: 6.5px 10px; border-top: 1px solid var(--slate-200); vertical-align: middle; color: var(--slate-700); }
+  table.clean-tbl tbody tr:nth-child(even) td { background: var(--slate-50); }
+  .b { font-weight: 700; color: var(--navy); }
+
+  .callout-strip { background: linear-gradient(90deg, #EEF2FF 0%, #F0F9FF 50%, #ECFDF5 100%); border-left: 4px solid var(--indigo); border-radius: 0 10px 10px 0; padding: 10px 15px; font-size: 12.1px; color: var(--navy); line-height: 1.46; margin-top: 10px; }
+
+  .cover-slide { background: linear-gradient(135deg, #090F1E 0%, #121F3B 48%, #0E2936 100%); color: #FFFFFF; }
+</style>
+</head>
+<body>
+
+<div class="deck-stage">
+  <div class="slide-viewport" id="viewport">
+
+    <!-- ==================== SLIDE 01: COVER ==================== -->
+    <section class="slide cover-slide active">
+      <svg style="position:absolute; inset:0; width:100%; height:100%; opacity:0.65; pointer-events:none;" viewBox="0 0 1280 720">
+        <defs>
+          <radialGradient id="og1" cx="76%" cy="28%" r="38%"><stop offset="0%" stop-color="#4F46E5" stop-opacity="0.5"/><stop offset="100%" stop-color="#090F1E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="og2" cx="88%" cy="62%" r="36%"><stop offset="0%" stop-color="#0284C7" stop-opacity="0.45"/><stop offset="100%" stop-color="#090F1E" stop-opacity="0"/></radialGradient>
+          <radialGradient id="og3" cx="65%" cy="72%" r="32%"><stop offset="0%" stop-color="#059669" stop-opacity="0.42"/><stop offset="100%" stop-color="#090F1E" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1280" height="720" fill="url(#og1)"/>
+        <rect width="1280" height="720" fill="url(#og2)"/>
+        <rect width="1280" height="720" fill="url(#og3)"/>
+        <g fill="none" stroke-width="1.6" stroke-opacity="0.35">
+          <circle cx="965" cy="235" r="95" stroke="#818CF8"/>
+          <circle cx="1055" cy="345" r="95" stroke="#38BDF8"/>
+          <circle cx="915" cy="360" r="95" stroke="#34D399"/>
+          <circle cx="978" cy="312" r="22" fill="#FFFFFF" fill-opacity="0.14" stroke="#FFFFFF"/>
+        </g>
+      </svg>
+
+      <div class="slide-inner" style="position:relative; z-index:2; padding:52px 70px 44px 70px; justify-content:space-between;">
+        <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.22); color:#E2E8F0; padding:7px 18px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:1px; width:fit-content;">
+          <span style="width:8px; height:8px; border-radius:50%; background:#38BDF8;"></span>
+          <span style="width:8px; height:8px; border-radius:50%; background:#818CF8;"></span>
+          <span style="width:8px; height:8px; border-radius:50%; background:#34D399;"></span>
+          千问智能硬件行业总监汇报 · 5 页配套总纲（2026 年 11 月）
+        </div>
+
+        <div style="max-width:860px;">
+          <div style="font-size:14px; font-weight:700; color:#93C5FD; letter-spacing:2.5px; margin-bottom:14px;">QWEN SMART HARDWARE · 3-TRACK SYNERGY EXECUTIVE OVERVIEW</div>
+          <h1 style="font-size:46px; font-weight:800; line-height:1.22; letter-spacing:-0.8px; color:#FFFFFF; margin-bottom:20px;">
+            千问智能硬件三大赛道<br/>协同格局与商业化汇报总览
+          </h1>
+          <p style="font-size:17.2px; color:#CBD5E1; line-height:1.65; border-left:4px solid #38BDF8; padding-left:20px;">
+            智能录音设备（优先推进）× 智能眼镜（其次推进）× 智能儿童陪伴玩具（有条件推进）<br/>
+            一页拉齐核验数据口径、全链路百炼/听悟云账、外部标杆重排与新人 90 天落地计划
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
+          <div style="background:rgba(2,132,199,0.26); border:1px solid rgba(56,189,248,0.5); border-radius:10px; padding:14px 18px;">
+            <div style="font-size:12px; color:#BAE6FD; font-weight:700;">优先 · NO.02 智能录音设备</div>
+            <div style="font-size:14px; color:#FFF; font-weight:700; margin-top:4px;">Q3 钉钉 19.7% 登顶 · 主攻出海与商务耳机</div>
+          </div>
+          <div style="background:rgba(79,70,229,0.24); border:1px solid rgba(129,140,248,0.45); border-radius:10px; padding:14px 18px;">
+            <div style="font-size:12px; color:#C7D2FE; font-weight:700;">其次 · NO.01 智能眼镜</div>
+            <div style="font-size:14px; color:#FFF; font-weight:700; margin-top:4px;">前三季 145.3 万台 · 深化 Rokid/雷鸟视觉</div>
+          </div>
+          <div style="background:rgba(5,150,105,0.22); border:1px solid rgba(52,211,153,0.42); border-radius:10px; padding:14px 18px;">
+            <div style="font-size:12px; color:#A7F3D0; font-weight:700;">有条件 · NO.03 儿童陪伴玩具</div>
+            <div style="font-size:14px; color:#FFF; font-weight:700; margin-top:4px;">严守中美新规与毛利 · 主攻千元视觉与模组池</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 02: STRATEGIC ROLE DIVISION ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">总览 · 01 / 04</span>
+          <span class="top-meta">三大赛道组织脉络、商业角色与外部切入优先级</span>
+        </div>
+        <h2 class="slide-title">三赛道互补定位与千问推进次序：避让自研红海，重排真体量外部标杆</h2>
+        <p class="slide-lead">直面<strong>千问 C 端、千问办公（钉钉）与阿里云百炼</strong>竞合边界，淘汰亏损小盘假标杆，把对外资源压在最高确定性真增量上。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-3" style="flex:1; align-items:stretch;">
+            <div class="card-cyan" style="display:flex; flex-direction:column; justify-content:space-between; border-top:5px solid #0284C7;">
+              <div>
+                <span class="tag t-cyan" style="margin-bottom:8px;">第一优先 · 生产力出海与耳机大盘</span>
+                <div style="font-size:19px; font-weight:800; color:#0F172A; margin-bottom:9px;">智能录音设备</div>
+                <ul class="pts">
+                  <li><strong>自研格局：</strong>千问办公与钉钉一体（A1/A1 Pro → <strong>QwenNote A2：0.95 寸 OLED 彩屏 + 6 麦 + 4G + 67g</strong> + 千问×Bose 1,099 首发价耳机），奥维 Q3 监测钉钉 19.7% 登顶线上销额第一。</li>
+                  <li><strong>外部切口：</strong>避让国内通用卡红海，第一优先切<strong>出海多语种品牌/公版 IDH 与商务 AI 耳机（含蚂蚁/传音两轮领投 Viaim 及声学大厂）</strong>，并行企微生态与垂直 ISV；出门问问（中报营收 -56%、亏 4,960 万）降级为存量示范。</li>
+                  <li><strong>核心红线：</strong>严禁低价买断送不限次；严分 SOC 2、GDPR/HIPAA、实名声纹及双边同意州法规。</li>
+                </ul>
+              </div>
+              <div style="padding-top:8px; border-top:1px solid #BAE6FD; font-size:11.8px; font-weight:800; color:#0369A1;">关键词：海外合规 ASR · 耳机大盘 · 分层路由</div>
+            </div>
+
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between; border-top:5px solid #4F46E5;">
+              <div>
+                <span class="tag t-indigo" style="margin-bottom:8px;">其次推进 · 第一视角视觉入口</span>
+                <div style="font-size:19px; font-weight:800; color:#0F172A; margin-bottom:9px;">智能眼镜</div>
+                <ul class="pts">
+                  <li><strong>自研格局：</strong>千问 C 端事业群 H1 凭 G1/S1 占大陆 AI 眼镜出货 <strong>17.4% 第 1</strong>（不含 10 月 N1/N1 Pro），Q3 线上量增额降、均价骤降 25.4% 至 1,542 元。</li>
+                  <li><strong>外部切口：</strong>优先深化 <strong>雷鸟 iO/V3（iO 34g 双 11 光波导 TOP1 已接千问）与 Rokid（Glasses 2/Style）</strong>第一视角高毛利 VLM 子路由；跑通 1 款 RDK 公版，出海主推<strong>阿里云海外托管 API</strong>（非不创收纯自托管）。</li>
+                  <li><strong>核心红线：</strong>国补限 ≤6,000 元封顶 500 元；<strong>严禁 Token Plan 作生产后端</strong>；严控虹膜/健康与海外人脸脱敏。</li>
+                </ul>
+              </div>
+              <div style="padding-top:8px; border-top:1px solid #C7D2FE; font-size:11.8px; font-weight:800; color:#3730A3;">关键词：抢 VLM 子路由 · 控 TTS/流账 · 透明竞合</div>
+            </div>
+
+            <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:space-between; border-top:5px solid #059669;">
+              <div>
+                <span class="tag t-emerald" style="margin-bottom:8px;">有条件推进 · 轻人力守毛利与合规</span>
+                <div style="font-size:19px; font-weight:800; color:#0F172A; margin-bottom:9px;">智能儿童陪伴玩具</div>
+                <ul class="pts">
+                  <li><strong>生态现状：</strong>百炼已适配 <strong>30+ 芯片平台</strong>；实丰（2025 总营收 4.17 亿、<strong>亏 1.75 亿</strong>）仅作存量预付费样本；汤姆猫主力系西湖心辰+豆包，行业估年销数千万。</li>
+                  <li><strong>外部切口：</strong>不卷 199 亏损白牌，优先国内切入<strong>千元硬壳视觉伴学（如灵宇宙 1,099–1,299 元及早教龙头转型线）</strong>、<strong>涂鸦/移远 1 对 N 预付费模组池</strong>与<strong>阿里鱼 IP 599+ 新品</strong>。</li>
+                  <li><strong>核心红线：</strong>中国 <strong>7.15《拟人化办法》</strong>+GB 6675（11.1 实施）+3C/SRRC/CTA；<strong>加州 SB 867/1119 + 纽约州 ≤12 岁 5 年禁令（2027.2.22 生效）</strong>——换云商无法绕开！</li>
+                </ul>
+              </div>
+              <div style="padding-top:8px; border-top:1px solid #A7F3D0; font-size:11.8px; font-weight:800; color:#065F46;">关键词：安全一票否决 · 预付费卡密 · 视觉伴学</div>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>底层复用与算账纪律：</strong>三赛道共享<strong>“百炼生产 API + 通义听悟 + Qwen 家族”</strong>与上游芯片/IDH（恒玄、蓝讯、乐鑫、移远、涂鸦）；硬件零售额不能换算为云收入，须按<strong>全链路生产云账（含 TTS/VLM/RAG/RTC）</strong>与外部可触达云盘子配置轻重人力。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 千问智能硬件三大赛道协同格局与商业化总览 · 战略分工与标杆重排</span>
+          <span class="pg">02 / 05</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 03: CROSS-TRACK HARD COMPARISON ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">总览 · 02 / 04</span>
+          <span class="top-meta">三赛道核验口径全拉齐（含外部盘子情景估算与全链路生产云账）</span>
+        </div>
+        <h2 class="slide-title">核心指标横评：拉齐真实体量、完整硬件 UE 与全链路可复算云账</h2>
+        <p class="slide-lead">全部数据经 2026.11 交叉核验，严格区分公开实证与情景测算；补齐 TTS / VLM / 跨会 RAG / RTC 等核心生产大头成本。</p>
+
+        <div class="slide-body">
+          <table class="clean-tbl">
+            <thead>
+              <tr>
+                <th style="width:14%;">核心商业维度</th>
+                <th style="width:28.7%; background:#0369A1;">NO.02 智能录音设备（优先）</th>
+                <th style="width:28.7%; background:#312E81;">NO.01 智能眼镜（其次）</th>
+                <th style="width:28.6%; background:#065F46;">NO.03 儿童陪伴玩具（有条件）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="b">核验市场规模与<br/>外部云盘估算</td>
+                <td>奥维 Q3 线上（监测汇总）<strong>58.5 万台 / 2.4 亿</strong>（Q1 公开基线 39.4 万/1.4 亿；Q3 钉钉 19.7%、讯飞 17.4%、安克 8.0%）；Plaud 200 万+台 / 1 亿美元 ARR；<strong>国内第三方卡云盘 &lt;3,000 万/年，增量在出海与耳机</strong></td>
+                <td>洛图前三季 <strong>145.3 万台 / 27.2 亿</strong>（H1 均价 2,068→Q3 1,542；全年 205–215 万）；Omdia H1 阿里 <strong>17.4% 第 1</strong>（前三 46.0%，舍入约 46.1%）；Meta 占全球 <strong>81.3%</strong></td>
+                <td>魔镜 MAT2025 线上全龄 <strong>7.4 亿 / 160.4 万件</strong>（2026E 约 12.8 亿 / 415 万件，BubblePal 占量 19.6%）；工信部广义 246→290E（26E 差约 27 倍）；<strong>10–20% 份额云盘约 340–1,820 万/年</strong></td>
+              </tr>
+              <tr>
+                <td class="b">主流售价 vs<br/>BOM 与完整 UE</td>
+                <td>正规军 499–1,299（白牌 99–249）；蓝牙卡 BOM <strong>¥75（占白牌 30–76%）/ ¥160（高配 799–1,299 占 12–20%）</strong>；4G 彩屏卡估 ¥280–350；扣税/投流/3 年赠额后 1,199 档高活易倒亏</td>
+                <td>Q3 均价：音频 701 / 拍摄 877 / AR 2,817（含 BirdBath 观影）；BOM 音频 ¥360 / 国产拍摄 ¥800–950 / <strong>AR1 双芯 ¥1,060–1,180</strong> / 单绿 ¥1,730；门店期望镜片毛利 ¥260–390</td>
+                <td>1–7 月量 +158.7%、额 +72.7%、均价 -33.3%；纯 Wi-Fi 模组 ¥12–18、完整机芯 ¥38–45；<strong>199 白牌在 30% 退货+投流 ROI 3.0–3.5 下常态实亏 ¥15–30</strong>，须上移千元视觉带</td>
+              </tr>
+              <tr>
+                <td class="b">退货与合规<br/>硬红线</td>
+                <td>重度 3 年云费 448–1,198 元<strong>证伪买断不限次</strong>；严分 SOC 2 与 GDPR/HIPAA/实名声纹及美双边同意州；“删原音 vs 回听”做成企业可配开关</td>
+                <td>洛图退货 <strong>30%–70%</strong>；国补 ≤6,000 封顶 500；<strong>严禁 Token Plan 作生产后端</strong>；严守虹膜/健康 PIPL 与海外防遮灯+AI 视觉上传前路人人脸打码</td>
+                <td>30%–40% 电商退货；中国 <strong>7.15《拟人化办法》</strong>+GB 6675（11.1 实施）+3C/SRRC/CTA；<strong>加州 SB 867/1119 + 纽约州 ≤12 岁 5 年禁令（2027.2.22 生效）</strong>；严禁中小厂后付费赊账</td>
+              </tr>
+              <tr>
+                <td class="b">全链路百炼<br/>目录云账*</td>
+                <td>北京离线基础 <strong>0.2076 元/h（ASR 97%）</strong>、听悟 <strong>0.5544 元/h（76%）</strong>；跨会 RAG +0.14–0.75、流式实时翻译 3.35–4.79 元/h；<strong>新加坡合规离线 ASR USD 0.126/h（≈¥0.91/h，较海外竞品低 51–65%）</strong></td>
+                <td>纯转写+问答中度 26.19 / 73.71 元/年；<strong>补齐无屏刚需 TTS + 纪要后跃升至 92.8–251.9 元/年</strong>；VLM 现行价 +1.4–2.9 元/年；<strong>全双工实时音频北京 +179.8 元/年</strong>（新加坡 +279.6）</td>
+                <td>吃灰基线（5,000 轮/年）11.70–39.55 元；<strong>中度高活（30min/天×2 年）模型 70.2–237.3 元 + RTC 45–105 元</strong>（达轻聊模型 0.6–1.5 倍）→ 399 以下强制预付费卡密+每日熔断</td>
+              </tr>
+              <tr>
+                <td class="b">格局关键<br/>新变量</td>
+                <td>Plaud One 探索版（USD 249.99 <strong>全球限量 2,000 台</strong>）；<strong>Viaim 150 万+（蚂蚁 A 轮+传音 A+ 轮）</strong>；<strong>企微联盟（讯飞/TicNote/得力）</strong>；出门问问中报营收 -56%/整体毛利 46.6%/硬件清库承压</td>
+                <td><strong>双 11 雷鸟 iO（34g/1,996 起/接千问）登顶光波导且雷鸟破百万台</strong>；Rokid Glasses 2 现货（Color 2027.04 交付）；影目 Future 125g；Google 联名 12.10 上市（USD 395/449）</td>
+                <td><strong>2026.11 PIRG 复测 FoloToy 通过</strong>（多款同测品长对话仍衰减）；<strong>灵宇宙小方机（1,099–1,299 元）登双 11 京东第一</strong>；实丰 2025 营收 4.17 亿/亏 1.75 亿；移远 FCM665D 系纯 Wi-Fi 6</td>
+              </tr>
+              <tr>
+                <td class="b">重排首选外部<br/>标杆与切口</td>
+                <td><strong>出海多语种品牌/公版 IDH &amp; 商务 AI 耳机（含 Viaim/声学大厂）</strong> + 企微生态/垂直 ISV（出门问问 TicNote 作示范案例）</td>
+                <td><strong>雷鸟（iO/V3）&amp; 乐奇 Rokid（Glasses 2/Style）</strong>第一视角 VLM 识读翻译高毛利子路由 + 1 款 RDK 公版 + 运动/出海托管</td>
+                <td><strong>千元硬壳视觉伴学（灵宇宙/早教龙头）&amp; 涂鸦/移远 1 对 N 预付费模组池</strong> + 阿里鱼 IP 联名（实丰作存量预付费样本）</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="font-size:10.3px; color:#64748B; margin-top:4px;">* 基准说明：按 2026 阿里云百炼/通义听悟公开目录价复算（不含大客阶梯协议折扣）；外部云盘估算系基于公开出货/零售体量的情景推演，具体客户预算、合同与调用份额待入组后内部核实。</div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 千问智能硬件三大赛道协同格局与商业化总览 · 指标横评</span>
+          <span class="pg">03 / 05</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 04: QWEN VS DOUBAO & PRIORITY ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">总览 · 03 / 04</span>
+          <span class="top-meta">千问（百炼）vs 火山引擎（豆包）与企微/讯飞客评差异与推进次序</span>
+        </div>
+        <h2 class="slide-title">竞合打法与推进排序：正视火山生态与企微联盟，打出百炼公开价与视觉王牌</h2>
+        <p class="slide-lead">客观直面火山引擎“无自有眼镜/卡片包袱 + RTC + 抖音流量换模型”压制，把千问的<strong>“公开价优势 + 视觉/听悟精度 + 阿里系生态协同 + 合规风控”</strong>打在刀刃上。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <table class="clean-tbl" style="font-size:11.3px; line-height:1.42;">
+            <thead>
+              <tr>
+                <th style="width:13%;">推进梯队</th>
+                <th style="width:27%;">核心对手优势（须客观正视）</th>
+                <th style="width:31%; background:#312E81;">千问 / 百炼差异化切入筹码</th>
+                <th style="width:29%;">首个标杆验证动作（POC）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="b"><span class="tag t-cyan">优先 · 录音</span></td>
+                <td><strong>企业微信开放硬件反击联盟</strong>（联讯飞/TicNote/得力）；飞书×安克 10g 轻穿戴；讯飞政企线下盘与方言积淀</td>
+                <td style="background:#F0F9FF;"><strong>北京 Paraformer 0.288 元/h（比火山 ~0.80 元/h 便宜 64%）+ 新加坡合规 ASR（USD 0.126/h，比海外竞品低 51–65%）+ 听悟精度</strong></td>
+                <td>面向<strong>出海品牌与商务耳机大厂（含 Viaim/声学厂）</strong>：用同批多语种实录验证转写精度、流式实时底价与新加坡合规节点</td>
+              </tr>
+              <tr>
+                <td class="b"><span class="tag t-indigo">其次 · 眼镜</span></td>
+                <td><strong>火山引擎无自有眼镜包袱 + RTC + 抖音投流换模型</strong>；华为（30.1% 销额，非鸿蒙 6+ 受限）/小米强绑手机底盘</td>
+                <td style="background:#EEF2FF;"><strong>Qwen-VL 已有雷鸟 iO/V3 与 Rokid 落地验证 + 全链路 TTS/VLM 控本架构 + 探讨非核心生活插件分级开放</strong></td>
+                <td>围绕<strong>雷鸟 iO/V3 &amp; 乐奇 Rokid</strong>：实测第一视角外文菜单/路牌识读翻译精度、端云延迟与高毛利 VLM 子路由占比</td>
+              </tr>
+              <tr>
+                <td class="b"><span class="tag t-emerald">有条件 · 玩具</span></td>
+                <td><strong>豆包“芯片预集成 + RTC + 扣子 + 抖音流量”四重闭环</strong>，在跃然/汤姆猫/奥飞与白牌模组渗透极深</td>
+                <td style="background:#ECFDF5;"><strong>Qwen-VL 千元视觉伴学 + 阿里鱼正版 IP 撮合 + 淘天母婴货架流量协同 + 分龄安全护栏与预付费卡密风控</strong></td>
+                <td>聚焦国内<strong>千元硬壳视觉（灵宇宙/早教龙头）与涂鸦/移远模组池</strong>：验证绘本识物精度、分龄红队护栏与预付费卡密闭环</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="card-dark" style="margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:20px;">
+            <div style="flex:1.25;">
+              <div style="font-size:13.8px; font-weight:800; color:#93C5FD; margin-bottom:5px;">千问对外商业化的 3 条不可逾越专业底线</div>
+              <p style="font-size:12.2px; color:#E2E8F0; line-height:1.52;">
+                <strong>① 计费与授信零违规：</strong>严禁 Token Plan 作生产后端，严禁向中小硬件厂开放无上限后付费赊账；<strong>② 法规零盲区：</strong>出海先查产品准入（SB 867/1119、拟人化办法、人脸脱敏、实名声纹）再谈云部署；<strong>③ 全链路算账零水分：</strong>绝不鼓吹“买断不限次”，帮客户把 TTS、VLM、跨会 RAG 与 RTC 全部算清并落分层路由。
+              </p>
+            </div>
+            <div style="flex:0.75; background:rgba(56,189,248,0.18); border:1px solid #38BDF8; border-radius:10px; padding:11px 14px; text-align:center;">
+              <div style="font-size:11.2px; color:#BAE6FD; margin-bottom:4px;">三赛道统一商业共识</div>
+              <div style="font-size:14.2px; font-weight:800; color:#FFFFFF; line-height:1.4;">不卷亏损白牌红海<br/>帮客户“算全账 · 守合规 · 找真增量”</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 千问智能硬件三大赛道协同格局与商业化总览 · 竞合与排序</span>
+          <span class="pg">04 / 05</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 05: NEWCOMER EXECUTION & ALIGNMENT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">总览 · 04 / 04</span>
+          <span class="top-meta">向千问智能硬件行业总监汇报 · 聚焦单线、脚踏实地</span>
+        </div>
+        <h2 class="slide-title">新人 90 天单线聚焦落地计划，以及希望向总监请教的 3 个全局问题</h2>
+        <p class="slide-lead">系统拆解三赛道是为了建立全局视野与全链路算账纪律；实际执行中我<strong>绝不贪大求全</strong>，完全服从团队分工，先沉下心把指定一条细分切口做透。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-white" style="padding:14px 18px;">
+            <div style="font-size:13.8px; font-weight:800; color:#0F172A; margin-bottom:9px;">90 天 100% 可控执行节奏（按总监指定的单一优先赛道落地）</div>
+            <div class="g-3" style="gap:15px;">
+              <div style="border-left:3.5px solid #0284C7; padding-left:12px;">
+                <div style="font-size:12.8px; font-weight:800; color:#0369A1; margin-bottom:5px;">前 30 天 · 沉底对齐口径</div>
+                <ul class="pts" style="gap:5px;">
+                  <li style="font-size:11.9px;">吃透自研硬件与百炼对外分工、生产 API 阶梯底价、海外 ZDR/DPA 条款及存量客户合同状态；</li>
+                  <li style="font-size:11.9px;">旁听资深同事 5–10 场拜访，把目录价全链路算账表（含 TTS/VLM/RAG/RTC）校准为一线实用 TCO 工具。</li>
+                </ul>
+              </div>
+              <div style="border-left:3.5px solid #4F46E5; padding-left:12px;">
+                <div style="font-size:12.8px; font-weight:800; color:#3730A3; margin-bottom:5px;">30–60 天 · 补位与 POC 支撑</div>
+                <ul class="pts" style="gap:5px;">
+                  <li style="font-size:11.9px;">协助前辈与 SA 准备标杆客群（出海/商务耳机、Rokid/雷鸟、千元视觉与模组池）同条件实测集与异议 FAQ；</li>
+                  <li style="font-size:11.9px;">主动承接团队覆盖不足的<strong>深圳/珠三角出海 IDH、腰部垂类与预付费模组渠道</strong>摸排建档。</li>
+                </ul>
+              </div>
+              <div style="border-left:3.5px solid #059669; padding-left:12px;">
+                <div style="font-size:12.8px; font-weight:800; color:#065F46; margin-bottom:5px;">60–90 天 · 跑通最小闭环</div>
+                <ul class="pts" style="gap:5px;">
+                  <li style="font-size:11.9px;">在团队指导下，推动 <strong>1–2 家腰部/出海线索</strong>进入沙箱技术评估或预付费卡密 Demo 联调；</li>
+                  <li style="font-size:11.9px;">输出经一线校验的细分客群破冰复盘，尽快具备独立跟进中小项目的实战能力。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-amber" style="margin-top:11px; padding:13px 16px;">
+            <div style="font-size:13.3px; font-weight:800; color:#92400E; margin-bottom:7px;">基于公开资料仍有 3 个关键内部边界，恳请总监指导对齐：</div>
+            <div class="g-3" style="gap:15px;">
+              <div style="font-size:11.9px; line-height:1.48; color:#334155;"><strong>1. 组织避让与生态开放：</strong>千问 C 端/千问办公（钉钉）与对外百炼如何划定避让红线？高德/支付宝/阿里鱼/淘天资源能否对外部大客分级协同？</div>
+              <div style="font-size:11.9px; line-height:1.48; color:#334155;"><strong>2. 存量标杆与政策底牌：</strong>Viaim/出门问问、Rokid/雷鸟、灵宇宙/涂鸦移远目前的真实合作进度，以及海外 ZDR/DPA 与预付费卡密政策边界？</div>
+              <div style="font-size:11.9px; line-height:1.48; color:#334155;"><strong>3. 新人首要补位切口：</strong>本季度团队最希望我先沉入哪一条赛道、哪一类客群（标杆协助 vs 深圳出海 IDH/模组池摸排）建立战功？</div>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:9px;">
+            <strong>汇报说明：</strong>本总览与三份分赛道深度报告（NO.01 智能眼镜 / NO.02 智能录音设备 / NO.03 智能儿童陪伴玩具）均已完成 2026.11 公开数据核验、全链路云账补全与外部标杆尽调重排，恳请总监批评指正！
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 千问智能硬件三大赛道协同格局与商业化总览 · 汇报完（恳请总监批评指正）</span>
+          <span class="pg">05 / 05</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="hud-bar">
+  <button class="hud-btn" id="btnPrev" title="上一页 (←)">← 上一页</button>
+  <span class="hud-counter" id="counter">01 / 05</span>
+  <div class="hud-progress"><div class="hud-progress-fill" id="progressFill"></div></div>
+  <button class="hud-btn" id="btnNext" title="下一页 (→ / Space)">下一页 →</button>
+  <button class="hud-btn" id="btnOverview" title="网格总览 (G)">总览 (G)</button>
+  <button class="hud-btn" id="btnFull" title="全屏演示 (F)">全屏 (F)</button>
+  <button class="hud-btn" id="btnPrint" title="打印 / 另存为 16:9 PDF">导出 PDF</button>
+</div>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const viewport = document.getElementById('viewport');
+    const counter = document.getElementById('counter');
+    const progressFill = document.getElementById('progressFill');
+    const total = slides.length;
+    let current = 0;
+    function fitViewport() {
+      if (document.body.classList.contains('overview-mode')) { viewport.style.transform = ''; return; }
+      const scale = Math.min((window.innerWidth - 32) / 1280, (window.innerHeight - 76) / 720);
+      viewport.style.transform = `scale(${Math.max(0.2, Math.min(scale, 1.5))})`;
+    }
+    function showSlide(idx) {
+      current = Math.max(0, Math.min(total - 1, idx));
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+      progressFill.style.width = `${((current + 1) / total) * 100}%`;
+    }
+    function toggleOverview(forceOff) {
+      if (forceOff === true) document.body.classList.remove('overview-mode');
+      else document.body.classList.toggle('overview-mode');
+      fitViewport();
+    }
+    slides.forEach((s, idx) => s.addEventListener('click', () => {
+      if (document.body.classList.contains('overview-mode')) { showSlide(idx); toggleOverview(true); }
+    }));
+    document.getElementById('btnPrev').addEventListener('click', () => { toggleOverview(true); showSlide(current - 1); });
+    document.getElementById('btnNext').addEventListener('click', () => { toggleOverview(true); showSlide(current + 1); });
+    document.getElementById('btnOverview').addEventListener('click', () => toggleOverview());
+    document.getElementById('btnFull').addEventListener('click', () => {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    });
+    document.getElementById('btnPrint').addEventListener('click', () => { toggleOverview(true); window.print(); });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); toggleOverview(true); showSlide(current + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); toggleOverview(true); showSlide(current - 1); }
+      else if (e.key === 'Home') { toggleOverview(true); showSlide(0); }
+      else if (e.key === 'End') { toggleOverview(true); showSlide(total - 1); }
+      else if (e.key.toLowerCase() === 'g') { toggleOverview(); }
+      else if (e.key.toLowerCase() === 'f') { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
+      else if (e.key === 'Escape') { toggleOverview(true); }
+    });
+    window.addEventListener('resize', fitViewport);
+    showSlide(0);
+    fitViewport();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>2026 智能录音设备行业深度洞察与千问商业化汇报</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  :root {
+    --navy: #0F172A;
+    --navy-2: #1E293B;
+    --indigo: #4F46E5;
+    --indigo-dark: #3730A3;
+    --indigo-soft: #EEF2FF;
+    --cyan: #0284C7;
+    --cyan-soft: #E0F2FE;
+    --emerald: #059669;
+    --emerald-soft: #ECFDF5;
+    --amber: #D97706;
+    --amber-soft: #FFFBEB;
+    --rose: #DC2626;
+    --rose-soft: #FEF2F2;
+    --slate-900: #0F172A;
+    --slate-700: #334155;
+    --slate-600: #475569;
+    --slate-500: #64748B;
+    --slate-300: #CBD5E1;
+    --slate-200: #E2E8F0;
+    --slate-100: #F1F5F9;
+    --slate-50: #F8FAFC;
+  }
+
+  html, body {
+    width: 100%; height: 100%;
+    font-family: "Noto Sans CJK SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #0B1120; color: var(--slate-700); overflow: hidden;
+  }
+  .deck-stage { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+  .slide-viewport { width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
+  .slide { width: 1280px; height: 720px; background: #FFFFFF; position: absolute; inset: 0; display: none; flex-direction: column; overflow: hidden; }
+  .slide.active { display: flex; }
+  .slide-inner { padding: 34px 50px 26px 50px; flex: 1; display: flex; flex-direction: column; }
+
+  body.overview-mode { overflow-y: auto; background: #0F172A; }
+  body.overview-mode .deck-stage { height: auto; min-height: 100vh; padding: 36px 36px 96px 36px; display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 24px; align-items: start; overflow: visible; }
+  body.overview-mode .slide-viewport { display: contents; }
+  body.overview-mode .slide { display: flex !important; position: relative !important; width: 1280px; height: 720px; transform: scale(0.29); transform-origin: top left; margin-bottom: -511px; margin-right: -908px; border-radius: 14px; cursor: pointer; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+  body.overview-mode .slide:hover { outline: 10px solid #0284C7; }
+  body.overview-mode .slide.active { outline: 10px solid #38BDF8; }
+
+  .hud-bar { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 999; display: flex; align-items: center; gap: 10px; background: rgba(15, 23, 42, 0.86); backdrop-filter: blur(12px); border: 1px solid rgba(148, 163, 184, 0.25); padding: 7px 14px; border-radius: 999px; color: #E2E8F0; font-size: 12.5px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); user-select: none; }
+  .hud-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); color: #F8FAFC; padding: 5px 11px; border-radius: 999px; cursor: pointer; font-size: 12px; font-family: inherit; }
+  .hud-btn:hover { background: rgba(2, 132, 199, 0.6); }
+  .hud-counter { font-weight: 700; color: #7DD3FC; min-width: 64px; text-align: center; }
+  .hud-progress { width: 110px; height: 4px; background: rgba(255, 255, 255, 0.16); border-radius: 99px; overflow: hidden; }
+  .hud-progress-fill { height: 100%; background: linear-gradient(90deg, #0284C7, #6366F1); width: 5%; transition: width 0.2s ease; }
+
+  @media print {
+    html, body { width: 1280px; height: auto; background: #FFFFFF; overflow: visible; }
+    .hud-bar { display: none !important; }
+    .deck-stage, .slide-viewport { display: block !important; width: 1280px; height: auto; transform: none !important; box-shadow: none !important; border-radius: 0 !important; overflow: visible !important; }
+    .slide { display: flex !important; position: relative !important; width: 1280px !important; height: 720px !important; page-break-after: always; break-after: page; }
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+  }
+
+  .top-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+  .section-pill { display: inline-flex; align-items: center; gap: 8px; background: var(--cyan-soft); color: var(--cyan); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; }
+  .top-meta { font-size: 12px; color: var(--slate-500); font-weight: 500; }
+  .slide-title { font-size: 24.5px; font-weight: 800; color: var(--navy); line-height: 1.24; margin-bottom: 7px; letter-spacing: -0.3px; }
+  .slide-lead { font-size: 13.8px; color: var(--slate-600); line-height: 1.48; margin-bottom: 16px; }
+  .slide-lead strong { color: var(--indigo-dark); }
+  .slide-body { flex: 1; display: flex; flex-direction: column; justify-content: flex-start; margin-bottom: 10px; }
+  .slide-footer { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--slate-200); display: flex; justify-content: space-between; align-items: center; font-size: 11.2px; color: var(--slate-500); }
+  .slide-footer .pg { font-weight: 700; color: var(--navy); }
+
+  .g-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .g-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 18px; }
+  .g-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .g-55-45 { display: grid; grid-template-columns: 1.22fr 1fr; gap: 22px; }
+  .g-60-40 { display: grid; grid-template-columns: 1.48fr 1fr; gap: 22px; }
+
+  .card { background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: 12px; padding: 17px 19px; }
+  .card-white { background: #FFFFFF; border: 1px solid var(--slate-200); border-radius: 12px; padding: 17px 19px; }
+  .card-indigo { background: var(--indigo-soft); border: 1px solid #C7D2FE; border-radius: 12px; padding: 17px 19px; }
+  .card-cyan { background: #F0F9FF; border: 1px solid #BAE6FD; border-radius: 12px; padding: 17px 19px; }
+  .card-emerald { background: var(--emerald-soft); border: 1px solid #A7F3D0; border-radius: 12px; padding: 17px 19px; }
+  .card-rose { background: var(--rose-soft); border: 1px solid #FECACA; border-radius: 12px; padding: 17px 19px; }
+  .card-amber { background: var(--amber-soft); border: 1px solid #FDE68A; border-radius: 12px; padding: 17px 19px; }
+  .card-dark { background: linear-gradient(155deg, #0F172A 0%, #102A43 100%); color: #F8FAFC; border-radius: 12px; padding: 19px 21px; }
+
+  .card-h { font-size: 15.2px; font-weight: 800; color: var(--navy); margin-bottom: 9px; display: flex; align-items: center; gap: 8px; }
+  .card-dark .card-h { color: #FFFFFF; }
+
+  .tag { display: inline-block; padding: 2.5px 8px; border-radius: 5px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .t-indigo { background: #E0E7FF; color: #3730A3; }
+  .t-cyan { background: #E0F2FE; color: #0369A1; }
+  .t-emerald { background: #D1FAE5; color: #065F46; }
+  .t-amber { background: #FEF3C7; color: #92400E; }
+  .t-rose { background: #FEE2E2; color: #991B1B; }
+  .t-slate { background: #E2E8F0; color: #334155; }
+
+  .kpi-card { background: #FFFFFF; border: 1px solid var(--slate-200); border-top: 4px solid var(--cyan); border-radius: 12px; padding: 20px 20px 18px 20px; display: flex; flex-direction: column; justify-content: space-between; min-height: 244px; }
+  .kpi-card.indigo { border-top-color: var(--indigo); }
+  .kpi-card.emerald { border-top-color: var(--emerald); }
+  .kpi-card.amber { border-top-color: var(--amber); }
+  .kpi-label { font-size: 12.6px; font-weight: 700; color: var(--slate-500); margin-bottom: 8px; }
+  .kpi-num { font-size: 31px; font-weight: 800; color: var(--navy); line-height: 1.15; margin-bottom: 10px; letter-spacing: -0.6px; }
+  .kpi-card.indigo .kpi-num { color: var(--indigo); }
+  .kpi-card.emerald .kpi-num { color: var(--emerald); }
+  .kpi-card.amber .kpi-num { color: var(--amber); }
+  .kpi-desc { font-size: 12.5px; color: var(--slate-600); line-height: 1.52; padding-top: 12px; border-top: 1px solid var(--slate-200); }
+
+  ul.pts { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  ul.pts li { position: relative; padding-left: 16px; font-size: 13px; line-height: 1.52; color: var(--slate-700); }
+  ul.pts li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
+  .card-indigo ul.pts li::before { background: var(--indigo); }
+  .card-emerald ul.pts li::before { background: var(--emerald); }
+  .card-rose ul.pts li::before { background: var(--rose); }
+  .card-amber ul.pts li::before { background: var(--amber); }
+  .card-dark ul.pts li { color: #E2E8F0; }
+  .card-dark ul.pts li::before { background: #38BDF8; }
+  ul.pts li strong { color: var(--navy); }
+  .card-dark ul.pts li strong { color: #FFFFFF; }
+
+  table.clean-tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 12.1px; line-height: 1.44; border: 1px solid var(--slate-200); border-radius: 10px; overflow: hidden; }
+  table.clean-tbl thead th { background: var(--navy); color: #FFFFFF; font-weight: 700; text-align: left; padding: 9px 12px; font-size: 12px; }
+  table.clean-tbl tbody td { padding: 8.5px 12px; border-top: 1px solid var(--slate-200); vertical-align: middle; color: var(--slate-700); }
+  table.clean-tbl tbody tr:nth-child(even) td { background: var(--slate-50); }
+  table.clean-tbl tbody tr.hl td { background: #F0F9FF; }
+  table.clean-tbl.compact { font-size: 11.4px; line-height: 1.38; }
+  table.clean-tbl.compact thead th { padding: 7.5px 10px; font-size: 11.4px; }
+  table.clean-tbl.compact tbody td { padding: 6.5px 10px; }
+  table.clean-tbl.mini { font-size: 11px; line-height: 1.34; }
+  table.clean-tbl.mini thead th { padding: 5.5px 8px; font-size: 10.8px; }
+  table.clean-tbl.mini tbody td { padding: 5.5px 8px; }
+  .b { font-weight: 700; color: var(--navy); }
+
+  .callout-strip { background: linear-gradient(90deg, #F0F9FF 0%, #F8FAFC 100%); border-left: 4px solid var(--cyan); border-radius: 0 10px 10px 0; padding: 11px 16px; font-size: 12.8px; color: var(--navy); line-height: 1.5; margin-top: 12px; }
+
+  .cover-slide { background: linear-gradient(135deg, #071324 0%, #0E2439 55%, #162B4D 100%); color: #FFFFFF; }
+</style>
+</head>
+<body>
+
+<div class="deck-stage">
+  <div class="slide-viewport" id="viewport">
+
+    <!-- ==================== SLIDE 01: COVER ==================== -->
+    <section class="slide cover-slide active">
+      <svg style="position:absolute; inset:0; width:100%; height:100%; opacity:0.65; pointer-events:none;" viewBox="0 0 1280 720">
+        <defs>
+          <radialGradient id="rg1" cx="82%" cy="30%" r="48%"><stop offset="0%" stop-color="#0284C7" stop-opacity="0.5"/><stop offset="100%" stop-color="#071324" stop-opacity="0"/></radialGradient>
+          <radialGradient id="rg2" cx="20%" cy="85%" r="42%"><stop offset="0%" stop-color="#4F46E5" stop-opacity="0.35"/><stop offset="100%" stop-color="#071324" stop-opacity="0"/></radialGradient>
+        </defs>
+        <rect width="1280" height="720" fill="url(#rg1)"/>
+        <rect width="1280" height="720" fill="url(#rg2)"/>
+        <g stroke="#38BDF8" stroke-opacity="0.22" fill="none" stroke-width="1.5">
+          <rect x="860" y="160" width="290" height="200" rx="20"/>
+          <path d="M900 260 L920 260 M935 230 L935 290 M955 205 L955 315 M975 235 L975 285 M995 190 L995 330 M1015 220 L1015 300 M1035 198 L1035 322 M1055 230 L1055 290 M1075 215 L1075 305 M1095 245 L1095 275 M1115 260 L1130 260" stroke="#7DD3FC" stroke-opacity="0.36" stroke-width="4" stroke-linecap="round"/>
+        </g>
+      </svg>
+
+      <div class="slide-inner" style="position:relative; z-index:2; padding:52px 70px 44px 70px; justify-content:space-between;">
+        <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(2,132,199,0.28); border:1px solid rgba(56,189,248,0.5); color:#BAE6FD; padding:7px 18px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:1px; width:fit-content;">
+          <span style="width:8px; height:8px; border-radius:50%; background:#38BDF8;"></span>
+          千问智能硬件团队 · 行业调研汇报 NO.02（优先推进赛道）
+        </div>
+
+        <div style="max-width:880px;">
+          <div style="font-size:14px; font-weight:700; color:#38BDF8; letter-spacing:2.5px; margin-bottom:14px;">AI VOICE RECORDER &amp; WORKFLOW HARDWARE BRIEFING</div>
+          <h1 style="font-size:45px; font-weight:800; line-height:1.22; letter-spacing:-0.8px; color:#FFFFFF; margin-bottom:20px;">
+            2026 智能录音设备行业深度洞察<br/>与千问商业化汇报
+          </h1>
+          <p style="font-size:17.2px; color:#CBD5E1; line-height:1.65; border-left:4px solid #38BDF8; padding-left:20px;">
+            拆解国内办公生态格局、Plaud 海外订阅与耳机跨界、完整单机 P&amp;L 与全档位云算力账本，<br/>
+            划清千问自研避让边界，提出<span style="color:#FFFFFF; font-weight:700;">优先主攻出海多语种与商务 AI 耳机</span>的外部商业化路径
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:18px; background:rgba(7,19,36,0.72); border:1px solid rgba(148,163,184,0.25); border-radius:12px; padding:18px 24px;">
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">汇报对象</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">千问智能硬件行业总监</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">汇报角色与视角</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">行业新人 · 商业化与生态协同</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">核心数据基准</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">奥维 Q1/Q3 · Plaud · 百炼/听悟公开价</div>
+          </div>
+          <div>
+            <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">编制时点</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">2026 年 11 月</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 02: EXEC KPIs ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">核心速览 · 01 / 02</span>
+          <span class="top-meta">国内线上大盘、海外标杆披露与硬件 BOM 情景估算</span>
+        </div>
+        <h2 class="slide-title">4 组核心数字，看懂 2026 智能录音设备的市场体量与变现路径</h2>
+        <p class="slide-lead">国内均价结构升级叠加海外高订阅验证，录音设备是商业闭环最清晰、适合千问<strong>优先主攻出海与商务耳机</strong>的重点赛道。</p>
+
+        <div class="slide-body" style="justify-content:center; gap:13px;">
+          <div class="g-4">
+            <div class="kpi-card" style="min-height:236px; padding:16px 17px 14px 17px;">
+              <div>
+                <div class="kpi-label">2026Q3 线上四平台零售 (渠道汇总)</div>
+                <div class="kpi-num" style="font-size:29px;">58.5万 / 2.4亿</div>
+              </div>
+              <div class="kpi-desc" style="font-size:12px; line-height:1.45;">线上四平台监测汇总口径（含传统与 AI，不含政企线下集采）。Q1→Q3 销额 <strong>+68.6%</strong> 快于销量 <strong>+48.5%</strong>，均价 361→<strong>410 元（+13.6%）</strong>；Q3 销额钉钉 19.7%、讯飞 17.4%（兼有政企线下优势）、安克 8.0%，<strong>Q1 第 3 的 Plaud（7.3%）跌出前三</strong>。</div>
+            </div>
+
+            <div class="kpi-card indigo" style="min-height:236px; padding:16px 17px 14px 17px;">
+              <div>
+                <div class="kpi-label">Plaud 全球累计销量 (公司披露)</div>
+                <div class="kpi-num" style="font-size:29px;">200万+ 台</div>
+              </div>
+              <div class="kpi-desc" style="font-size:12px; line-height:1.45;">截至 2026.6 含卡片与可穿戴，覆盖 170+ 国家；2026.8.27 推出分体耳机+eSIM 盒 <strong>Plaud One 探索版</strong>（USD 249.99，含 USD 200 点数），<strong>全球仅限量 2,000 台，美区首日售罄</strong>，尚未进入大规模放量。</div>
+            </div>
+
+            <div class="kpi-card emerald" style="min-height:236px; padding:16px 17px 14px 17px;">
+              <div>
+                <div class="kpi-label">Plaud 软件订阅 ARR (公司披露)</div>
+                <div class="kpi-num" style="font-size:29px;">约 7.2 亿元</div>
+              </div>
+              <div class="kpi-desc" style="font-size:12px; line-height:1.45;">2026.6 披露软件 ARR 达 <strong>USD 100M</strong>（按 7.2 折算）；按 200 万+ 台与约 50% 付费转化推算，<strong>海外付费 ARPU 约 USD 100/年</strong>，印证海外高频专业用户的强订阅心智。</div>
+            </div>
+
+            <div class="kpi-card amber" style="min-height:236px; padding:16px 17px 14px 17px;">
+              <div>
+                <div class="kpi-label">整机硬件 BOM 情景估算</div>
+                <div class="kpi-num" style="font-size:29px;">¥60 – ¥350</div>
+              </div>
+              <div class="kpi-desc" style="font-size:12px; line-height:1.45;">蓝牙卡白牌约 <strong>¥75</strong>（60–90）、高配约 <strong>¥160</strong>（120–200），<strong>4G 彩屏旗舰估算 ¥280–350</strong>（未含皮套/认证/良率 +¥25–45）；叠税费、投流与 3 年赠额后单机利润高度承压。</div>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:0; font-size:12.2px; padding:10px 15px;">
+            <strong>千问办公与钉钉脉络对齐：</strong>2026 年中阿里整合 QoderWork/悟空/MuleRun 推出<strong>千问办公</strong>并与钉钉一体化，形成 <strong>A1（499/799）→ A1 Pro（1,299）→ QwenNote A2（1,199 元，0.95 寸 OLED 彩屏+6 麦+4G+67g）</strong>及<strong>千问×Bose AI 耳夹耳机（1,099 元首发/国补价，日常 1,499）</strong>全形态矩阵；自研已稳居国内线上第一，外部拓展宜<strong>避开国内卡片红海、主攻出海与商务耳机</strong>。
+          </div>
+          <div style="font-size:10.3px; color:#64748B; line-height:1.4;">
+            口径标注：公开可查全季基线为奥维 2026Q1 线上（39.4 万台 / 1.4 亿 / 均价 361 元，钉钉 22.83%、讯飞 10.54%、Plaud 7.3%、安克 6.5%）；2026Q3 四平台监测汇总（58.5 万 / 2.4 亿 / 410 元）属行业渠道汇总口径，具体分平台原表待入组核对。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>数据源：奥维 2026Q1 公开基线与 2026Q3 行业渠道四平台汇总、Plaud 公开披露；BOM 为第 9 页情景估算；美元按 7.2 汇率换算人民币</span>
+          <span class="pg">02 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 03: 5 JUDGMENTS + 3 PLAYS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">核心速览 · 02 / 02</span>
+          <span class="top-meta">五个核心商业观察与三条外部商业化主线</span>
+        </div>
+        <h2 class="slide-title">决定 2026–2027 胜负的 5 个行业观察与 3 条商业化主线</h2>
+        <p class="slide-lead">把公开数据、完整 P&amp;L 与云算力账本清晰分层，直指外部可触达 <strong>5,000 万–亿元级调用增量</strong>的高优抓手。</p>
+
+        <div class="slide-body">
+          <div class="g-55-45" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:flex-start;">
+              <div class="card-h" style="margin-bottom:12px;">5 个行业底层观察</div>
+              <div style="display:flex; flex-direction:column; gap:11px; flex:1; justify-content:space-between;">
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-cyan" style="margin-top:2px;">01</span>
+                  <div style="font-size:12.6px; line-height:1.46;"><strong>直面 80%+ 安卓/鸿蒙免费录音，硬件靠 3 条物理壁垒存续：</strong>5–8m 多人远场多麦声学极限、独立盲操不打断手机主业务流、iPhone 高净值人群刚性缺口。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-cyan" style="margin-top:2px;">02</span>
+                  <div style="font-size:12.6px; line-height:1.46;"><strong>国内外订阅心智彻底错配：</strong>海外 Plaud 付费 ARPU 约 <strong>USD 100/年</strong>；国内买机送 3 年 1,200 分/月叠加免费平台，<strong>纯 C 端个人订阅已基本证伪</strong>。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-cyan" style="margin-top:2px;">03</span>
+                  <div style="font-size:12.6px; line-height:1.46;"><strong>云算力分层定生死，出海节点依然占优：</strong>北京离线基础 ¥0.21/h（比火山便宜约 64%）、叠 RAG/实时翻译飙至 ¥0.90–4.79/h；<strong>新加坡合规离线节点 USD 0.126/h（约 ¥0.91/h），较 Deepgram/Whisper 仍便宜 51%–65%</strong>。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-cyan" style="margin-top:2px;">04</span>
+                  <div style="font-size:12.6px; line-height:1.46;"><strong>战局升维至跨形态与生态联盟：</strong>阿里自研覆盖全形态，<strong>企业微信（1,400 万+ 组织）</strong>首批联手讯飞/出门问问/得力反击，<strong>Viaim</strong> 获蚂蚁领投 A 轮及传音参投 A+ 轮且 150 万+ 用户盈利。</div>
+                </div>
+                <div style="display:flex; gap:11px; align-items:flex-start;">
+                  <span class="tag t-cyan" style="margin-top:2px;">05</span>
+                  <div style="font-size:12.6px; line-height:1.46;"><strong>避让自研红海，瞄准真正的大盘增量：</strong>国内第三方卡片年云调用估算 <strong>&lt;3,000 万</strong>；外部大盘在<strong>出海多语种 + 商务 AI 耳机</strong>（切下百万活跃可冲 5,000 万–亿元级）。</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div class="card-h" style="color:#7DD3FC; margin-bottom:2px;">千问外部商业化的 3 条优先主线</div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(56,189,248,0.42); border-radius:10px; padding:12px 15px;">
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 01 · 第一优先：出海多语种 &amp; 珠三角出海公版 IDH</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">依托新加坡合规离线 ASR（<code>fun-asr / qwen3-asr-flash</code>，<strong>USD 0.126/h≈¥0.91/h</strong>，较 Deepgram/Whisper 便宜 51%–65%），联合恒玄/蓝讯与深圳公版 IDH 打包端侧 VAD+封顶模板，承接美元高 ARPU 盘。</div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(129,140,248,0.42); border-radius:10px; padding:12px 15px;">
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 02 · 并行头号大盘：商务 AI 耳机大厂协同与攻坚</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">评估蚂蚁领投的<strong>未来智能 Viaim</strong>（150 万+ 用户）云底座协同空间；并以北京离线低 64% 底价与流式/低延迟实测，攻坚<strong>漫步者</strong>等绑定竞品大模型的声学大厂。</div>
+              </div>
+
+              <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(52,211,153,0.42); border-radius:10px; padding:12px 15px;">
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 03 · 生态补位：企微联名硬件 / 垂直 ISV + 标杆示范</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">向企微生态硬件与汽车/地产/医疗 ISV 输出<strong>专属 VPC + 开放权重 Qwen</strong> 避让自研撞车；将中报承压的 <strong>TicNote</strong> 降级为示范案例，同步核实 Plaud 国行份额。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 核心判断</span>
+          <span class="pg">03 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 04: 4-TIER MARKET SPLIT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">01 · 市场全景</span>
+          <span class="top-meta">按四类商业模式清晰分组，避免价格带交叉混同</span>
+        </div>
+        <h2 class="slide-title">四类商业模式分化：海外高订阅 vs 国内生态入口，中端纯独立卡被夹死</h2>
+        <p class="slide-lead">按变现逻辑而非单一价格带划分为四类玩家；2026Q3 国内线上销额由钉钉（19.7%）、讯飞（17.4%）、安克（8.0%）领跑。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="g-4" style="flex:1; align-items:stretch;">
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #4F46E5; padding:15px 16px;">
+              <div>
+                <span class="tag t-indigo" style="margin-bottom:8px;">模式 1 · 海外高订阅标杆</span>
+                <div style="font-size:18px; font-weight:800; color:#0F172A; margin-bottom:4px;">海外 USD 159–249</div>
+                <div style="font-size:12.2px; font-weight:700; color:#3730A3; margin-bottom:8px;">Plaud · 跨境独立站出海品牌</div>
+                <p style="font-size:12.2px; line-height:1.5;">Plaud 美区专业/无限年费 <strong>USD 99.99 / 239.99</strong>（折约 720 / <strong>1,728 元</strong>）；Plaud One 探索版限量 2,000 台探路耳机；国行 Q3 已跌出国内线上前三。</p>
+              </div>
+              <div style="font-size:11.4px; color:#3730A3; border-top:1px solid #C7D2FE; padding-top:8px;"><strong>变现核心：</strong>硬件溢价 + 美元高 ARPU 订阅</div>
+            </div>
+
+            <div class="card-cyan" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #0284C7; padding:15px 16px;">
+              <div>
+                <span class="tag t-cyan" style="margin-bottom:8px;">模式 2 · 国内生态办公卡与耳机</span>
+                <div style="font-size:18px; font-weight:800; color:#0F172A; margin-bottom:4px;">499 – 1,299 元</div>
+                <div style="font-size:12.2px; font-weight:700; color:#0369A1; margin-bottom:8px;">千问 A2·Bose 耳机 / 钉钉 A1 / 飞书×安克</div>
+                <p style="font-size:12.2px; line-height:1.5;">视硬件为 <strong>AI Agent 办公入口</strong>：A2（1,199 元，送 3 年 1,200 分/月+2GB 流量）与千问×Bose 耳夹耳机（1,099 元首发/国补价）成矩阵；飞书×安克豆 899 元（10g）。</p>
+              </div>
+              <div style="font-size:11.4px; color:#0369A1; border-top:1px solid #BAE6FD; padding-top:8px;"><strong>变现核心：</strong>办公生态留存 + B 端组织增购</div>
+            </div>
+
+            <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #059669; padding:15px 16px;">
+              <div>
+                <span class="tag t-emerald" style="margin-bottom:8px;">模式 3 · 专业声学与垂直政企</span>
+                <div style="font-size:18px; font-weight:800; color:#0F172A; margin-bottom:4px;">声学耳机 / 政企专网</div>
+                <div style="font-size:12.2px; font-weight:700; color:#065F46; margin-bottom:8px;">Viaim · 讯飞 · TicNote · 垂类工牌</div>
+                <p style="font-size:12.2px; line-height:1.5;"><strong>Viaim</strong>（699–1,499 元，蚂蚁领投、150 万+ 用户盈利）深耕商务耳机；<strong>讯飞</strong>守政企线下集采，并携 Pokee 与 TicNote 借<strong>企微联盟</strong>切入 B 端。</p>
+              </div>
+              <div style="font-size:11.4px; color:#065F46; border-top:1px solid #E2E8F0; padding-top:8px;"><strong>变现核心：</strong>高毛利声学 / 政企集采与企微流</div>
+            </div>
+
+            <div class="card-rose" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #DC2626; padding:15px 16px;">
+              <div>
+                <span class="tag t-rose" style="margin-bottom:8px;">模式 4 · 华强北百元白牌</span>
+                <div style="font-size:18px; font-weight:800; color:#0F172A; margin-bottom:4px;">99 – 249 元</div>
+                <div style="font-size:12.2px; font-weight:700; color:#991B1B; margin-bottom:8px;">珠三角公版贴牌 · 电商杂牌</div>
+                <p style="font-size:12.2px; line-height:1.5;">估算 BOM 约 60–90 元（占含税价 24%–91%），常砍骨传导与降噪；计入退货、投流与转写云费后，249 元白牌搭云单机即净亏约 <strong>-¥25</strong>。</p>
+              </div>
+              <div style="font-size:11.4px; color:#991B1B; border-top:1px solid #FECACA; padding-top:8px;"><strong>变现核心：</strong>微薄走量（搭售云费极易倒亏）</div>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>结构判断：</strong>国内无生态依托的纯 C 端中端独立卡片正面临“上受大厂送 3 年赠额挤压、下受 99–249 元白牌击穿”的夹心困局；外部增量必须锁定<strong>出海高订阅品牌/公版、商务 AI 耳机大厂与企微/垂直 ISV</strong>。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 四层市场格局（2026Q3 份额属行业渠道汇总口径，公开基线为奥维 2026Q1）</span>
+          <span class="pg">04 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 05: FORM FACTORS & SUBSTITUTION THREAT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 形态与替代格局</span>
+          <span class="top-meta">手机免费录音替代压力下的 3 条物理壁垒与跨形态扩张</span>
+        </div>
+        <h2 class="slide-title">直面 80%+ 安卓/鸿蒙免费冲击：靠 3 条硬壁垒存续，形态向耳机延伸</h2>
+        <p class="slide-lead">国内 80%+ 安卓/鸿蒙系统已自带免费通话录音与摘要；专用硬件靠<strong>远场多麦极限 + 独立盲操 + iPhone 缺口</strong>立身，并向耳机/4G 扩展。</p>
+
+        <div class="slide-body">
+          <div class="g-2" style="flex:1; align-items:stretch;">
+            <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h" style="color:#065F46;"><span class="tag t-emerald">不可替代硬壁垒</span> 抵御手机系统免费替代的 3 条防线</div>
+                <ul class="pts" style="gap:11px; margin-top:10px;">
+                  <li><strong>① 多人会议 5–8 米远场多麦声学物理极限：</strong>手机平放桌面仅 2–3 麦，受桌面反射与环境噪声制约收音质量差；专用设备 4–6 麦阵列（如 A2 6 麦 8m）与 VCS 骨传导具备物理信噪比优势。</li>
+                  <li><strong>② 独立物理盲操，不打断手机主业务流：</strong>会议中高频接电话、切微信回消息、投屏或低电量极易中断手机录音；物理按键盲操启录+本地 Flash 缓存确保零干扰连续记录。</li>
+                  <li><strong>③ iPhone 高净值商务人群的刚性缺口：</strong>iOS 原生电话录音强制双边播报，且无法系统级内录微信/企微/腾讯会议语音，高净值商务人群对外部拾音设备存在刚性缺口（合规须提前告知）。</li>
+                </ul>
+              </div>
+              <div style="font-size:12px; color:#065F46; background:rgba(255,255,255,0.72); padding:9px 12px; border-radius:8px; margin-top:8px;">
+                <strong>客观判断：</strong>通用轻量记录已被安卓/鸿蒙系统免费收编，纯低价录音卡难以为继；海外单一形态小厂加速被巨头收编（Bee→Amazon、Limitless→Meta）。
+              </div>
+            </div>
+
+            <div class="card-amber" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h" style="color:#92400E;"><span class="tag t-amber">跨形态扩张趋势</span> 录音入口向“商务耳机 + 独立联网”演进</div>
+                <ul class="pts" style="gap:11px; margin-top:10px;">
+                  <li><strong>商务会议耳机跑通盈利大盘：</strong>未来智能 <strong>Viaim</strong>（2025.10 获蚂蚁领投亿元级 A 轮，2026.5 再获传音参投亿元 A+ 轮，全球用户超 150 万且持续盈利）验证高客单耳机闭环；<strong>Plaud One 探索版</strong>（限量 2,000 台）试水“耳机+eSIM 盒”。</li>
+                  <li><strong>轻穿戴领夹 vs 4G 独立卡分化：</strong>飞书×安克 10g 录音豆主打无感夹持，QwenNote A2（67g）主打 4G 独立联网免手机同步，适配不同职场动线。</li>
+                  <li><strong>AI 眼镜与耳夹耳机加速入局：</strong>千问眼镜与<strong>千问×Bose AI 耳夹耳机（1,099 元首发/国补价，日常 1,499）</strong>切入商务随身拾音；跨形态替代比例须按收音质量与留存持续实测。</li>
+                </ul>
+              </div>
+              <div style="font-size:12px; color:#92400E; background:rgba(255,255,255,0.72); padding:9px 12px; border-radius:8px; margin-top:8px;">
+                <strong>商业启示：</strong>云端千问/听悟底座绝不能只押纯录音卡片，而须以统一转写+Workflow 接口优先吃下<strong>商务 AI 耳机与出海多形态硬件</strong>大盘。
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 形态与替代分析</span>
+          <span class="pg">05 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 06: PLAUD FLYWHEEL VS CHINA ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 商业模式拆解</span>
+          <span class="top-meta">Plaud 海外高 ARPU 拆解 vs 国内纯 C 端订阅心智错配</span>
+        </div>
+        <h2 class="slide-title">国内外订阅心智错配：海外 ARPU 约 USD 100，国内纯 C 端订阅已基本证伪</h2>
+        <p class="slide-lead">Plaud 国行年费仅美区 47%–64% 且 Q3 跌出前三；叠加国内送 3 年 720 小时与免费平台冲击，外部商业化必须转向三条活路。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-white" style="padding:13px 18px;">
+            <div style="font-size:13.6px; font-weight:800; color:#0F172A; margin-bottom:7px;">Plaud 订阅飞轮拆解：海外高 ARPU 成立，国行大幅折价仍难跑通</div>
+            <svg viewBox="0 0 1120 120" style="width:100%; height:auto;">
+              <defs>
+                <marker id="arB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#4F46E5"/></marker>
+              </defs>
+              <g text-anchor="middle" font-size="12.2">
+                <rect x="8" y="10" width="236" height="96" rx="10" fill="#EEF2FF" stroke="#A5B4FC"/>
+                <text x="126" y="38" font-weight="800" fill="#3730A3">① 高溢价硬件引流</text>
+                <text x="126" y="62" fill="#334155">美区基础款 USD 159</text>
+                <text x="126" y="85" font-weight="700" fill="#4F46E5">国行 1,149–1,299 元</text>
+                <line x1="250" y1="58" x2="288" y2="58" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#arB)"/>
+
+                <rect x="296" y="10" width="236" height="96" rx="10" fill="#F0F9FF" stroke="#7DD3FC"/>
+                <text x="414" y="38" font-weight="800" fill="#0369A1">② 免费转写额度钩子</text>
+                <text x="414" y="62" fill="#334155">每月赠 300 分钟转写</text>
+                <text x="414" y="85" font-weight="700" fill="#0284C7">按月重置 · 筛选高频付费客</text>
+                <line x1="538" y1="58" x2="576" y2="58" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#arB)"/>
+
+                <rect x="584" y="10" width="236" height="96" rx="10" fill="#ECFDF5" stroke="#6EE7B7"/>
+                <text x="702" y="38" font-weight="800" fill="#065F46">③ 区域差异化年费</text>
+                <text x="702" y="62" fill="#334155" font-size="11.6">美区 USD 99.99 / 239.99</text>
+                <text x="702" y="85" font-weight="700" fill="#059669" font-size="11.5">折 ¥720/1,728 · 国行 339/1,099</text>
+                <line x1="826" y1="58" x2="864" y2="58" stroke="#4F46E5" stroke-width="2.5" marker-end="url(#arB)"/>
+
+                <rect x="872" y="10" width="240" height="96" rx="10" fill="#0F172A"/>
+                <text x="992" y="38" font-weight="800" fill="#38BDF8">④ 海外高 ARPU 验证</text>
+                <text x="992" y="62" fill="#E2E8F0" font-size="11.4">200万+台 × ~50%转化 → 1亿刀</text>
+                <text x="992" y="85" font-weight="800" fill="#FFFFFF" font-size="12">推算付费 ARPU 约 USD 100/年</text>
+              </g>
+            </svg>
+          </div>
+
+          <div class="g-2" style="margin-top:12px;">
+            <div class="card-rose" style="padding:15px 18px;">
+              <div class="card-h" style="color:#991B1B;">国内现实：纯 C 端个人订阅模型已基本证伪</div>
+              <ul class="pts" style="gap:8px;">
+                <li style="font-size:12.6px;"><strong>免费平台 + 超长赠额砸穿心智：</strong>安卓/鸿蒙自带免费录音，钉钉/飞书/听悟提供免费额度，叠加 QwenNote A2 购机直接送<strong>3 年 1,200 分钟/月（合计 720 小时）+ 2GB 流量</strong>，国内个人用户极难再付高年费。</li>
+                <li style="font-size:12.6px;"><strong>“买断不限次”必陷财务陷阱：</strong>按第 14 页重度情景（60h/月×3 年），单台仅基础/听悟摘要即耗 <strong>448–1,198 元</strong>（叠翻译/RAG 更高），低价机送不限次必发逆向选择亏损。</li>
+              </ul>
+            </div>
+            <div class="card-indigo" style="padding:15px 18px;">
+              <div class="card-h" style="color:#3730A3;">破局方向：外部商业化必走的 3 条活路</div>
+              <ul class="pts" style="gap:8px;">
+                <li style="font-size:12.6px;"><strong>活路 ① · 出海美元订阅盘：</strong>海外无超级 IM 硬件补贴、付费心智成熟（Plaud 证 USD 100/年 ARPU），用 300 分钟/月钩子转会员守高毛利。</li>
+                <li style="font-size:12.6px;"><strong>活路 ② · 高客单商务耳机 &amp; ③ B 端组织/ISV：</strong>商务耳机靠硬体高毛利+封顶额度盈利；B 端经由企业微信生态与垂直 ISV 按组织席位/私有化收费，彻底跳出国内 C 端订阅泥潭。</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 商业模式拆解</span>
+          <span class="pg">06 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 07: PAIN POINTS & RETURN RATES ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 需求与痛点</span>
+          <span class="top-meta">4 大待验证的退货与停用归因及实测项</span>
+        </div>
+        <h2 class="slide-title">哪些体验短板导致退货或停用？拆解 4 大高频槽点与实测指标</h2>
+        <p class="slide-lead">公开资料缺少统一品牌、渠道与观察期的行业整体退货率分母；一线客户沟通应紧扣以下 4 类可实测的硬痛点切入。</p>
+
+        <div class="slide-body">
+          <div class="g-2" style="flex:1; align-items:stretch;">
+            <div class="card-rose" style="display:flex; flex-direction:column; justify-content:center;">
+              <div class="card-h" style="color:#991B1B;"><span class="tag t-rose">痛点 01</span> 缺少振动拾音或蓝牙冲突致收音翻车</div>
+              <p style="font-size:13px; line-height:1.56;">省去 VCS 骨传导的卡片在非免提通话中易收不清对方声音；耳机在微信/腾讯会议切换时可能触发蓝牙 HFP/SCO 音频通道冲突，必须在目标手机与高频 App 上实测。</p>
+            </div>
+
+            <div class="card-amber" style="display:flex; flex-direction:column; justify-content:center;">
+              <div class="card-h" style="color:#92400E;"><span class="tag t-amber">痛点 02</span> 纯蓝牙传大文件慢、打断即刻发纪要</div>
+              <p style="font-size:13px; line-height:1.56;">长会议音频的蓝牙同步耗时取决于编码与速率；<strong>QwenNote A2 内置 4G 直连</strong>、部分高端机型采用 Wi-Fi 快传成为破局方向，但定价必须同步覆盖持续联网成本。</p>
+            </div>
+
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:center;">
+              <div class="card-h"><span class="tag t-slate">痛点 03</span> 收费边界模糊引发电商信任落差</div>
+              <p style="font-size:13px; line-height:1.56;">商品页含糊宣传“免费 AI 转写”，到手发现核心模板或超额时长另收费，极易引发差评与退单；明示月度含赠额度与超额阶梯价是正规品牌的必修课。</p>
+            </div>
+
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:center;">
+              <div class="card-h" style="color:#3730A3;"><span class="tag t-indigo">痛点 04</span> 止步于“生成一篇没人回看的长摘要”</div>
+              <p style="font-size:13px; line-height:1.56;">存了上百条录音却不能跨会议检索历史承诺、不能联动待办或一句话派活（如 QwenNote A2 探索的 Agent 范式），新鲜感过后极易吃灰停用。</p>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>千问选型实测抓手：</strong>面对擅长结构声学但缺云端能力的硬件厂，POC 阶段直接用客户真实语料实测<strong>“方言/术语字错率 + 多说话人区分 + 每小时透明成本 + 纪要写入目标办公系统”</strong>四项硬指标。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 痛点归因</span>
+          <span class="pg">07 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 08: WORKFLOW & MEMORY MOAT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">02 · 护城河演进</span>
+          <span class="top-meta">从基础转写走向跨会议检索与自动化 Workflow</span>
+        </div>
+        <h2 class="slide-title">下一代护城河：纪要写入待办 + 跨会议回链原话，决定续费率</h2>
+        <p class="slide-lead">下图为参考架构；各产品支持的写入接口、企业权限与数据保存期不同，是否真正拉高续费率应结合活跃与续费数据检验。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-white" style="padding:14px 18px;">
+            <svg viewBox="0 0 1120 212" style="width:100%; height:auto;">
+              <defs>
+                <marker id="arC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7"/></marker>
+              </defs>
+              <rect x="8" y="30" width="188" height="150" rx="12" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5"/>
+              <text x="102" y="58" font-size="13.8" font-weight="800" fill="#0F172A" text-anchor="middle">1. 硬件无感采集</text>
+              <text x="102" y="86" font-size="12.2" fill="#475569" text-anchor="middle">磁吸卡片 / 4G 独立卡</text>
+              <text x="102" y="108" font-size="12.2" fill="#475569" text-anchor="middle">AI 会议耳机 / 录音豆</text>
+              <rect x="24" y="130" width="156" height="32" rx="6" fill="#E0F2FE"/>
+              <text x="102" y="150" font-size="11.2" font-weight="700" fill="#0369A1" text-anchor="middle">VCS 拾音 + 端侧 VAD</text>
+
+              <line x1="202" y1="105" x2="238" y2="105" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arC)"/>
+
+              <rect x="246" y="30" width="218" height="150" rx="12" fill="#EEF2FF" stroke="#818CF8" stroke-width="1.8"/>
+              <text x="355" y="58" font-size="13.8" font-weight="800" fill="#3730A3" text-anchor="middle">2. 千问 / 听悟高精度底座</text>
+              <text x="355" y="88" font-size="12.2" fill="#334155" text-anchor="middle">• 离线/流式 ASR + 行业热词</text>
+              <text x="355" y="111" font-size="12.2" fill="#334155" text-anchor="middle">• 精准区分不同说话人</text>
+              <text x="355" y="134" font-size="12.2" fill="#334155" text-anchor="middle">• 分级模型结构化模板提取</text>
+              <rect x="262" y="148" width="186" height="22" rx="5" fill="#4F46E5"/>
+              <text x="355" y="163" font-size="10.8" font-weight="700" fill="#FFF" text-anchor="middle">精度与成本平衡区（千问赋能）</text>
+
+              <line x1="470" y1="105" x2="506" y2="105" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arC)"/>
+
+              <rect x="514" y="30" width="234" height="150" rx="12" fill="#0F172A"/>
+              <text x="631" y="58" font-size="13.8" font-weight="800" fill="#38BDF8" text-anchor="middle">3. Agent 记忆与任务中枢</text>
+              <text x="631" y="88" font-size="12.2" fill="#E2E8F0" text-anchor="middle">• 提取承诺、负责人与期限</text>
+              <text x="631" y="111" font-size="12.2" fill="#E2E8F0" text-anchor="middle">• 跨多场会议检索并回链原话</text>
+              <text x="631" y="134" font-size="12.2" fill="#E2E8F0" text-anchor="middle">• 一句话派活 / 合规质检</text>
+              <text x="631" y="160" font-size="11.2" font-weight="700" fill="#A5B4FC" text-anchor="middle">为专业用户提供硬续费理由</text>
+
+              <line x1="754" y1="105" x2="790" y2="105" stroke="#0284C7" stroke-width="2.5" marker-end="url(#arC)"/>
+
+              <rect x="798" y="12" width="312" height="52" rx="8" fill="#ECFDF5" stroke="#6EE7B7"/>
+              <text x="814" y="34" font-size="12.8" font-weight="800" fill="#065F46">协同办公与 AI 组织协作流</text>
+              <text x="814" y="52" font-size="11.6" fill="#334155">写入钉钉/企微/飞书待办，或企业 AI 工作区</text>
+
+              <rect x="798" y="79" width="312" height="52" rx="8" fill="#F0F9FF" stroke="#7DD3FC"/>
+              <text x="814" y="101" font-size="12.8" font-weight="800" fill="#0369A1">垂直行业 ISV / SCRM 系统流</text>
+              <text x="814" y="119" font-size="11.6" fill="#334155">由行业伙伴对接 CRM / 车企 DMS / 律所案卷</text>
+
+              <rect x="798" y="146" width="312" height="52" rx="8" fill="#FFFBEB" stroke="#FCD34D"/>
+              <text x="814" y="168" font-size="12.8" font-weight="800" fill="#92400E">个人长期外脑（Second Brain）</text>
+              <text x="814" y="186" font-size="11.6" fill="#334155">同步 Notion / Obsidian / Apple Notes 跨会复盘</text>
+            </svg>
+          </div>
+
+          <div class="g-3" style="margin-top:12px;">
+            <div class="card" style="padding:13px 16px;">
+              <div style="font-size:13.4px; font-weight:800; color:#0F172A; margin-bottom:4px;">场景 ① · 跨境双语通话与海外订阅</div>
+              <div style="font-size:12px; color:#475569; line-height:1.48;">海外投研、外贸与律师高频双语访谈，重点实测多语种 ASR、翻译与回链原话能力，支撑高客单美元会员续费。</div>
+            </div>
+            <div class="card-indigo" style="padding:13px 16px;">
+              <div style="font-size:13.4px; font-weight:800; color:#3730A3; margin-bottom:4px;">场景 ② · 企业组织协作与派活流</div>
+              <div style="font-size:12px; color:#334155; line-height:1.48;">跨会议提取承诺写入组织待办；注：出门问问 <strong>CodeBanana</strong> 系面向企业的 <strong>AI 原生组织协作与代码执行平台</strong>（项目即群聊+Agent+Workspace），并非个人笔记外脑。</div>
+            </div>
+            <div class="card" style="padding:13px 16px;">
+              <div style="font-size:13.4px; font-weight:800; color:#0F172A; margin-bottom:4px;">场景 ③ · 垂类外勤与合规质检</div>
+              <div style="font-size:12px; color:#475569; line-height:1.48;">汽车/地产/医疗等由垂直 ISV 对接私有系统，重点验证告知合规、脱敏加密留存与专业术语召回率。</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · Workflow 护城河</span>
+          <span class="pg">08 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 09: BOM BREAKDOWN & UNIT P&L ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">03 · 供应链与单机账本</span>
+          <span class="top-meta">三档整机 BOM 估算与完整单机 P&amp;L 盈利警示（人民币）</span>
+        </div>
+        <h2 class="slide-title">BOM 与单机 P&amp;L 警示：扣完税费与投流，1,199 4G 旗舰单机贡献利润率仅余 ~6%</h2>
+        <p class="slide-lead">仅看 BOM 易误判暴利——计入 13% 增值税、电商/投流/退货及 3 年赠额后，<strong>国内硬件已无补贴空间</strong>，白牌搭云即亏。</p>
+
+        <div class="slide-body">
+          <div class="g-55-45" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between; padding:14px 17px;">
+              <div class="card-h" style="margin-bottom:4px;">三类代表机型整机物料及组装 BOM 估算（人民币）</div>
+              <svg viewBox="0 0 600 286" style="width:100%; height:auto;">
+                <g font-size="11.2" fill="#334155" font-weight="600">
+                  <rect x="6" y="4" width="11" height="11" rx="2" fill="#4F46E5"/><text x="21" y="14">主控/蓝牙</text>
+                  <rect x="92" y="4" width="11" height="11" rx="2" fill="#0284C7"/><text x="107" y="14">麦+VCS骨传导</text>
+                  <rect x="200" y="4" width="11" height="11" rx="2" fill="#059669"/><text x="215" y="14">存储/4G模组</text>
+                  <rect x="298" y="4" width="11" height="11" rx="2" fill="#D97706"/><text x="313" y="14">OLED屏/电池</text>
+                  <rect x="404" y="4" width="11" height="11" rx="2" fill="#94A3B8"/><text x="419" y="14">结构壳/组装</text>
+                </g>
+
+                <text x="6" y="46" font-size="12.2" font-weight="800" fill="#991B1B">① 华强北白牌（BOM ¥60–90 · 售 99–249 元 · 占含税价 24%–91% / 示例 ¥75 占 30%–76%）</text>
+                <rect x="6" y="56" width="44" height="32" rx="4" fill="#4F46E5"/><text x="28" y="76" font-size="11" fill="#FFF" font-weight="700" text-anchor="middle">¥18</text>
+                <rect x="50" y="56" width="32" height="32" fill="#0284C7"/><text x="66" y="76" font-size="11" fill="#FFF" font-weight="700" text-anchor="middle">¥12</text>
+                <rect x="82" y="56" width="36" height="32" fill="#059669"/><text x="100" y="76" font-size="11" fill="#FFF" font-weight="700" text-anchor="middle">¥15</text>
+                <rect x="118" y="56" width="32" height="32" fill="#D97706"/><text x="134" y="76" font-size="11" fill="#FFF" font-weight="700" text-anchor="middle">¥12</text>
+                <rect x="150" y="56" width="44" height="32" rx="4" fill="#94A3B8"/><text x="172" y="76" font-size="11" fill="#FFF" font-weight="700" text-anchor="middle">¥18</text>
+                <text x="206" y="76" font-size="12.2" font-weight="800" fill="#991B1B">示例 ¥75（省骨传导）</text>
+
+                <text x="6" y="113" font-size="11.4" font-weight="800" fill="#0F172A">② 高配蓝牙卡：BOM ¥120–200 · 售 799–1,299 元 · 占含税价 9%–25% / 示例 ¥160 占 12%–20%</text>
+                <text x="20" y="128" font-size="10.8" font-weight="700" fill="#475569">（含 499 档占 9%–40% / 示例 12%–32%）</text>
+                <rect x="6" y="137" width="88" height="32" rx="4" fill="#4F46E5"/><text x="50" y="157" font-size="10.8" fill="#FFF" font-weight="700" text-anchor="middle">主控+降噪 ¥40</text>
+                <rect x="94" y="137" width="92" height="32" fill="#0284C7"/><text x="140" y="157" font-size="10.8" fill="#FFF" font-weight="800" text-anchor="middle">楼氏+VCS ¥42</text>
+                <rect x="186" y="137" width="58" height="32" fill="#059669"/><text x="215" y="157" font-size="10.8" fill="#FFF" font-weight="700" text-anchor="middle">64G ¥28</text>
+                <rect x="244" y="137" width="46" height="32" fill="#D97706"/><text x="267" y="157" font-size="10.8" fill="#FFF" font-weight="700" text-anchor="middle">¥20</text>
+                <rect x="290" y="137" width="66" height="32" rx="4" fill="#94A3B8"/><text x="323" y="157" font-size="10.8" fill="#FFF" font-weight="700" text-anchor="middle">金属壳 ¥30</text>
+                <text x="368" y="157" font-size="12.2" font-weight="800" fill="#3730A3">示例 ¥160</text>
+
+                <text x="6" y="206" font-size="12.2" font-weight="800" fill="#0369A1">③ 4G 彩屏旗舰（如 A2：0.95" OLED+6 麦+4G+67g · 售 1,199 元 · 整机估算 BOM ¥280–350）</text>
+                <rect x="6" y="216" width="110" height="34" rx="4" fill="#4F46E5"/><text x="61" y="237" font-size="10.6" fill="#FFF" font-weight="700" text-anchor="middle">BES2800+6麦阵列</text>
+                <rect x="116" y="216" width="122" height="34" fill="#059669"/><text x="177" y="237" font-size="10.6" fill="#FFF" font-weight="800" text-anchor="middle">4G蜂窝模组+存储</text>
+                <rect x="238" y="216" width="118" height="34" fill="#D97706"/><text x="297" y="237" font-size="10.6" fill="#FFF" font-weight="700" text-anchor="middle">0.95"OLED+大电池</text>
+                <rect x="356" y="216" width="90" height="34" rx="4" fill="#94A3B8"/><text x="401" y="237" font-size="10.6" fill="#FFF" font-weight="700" text-anchor="middle">67g结构/组装</text>
+                <text x="456" y="237" font-size="12.2" font-weight="800" fill="#0369A1">估算 ¥280–350</text>
+              </svg>
+              <div style="font-size:10.9px; color:#64748B; line-height:1.44;"><strong>口径说明：</strong>以上仅含核心 PCBA 与基础组装，<strong>未含磁吸皮套、彩盒包装、BQB/SRRC 认证及 SMT 良率损耗（约 +¥25–45/台）</strong>；A2 官方未披露 BOM，¥280–350 为行业拆解估算，实际以订单报价为准。</div>
+            </div>
+
+            <div style="display:flex; flex-direction:column; justify-content:space-between; gap:11px;">
+              <div class="card-rose" style="padding:13px 15px;">
+                <div class="card-h" style="color:#991B1B; margin-bottom:7px; font-size:14.4px;"><span class="tag t-rose">完整单机 P&amp;L 警示</span> 扣税/投流/赠额后的单机贡献利润</div>
+                <table class="clean-tbl mini" style="background:#FFFFFF;">
+                  <thead>
+                    <tr>
+                      <th style="width:28%;">典型机型</th>
+                      <th style="width:32%;">扣减项与赠额*</th>
+                      <th style="width:24%;">单机贡献利润</th>
+                      <th style="width:16%;">判断</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="b">249 元白牌搭云</td>
+                      <td>BOM+税/佣/投流/退货+云</td>
+                      <td><strong style="color:#991B1B;">-¥25（净亏）</strong></td>
+                      <td><span class="tag t-rose">倒亏</span></td>
+                    </tr>
+                    <tr class="hl">
+                      <td class="b">799 元蓝牙卡</td>
+                      <td>13%税+45%费率+轻赠额</td>
+                      <td><strong style="color:#065F46;">~¥181 / 25.6%</strong></td>
+                      <td><span class="tag t-emerald">可盈</span></td>
+                    </tr>
+                    <tr>
+                      <td class="b">1,199 元 4G 旗舰</td>
+                      <td>赠 3 年 1,200分/月+2G</td>
+                      <td><strong style="color:#92400E;">~¥66 / 6.2%</strong></td>
+                      <td><span class="tag t-amber">高活亏</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div style="font-size:10.3px; color:#7F1D1D; line-height:1.38; margin-top:6px;">
+                  * 统一计入 <strong>13% 增值税、15% 电商渠道、18% 内容电商投流 CAC、12% 退货损耗</strong>（费率均按不含税收入基数折算、未含 +¥25–45 皮套认证，3 年赠额按保守活跃预提）；4G 旗舰遇高活跃即倒亏。
+                </div>
+              </div>
+
+              <div class="card-indigo" style="flex:1; padding:13px 15px; display:flex; flex-direction:column; justify-content:center;">
+                <div class="card-h" style="margin-bottom:6px; font-size:14.4px;"><span class="tag t-indigo">供应链 3 大关键结论</span></div>
+                <ul class="pts" style="gap:6px;">
+                  <li style="font-size:12px; line-height:1.44;"><strong>声学分水岭：</strong>空气硅麦 + VCS 骨传导与腔体调校决定通话拾音下限，白牌砍 VCS 极易拉爆退货率。</li>
+                  <li style="font-size:12px; line-height:1.44;"><strong>国产芯片成熟：</strong>A1/A2 核心音频主控采用恒玄 BES2800（A2 另配独立 4G 通信模组），中科蓝讯/杰理覆盖中低档，收音质量高度依赖阵列调优。</li>
+                  <li style="font-size:12px; line-height:1.44;"><strong>4G 流量隐性账：</strong>4G 根治蓝牙慢传，但除模组外须预提 3 年 SIM 与流量费，仅生态大厂扛得住补贴。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · BOM 与完整单机 P&amp;L</span>
+          <span class="pg">09 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 10: SUPPLY CHAIN & TURNKEY LEVER ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">03 · 供应链与方案商</span>
+          <span class="top-meta">芯片原厂参考平台、珠三角公版与商务声学联调</span>
+        </div>
+        <h2 class="slide-title">产业链关键节点：卡片靠芯片与公版杠杆，耳机拼底层声学联调</h2>
+        <p class="slide-lead">准确识别三类产业链角色的工程门槛与云端付费顾虑，先按型号实测再推进规模合作。</p>
+
+        <div class="slide-body">
+          <div class="g-3" style="flex:1; align-items:stretch;">
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h"><span class="tag t-indigo">源头预集成</span> 蓝牙音频芯片原厂</div>
+                <div style="font-size:14.2px; font-weight:800; color:#3730A3; margin-bottom:9px;">恒玄科技 · 中科蓝讯 · 杰理 · 瑞昱</div>
+                <ul class="pts">
+                  <li><strong>覆盖广度：</strong>参考平台同步覆盖录音卡、录音豆与 TWS/耳夹耳机；具体固件能否适配百炼与听悟，须按芯片、产品与版本核实。</li>
+                  <li><strong>合作价值：</strong>在参考固件侧预置端侧 VAD 静音裁切与蓝牙/Wi-Fi 快传协议，大幅压低品牌接入成本。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-cyan" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h"><span class="tag t-cyan">1 对 N 杠杆</span> 珠三角整机公版方案商</div>
+                <div style="font-size:14.2px; font-weight:800; color:#0369A1; margin-bottom:9px;">深圳 / 珠海录音卡与穿戴 IDH</div>
+                <ul class="pts">
+                  <li><strong>客群特征：</strong>承接大量亚马逊/独立站跨境新锐卖家与区域品牌贴牌开发，普遍缺自建云端 ASR 与海外合规团队。</li>
+                  <li><strong>合作价值：</strong>打包标准转写接口 + 清晰月度额度封顶模板，帮助二梯队出海品牌控死单机云成本。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-amber" style="display:flex; flex-direction:column; justify-content:space-between;">
+              <div>
+                <div class="card-h" style="color:#92400E;"><span class="tag t-amber">工程门槛</span> 商务通话与办公录音耳机品牌</div>
+                <div style="font-size:14.2px; font-weight:800; color:#92400E; margin-bottom:9px;">入耳式商务耳机 &amp; 商务开放式/耳夹款</div>
+                <ul class="pts">
+                  <li><strong>联调难点：</strong>跨微信/腾讯会议无感录音涉及蓝牙 HFP/SCO 切换、音频焦点抢占与端侧缓存，非简单接 SDK 可完成。</li>
+                  <li><strong>商业解法：</strong>传统买断制耳机极怕背上开放式 ASR 账单，必须配套<strong>月度额度封顶 + 芯片侧协同</strong>才具可落地性。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout-strip">
+            <strong>合作评估纪律：</strong>开放式/耳夹耳机同样存在商务通话产品（如千问×Bose AI 耳夹耳机），不宜一刀切排除；应按具体型号实测通话拾音、防漏音、续航与跨 App 稳定性，芯片适配与既有供应关系以厂商披露或访谈核实为准。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 产业链拆解</span>
+          <span class="pg">10 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 11: COMPETITIVE QUADRANT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">04 · 竞争格局</span>
+          <span class="top-meta">海内外玩家产品布局象限（定性定位 · 2026.11）</span>
+        </div>
+        <h2 class="slide-title">竞争全景：千问全形态领跑，企微联盟与蚂蚁系商务耳机改写战局</h2>
+        <p class="slide-lead">2026 下半年三大格局变量——<strong>千问全形态自研（A2+Bose 耳机）登顶、企业微信开放硬件联盟反击、Viaim 获蚂蚁领投出海</strong>。</p>
+
+        <div class="slide-body">
+          <div class="g-60-40" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="padding:12px 14px; display:flex; align-items:center;">
+              <svg viewBox="0 0 680 430" style="width:100%; height:auto;">
+                <rect x="46" y="16" width="308" height="186" fill="#F0F9FF"/>
+                <rect x="354" y="16" width="308" height="186" fill="#EEF2FF"/>
+                <rect x="46" y="202" width="308" height="186" fill="#FFFFFF"/>
+                <rect x="354" y="202" width="308" height="186" fill="#F8FAFC"/>
+                <rect x="46" y="16" width="616" height="372" fill="none" stroke="#CBD5E1" stroke-width="1.5"/>
+                <line x1="46" y1="202" x2="662" y2="202" stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="6 4"/>
+                <line x1="354" y1="16" x2="354" y2="388" stroke="#94A3B8" stroke-width="1.4" stroke-dasharray="6 4"/>
+
+                <text x="58" y="37" font-size="11.2" font-weight="800" fill="#0369A1">象限 II · 全球个人订阅 / 商务穿戴耳机</text>
+                <text x="650" y="37" font-size="11.2" font-weight="800" fill="#3730A3" text-anchor="end">象限 I · 超级办公生态 + 全形态自研</text>
+                <text x="58" y="376" font-size="11.2" font-weight="700" fill="#64748B">象限 III · 百元白牌 / 极客本地派</text>
+                <text x="650" y="376" font-size="11.2" font-weight="700" fill="#475569" text-anchor="end">象限 IV · 企微联盟 / 专业声学与垂直政企</text>
+
+                <text x="354" y="416" font-size="12.2" font-weight="800" fill="#0F172A" text-anchor="middle">组织协同纵深：个人工具 ──► 跨平台知识库 ──► 企业协同 / 企微联盟 / 垂类 CRM</text>
+                <text x="18" y="202" font-size="12.2" font-weight="800" fill="#0F172A" text-anchor="middle" transform="rotate(-90 18 202)">软件订阅与 AI 生态溢价能力 ▲</text>
+
+                <rect x="382" y="46" width="262" height="42" rx="21" fill="#4F46E5"/>
+                <text x="513" y="64" font-size="12" font-weight="800" fill="#FFF" text-anchor="middle">千问 A2 / 钉钉 A1·A1 Pro</text>
+                <text x="513" y="79" font-size="9.4" fill="#E0E7FF" text-anchor="middle">Q3 线上销额 19.7% 第1 · 4G/Agent</text>
+
+                <rect x="366" y="96" width="204" height="36" rx="18" fill="#6366F1"/>
+                <text x="468" y="112" font-size="11.2" font-weight="800" fill="#FFF" text-anchor="middle">千问 × Bose AI 耳夹耳机</text>
+                <text x="468" y="125" font-size="9.0" fill="#E0E7FF" text-anchor="middle">1,099 首发/国补价（日常 1,499）</text>
+
+                <rect x="448" y="142" width="198" height="40" rx="20" fill="#0284C7"/>
+                <text x="547" y="159" font-size="11.8" font-weight="800" fill="#FFF" text-anchor="middle">飞书 × 安克 AI 录音豆</text>
+                <text x="547" y="173" font-size="9.4" fill="#E0F2FE" text-anchor="middle">首发 899 · 10g 领夹 · Q3 8.0%</text>
+
+                <rect x="58" y="48" width="214" height="40" rx="20" fill="#0F172A"/>
+                <text x="165" y="65" font-size="11.8" font-weight="800" fill="#FFF" text-anchor="middle">Plaud Note / Pin / One</text>
+                <text x="165" y="79" font-size="9.2" fill="#38BDF8" text-anchor="middle">200万+台 · One 探索版限量 2,000 台</text>
+
+                <rect x="150" y="98" width="194" height="42" rx="21" fill="#059669"/>
+                <text x="247" y="116" font-size="11.6" font-weight="800" fill="#FFF" text-anchor="middle">未来智能 Viaim (耳机)</text>
+                <text x="247" y="131" font-size="9.0" fill="#D1FAE5" text-anchor="middle">蚂蚁A轮+传音A+轮 · 150万+用户盈利</text>
+
+                <rect x="58" y="148" width="188" height="40" rx="20" fill="#475569"/>
+                <text x="152" y="165" font-size="11.4" font-weight="800" fill="#FFF" text-anchor="middle">出门问问 TicNote</text>
+                <text x="152" y="179" font-size="9.1" fill="#E2E8F0" text-anchor="middle">中报营收-56%/亏损 · 示范案例</text>
+
+                <rect x="410" y="214" width="240" height="42" rx="21" fill="#0D9488"/>
+                <text x="530" y="232" font-size="11.6" font-weight="800" fill="#FFF" text-anchor="middle">企业微信开放硬件生态联盟</text>
+                <text x="530" y="247" font-size="9.0" fill="#CCFBF1" text-anchor="middle">1,400万+组织 · 首批联手讯飞/出门问问/得力</text>
+
+                <rect x="454" y="266" width="192" height="38" rx="19" fill="#0F766E"/>
+                <text x="550" y="283" font-size="11.4" font-weight="800" fill="#FFF" text-anchor="middle">科大讯飞 录音笔 / Pokee</text>
+                <text x="550" y="297" font-size="9.2" fill="#CCFBF1" text-anchor="middle">Q3 线上 17.4% + 政企线下集采</text>
+
+                <rect x="364" y="314" width="144" height="32" rx="16" fill="#475569"/>
+                <text x="436" y="334" font-size="10.4" font-weight="700" fill="#FFF" text-anchor="middle">漫步者等传统声学大厂</text>
+
+                <rect x="516" y="314" width="136" height="32" rx="16" fill="#64748B"/>
+                <text x="584" y="334" font-size="10.4" font-weight="700" fill="#FFF" text-anchor="middle">循环智能 / 行业工牌</text>
+
+                <rect x="184" y="222" width="142" height="30" rx="15" fill="#64748B"/>
+                <text x="255" y="241" font-size="10.8" font-weight="700" fill="#FFF" text-anchor="middle">聆犀 / 开源本地派</text>
+
+                <rect x="60" y="262" width="184" height="30" rx="15" fill="#DC2626"/>
+                <text x="152" y="281" font-size="10.8" font-weight="700" fill="#FFF" text-anchor="middle">华强北 99–249 元白牌军团</text>
+
+                <rect x="56" y="306" width="288" height="46" rx="6" fill="#F1F5F9" stroke="#CBD5E1"/>
+                <text x="200" y="324" font-size="9.8" font-weight="700" fill="#334155" text-anchor="middle">海外并购：Bee→Amazon / Limitless→Meta</text>
+                <text x="200" y="341" font-size="9.4" fill="#64748B" text-anchor="middle">注：字节 Ola Friend 系豆包语音陪伴耳机，非专业会议录音品类</text>
+              </svg>
+            </div>
+
+            <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+              <div class="card-indigo" style="flex:1; padding:12px 14px;">
+                <div class="card-h" style="margin-bottom:5px; font-size:14.2px;">格局 1：阿里全形态自研 vs 企微反击联盟</div>
+                <p style="font-size:11.9px; line-height:1.45;">阿里自研已覆盖 A1/A2 卡片与<strong>千问×Bose 耳夹耳机（1,099 元首发/国补价，日常 1,499）</strong>；<strong>企业微信（1,400 万+ 组织）</strong>生态联盟首批联手讯飞/出门问问/得力，构筑钉钉之外的国内 B 端新阵营。</p>
+              </div>
+              <div class="card-emerald" style="flex:1; padding:12px 14px;">
+                <div class="card-h" style="color:#065F46; margin-bottom:5px; font-size:14.2px;">格局 2：Viaim 获蚂蚁+传音加持，耳机成大盘</div>
+                <p style="font-size:11.9px; line-height:1.45;"><strong>未来智能 Viaim</strong> 于 2025.10 获<strong>蚂蚁集团领投亿元级 A 轮</strong>，<strong>2026.5 再获传音参投亿元 A+ 轮</strong>，全球用户逾 150 万且持续盈利，系泛阿里资本关联的核心大盘；Plaud One 仅限量 2,000 台探路。</p>
+              </div>
+              <div class="card-amber" style="flex:1; padding:12px 14px;">
+                <div class="card-h" style="color:#92400E; margin-bottom:5px; font-size:14.2px;">格局 3：出门问问中报承压（仅宜示范）</div>
+                <p style="font-size:11.8px; line-height:1.44;">出门问问 2026 中报总营收 <strong>7,865.4 万（-56.04%，集团整体毛利率 46.6%、软件 85%）</strong>、归母净亏 <strong>4,960 万</strong>、AI 硬件收入仅 <strong>3,617.1 万（-63%，旧品清库大幅拉低硬件毛利）</strong>；现金流承压，非营收大盘。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 竞争象限（Q3 份额属行业渠道汇总口径，公开基线为奥维 2026Q1）</span>
+          <span class="pg">11 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 12: TOP 6 BENCHMARKS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">04 · 竞争格局</span>
+          <span class="top-meta">六组代表产品对标（截至 2026.11 · 人民币）</span>
+        </div>
+        <h2 class="slide-title">代表产品硬核对标：全形态矩阵成型，出海、耳机与企微生态成新战局</h2>
+        <p class="slide-lead">按地区与型号列示公开参考价、核心规格与生态归属；商务合作前须按具体版本核对权益与数据边界。</p>
+
+        <div class="slide-body">
+          <table class="clean-tbl compact" style="font-size:11.0px; line-height:1.34;">
+            <thead>
+              <tr>
+                <th style="width:17%;">代表产品</th>
+                <th style="width:17%;">参考售价（人民币）</th>
+                <th style="width:16%;">模型与生态底座</th>
+                <th style="width:27%;">核心规格与商业动态</th>
+                <th style="width:23%;">边界 / 关注点</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="hl">
+                <td class="b">千问 A2 / 钉钉 A1 /<br/>千问×Bose 耳机<br/><span class="tag t-indigo">Q3 线上销额 19.7%</span></td>
+                <td><strong>A2：1,199 元</strong><br/>A1 499/799 · Pro 1,299<br/>Bose 耳机 1,099 元（首发/国补价，日常 1,499）</td>
+                <td><strong>通义千问</strong> + 千问办公 / 钉钉</td>
+                <td><strong>A2 配 0.95 寸 OLED 彩屏 + 6 麦 + 4G（67g）</strong>，转后删原音 + 一句派活；叠加耳夹耳机形成全形态自研矩阵</td>
+                <td>前三年月含 <strong>1,200 分 + 2GB 流量</strong>；自研覆盖全价位带，对外需划清避让边界</td>
+              </tr>
+              <tr class="hl">
+                <td class="b">未来智能 Viaim<br/>(iFLYBUDS 系列)<br/><span class="tag t-emerald">蚂蚁领投 · 耳机大盘</span></td>
+                <td>约 699 – 1,499 元</td>
+                <td>自研 + 讯飞声学底座</td>
+                <td><strong>2025.10 获蚂蚁领投亿元级 A 轮，2026.5 再获传音参投亿元 A+ 轮</strong>；全球用户超 <strong>150 万</strong>且持续盈利，联手 Bose/传音出海</td>
+                <td>系泛阿里资本关联的核心商务耳机大盘，值得优先评估多语种云协同空间</td>
+              </tr>
+              <tr>
+                <td class="b">Plaud Note / Pin /<br/>One (2026.8)</td>
+                <td>国行 1,149–1,299<br/>(美区年费 USD 99.99/239.99)</td>
+                <td>国行 App 列千问/DS/豆包；海外 AWS + 多模型</td>
+                <td>累计 200 万+ 台、ARR <strong>USD 100M</strong>；<strong>Plaud One 探索版</strong>（USD 249.99 含 200 点数）<strong>全球仅限量 2,000 台，美区首日售罄</strong></td>
+                <td>Q1 第 3（7.3%）在 <strong>Q3 已跌出前三</strong>；海外托管 AWS（含法兰克福/HIPAA/ZDR）</td>
+              </tr>
+              <tr>
+                <td class="b">飞书 × 安克<br/>AI 录音豆</td>
+                <td>国内首发 <strong>899 元</strong><br/>(Q3 线上销额 8.0%)</td>
+                <td>飞书妙记与智能纪要</td>
+                <td>约 <strong>10g</strong> 领夹轻穿戴（单次 8h/配盒 32h），飞书自动收音生成纪要并供团队协作</td>
+                <td>强绑定飞书生态，非飞书企业用户粘性偏弱；依赖蓝牙/Wi-Fi 回传</td>
+              </tr>
+              <tr>
+                <td class="b">出门问问 TicNote<br/><span class="tag t-amber">示范案例（非大盘）</span></td>
+                <td><strong>999 – 1,799 元</strong><br/>(大促 690–800)</td>
+                <td>Shadow AI；联手<strong>企业微信</strong>推直连款</td>
+                <td>卡片/耳机 + <strong>CodeBanana（AI 组织协作与代码执行平台）</strong>；2026 中报总营收 <strong>7,865.4 万（-56.04%，集团整体毛利率 46.6%、软件 85%）</strong>、归母净亏 <strong>4,960 万</strong>、AI 硬件收入仅 <strong>3,617.1 万（-63%，旧品清库大幅拉低硬件毛利）</strong></td>
+                <td>营收腰斩且现金流承压，全量云上限小，仅宜作示范案例并严控账期</td>
+              </tr>
+              <tr>
+                <td class="b">科大讯飞<br/>Pokee / 录音笔</td>
+                <td><strong>300 – 599 元</strong><br/>(Q3 线上销额 17.4%)</td>
+                <td>讯飞星火 + <strong>企微生态联盟</strong></td>
+                <td>国内线上第 2 + <strong>政企线下集采优势</strong>；强方言与词库，携 Pokee 企微版直连企业微信待办</td>
+                <td><strong>企业微信（1,400 万+ 组织）</strong>生态联盟首批联手讯飞/出门问问/得力，构筑硬件反击阵营</td>
+              </tr>
+            </tbody>
+          </table>
+          <div style="font-size:10.0px; color:#64748B; line-height:1.36; margin-top:5px;">
+            注：截至 2026.11，A2 参数引自 9.22 云栖大会及规格页；公开可查全季基线为奥维 2026Q1 线上（39.4 万台 / 1.4 亿 / 均价 361 元，钉钉 22.83%、讯飞 10.54%、Plaud 7.3%、安克 6.5%）；2026Q3 四平台监测汇总（58.5 万 / 2.4 亿 / 410 元）属行业渠道汇总口径，具体分平台原表待入组核对（均不含政企线下集采）。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 标杆产品对标</span>
+          <span class="pg">12 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 13: MODEL PK ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 大模型与生态对比</span>
+          <span class="top-meta">官网公开目录价硬核对比 + POC 同语料实测框架</span>
+        </div>
+        <h2 class="slide-title">模型与生态对比：百炼基础离线比火山便宜约 64%，同步直面企微生态竞争</h2>
+        <p class="slide-lead">亮出透明可比的公开目录价优势，同时诚实标注自身编排门槛、讯飞政企积淀及<strong>企业微信开放硬件接口</strong>的工作流竞争压力。</p>
+
+        <div class="slide-body">
+          <table class="clean-tbl compact">
+            <thead>
+              <tr>
+                <th style="width:15%;">选型核心维度</th>
+                <th style="width:32%; background:#312E81;">阿里云 · 通义千问 + 听悟</th>
+                <th style="width:26%;">火山引擎 · 豆包 + 飞书</th>
+                <th style="width:27%;">科大讯飞 · 星火大模型</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="b">官网公开目录价<br/>(基础离线 ASR)</td>
+                <td style="background:#EEF2FF;"><strong>核心底价优势：</strong>北京节点 <code>paraformer-v2</code> <strong>¥0.288/h</strong>（国际站 USD 0.0432/h）、听悟 <strong>¥0.60/h</strong>，<strong>比火山便宜约 64%</strong>；新加坡合规离线（<code>fun-asr / qwen3-asr-flash</code>）<strong>USD 0.126/h（约 ¥0.91/h）</strong>，较 Deepgram/Whisper 仍便宜 51%–65%。</td>
+                <td>火山引擎豆包录音文件识别 2.0 公开目录价<strong>约 0.80 元/h</strong>；RTC 传输、流式与摘要需按阶梯折扣折算全链路小时成本。</td>
+                <td>按语音引擎调用包与离线 SDK 授权分别报价；纯离线授权前期门槛高，按装机量摊销。</td>
+              </tr>
+              <tr>
+                <td class="b">ASR 与编排边界</td>
+                <td style="background:#EEF2FF;">组件解耦成熟，但<strong>高级多发言人/章节/翻译编排需升级通义听悟</strong>（按功能叠加计费）；中英混说与术语 WER 用客户同语料实测。</td>
+                <td>支持流式转写与录音文件识别 2.0；用同一录音样本对比首字延迟、口语流畅度与整段 WER。</td>
+                <td><strong>政企离线部署、极端方言与复杂远场噪声积淀深厚</strong>，司法/医疗专有词库成熟。</td>
+              </tr>
+              <tr>
+                <td class="b">办公与企微生态</td>
+                <td style="background:#EEF2FF;">内部与钉钉/千问办公一体；外部对接自有 App 与 ISV 走 API/MCP。<strong>竞争压力：企业微信开放硬件接口（1,400 万+ 组织）正吸引硬件直连分流职场工作流。</strong></td>
+                <td>飞书妙记与多维表格协同顺畅；但向非飞书体系（企微/外部 SCRM）开放写入权限较受限。</td>
+                <td>已借 Pokee 接入<strong>企业微信开放硬件生态联盟</strong>，在微信职场流与政企内网具备先发触点。</td>
+              </tr>
+              <tr>
+                <td class="b">政企合规与出海</td>
+                <td style="background:#EEF2FF;"><strong>弹性兼顾：</strong>新加坡合规节点离线价 USD 0.126/h（VAD 30% 后约 ¥0.64/h，较海外竞品低 51%–65%）；欧美严合规支持客户 VPC 自托管开源 Qwen；一线须核实海外 ZDR/DPA/BAA 能力。</td>
+                <td>按服务地域与合同角色评估；欧美跨境传输与数据主权合规审查门槛较高。</td>
+                <td>国内政企本地化成熟；海外多语种云节点覆盖与合规体系相对薄弱。</td>
+              </tr>
+              <tr>
+                <td class="b">开源与私有化弹性</td>
+                <td style="background:#EEF2FF;"><strong>突出差异化：</strong>Qwen 家族开放权重支持客户环境私有化部署，有效打消大客厂商锁定与合规顾虑。</td>
+                <td>以闭源云 API 为主，私有化部署成本高、授权边界严。</td>
+                <td>离线转写引擎成熟，但摘要与 Agent 大模型开源生态偏弱。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 大模型选型对比</span>
+          <span class="pg">13 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 14: PER-HOUR AUDIO COST MATH (EXACT!) ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 商业算账模型</span>
+          <span class="top-meta">按阿里云百炼 / 听悟公开目录价测算（含 RAG / 翻译 / 新加坡节点）</span>
+        </div>
+        <h2 class="slide-title">全档位算力账本：离线基础仅 ¥0.21/h，叠 RAG 与翻译飙至 ¥0.90–4.79/h</h2>
+        <p class="slide-lead">前 4 列为会后离线（默认 VAD 裁 30%）；第 5 列<strong>+实时翻译（+4.00 元/h）须切换实时流式转写</strong>，表内 <strong>3.3544 元/h</strong> 仅 30% 静音过滤下限，无裁切达 <strong>4.79 元/h</strong>（20h/月 ¥1,150/年），<strong>中英自由说双向翻译翻倍（8 元/h）</strong>。</p>
+
+        <div class="slide-body">
+          <div class="g-60-40" style="flex:1; align-items:stretch;">
+            <div style="display:flex; flex-direction:column; justify-content:space-between;">
+              <table class="clean-tbl compact">
+                <thead>
+                  <tr>
+                    <th style="width:19%;">用量情景<br/>(月原始录音)</th>
+                    <th style="width:19%;">基础离线*<br/>0.2076 元/h</th>
+                    <th style="width:21%; background:#312E81;">听悟三摘要*<br/>0.5544 元/h</th>
+                    <th style="width:20%; background:#0369A1;">+离线翻译<br/>0.9044 元/h</th>
+                    <th style="width:21%; background:#991B1B;">+实时翻译(流式)<br/>3.3544 元/h*</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="b">轻度 5h/月<br/><span style="font-size:10.5px; color:#64748B;">300 分/月</span></td>
+                    <td><strong>¥12.5 / 年</strong><br/><span style="font-size:10.2px; color:#64748B;">ASR 占 97%</span></td>
+                    <td style="background:#EEF2FF;"><strong>¥33 / 年</strong><br/><span class="tag t-emerald">可入基础赠额</span></td>
+                    <td><strong>¥54 / 年</strong><br/><span style="font-size:10.2px; color:#0369A1;">3 年 ¥163</span></td>
+                    <td style="background:#FEF2F2;"><strong>¥201 / 年</strong><br/><span class="tag t-amber">绑会员包</span></td>
+                  </tr>
+                  <tr class="hl">
+                    <td class="b">中度 20h/月<br/><span style="font-size:10.5px; color:#64748B;">1,200 分/月</span></td>
+                    <td><strong>¥50 / 年</strong><br/><span style="font-size:10.2px; color:#64748B;">3 年 ¥149</span></td>
+                    <td style="background:#EEF2FF;"><strong>¥133 / 年</strong><br/><span class="tag t-amber">须月度封顶</span></td>
+                    <td><strong style="color:#0369A1;">¥217 / 年</strong><br/><span style="font-size:10.2px; color:#0369A1;">3 年 ¥651</span></td>
+                    <td style="background:#FEF2F2;"><strong style="color:#991B1B;">¥805 / 年</strong><br/><span class="tag t-rose">强绑会员</span></td>
+                  </tr>
+                  <tr>
+                    <td class="b">重度 60h/月<br/><span style="font-size:10.5px; color:#64748B;">3,600 分/月</span></td>
+                    <td><strong>¥149 / 年</strong><br/><span style="font-size:10.2px; color:#991B1B;">3 年 ¥448</span></td>
+                    <td style="background:#FEF2F2;"><strong style="color:#991B1B;">¥399 / 年</strong><br/><span style="font-size:10.2px; color:#991B1B;">3 年 ¥1,198</span></td>
+                    <td style="background:#FEF2F2;"><strong style="color:#991B1B;">¥651 / 年</strong><br/><span style="font-size:10.2px; color:#991B1B;">3 年 ¥1,954</span></td>
+                    <td style="background:#FEF2F2;"><strong style="color:#991B1B;">¥2,415 / 年</strong><br/><span class="tag t-rose">严禁赠送</span></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="callout-strip" style="margin-top:7px; padding:8px 12px; font-size:11.4px; line-height:1.42;">
+                <strong>高阶算力与流式警示：</strong>① <strong>跨 10 场 RAG+派活</strong>（Qwen-Plus/Max，3–5 轮追问/h）另增 <strong>+0.14–0.75 元/h</strong>；② 离线 VAD 仅裁 15% 时前两列升至 <strong>0.2508 / 0.6732 元/h</strong>；③ 第 5 列须切<strong>实时流式转写</strong>，3.3544 仅 30% 过滤下限，无静音裁切达 <strong>4.79 元/h</strong>（中度 20h/月 ¥1,150/年），<strong>中英自由说双向实时翻译翻倍（8 元/h）</strong>。
+              </div>
+              <div style="font-size:10.1px; color:#475569; line-height:1.38; margin-top:5px;">
+                * 目录价：北京节点 <code>paraformer-v2</code> ¥0.288/h（国际站 USD 0.0432/h），基础 <code>0.288×70%+0.006=0.2076</code>；听悟三摘要 <code>(0.60+3×0.064)×70%=0.5544</code>；叠离线翻译（+0.50）与实时翻译（+4.00，流式下限）为 <strong>0.9044 / 3.3544 元/h</strong>。<strong style="color:#0369A1;">新加坡合规节点：离线 ASR（<code>fun-asr / qwen3-asr-flash</code>）公开价 USD 0.126/h（约 ¥0.91/h，VAD 30% 后约 ¥0.64/h）——虽高于北京，但较 Deepgram Nova-3 Batch（USD 0.258–0.312/h）便宜 51%–60%、较 OpenAI Whisper（USD 0.27–0.36/h）便宜 53%–65%。</strong>
+              </div>
+            </div>
+
+            <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between; padding:16px 18px;">
+              <div class="card-h" style="color:#7DD3FC; margin-bottom:2px;">核心分层打法与 3 个控本变量</div>
+              <div style="background:rgba(5,150,105,0.24); border:1px solid #34D399; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13px; font-weight:800; color:#FFF;">① 分层变现铁律：赠基础、卖高阶</div>
+                <div style="font-size:11.9px; color:#A7F3D0; margin-top:4px; line-height:1.46;"><strong>基础离线转写纳入硬件赠额</strong>并设月度封顶；<strong>跨会 RAG/派活（+0.14–0.75/h）与离线/实时翻译强绑定高毛利会员包</strong>，彻底锁死倒亏风险。</div>
+              </div>
+              <div style="background:rgba(2,132,199,0.22); border:1px solid #38BDF8; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13px; font-weight:800; color:#FFF;">② 新加坡 USD 0.126/h 仍是出海王牌</div>
+                <div style="font-size:11.9px; color:#BAE6FD; margin-top:4px; line-height:1.46;">新加坡合规离线 ASR 约 ¥0.91/h（VAD 后 ¥0.64/h），较 Deepgram/Whisper 便宜 51%–65%，直接支撑珠三角出海公版与跨境品牌守住美元订阅高毛利。</div>
+              </div>
+              <div style="background:rgba(99,102,241,0.22); border:1px solid #818CF8; border-radius:10px; padding:11px 13px;">
+                <div style="font-size:13px; font-weight:800; color:#FFF;">③ 实测 VAD 裁切率 + 分级路由</div>
+                <div style="font-size:11.9px; color:#E0E7FF; margin-top:4px; line-height:1.46;">真机采样验证静音比例（防 30%→15% 致单价涨 21%）；会后纪要默认离线 ASR+在线 Flash，按需路由至听悟/Plus/Max。</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 云端算力成本模型</span>
+          <span class="pg">14 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 15: ENTERPRISE COMPLIANCE & PRIVACY ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 合规与 B 端边界</span>
+          <span class="top-meta">声纹生物识别、双边同意州、海外 ZDR/BAA 与删原音开关设计</span>
+        </div>
+        <h2 class="slide-title">务实打好合规牌：严守声纹与双边告知红线，后台可配删原音/BYOK</h2>
+        <p class="slide-lead">企业录音贯穿采集告知、声纹治理、加密存储与跨境四环节；先摸清法规底线与对手能力，再用可配置架构化解安全悖论。</p>
+
+        <div class="slide-body">
+          <div class="g-2" style="flex:1; align-items:stretch;">
+            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between; padding:15px 18px;">
+              <div>
+                <div class="card-h"><span class="tag t-indigo">出海与跨境合规</span> 对标 Plaud 能力 + 守牢法律红线</div>
+                <ul class="pts" style="gap:9px; margin-top:8px;">
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>正视对手合规基线：</strong>Plaud 海外已具 <strong>AWS 法兰克福节点、SOC 2 Type II、HIPAA BAA 与 ZDR 零留存</strong>；一线切出海前须先核实<strong>阿里云海外节点的 ZDR / DPA / BAA 能力</strong>，极严客户推客户 VPC 自托管开源 Qwen。</li>
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>美国 11–12 个双边同意州 BYOD 禁令：</strong>加州等州要求全员明示同意，严禁员工私带设备偷录；出海硬件与 App 须标配<strong>录音提示灯 + 开场告知播报</strong>。</li>
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>严分“匿名聚类”与“跨场实名声纹库”：</strong>单场匿名区分说话人风险可控，但<strong>跨场实名声纹库</strong>在 <strong>GDPR 第 9 条与中国 PIPL</strong> 中均属生物识别敏感数据，必须单独明示授权。</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:space-between; padding:15px 18px;">
+              <div>
+                <div class="card-h" style="color:#065F46;"><span class="tag t-emerald">国内政企与 B 端</span> 化解删原音悖论，赋能垂直 ISV</div>
+                <ul class="pts" style="gap:9px; margin-top:8px;">
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>化解“转后删原音 vs 回链原话”悖论：</strong>物理删原音虽降泄露风险，却破坏核验回听；建议企业后台做成<strong>按场景可配置开关</strong>——高密会选<strong>“转后物理删原音”</strong>，审计/复盘会选<strong>“BYOK（客户自带密钥）加密留存回听”</strong>。</li>
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>审慎评估重交付销售工牌：</strong>循环智能、讯飞与钉钉深耕多年；试点须实测告知方式、佩戴率及驻场实施成本。</li>
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>清晰生态分工：</strong>不抢钉钉直客盘，向企微硬件及汽车/地产/医疗 ISV 输出<strong>专属 VPC + 开放权重 Qwen + 行业热词底座</strong>。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="font-size:12.4px;">
+            <strong>合规破冰共识：</strong>海外先核实 ZDR/DPA/BAA 并配齐提示灯/告知播报，严格隔离实名声纹授权；国内靠“后台删原音/BYOK 可配开关 + 赋能垂直 ISV”把合规痛点转化为企业级赢单抓手。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 合规与 B 端边界</span>
+          <span class="pg">15 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 16: BD OBJECTION BATTLECARDS ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">05 · 客户选型顾虑预判</span>
+          <span class="top-meta">直面阿里全形态自研竞合冲突与 3 类高频异议应对框架</span>
+        </div>
+        <h2 class="slide-title">直面自研竞合与 3 大顾虑：用硬边界避让、64% 底价与私有化破冰</h2>
+        <p class="slide-lead">不回避外部最敏感的“阿里全形态自研砸穿国内价格带”现实，以<strong>硬边界避让 + 同语料实测 + 透明 TCO</strong>建立合作信任。</p>
+
+        <div class="slide-body">
+          <div class="g-3" style="flex:1; align-items:stretch;">
+            <div class="card-white" style="border-top:4px solid #0284C7; padding:15px 17px;">
+              <div class="tag t-cyan" style="margin-bottom:8px;">顾虑 01 · 阿里全形态自研竞合冲突</div>
+              <div style="font-size:13.4px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:9px;">“阿里自研已覆盖 499–1,299 卡片（送 3 年 1,200 分/月）和 1,099 元首发/国补价 Bose 耳机，砸烂了国内价格带与订阅心智，外部接千问不冲突吗？”</div>
+              <ul class="pts" style="gap:7px;">
+                <li style="font-size:12.2px; line-height:1.45;"><strong>硬边界避让，不卷国内通用卡红海：</strong>主动放弃正面冲突，<strong>专攻自研难触达的增量盘</strong>——出海多语种、商务耳机大厂、企微生态联名硬件及垂直私有化 ISV。</li>
+                <li style="font-size:12.2px; line-height:1.45;"><strong>强租户隔离 + 实在商业让利：</strong>严守企业级隔离与 BYOK，以<strong>北京比火山低 64%</strong> 及<strong>新加坡较 Deepgram/Whisper 便宜 51%–65%</strong> 建立纯基础设施互信。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="border-top:4px solid #D97706; padding:15px 17px;">
+              <div class="tag t-amber" style="margin-bottom:8px;">顾虑 02 · 已绑定豆包/飞书语音方案</div>
+              <div style="font-size:13.4px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:9px;">“我们已接火山豆包/飞书或讯飞方案，切到百炼与千问能带来哪些可验证改善？”</div>
+              <ul class="pts" style="gap:7px;">
+                <li style="font-size:12.0px; line-height:1.44;"><strong>公开底价 + 流式低延迟实测：</strong>北京 <code>paraformer-v2</code> <strong>¥0.288/h 较火山豆包 2.0（约 ¥0.80/h）便宜约 64%</strong>；攻坚<strong>漫步者等声学大厂</strong>不只比离线目录价，须同步核实<strong>百炼实时流式 ASR/翻译大客阶梯底价与端侧低延迟实测</strong>及同语料 WER。</li>
+                <li style="font-size:12.0px; line-height:1.44;"><strong>开源私有化弹性：</strong>Qwen 开放权重支持客户自有云/VPC 部署，化解大客对闭源厂商锁定与欧美合规的顾虑。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="border-top:4px solid #4F46E5; padding:15px 17px;">
+              <div class="tag t-indigo" style="margin-bottom:8px;">顾虑 03 · 开源 Whisper 自建能否更省</div>
+              <div style="font-size:13.4px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:9px;">“自己拿开源 Whisper 加开源模型买卡部署 GPU，是不是比买 API 更划算？”</div>
+              <ul class="pts" style="gap:7px;">
+                <li style="font-size:12.2px; line-height:1.45;"><strong>算清潮汐并发与隐性人力账：</strong>会议录音早晚波峰极强，自建 GPU 闲置率高，叠加中文热词、说话人聚类与多语种运维人力，中小规模 TCO 常高于 ¥0.21/h。</li>
+                <li style="font-size:12.2px; line-height:1.45;"><strong>动态分界平滑演进：</strong>起量期用百炼免运维提速，超大规模再平滑切换至混合或私有化 Qwen 架构。</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="callout-strip" style="margin-top:12px; background:#0F172A; color:#F8FAFC; border-left-color:#38BDF8; font-size:12.2px;">
+            <strong style="color:#7DD3FC;">采购破冰四件套：</strong> 用一张表同时对齐<strong>“硬避让边界 + 同语料 WER/流式低延迟实测 + 北京低 64%/新加坡比海外竞品低 51%–65% 透明账本 + ZDR/BYOK 私有化选项”</strong>，以商业诚意化解竞合心结。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 客户顾虑与应对</span>
+          <span class="pg">16 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 17: TARGET ACCOUNT MATRIX ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">06 · 客户生态地图与盘子估算</span>
+          <span class="top-meta">基于公开体量的外部云调用情景估算（待内部校准）与重排优先级</span>
+        </div>
+        <h2 class="slide-title">外部客户重排与盘子估算：主攻出海多语种与商务耳机，抢 5,000 万–亿元级增量</h2>
+        <p class="slide-lead">以下盘子为基于公开销量与目录价的初步情景估算（具体存量合同与大客折扣<strong>待内部校准</strong>）；国内纯卡片盘子偏小，炮火须转向出海与耳机。</p>
+
+        <div class="slide-body">
+          <div style="background:linear-gradient(90deg, #0F172A 0%, #1E293B 100%); color:#F8FAFC; border-radius:10px; padding:9px 15px; margin-bottom:9px; display:grid; grid-template-columns:1fr 1.28fr; gap:16px; border-left:4px solid #38BDF8;">
+            <div style="font-size:11.6px; line-height:1.42;">
+              <div style="color:#FCD34D; font-weight:800; margin-bottom:2px;">国内第三方卡片云盘子（估算 · 待内部校准）</div>
+              扣除钉钉/讯飞/安克三大闭环生态（45.1%，Q3 渠道汇总口径）后，国内第三方卡片年云调用盘子估算 <strong style="color:#FFFFFF;">&lt;3,000 万元</strong>（出门问问全量走云上限仅 <strong style="color:#FFFFFF;">80–466 万元/年</strong>）。
+            </div>
+            <div style="font-size:11.6px; line-height:1.42; border-left:1px solid rgba(148,163,184,0.3); padding-left:15px;">
+              <div style="color:#7DD3FC; font-weight:800; margin-bottom:2px;">真正支撑“第一优先”的增量大盘：出海多语种 + 商务 AI 耳机</div>
+              <strong style="color:#FFFFFF;">Plaud 软件 ARR 已达 USD 1 亿、2026 年冲刺 USD 5 亿总营收目标</strong>，Viaim 150 万+ 耳机已盈利；若切下百万级海外/耳机活跃设备，年云调用可冲 <strong style="color:#34D399;">5,000 万–亿元级</strong>！
+            </div>
+          </div>
+
+          <div class="g-2" style="flex:1; gap:10px; align-items:stretch;">
+            <div class="card-indigo" style="padding:11px 14px;">
+              <div class="card-h" style="margin-bottom:4px; font-size:13.8px;"><span class="tag t-indigo">第 1 梯队 A · 第一优先主攻</span> 出海多语种品牌 &amp; 珠三角出海公版</div>
+              <div style="font-size:12.6px; font-weight:800; color:#3730A3; margin-bottom:5px;">跨境独立站/亚马逊品牌 · 恒玄/蓝讯 + 深圳出海公版 IDH</div>
+              <ul class="pts" style="gap:4px;">
+                <li style="font-size:11.6px; line-height:1.40;"><strong>核心杀手锏：</strong>新加坡合规离线 ASR（<code>fun-asr / qwen3-asr-flash</code>）公开价 <strong>USD 0.126/h（约 ¥0.91/h，VAD 后 ¥0.64/h）</strong>，较 Deepgram/Whisper 便宜 51%–65%，联合芯片与公版 IDH 打包端侧 VAD+封顶模板 1 对 N 撬动。</li>
+                <li style="font-size:11.6px; line-height:1.40;"><strong>前置验证：</strong>逐一摸清欧美/亚太语种及 ZDR/DPA 合规要求，先跑通单款公版标杆。</li>
+              </ul>
+            </div>
+
+            <div class="card-emerald" style="padding:11px 14px;">
+              <div class="card-h" style="color:#065F46; margin-bottom:4px; font-size:13.8px;"><span class="tag t-emerald">第 1 梯队 B · 第一优先主攻</span> 商务 AI 耳机大厂（协同 + 攻坚）</div>
+              <div style="font-size:12.6px; font-weight:800; color:#065F46; margin-bottom:5px;">未来智能 Viaim（泛阿里生态评估） · 漫步者等传统声学大厂</div>
+              <ul class="pts" style="gap:4px;">
+                <li style="font-size:11.6px; line-height:1.40;"><strong>Viaim 协同评估：</strong>获蚂蚁领投亿元 A 轮、2026.5 再获传音参投亿元 A+ 轮，全球 150 万+ 用户盈利且出海，优先请示内部评估多语种云底座协同。</li>
+                <li style="font-size:11.6px; line-height:1.40;"><strong>声学大厂攻坚：</strong>攻坚<strong>漫步者</strong>（主力 LolliClip AI / Lolli5 ANC 绑定豆包+DeepSeek）等大厂，须同步核实<strong>百炼实时流式 ASR/翻译大客阶梯底价与端侧低延迟实测（不只比离线目录价）</strong>。</li>
+              </ul>
+            </div>
+
+            <div class="card-white" style="padding:11px 14px;">
+              <div class="card-h" style="margin-bottom:4px; font-size:13.8px;"><span class="tag t-cyan">并行第 2 梯队</span> 企业微信生态联名硬件 &amp; 垂直专有云 ISV</div>
+              <div style="font-size:12.6px; font-weight:800; color:#0369A1; margin-bottom:5px;">企微开放硬件伙伴 · 汽车 / 地产 / 医疗垂直 SCRM 与会议商</div>
+              <ul class="pts" style="gap:4px;">
+                <li style="font-size:11.6px; line-height:1.40;"><strong>硬边界避让：</strong>彻底避开钉钉直客红海，承接企微（1,400 万+ 组织）联名硬件及非钉钉垂类方案商。</li>
+                <li style="font-size:11.6px; line-height:1.40;"><strong>交付抓手：</strong>输出<strong>专属 VPC + 开放权重 Qwen + 后台删音/BYOK 开关 + 行业热词</strong>，书面界定驻场责任。</li>
+              </ul>
+            </div>
+
+            <div class="card-amber" style="padding:11px 14px;">
+              <div class="card-h" style="color:#92400E; margin-bottom:4px; font-size:13.8px;"><span class="tag t-amber">示范与核实梯队</span> 存量标杆示范 &amp; 真实调用份额摸底</div>
+              <div style="font-size:12.6px; font-weight:800; color:#92400E; margin-bottom:5px;">出门问问 TicNote（降级示范） · Plaud（国行存量核实）</div>
+              <ul class="pts" style="gap:4px;">
+                <li style="font-size:11.6px; line-height:1.40;"><strong>TicNote 降级定位：</strong>2026 中报总营收 7,865 万（-56%，集团毛利率 46.6%）、归母净亏 4,960 万、硬件仅 3,617 万（-63%），全量云上限仅 <strong>80–466 万/年</strong>，仅作示范案例且严控账期。</li>
+                <li style="font-size:11.6px; line-height:1.40;"><strong>Plaud 国行核实：</strong>核实当前国行默认路由、实际调用份额及亚太增量合作可能。</li>
+              </ul>
+            </div>
+          </div>
+          <div style="font-size:10.1px; color:#64748B; line-height:1.36; margin-top:6px;">
+            * 估算口径：出门问问按硬件年化折合 3.5–6.4 万活跃设备 × ¥12.5–133/年测算（约 80–466 万）；百万活跃出海/耳机按 ¥50–100/年测算达 5,000 万–1 亿元。
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 客户生态地图</span>
+          <span class="pg">17 / 18</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SLIDE 18: NEWCOMER ACTION PLAN & ALIGNMENT ==================== -->
+    <section class="slide">
+      <div class="slide-inner">
+        <div class="top-bar">
+          <span class="section-pill">07 · 新人落地计划与内部对齐</span>
+          <span class="top-meta">向千问智能硬件行业总监汇报 · 脚踏实地、严守边界</span>
+        </div>
+        <h2 class="slide-title">新人 90 天单线聚焦计划、结构性风控与待请教的 3 个内部问题</h2>
+        <p class="slide-lead">深知声学芯片联调周期长（6–12 个月）、头部大客已有团队深耕——我愿<strong>先对齐底价、海外合规与避让边界，再把出海/商务耳机一条切口做实</strong>。</p>
+
+        <div class="slide-body" style="justify-content:space-between;">
+          <div class="card-white" style="padding:14px 19px;">
+            <div style="font-size:14.2px; font-weight:800; color:#0F172A; margin-bottom:9px;">90 天 100% 可控单线聚焦动作（严格服从团队分工与阶段 KPI）</div>
+            <div class="g-3" style="gap:16px;">
+              <div style="border-left:3.5px solid #0284C7; padding-left:13px;">
+                <div style="font-size:13px; font-weight:800; color:#0369A1;">前 30 天 · 对齐与核实</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:12px; line-height:1.44;">吃透千问自研（A1/A2/Bose 耳机）避让规则、百炼/听悟国内阶梯价，并<strong>核实新加坡大客阶梯底价、流式 ASR/翻译底价及海外节点 ZDR/DPA/BAA 合规部署口径</strong>；</li>
+                  <li style="font-size:12px; line-height:1.44;">旁听资深同事 5–10 场拜访，将《全档位 TCO 与外部盘子测算》校准至一线口径。</li>
+                </ul>
+              </div>
+              <div style="border-left:3.5px solid #4F46E5; padding-left:13px;">
+                <div style="font-size:13px; font-weight:800; color:#3730A3;">30–60 天 · 补位与摸排</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:12px; line-height:1.44;">协助筹备<strong>出海多语种与商务耳机（如漫步者等声学大厂）</strong>的同语料测评集、国内外竞品账本（含实时流式低延迟实测）与新加坡 Demo；</li>
+                  <li style="font-size:12px; line-height:1.44;">主动承接团队精力未覆盖的<strong>珠三角出海公版 IDH、跨境二梯队与企微/垂直 ISV</strong> 摸排建档。</li>
+                </ul>
+              </div>
+              <div style="border-left:3.5px solid #059669; padding-left:13px;">
+                <div style="font-size:13px; font-weight:800; color:#065F46;">60–90 天 · 最小闭环</div>
+                <ul class="pts" style="gap:5px; margin-top:5px;">
+                  <li style="font-size:12px; line-height:1.44;">在团队指导下，推动 <strong>1–2 家出海公版方案商或商务耳机/跨境新锐</strong>进入新加坡/北京节点沙箱实测；</li>
+                  <li style="font-size:12px; line-height:1.44;">沉淀 1 份经一线校验的《出海与商务耳机语音接入复盘》，尽快具备独立跟单能力。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="g-2" style="margin-top:12px; gap:18px; flex:1; align-items:stretch;">
+            <div class="card-rose" style="padding:13px 16px;">
+              <div style="font-size:13.4px; font-weight:800; color:#991B1B; margin-bottom:6px;">3 条需持续警惕的行业结构性风险</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:12px; line-height:1.45;"><strong>单机 P&amp;L 穿底与坏账：</strong>1,199 4G 旗舰单机贡献利润率仅 ~6%、白牌搭云即亏 -¥25，且部分独立厂中报亏损承压，严禁“不限次”并坚持预付费资源包；</li>
+                <li style="font-size:12px; line-height:1.45;"><strong>出海硬合规红线：</strong>严守美国 11–12 个双边同意州告知与 GDPR/PIPL 实名声纹授权，落地前逐项确认海外节点 ZDR/DPA/BAA；</li>
+                <li style="font-size:12px; line-height:1.45;"><strong>自研竞合与生态分流：</strong>审慎应对阿里全形态自研引发的国内客户顾虑，持续跟踪企微联盟与商务耳机分流节奏。</li>
+              </ul>
+            </div>
+            <div class="card-amber" style="padding:13px 16px;">
+              <div style="font-size:13.4px; font-weight:800; color:#92400E; margin-bottom:6px;">汇报口径边界 &amp; 待向总监请教的 3 个问题</div>
+              <ul class="pts" style="gap:5px;">
+                <li style="font-size:12px; line-height:1.45;"><strong>自研竞合避让口径：</strong>千问自研（A1/A2/Bose 耳机）与百炼对外云赋能之间的硬避让边界及协同考核口径是什么？</li>
+                <li style="font-size:12px; line-height:1.45;"><strong>生态协同与出海合规底牌：</strong>蚂蚁领投的 Viaim 是否有集团级协同渠道？阿里云新加坡等海外节点目前的 ZDR/DPA/BAA 支持边界如何？</li>
+                <li style="font-size:12px; line-height:1.45;"><strong>新人首要单线抓手：</strong>结合团队现有布局与外部盘子校准结果，总监最希望我前 90 天优先从“珠三角出海公版 IDH”还是“商务耳机/企微 ISV”切入？</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <span>2026 智能录音设备行业深度洞察与千问商业化汇报 · 汇报完（恳请总监批评指正）</span>
+          <span class="pg">18 / 18</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div class="hud-bar">
+  <button class="hud-btn" id="btnPrev" title="上一页 (←)">← 上一页</button>
+  <span class="hud-counter" id="counter">01 / 18</span>
+  <div class="hud-progress"><div class="hud-progress-fill" id="progressFill"></div></div>
+  <button class="hud-btn" id="btnNext" title="下一页 (→ / Space)">下一页 →</button>
+  <button class="hud-btn" id="btnOverview" title="网格总览 (G)">总览 (G)</button>
+  <button class="hud-btn" id="btnFull" title="全屏演示 (F)">全屏 (F)</button>
+  <button class="hud-btn" id="btnPrint" title="打印 / 另存为 16:9 PDF">导出 PDF</button>
+</div>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const viewport = document.getElementById('viewport');
+    const counter = document.getElementById('counter');
+    const progressFill = document.getElementById('progressFill');
+    const total = slides.length;
+    let current = 0;
+    function fitViewport() {
+      if (document.body.classList.contains('overview-mode')) { viewport.style.transform = ''; return; }
+      const scale = Math.min((window.innerWidth - 32) / 1280, (window.innerHeight - 76) / 720);
+      viewport.style.transform = `scale(${Math.max(0.2, Math.min(scale, 1.5))})`;
+    }
+    function showSlide(idx) {
+      current = Math.max(0, Math.min(total - 1, idx));
+      slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+      progressFill.style.width = `${((current + 1) / total) * 100}%`;
+    }
+    function toggleOverview(forceOff) {
+      if (forceOff === true) document.body.classList.remove('overview-mode');
+      else document.body.classList.toggle('overview-mode');
+      fitViewport();
+    }
+    slides.forEach((s, idx) => s.addEventListener('click', () => {
+      if (document.body.classList.contains('overview-mode')) { showSlide(idx); toggleOverview(true); }
+    }));
+    document.getElementById('btnPrev').addEventListener('click', () => { toggleOverview(true); showSlide(current - 1); });
+    document.getElementById('btnNext').addEventListener('click', () => { toggleOverview(true); showSlide(current + 1); });
+    document.getElementById('btnOverview').addEventListener('click', () => toggleOverview());
+    document.getElementById('btnFull').addEventListener('click', () => {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+      else document.exitFullscreen?.();
+    });
+    document.getElementById('btnPrint').addEventListener('click', () => { toggleOverview(true); window.print(); });
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); toggleOverview(true); showSlide(current + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); toggleOverview(true); showSlide(current - 1); }
+      else if (e.key === 'Home') { toggleOverview(true); showSlide(0); }
+      else if (e.key === 'End') { toggleOverview(true); showSlide(total - 1); }
+      else if (e.key.toLowerCase() === 'g') { toggleOverview(); }
+      else if (e.key.toLowerCase() === 'f') { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
+      else if (e.key === 'Escape') { toggleOverview(true); }
+    });
+    window.addEventListener('resize', fitViewport);
+    showSlide(0);
+    fitViewport();
+  })();
+</script>
+</body>
+</html>
