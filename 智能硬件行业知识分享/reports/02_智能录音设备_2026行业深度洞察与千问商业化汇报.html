@@ -141,12 +141,55 @@
 
   .cover-slide { background: linear-gradient(135deg, #071324 0%, #0E2439 55%, #162B4D 100%); color: #FFFFFF; }
 
-  @media screen and (max-width: 640px) {
-    .hud-bar { width: max-content; max-width: calc(100vw - 16px); flex-wrap: wrap; justify-content: center; gap: 5px; }
-    .hud-progress { display: none; }
-    .hud-btn { white-space: nowrap; }
-    body.overview-mode .deck-stage { grid-template-columns: 1fr; padding: 16px 12px 100px; overflow: hidden; }
-    body.overview-mode .slide { zoom: min(0.4, calc((100vw - 24px) / 1280px)); transform: none; margin: 0; }
+  .reading-index { display: none; }
+  .reading-scroll { display: contents; }
+
+  @media screen and (max-width: 900px), screen and (max-width: 1180px) and (pointer: coarse) {
+    html, body { height: auto; min-height: 100%; overflow: visible; background: #fff; }
+    .deck-stage { display: block; width: 100%; height: auto; overflow: visible; }
+    .slide-viewport, .slide { width: 100%; height: auto; min-height: 100vh; position: relative; overflow: visible; border-radius: 0; box-shadow: none; }
+    .slide-viewport { transform: none !important; }
+    .slide-inner { width: min(100%, 780px); margin-inline: auto; min-width: 0; padding: 24px 16px calc(86px + env(safe-area-inset-bottom)) !important; gap: 12px; }
+    .slide-inner :is(div, article, p, li, span, h1, h2, h3) { min-width: 0; overflow-wrap: anywhere; }
+    .slide-inner .slide-title, .report-page .slide-title { font-size: 25px; line-height: 1.35; margin: 0; }
+    .slide-inner :is(.slide-lead, .question, .report-row p, .report-card p, li, p, .kpi-desc, .callout-strip, [style*="font-size"]) { font-size: 16px !important; line-height: 1.65 !important; }
+    .slide-inner :is(.card-h, h3), .cover-option strong { font-size: 19px; line-height: 1.45; }
+    .slide-inner .kpi-num { font-size: 28px !important; }
+    .slide-inner :is(.section-pill, .top-meta, .tag, .pg, .kpi-label, .sources, .report-note), .slide-footer { font-size: 14px !important; line-height: 1.55; }
+    .slide-inner .tag { white-space: normal; }
+    .slide-inner [style*="align-items:flex-start"] > .tag { flex: none; }
+    .slide-inner :is(.top-bar, .slide-footer, .card-h) { flex-wrap: wrap; gap: 7px; }
+    .slide-inner .top-bar, .slide-inner .slide-lead { margin: 0; }
+    .slide-inner .slide-footer { margin-top: 12px; }
+    .slide-inner .slide-footer .pg { white-space: nowrap; margin-left: auto; }
+    .slide-inner :is([class^="g-"], .report-grid, .report-row, [style*="grid-template-columns"]) { grid-template-columns: minmax(0, 1fr) !important; gap: 14px !important; }
+    .slide-inner :is(.slide-body, .report-body) { flex: none !important; gap: 14px; margin: 0; }
+    .slide-inner .kpi-card { min-height: 0 !important; gap: 8px; }
+    .slide-inner :is(.kpi-label, .kpi-num) { margin-bottom: 0; }
+    .slide-inner .callout-strip { margin-top: 0; }
+    .cover-slide .slide-inner { gap: 26px; justify-content: flex-start !important; }
+    .cover-slide .slide-inner h1 { font-size: 32px !important; line-height: 1.24 !important; margin-bottom: 14px; }
+    .cover-slide .slide-inner h1 + p { padding-left: 12px !important; }
+    .cover-slide .report-grid { gap: 20px !important; }
+    .reading-scroll { display: block; width: 100%; min-width: 0; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+    .reading-scroll.can-pan::before { content: attr(aria-label); position: sticky; left: 0; display: block; width: fit-content; margin-bottom: 6px; color: var(--slate-500); font-size: 13px; }
+    .reading-scroll > :is(table,svg) { display: table; width: max(100%, var(--reading-width)) !important; max-width: none; }
+    .reading-scroll > svg { display: block; }
+    .reading-scroll :is(th,td) { font-size: 15px !important; line-height: 1.55 !important; padding: 8px 10px !important; overflow-wrap: anywhere; }
+    .hud-bar { inset: auto 0 0; transform: none; width: 100%; max-width: none; min-height: 56px; padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); border-radius: 0; gap: 6px; justify-content: center; }
+    .hud-btn { min-width: 44px; min-height: 44px; padding: 6px 10px; font-size: 15px; }
+    .hud-btn:disabled { opacity: .5; cursor: default; }
+    .hud-counter { min-width: 50px; font-size: 14px; }
+    .hud-progress, #btnFull, #btnPrint { display: none; }
+    body.overview-mode { background: #f1f5f9; }
+    body.overview-mode .deck-stage { display: none; }
+    body.overview-mode .reading-index { display: block; margin: 0 auto; max-width: 40rem; padding: 24px 16px calc(86px + env(safe-area-inset-bottom)); }
+    .reading-index h2 { margin-bottom: 16px; font-size: 23px; color: var(--navy); }
+    .reading-index button { display: flex; width: 100%; gap: 10px; align-items: baseline; margin: 8px 0; padding: 12px; min-height: 48px; font: inherit; font-size: 16px; line-height: 1.5; text-align: left; color: var(--navy); background: white; border: 1px solid var(--slate-200); border-radius: 9px; cursor: pointer; }
+    .reading-index button span { flex: none; color: var(--slate-500); font-variant-numeric: tabular-nums; }
+    .reading-index button[aria-current="page"] { border-color: var(--indigo); color: var(--indigo-dark); }
+    body.overview-mode :is(#btnPrev, #btnNext) { display: none; }
+    body.overview-mode :is(#btnFull, #btnPrint) { display: inline-block; }
   }
 </style>
 </head>
@@ -461,7 +504,7 @@
         <div class="slide-body" style="justify-content:space-between;">
           <div class="card-white" style="padding:13px 18px;">
             <div style="font-size:13.6px; font-weight:800; color:#0F172A; margin-bottom:7px;">Plaud 的会员路径与已披露数据</div>
-            <svg viewBox="0 0 1120 120" style="width:100%; height:auto;">
+            <div class="reading-scroll" style="--reading-width:1179px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 1120 120" style="width:100%; height:auto;">
               <defs>
                 <marker id="arB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#4F46E5"/></marker>
               </defs>
@@ -489,7 +532,7 @@
                 <text x="992" y="62" fill="#E2E8F0" font-size="11.4">软件 ARR 超过 1 亿美元</text>
                 <text x="992" y="85" font-weight="800" fill="#FFFFFF" font-size="12">近半设备用户升级，地区构成未披露</text>
               </g>
-            </svg>
+            </svg></div>
           </div>
 
           <div class="g-2" style="margin-top:12px;">
@@ -574,7 +617,7 @@
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="card-white" style="padding:14px 18px;">
-            <svg viewBox="0 0 1120 212" style="width:100%; height:auto;">
+            <div class="reading-scroll" style="--reading-width:1244px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 1120 212" style="width:100%; height:auto;">
               <defs>
                 <marker id="arC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#0284C7"/></marker>
               </defs>
@@ -617,7 +660,7 @@
               <rect x="798" y="146" width="312" height="52" rx="8" fill="#FFFBEB" stroke="#FCD34D"/>
               <text x="814" y="168" font-size="12.8" font-weight="800" fill="#92400E">个人长期外脑（Second Brain）</text>
               <text x="814" y="186" font-size="11.6" fill="#334155">同步 Notion / Obsidian / Apple Notes 跨会复盘</text>
-            </svg>
+            </svg></div>
           </div>
 
           <div class="g-3" style="margin-top:12px;">
@@ -657,7 +700,7 @@
           <div class="g-55-45" style="flex:1; align-items:stretch;">
             <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between; padding:14px 17px;">
               <div class="card-h" style="margin-bottom:4px;">三类代表机型整机物料及组装 BOM 估算（人民币）</div>
-              <svg viewBox="0 0 600 286" style="width:100%; height:auto;">
+              <div class="reading-scroll" style="--reading-width:679px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 600 286" style="width:100%; height:auto;">
                 <g font-size="11.2" fill="#334155" font-weight="600">
                   <rect x="6" y="4" width="11" height="11" rx="2" fill="#4F46E5"/><text x="21" y="14">主控/蓝牙</text>
                   <rect x="92" y="4" width="11" height="11" rx="2" fill="#0284C7"/><text x="107" y="14">麦+VCS骨传导</text>
@@ -689,14 +732,14 @@
                 <rect x="238" y="216" width="118" height="34" fill="#D97706"/><text x="297" y="237" font-size="10.6" fill="#FFF" font-weight="700" text-anchor="middle">0.95"OLED+大电池</text>
                 <rect x="356" y="216" width="90" height="34" rx="4" fill="#94A3B8"/><text x="401" y="237" font-size="10.6" fill="#FFF" font-weight="700" text-anchor="middle">67g结构/组装</text>
                 <text x="456" y="237" font-size="12.2" font-weight="800" fill="#0369A1">估算 ¥280–350</text>
-              </svg>
+              </svg></div>
               <div style="font-size:10.9px; color:#64748B; line-height:1.44;"><strong>口径说明：</strong>以上仅含核心 PCBA 与基础组装，<strong>未含磁吸皮套、彩盒包装、BQB/SRRC 认证及 SMT 良率损耗（约 +¥25–45/台）</strong>；A2 官方未披露 BOM，¥280–350 为行业拆解估算，实际以订单报价为准。</div>
             </div>
 
             <div style="display:flex; flex-direction:column; justify-content:space-between; gap:11px;">
               <div class="card-rose" style="padding:13px 15px;">
                 <div class="card-h" style="color:#991B1B; margin-bottom:7px; font-size:14.4px;"><span class="tag t-rose">示例机型</span> 单机可用预算与贡献</div>
-                <table class="clean-tbl mini" style="background:#FFFFFF;">
+                <div class="reading-scroll" style="--reading-width:664px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl mini" style="background:#FFFFFF;">
                   <thead>
                     <tr>
                       <th style="width:28%;">典型机型</th>
@@ -725,7 +768,7 @@
                       <td>贡献估算</td>
                     </tr>
                   </tbody>
-                </table>
+                </table></div>
                 <div style="font-size:10.3px; color:#7F1D1D; line-height:1.38; margin-top:6px;">
                   * 含税售价÷1.13 ×（1−15% 渠道−18% 投流−12% 退货净损失假设）−BOM−包装/认证/良率预提 25–45 元。4G 境内示例按第 14 页北京基础链路另扣 20h/月×36×0.2076≈149 元云费及假设三年流量 53 元。未扣 25–45 元前约 66 元。前两行列可用于后续服务的余额。
                 </div>
@@ -821,7 +864,7 @@
         <div class="slide-body">
           <div class="g-60-40" style="flex:1; align-items:stretch;">
             <div class="card-white" style="padding:12px 14px; display:flex; align-items:center;">
-              <svg viewBox="0 0 680 430" style="width:100%; height:auto;">
+              <div class="reading-scroll" style="--reading-width:907px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 680 430" style="width:100%; height:auto;">
                 <rect x="46" y="16" width="308" height="186" fill="#F0F9FF"/>
                 <rect x="354" y="16" width="308" height="186" fill="#EEF2FF"/>
                 <rect x="46" y="202" width="308" height="186" fill="#FFFFFF"/>
@@ -885,7 +928,7 @@
                 <rect x="56" y="306" width="288" height="46" rx="6" fill="#F1F5F9" stroke="#CBD5E1"/>
                 <text x="200" y="324" font-size="9.8" font-weight="700" fill="#334155" text-anchor="middle">海外并购：Bee→Amazon / Limitless→Meta</text>
                 <text x="200" y="341" font-size="9.4" fill="#64748B" text-anchor="middle">注：字节 Ola Friend 系豆包语音陪伴耳机，非专业会议录音品类</text>
-              </svg>
+              </svg></div>
             </div>
 
             <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
@@ -923,7 +966,7 @@
         <p class="slide-lead">按地区与型号列示公开参考价、核心规格与生态归属；商务合作前须按具体版本核对权益与数据边界。</p>
 
         <div class="slide-body">
-          <table class="clean-tbl compact" style="font-size:11.0px; line-height:1.34;">
+          <div class="reading-scroll" style="--reading-width:830px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl compact" style="font-size:11.0px; line-height:1.34;">
             <thead>
               <tr>
                 <th style="width:17%;">代表产品</th>
@@ -977,7 +1020,7 @@
                 <td><strong>企业微信（1,400 万+ 组织）</strong>生态联盟首批联手讯飞/出门问问/得力，构筑硬件反击阵营</td>
               </tr>
             </tbody>
-          </table>
+          </table></div>
           <div style="font-size:10.0px; color:#64748B; line-height:1.36; margin-top:5px;">
             口径及来源　<a href="https://img.pchome.tech/2026/11/20261125e545f4cd.png" target="_blank" rel="noopener noreferrer">奥维四平台品牌排名</a>（京东、天猫、淘宝、抖音，2026 Q3）。<a href="https://www.microsoft.com/en/customers/story/26496-plaud-azure-speech-in-foundry-tools" target="_blank" rel="noopener noreferrer">微软与 Plaud 的客户案例</a>（2026 年 8 月）。品牌份额和单款设备销量分开列示。
           </div>
@@ -1000,7 +1043,7 @@
         <h2 class="slide-title">客户换掉现有转写服务，能解决哪一个问题？</h2>
         <p class="slide-lead">先由品牌说清现用型号、最常见的错误和下次选型时间，再用同一批授权录音比较。微软披露 Plaud 的用例，可作为海外参照。目标品牌的供应商仍待确认。</p>
         <div class="slide-body" style="gap:16px;">
-          <table class="clean-tbl">
+          <div class="reading-scroll" style="--reading-width:540px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl">
             <thead><tr><th style="width:20%;">对照对象</th><th style="width:40%;">能核实的产品与调用方式</th><th>到客户现场要查什么</th></tr></thead>
             <tbody>
               <tr><td class="b">目标品牌现用服务<br/><span class="tag t-slate">优先取得的基线</span></td>
@@ -1013,7 +1056,7 @@
                 <td>普通会后长文件可走 <code>fun-asr</code>。若品牌要求零数据留存（ZDR），先核准工作空间和接口，再评估分段同步转写。</td>
                 <td>同一机型、同一音源，检查切片前后的漏词、跨段发言人编号和整场完成时间。按第 14 页统一成本口径。</td></tr>
             </tbody>
-          </table>
+          </table></div>
           <div class="g-2">
             <div class="card-cyan"><div class="card-h">效果怎么记</div><ul class="pts">
               <li>中文按字、英文按词统计识别错误。单列中英切换处与人名、产品名，记录错分发言人的段数及总段数。</li>
@@ -1036,7 +1079,7 @@
         <h2 class="slide-title">一小时中英会议，品牌为转写付多少钱？</h2>
         <p class="slide-lead">统一分母为裁切前的原始录音小时。按时长计价的公开算例取单声道文件，假设 60 分钟原始音频在设备端去除 18 分钟静音，上传且计费 42 分钟。表内美元金额仅计语音识别（ASR）。</p>
         <div class="slide-body" style="gap:13px;">
-          <table class="clean-tbl">
+          <div class="reading-scroll" style="--reading-width:540px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl">
             <thead><tr><th style="width:23%;">转写服务</th><th style="width:35%;">计费单位和输入</th><th>每原始小时费用（USD）及证据</th></tr></thead>
             <tbody>
               <tr><td class="b">目标品牌现供</td><td>取同批录音或同账期可归属的转写费、原始录音时长，注明功能、税费、折扣与币种。</td><td><strong>待客户提供账单。</strong> 同口径转写结算额 ÷ 原始小时数。</td></tr>
@@ -1045,7 +1088,7 @@
               <tr><td class="b">Azure · 东南亚公开参照<br/>Fast Transcription</td><td>微软公开按量计费表列 $0.36/音频小时。此处演算一次单声道快速转写，品牌合同价待核。</td><td><strong>$0.252</strong> ＝ $0.36 × 42/60。整小时上传为 $0.36。两种服务的处理方式及完成时延不同。</td></tr>
               <tr><td class="b">四路共用效果记录</td><td colspan="2"><strong>四路均未用客户语料实测。</strong> 逐路填写每原始小时人工修订 ___ 分钟、人名与术语识别错误 ___ 处/共 ___ 处、说话人错分 ___ 段/共 ___ 段，以及整场返回耗时 ___ 分钟。</td></tr>
             </tbody>
-          </table>
+          </table></div>
           <div class="g-2">
             <div class="card-cyan"><div class="card-h">怎样复核 token 账单</div><p style="font-size:13px; line-height:1.5;">百炼同步接口文档的 4 秒示例返回输入 48、输出 13 个 token。该次目录金额为 (48 × 0.15 ＋ 13 × 0.47) ÷ 1,000,000 ＝ <strong>$0.00001331</strong>。整场会议须汇总各段实际回执，另计客户所需的摘要、存储、网络和拼接成本。</p></div>
             <div class="card-white"><div class="card-h">境内设备的成本假设（供第 6、9 页复核）</div><p style="font-size:13px; line-height:1.5;">北京按预裁 30% 演算。基础链路 0.288 × 70% ＋ 0.006 ＝ <strong>¥0.2076/原始小时</strong>，含假设的文本处理费。听悟转写加三项摘要为 (0.60 ＋ 3 × 0.064) × 70% ＝ ¥0.5544/原始小时。</p></div>
@@ -1311,7 +1354,44 @@
     const progressFill = document.getElementById('progressFill');
     const total = slides.length;
     let current = 0;
+    const reader = window.matchMedia('(max-width: 900px), (max-width: 1180px) and (pointer: coarse)');
+    const overviewButton = document.getElementById('btnOverview');
+    const index = document.createElement('nav');
+    index.className = 'reading-index';
+    index.setAttribute('aria-label', '本报告目录');
+    const indexTitle = document.createElement('h2');
+    indexTitle.textContent = '本报告目录';
+    index.append(indexTitle);
+    const chapterButtons = slides.map((slide, i) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      const number = document.createElement('span');
+      number.textContent = String(i + 1).padStart(2, '0');
+      const title = slide.querySelector('h1, .slide-title').innerText.trim().replace(/\s+/g, ' ');
+      button.append(number, title);
+      button.addEventListener('click', () => { toggleOverview(true); showSlide(i); });
+      index.append(button);
+      return button;
+    });
+    document.querySelector('.deck-stage').after(index);
+    function syncReader() {
+      document.getElementById('btnPrev').disabled = reader.matches && current === 0;
+      document.getElementById('btnNext').disabled = reader.matches && current === total - 1;
+      if (!reader.matches) return;
+      slides[current].querySelectorAll('.reading-scroll').forEach(box => {
+        box.classList.toggle('can-pan', box.scrollWidth > box.clientWidth + 1);
+      });
+    }
+    function topOfChapter() {
+      if (reader.matches) window.scrollTo(0, 0);
+      syncReader();
+    }
     function fitViewport() {
+      syncReader();
+      const overview = document.body.classList.contains('overview-mode');
+      overviewButton.textContent = reader.matches ? (overview ? '返回正文' : '目录') : '总览 (G)';
+      overviewButton.setAttribute('aria-expanded', String(overview));
+      if (reader.matches) { viewport.style.transform = ''; return; }
       if (document.body.classList.contains('overview-mode')) { viewport.style.transform = ''; return; }
       const scale = Math.min((window.innerWidth - 32) / 1280, (window.innerHeight - 76) / 720);
       viewport.style.transform = `scale(${Math.max(0.2, Math.min(scale, 1.5))})`;
@@ -1319,12 +1399,18 @@
     function showSlide(idx) {
       current = Math.max(0, Math.min(total - 1, idx));
       slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      chapterButtons.forEach((button, i) => {
+        if (i === current) button.setAttribute('aria-current', 'page');
+        else button.removeAttribute('aria-current');
+      });
+      topOfChapter();
       counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
       progressFill.style.width = `${((current + 1) / total) * 100}%`;
     }
     function toggleOverview(forceOff) {
       if (forceOff === true) document.body.classList.remove('overview-mode');
       else document.body.classList.toggle('overview-mode');
+      topOfChapter();
       fitViewport();
     }
     slides.forEach((s, idx) => s.addEventListener('click', () => {
@@ -1339,6 +1425,7 @@
     });
     document.getElementById('btnPrint').addEventListener('click', () => { toggleOverview(true); window.print(); });
     window.addEventListener('keydown', (e) => {
+      if (reader.matches && (e.target.closest('.reading-scroll') || (e.key === ' ' && e.target.closest('button, a')))) return;
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); toggleOverview(true); showSlide(current + 1); }
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); toggleOverview(true); showSlide(current - 1); }
       else if (e.key === 'Home') { toggleOverview(true); showSlide(0); }
@@ -1347,6 +1434,12 @@
       else if (e.key.toLowerCase() === 'f') { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
       else if (e.key === 'Escape') { toggleOverview(true); }
     });
+    let restoreOverview = false;
+    window.addEventListener('beforeprint', () => {
+      restoreOverview = document.body.classList.contains('overview-mode');
+      if (restoreOverview) toggleOverview(true);
+    });
+    window.addEventListener('afterprint', () => { if (restoreOverview) toggleOverview(); });
     window.addEventListener('resize', fitViewport);
     showSlide(0);
     fitViewport();

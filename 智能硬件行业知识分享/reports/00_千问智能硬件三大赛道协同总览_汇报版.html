@@ -137,12 +137,55 @@
   .cover-option:hover strong, .cover-option:focus strong { text-decoration: underline; }
 
 
-  @media screen and (max-width: 640px) {
-    .hud-bar { width: max-content; max-width: calc(100vw - 16px); flex-wrap: wrap; justify-content: center; gap: 5px; }
-    .hud-progress { display: none; }
-    .hud-btn { white-space: nowrap; }
-    body.overview-mode .deck-stage { grid-template-columns: 1fr; padding: 16px 12px 100px; overflow: hidden; }
-    body.overview-mode .slide { zoom: min(0.4, calc((100vw - 24px) / 1280px)); transform: none; margin: 0; }
+  .reading-index { display: none; }
+  .reading-scroll { display: contents; }
+
+  @media screen and (max-width: 900px), screen and (max-width: 1180px) and (pointer: coarse) {
+    html, body { height: auto; min-height: 100%; overflow: visible; background: #fff; }
+    .deck-stage { display: block; width: 100%; height: auto; overflow: visible; }
+    .slide-viewport, .slide { width: 100%; height: auto; min-height: 100vh; position: relative; overflow: visible; border-radius: 0; box-shadow: none; }
+    .slide-viewport { transform: none !important; }
+    .slide-inner { width: min(100%, 780px); margin-inline: auto; min-width: 0; padding: 24px 16px calc(86px + env(safe-area-inset-bottom)) !important; gap: 12px; }
+    .slide-inner :is(div, article, p, li, span, h1, h2, h3) { min-width: 0; overflow-wrap: anywhere; }
+    .slide-inner .slide-title, .report-page .slide-title { font-size: 25px; line-height: 1.35; margin: 0; }
+    .slide-inner :is(.slide-lead, .question, .report-row p, .report-card p, li, p, .kpi-desc, .callout-strip, [style*="font-size"]) { font-size: 16px !important; line-height: 1.65 !important; }
+    .slide-inner :is(.card-h, h3), .cover-option strong { font-size: 19px; line-height: 1.45; }
+    .slide-inner .kpi-num { font-size: 28px !important; }
+    .slide-inner :is(.section-pill, .top-meta, .tag, .pg, .kpi-label, .sources, .report-note), .slide-footer { font-size: 14px !important; line-height: 1.55; }
+    .slide-inner .tag { white-space: normal; }
+    .slide-inner [style*="align-items:flex-start"] > .tag { flex: none; }
+    .slide-inner :is(.top-bar, .slide-footer, .card-h) { flex-wrap: wrap; gap: 7px; }
+    .slide-inner .top-bar, .slide-inner .slide-lead { margin: 0; }
+    .slide-inner .slide-footer { margin-top: 12px; }
+    .slide-inner .slide-footer .pg { white-space: nowrap; margin-left: auto; }
+    .slide-inner :is([class^="g-"], .report-grid, .report-row, [style*="grid-template-columns"]) { grid-template-columns: minmax(0, 1fr) !important; gap: 14px !important; }
+    .slide-inner :is(.slide-body, .report-body) { flex: none !important; gap: 14px; margin: 0; }
+    .slide-inner .kpi-card { min-height: 0 !important; gap: 8px; }
+    .slide-inner :is(.kpi-label, .kpi-num) { margin-bottom: 0; }
+    .slide-inner .callout-strip { margin-top: 0; }
+    .cover-slide .slide-inner { gap: 26px; justify-content: flex-start !important; }
+    .cover-slide .slide-inner h1 { font-size: 32px !important; line-height: 1.24 !important; margin-bottom: 14px; }
+    .cover-slide .slide-inner h1 + p { padding-left: 12px !important; }
+    .cover-slide .report-grid { gap: 20px !important; }
+    .reading-scroll { display: block; width: 100%; min-width: 0; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+    .reading-scroll.can-pan::before { content: attr(aria-label); position: sticky; left: 0; display: block; width: fit-content; margin-bottom: 6px; color: var(--slate-500); font-size: 13px; }
+    .reading-scroll > :is(table,svg) { display: table; width: max(100%, var(--reading-width)) !important; max-width: none; }
+    .reading-scroll > svg { display: block; }
+    .reading-scroll :is(th,td) { font-size: 15px !important; line-height: 1.55 !important; padding: 8px 10px !important; overflow-wrap: anywhere; }
+    .hud-bar { inset: auto 0 0; transform: none; width: 100%; max-width: none; min-height: 56px; padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); border-radius: 0; gap: 6px; justify-content: center; }
+    .hud-btn { min-width: 44px; min-height: 44px; padding: 6px 10px; font-size: 15px; }
+    .hud-btn:disabled { opacity: .5; cursor: default; }
+    .hud-counter { min-width: 50px; font-size: 14px; }
+    .hud-progress, #btnFull, #btnPrint { display: none; }
+    body.overview-mode { background: #f1f5f9; }
+    body.overview-mode .deck-stage { display: none; }
+    body.overview-mode .reading-index { display: block; margin: 0 auto; max-width: 40rem; padding: 24px 16px calc(86px + env(safe-area-inset-bottom)); }
+    .reading-index h2 { margin-bottom: 16px; font-size: 23px; color: var(--navy); }
+    .reading-index button { display: flex; width: 100%; gap: 10px; align-items: baseline; margin: 8px 0; padding: 12px; min-height: 48px; font: inherit; font-size: 16px; line-height: 1.5; text-align: left; color: var(--navy); background: white; border: 1px solid var(--slate-200); border-radius: 9px; cursor: pointer; }
+    .reading-index button span { flex: none; color: var(--slate-500); font-variant-numeric: tabular-nums; }
+    .reading-index button[aria-current="page"] { border-color: var(--indigo); color: var(--indigo-dark); }
+    body.overview-mode :is(#btnPrev, #btnNext) { display: none; }
+    body.overview-mode :is(#btnFull, #btnPrint) { display: inline-block; }
   }
 </style>
 </head>
@@ -198,7 +241,7 @@
         <div class="top-bar"><span class="section-pill">付费方与用量</span><span class="top-meta">个人入职调研 · 讨论稿</span></div>
         <h2 class="slide-title">按具体功能估算能争取的收入</h2>
         <p class="slide-lead">先找到付款和选型的人，再按机型、功能、月份计算。分册保留硬件成本和模型目录价的假设。</p>
-        <div class="report-body"><table class="clean-tbl report-table"><thead><tr><th scope="col">场景与可能的付费方</th><th scope="col">千问可提供的能力</th><th scope="col">最缺的证据</th><th scope="col">怎么验证</th></tr></thead><tbody><tr><td><strong>海外会议录音</strong><br>品牌或方案商，待确认签约方。</td><td>离线多语种转写、说话人区分与纪要。</td><td>每月有效录音时长、现供方案、采购窗口和数据处理要求。</td><td>用同批会议音频比较转写错误、修订工时和每小时成本。</td></tr><tr><td><strong>智能眼镜</strong><br>品牌或应用运营方，待确认模型选型权。</td><td>按次调用的菜单或路牌识读。</td><td>日均识图次数、默认模型份额，以及设备端能完成哪些任务。</td><td>同一设备、图像与网络条件下比较答对率、响应时间和每次成功识读成本。</td></tr><tr><td><strong>境内绘本识读</strong><br>家长购买设备，品牌与方案商的云费分工待确认。</td><td>绘本识图、内容问答与安全审核。</td><td>适用年龄、监护人授权、活跃设备用量和续费安排。</td><td>用获授权绘本做分龄测试，核对严重错误、授权流程及每台活跃设备月成本。</td></tr></tbody></table><div class="callout-strip report-callout"><strong>每月估算</strong>　活跃设备数 × 每台月均使用量 × 交给千问的调用比例 × 实际结算单价。分月加总后，再核对推理成本和交付工时。</div></div>
+        <div class="report-body"><div class="reading-scroll" style="--reading-width:664px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl report-table"><thead><tr><th scope="col">场景与可能的付费方</th><th scope="col">千问可提供的能力</th><th scope="col">最缺的证据</th><th scope="col">怎么验证</th></tr></thead><tbody><tr><td><strong>海外会议录音</strong><br>品牌或方案商，待确认签约方。</td><td>离线多语种转写、说话人区分与纪要。</td><td>每月有效录音时长、现供方案、采购窗口和数据处理要求。</td><td>用同批会议音频比较转写错误、修订工时和每小时成本。</td></tr><tr><td><strong>智能眼镜</strong><br>品牌或应用运营方，待确认模型选型权。</td><td>按次调用的菜单或路牌识读。</td><td>日均识图次数、默认模型份额，以及设备端能完成哪些任务。</td><td>同一设备、图像与网络条件下比较答对率、响应时间和每次成功识读成本。</td></tr><tr><td><strong>境内绘本识读</strong><br>家长购买设备，品牌与方案商的云费分工待确认。</td><td>绘本识图、内容问答与安全审核。</td><td>适用年龄、监护人授权、活跃设备用量和续费安排。</td><td>用获授权绘本做分龄测试，核对严重错误、授权流程及每台活跃设备月成本。</td></tr></tbody></table></div><div class="callout-strip report-callout"><strong>每月估算</strong>　活跃设备数 × 每台月均使用量 × 交给千问的调用比例 × 实际结算单价。分月加总后，再核对推理成本和交付工时。</div></div>
         <div class="slide-footer report-foot"><span>千问与外部硬件品牌合作 · 2026 年 11 月</span><span class="pg">03 / 05</span></div>
       </div>
     </section>
@@ -244,7 +287,44 @@
     const progressFill = document.getElementById('progressFill');
     const total = slides.length;
     let current = 0;
+    const reader = window.matchMedia('(max-width: 900px), (max-width: 1180px) and (pointer: coarse)');
+    const overviewButton = document.getElementById('btnOverview');
+    const index = document.createElement('nav');
+    index.className = 'reading-index';
+    index.setAttribute('aria-label', '本报告目录');
+    const indexTitle = document.createElement('h2');
+    indexTitle.textContent = '本报告目录';
+    index.append(indexTitle);
+    const chapterButtons = slides.map((slide, i) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      const number = document.createElement('span');
+      number.textContent = String(i + 1).padStart(2, '0');
+      const title = slide.querySelector('h1, .slide-title').innerText.trim().replace(/\s+/g, ' ');
+      button.append(number, title);
+      button.addEventListener('click', () => { toggleOverview(true); showSlide(i); });
+      index.append(button);
+      return button;
+    });
+    document.querySelector('.deck-stage').after(index);
+    function syncReader() {
+      document.getElementById('btnPrev').disabled = reader.matches && current === 0;
+      document.getElementById('btnNext').disabled = reader.matches && current === total - 1;
+      if (!reader.matches) return;
+      slides[current].querySelectorAll('.reading-scroll').forEach(box => {
+        box.classList.toggle('can-pan', box.scrollWidth > box.clientWidth + 1);
+      });
+    }
+    function topOfChapter() {
+      if (reader.matches) window.scrollTo(0, 0);
+      syncReader();
+    }
     function fitViewport() {
+      syncReader();
+      const overview = document.body.classList.contains('overview-mode');
+      overviewButton.textContent = reader.matches ? (overview ? '返回正文' : '目录') : '总览 (G)';
+      overviewButton.setAttribute('aria-expanded', String(overview));
+      if (reader.matches) { viewport.style.transform = ''; return; }
       if (document.body.classList.contains('overview-mode')) { viewport.style.transform = ''; return; }
       const scale = Math.min((window.innerWidth - 32) / 1280, (window.innerHeight - 76) / 720);
       viewport.style.transform = `scale(${Math.max(0.2, Math.min(scale, 1.5))})`;
@@ -252,12 +332,18 @@
     function showSlide(idx) {
       current = Math.max(0, Math.min(total - 1, idx));
       slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      chapterButtons.forEach((button, i) => {
+        if (i === current) button.setAttribute('aria-current', 'page');
+        else button.removeAttribute('aria-current');
+      });
+      topOfChapter();
       counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
       progressFill.style.width = `${((current + 1) / total) * 100}%`;
     }
     function toggleOverview(forceOff) {
       if (forceOff === true) document.body.classList.remove('overview-mode');
       else document.body.classList.toggle('overview-mode');
+      topOfChapter();
       fitViewport();
     }
     slides.forEach((s, idx) => s.addEventListener('click', () => {
@@ -272,6 +358,7 @@
     });
     document.getElementById('btnPrint').addEventListener('click', () => { toggleOverview(true); window.print(); });
     window.addEventListener('keydown', (e) => {
+      if (reader.matches && (e.target.closest('.reading-scroll') || (e.key === ' ' && e.target.closest('button, a')))) return;
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); toggleOverview(true); showSlide(current + 1); }
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); toggleOverview(true); showSlide(current - 1); }
       else if (e.key === 'Home') { toggleOverview(true); showSlide(0); }
@@ -280,6 +367,12 @@
       else if (e.key.toLowerCase() === 'f') { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
       else if (e.key === 'Escape') { toggleOverview(true); }
     });
+    let restoreOverview = false;
+    window.addEventListener('beforeprint', () => {
+      restoreOverview = document.body.classList.contains('overview-mode');
+      if (restoreOverview) toggleOverview(true);
+    });
+    window.addEventListener('afterprint', () => { if (restoreOverview) toggleOverview(); });
     window.addEventListener('resize', fitViewport);
     showSlide(0);
     fitViewport();

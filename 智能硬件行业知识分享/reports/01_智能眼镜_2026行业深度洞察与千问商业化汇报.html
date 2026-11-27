@@ -134,12 +134,55 @@
 
   .cover-slide { background: linear-gradient(135deg, #090F1E 0%, #111D38 55%, #1E1B4B 100%); color: #FFFFFF; }
 
-  @media screen and (max-width: 640px) {
-    .hud-bar { width: max-content; max-width: calc(100vw - 16px); flex-wrap: wrap; justify-content: center; gap: 5px; }
-    .hud-progress { display: none; }
-    .hud-btn { white-space: nowrap; }
-    body.overview-mode .deck-stage { grid-template-columns: 1fr; padding: 16px 12px 100px; overflow: hidden; }
-    body.overview-mode .slide { zoom: min(0.4, calc((100vw - 24px) / 1280px)); transform: none; margin: 0; }
+  .reading-index { display: none; }
+  .reading-scroll { display: contents; }
+
+  @media screen and (max-width: 900px), screen and (max-width: 1180px) and (pointer: coarse) {
+    html, body { height: auto; min-height: 100%; overflow: visible; background: #fff; }
+    .deck-stage { display: block; width: 100%; height: auto; overflow: visible; }
+    .slide-viewport, .slide { width: 100%; height: auto; min-height: 100vh; position: relative; overflow: visible; border-radius: 0; box-shadow: none; }
+    .slide-viewport { transform: none !important; }
+    .slide-inner { width: min(100%, 780px); margin-inline: auto; min-width: 0; padding: 24px 16px calc(86px + env(safe-area-inset-bottom)) !important; gap: 12px; }
+    .slide-inner :is(div, article, p, li, span, h1, h2, h3) { min-width: 0; overflow-wrap: anywhere; }
+    .slide-inner .slide-title, .report-page .slide-title { font-size: 25px; line-height: 1.35; margin: 0; }
+    .slide-inner :is(.slide-lead, .question, .report-row p, .report-card p, li, p, .kpi-desc, .callout-strip, [style*="font-size"]) { font-size: 16px !important; line-height: 1.65 !important; }
+    .slide-inner :is(.card-h, h3), .cover-option strong { font-size: 19px; line-height: 1.45; }
+    .slide-inner .kpi-num { font-size: 28px !important; }
+    .slide-inner :is(.section-pill, .top-meta, .tag, .pg, .kpi-label, .sources, .report-note), .slide-footer { font-size: 14px !important; line-height: 1.55; }
+    .slide-inner .tag { white-space: normal; }
+    .slide-inner [style*="align-items:flex-start"] > .tag { flex: none; }
+    .slide-inner :is(.top-bar, .slide-footer, .card-h) { flex-wrap: wrap; gap: 7px; }
+    .slide-inner .top-bar, .slide-inner .slide-lead { margin: 0; }
+    .slide-inner .slide-footer { margin-top: 12px; }
+    .slide-inner .slide-footer .pg { white-space: nowrap; margin-left: auto; }
+    .slide-inner :is([class^="g-"], .report-grid, .report-row, [style*="grid-template-columns"]) { grid-template-columns: minmax(0, 1fr) !important; gap: 14px !important; }
+    .slide-inner :is(.slide-body, .report-body) { flex: none !important; gap: 14px; margin: 0; }
+    .slide-inner .kpi-card { min-height: 0 !important; gap: 8px; }
+    .slide-inner :is(.kpi-label, .kpi-num) { margin-bottom: 0; }
+    .slide-inner .callout-strip { margin-top: 0; }
+    .cover-slide .slide-inner { gap: 26px; justify-content: flex-start !important; }
+    .cover-slide .slide-inner h1 { font-size: 32px !important; line-height: 1.24 !important; margin-bottom: 14px; }
+    .cover-slide .slide-inner h1 + p { padding-left: 12px !important; }
+    .cover-slide .report-grid { gap: 20px !important; }
+    .reading-scroll { display: block; width: 100%; min-width: 0; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+    .reading-scroll.can-pan::before { content: attr(aria-label); position: sticky; left: 0; display: block; width: fit-content; margin-bottom: 6px; color: var(--slate-500); font-size: 13px; }
+    .reading-scroll > :is(table,svg) { display: table; width: max(100%, var(--reading-width)) !important; max-width: none; }
+    .reading-scroll > svg { display: block; }
+    .reading-scroll :is(th,td) { font-size: 15px !important; line-height: 1.55 !important; padding: 8px 10px !important; overflow-wrap: anywhere; }
+    .hud-bar { inset: auto 0 0; transform: none; width: 100%; max-width: none; min-height: 56px; padding: 6px 8px calc(6px + env(safe-area-inset-bottom)); border-radius: 0; gap: 6px; justify-content: center; }
+    .hud-btn { min-width: 44px; min-height: 44px; padding: 6px 10px; font-size: 15px; }
+    .hud-btn:disabled { opacity: .5; cursor: default; }
+    .hud-counter { min-width: 50px; font-size: 14px; }
+    .hud-progress, #btnFull, #btnPrint { display: none; }
+    body.overview-mode { background: #f1f5f9; }
+    body.overview-mode .deck-stage { display: none; }
+    body.overview-mode .reading-index { display: block; margin: 0 auto; max-width: 40rem; padding: 24px 16px calc(86px + env(safe-area-inset-bottom)); }
+    .reading-index h2 { margin-bottom: 16px; font-size: 23px; color: var(--navy); }
+    .reading-index button { display: flex; width: 100%; gap: 10px; align-items: baseline; margin: 8px 0; padding: 12px; min-height: 48px; font: inherit; font-size: 16px; line-height: 1.5; text-align: left; color: var(--navy); background: white; border: 1px solid var(--slate-200); border-radius: 9px; cursor: pointer; }
+    .reading-index button span { flex: none; color: var(--slate-500); font-variant-numeric: tabular-nums; }
+    .reading-index button[aria-current="page"] { border-color: var(--indigo); color: var(--indigo-dark); }
+    body.overview-mode :is(#btnPrev, #btnNext) { display: none; }
+    body.overview-mode :is(#btnFull, #btnPrint) { display: inline-block; }
   }
 </style>
 </head>
@@ -341,7 +384,7 @@
                 <span style="font-size:14.2px; font-weight:800; color:#0F172A;">2026 中国智能眼镜分季量额与均价拐点</span>
                 <span class="tag t-indigo">洛图全渠道零售口径</span>
               </div>
-              <svg viewBox="0 0 640 306" style="width:100%; height:auto;">
+              <div class="reading-scroll" style="--reading-width:753px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 640 306" style="width:100%; height:auto;">
                 <defs>
                   <marker id="arrDrop" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#DC2626"/></marker>
                 </defs>
@@ -405,7 +448,7 @@
                 <text x="499" y="220" font-size="10.8" font-weight="800" fill="#FFF" text-anchor="middle">145.3万</text>
                 <text x="499" y="287" font-size="13" font-weight="800" fill="#0F172A" text-anchor="middle">2026E 全年预测</text>
                 <text x="499" y="301" font-size="10.4" fill="#64748B" text-anchor="middle">Q1–Q3 销额 27.2 亿</text>
-              </svg>
+              </svg></div>
               <div style="font-size:10.5px; color:#64748B; line-height:1.38;">洛图公布三季度均价 1,542 元。图中 −25.4% 是与上半年均价 2,068 元比较。全年 205万–215 万台为机构预测。<a href="https://optics.ofweek.com/2026-11/ART-250003-8420-30712740.html" target="_blank" rel="noopener noreferrer">洛图科技季报</a></div>
             </div>
 
@@ -444,7 +487,7 @@
         <p class="slide-lead">海外生态加速收拢，国产出海品牌须同步兼顾多语言模型路由、数据合规条款与主流 XR 系统兼容。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
-          <table class="clean-tbl">
+          <div class="reading-scroll" style="--reading-width:540px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl">
             <thead>
               <tr>
                 <th style="width:16%;">核心维度</th>
@@ -479,7 +522,7 @@
                 <td>瞄准未获 Android XR 首批授权的国产出海品牌，主推<strong>阿里云新加坡/欧美托管 API 与 PTU</strong>（开源自部署另计云资源）</td>
               </tr>
             </tbody>
-          </table>
+          </table></div>
 
           <div class="callout-strip" style="background:#FFFBEB; border-left-color:#D97706;">
             <strong>2026 底 – 2027 海外关键时间点核实：</strong>① <strong>XREAL AURA</strong> 为搭载 Android XR 的有线分体式空间计算眼镜；② <strong>Google 联名 Android XR 眼镜（定价参考 Warby Parker USD 395 / Gentle Monster USD 449）已于 11 月 12 日开启预购，计划 12 月 10 日正式上市</strong>；③ 苹果 <strong>N50</strong> 仍为媒体报道的研发项目，尚未公布官方上市日期。
@@ -600,7 +643,7 @@
           <div class="g-2" style="flex:1; align-items:stretch;">
             <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between;">
               <div class="card-h">退货与留存：已披露区间 vs 待一线核验口径</div>
-              <svg viewBox="0 0 520 232" style="width:100%; height:auto;">
+              <div class="reading-scroll" style="--reading-width:557px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 520 232" style="width:100%; height:auto;">
                 <!-- Scale -->
                 <text x="8" y="18" font-size="11.5" font-weight="700" fill="#64748B">0%</text>
                 <text x="195" y="18" font-size="11.5" font-weight="700" fill="#64748B" text-anchor="middle">50%</text>
@@ -628,7 +671,7 @@
                 <!-- Row 4: Offline optical -->
                 <text x="8" y="216" font-size="12.8" font-weight="800" fill="#065F46">线下视光验配成镜（博士 / 宝岛等）</text>
                 <text x="394" y="216" font-size="12.5" font-weight="800" fill="#059669">查重配与留存</text>
-              </svg>
+              </svg></div>
               <div style="font-size:11.6px; color:#475569; background:#F8FAFC; padding:10px 12px; border-radius:8px; line-height:1.5; border-left:3px solid #059669;">
                 <strong>法理与商业辨析：</strong>《消保法》第 25 条适用于网购等远程交易，消费者定作镜片属例外；线下无理由退货看门店承诺，质量问题按第 24 条处理。线下试戴的真实价值须用<strong>同款重配率 + 30 日 AI 活跃率</strong>交叉验证。
               </div>
@@ -728,7 +771,7 @@
                 <span style="font-size:14.2px; font-weight:800; color:#0F172A;">三类配置 BOM 严格线性等比拆解（单位：元）</span>
                 <span class="tag t-indigo">比例尺 0.30 px/元</span>
               </div>
-              <svg viewBox="0 0 600 292" style="width:100%; height:auto;">
+              <div class="reading-scroll" style="--reading-width:735px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 600 292" style="width:100%; height:auto;">
                 <!-- Legend -->
                 <g font-size="11.2" fill="#334155" font-weight="600">
                   <rect x="8" y="6" width="11" height="11" rx="2" fill="#4F46E5"/><text x="23" y="16">主控/存储</text>
@@ -779,7 +822,7 @@
                   <text x="308" y="283" text-anchor="middle">¥1,000</text>
                   <text x="458" y="283" text-anchor="middle">¥1,500</text>
                 </g>
-              </svg>
+              </svg></div>
               <div style="font-size:10.7px; color:#64748B; line-height:1.42;">*口径注：单绿例 AR1+存 ¥470 暂按头部大批量基准示意，<strong>中小客 AR1+协处理器+存储实际约 ¥550–650</strong>；上述均为裸机物料基准，<strong>未含 NRE、模具、充电盒与组装良率损耗</strong>（双目全彩光波导 BOM 显著更高）。</div>
             </div>
 
@@ -884,7 +927,7 @@
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="card-white" style="padding:13px 16px;">
-            <svg viewBox="0 0 1120 194" style="width:100%; height:auto;">
+            <div class="reading-scroll" style="--reading-width:1120px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 1120 194" style="width:100%; height:auto;">
               <defs>
                 <marker id="arRed" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#DC2626"/></marker>
                 <marker id="arGrn" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#059669"/></marker>
@@ -912,7 +955,7 @@
                 <line x1="820" y1="154" x2="852" y2="154" stroke="#059669" stroke-width="2.2" marker-end="url(#arGrn)"/>
                 <rect x="860" y="136" width="240" height="37" rx="6" fill="#059669"/><text x="980" y="159" font-weight="800" fill="#FFF">检验 30 日 AI 真实活跃率</text>
               </g>
-            </svg>
+            </svg></div>
           </div>
 
           <div class="g-4" style="margin-top:12px;">
@@ -955,7 +998,7 @@
         <div class="slide-body">
           <div class="g-60-40" style="flex:1; align-items:stretch;">
             <div class="card-white" style="padding:12px 14px; display:flex; align-items:center;">
-              <svg viewBox="0 0 680 430" style="width:100%; height:auto;">
+              <div class="reading-scroll" style="--reading-width:927px" aria-label="左右滑动查看图" role="region" tabindex="0"><svg viewBox="0 0 680 430" style="width:100%; height:auto;">
                 <defs>
                   <marker id="arrQ" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M 0 1 L 10 5 L 0 9 z" fill="#4F46E5"/></marker>
                 </defs>
@@ -1023,7 +1066,7 @@
                 <rect x="64" y="242" width="90" height="28" rx="14" fill="#94A3B8"/><text x="109" y="261" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">界环 / 清野</text>
                 <rect x="170" y="276" width="88" height="28" rx="14" fill="#64748B"/><text x="214" y="295" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">闪极拍拍镜</text>
                 <rect x="242" y="316" width="84" height="28" rx="14" fill="#475569"/><text x="284" y="335" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">李未可</text>
-              </svg>
+              </svg></div>
             </div>
 
             <div style="display:flex; flex-direction:column; justify-content:space-between; gap:11px;">
@@ -1061,7 +1104,7 @@
         <p class="slide-lead">以下为代表产品横向对标（非销量排名），统一标明官方标价、叠加优惠与国补红线、发售时间线及核心挑战。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
-          <table class="clean-tbl compact" style="font-size:11.2px; line-height:1.35;">
+          <div class="reading-scroll" style="--reading-width:830px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl compact" style="font-size:11.2px; line-height:1.35;">
             <thead>
               <tr>
                 <th style="width:16%;">代表机型</th>
@@ -1115,7 +1158,7 @@
                 <td>Google 联名机型设计为遮灯停录，并在 Gemini 处理视觉查询前遮盖旁人人脸。见第 6 页出处。苹果 N50 暂无官方上市日。</td>
               </tr>
             </tbody>
-          </table>
+          </table></div>
           <div style="font-size:10.8px; color:#64748B; margin-top:4px;">
             注：截至 2026 年 11 月；N1 / N1 Pro 于 2026.10.13 开售，所有到手价均受限时商家优惠及国补（15%、封顶 500 元）地区规则影响。
           </div>
@@ -1139,7 +1182,7 @@
         <p class="slide-lead">以同一批外文菜单样本测试任务正确率、延迟与成本，另向品牌确认现有供应商、采购周期和可开放的接口。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
-          <table class="clean-tbl" style="font-size:11.6px; line-height:1.4;">
+          <div class="reading-scroll" style="--reading-width:540px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl" style="font-size:11.6px; line-height:1.4;">
             <thead>
               <tr>
                 <th style="width:16%;">选型核心维度</th>
@@ -1174,7 +1217,7 @@
                 <td>RTC 方案与渠道资源可能影响采购。具体流量支持、价格和绑定条件须查客户书面条款，模型费用与留单获客成本分开核算。</td>
               </tr>
             </tbody>
-          </table>
+          </table></div>
 
           <div class="callout-strip" style="background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D; padding:9px 14px; font-size:11.9px; margin-top:8px;">
             <strong>计费合规红线：</strong>线上眼镜后端必须采用获准生产的<strong>按量 API / 企业协议资源包</strong>；阿里云百炼 <strong>Token Plan / Coding Plan 明令仅限交互式开发工具</strong>。
@@ -1201,7 +1244,7 @@
         <div class="slide-body">
           <div class="g-60-40" style="flex:1; align-items:stretch;">
             <div style="display:flex; flex-direction:column; justify-content:space-between;">
-              <table class="clean-tbl" style="font-size:11.3px; line-height:1.36;">
+              <div class="reading-scroll" style="--reading-width:664px" aria-label="左右滑动查看表格" role="region" tabindex="0"><table class="clean-tbl" style="font-size:11.3px; line-height:1.36;">
                 <thead>
                   <tr>
                     <th style="width:19%; padding:7px 9px;">情景 / 链路模块</th>
@@ -1236,7 +1279,7 @@
                     <td style="padding:6px 9px; background:#FEF2F2;"><strong style="color:#991B1B;">实时语音 +179.8 元/年</strong><br/><span style="font-size:9.9px;color:#991B1B;">仅指北京会话费，不含视觉处理</span></td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
 
               <div class="callout-strip" style="margin-top:7px; padding:8px 13px; font-size:11.6px; line-height:1.42; background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D;">
                 <strong>同一用量下，播报和持续连接更影响预算。</strong>5,400 次云端播报约 66.42 或 172.80 元。若另开实时语音，每个活跃日连接 5 分钟，再增加约 179.8 元。若语音会话替代原有问答，应扣除重叠的转写和播报。
@@ -1469,7 +1512,44 @@
     const progressFill = document.getElementById('progressFill');
     const total = slides.length;
     let current = 0;
+    const reader = window.matchMedia('(max-width: 900px), (max-width: 1180px) and (pointer: coarse)');
+    const overviewButton = document.getElementById('btnOverview');
+    const index = document.createElement('nav');
+    index.className = 'reading-index';
+    index.setAttribute('aria-label', '本报告目录');
+    const indexTitle = document.createElement('h2');
+    indexTitle.textContent = '本报告目录';
+    index.append(indexTitle);
+    const chapterButtons = slides.map((slide, i) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      const number = document.createElement('span');
+      number.textContent = String(i + 1).padStart(2, '0');
+      const title = slide.querySelector('h1, .slide-title').innerText.trim().replace(/\s+/g, ' ');
+      button.append(number, title);
+      button.addEventListener('click', () => { toggleOverview(true); showSlide(i); });
+      index.append(button);
+      return button;
+    });
+    document.querySelector('.deck-stage').after(index);
+    function syncReader() {
+      document.getElementById('btnPrev').disabled = reader.matches && current === 0;
+      document.getElementById('btnNext').disabled = reader.matches && current === total - 1;
+      if (!reader.matches) return;
+      slides[current].querySelectorAll('.reading-scroll').forEach(box => {
+        box.classList.toggle('can-pan', box.scrollWidth > box.clientWidth + 1);
+      });
+    }
+    function topOfChapter() {
+      if (reader.matches) window.scrollTo(0, 0);
+      syncReader();
+    }
     function fitViewport() {
+      syncReader();
+      const overview = document.body.classList.contains('overview-mode');
+      overviewButton.textContent = reader.matches ? (overview ? '返回正文' : '目录') : '总览 (G)';
+      overviewButton.setAttribute('aria-expanded', String(overview));
+      if (reader.matches) { viewport.style.transform = ''; return; }
       if (document.body.classList.contains('overview-mode')) { viewport.style.transform = ''; return; }
       const scale = Math.min((window.innerWidth - 32) / 1280, (window.innerHeight - 76) / 720);
       viewport.style.transform = `scale(${Math.max(0.2, Math.min(scale, 1.5))})`;
@@ -1477,12 +1557,18 @@
     function showSlide(idx) {
       current = Math.max(0, Math.min(total - 1, idx));
       slides.forEach((s, i) => s.classList.toggle('active', i === current));
+      chapterButtons.forEach((button, i) => {
+        if (i === current) button.setAttribute('aria-current', 'page');
+        else button.removeAttribute('aria-current');
+      });
+      topOfChapter();
       counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
       progressFill.style.width = `${((current + 1) / total) * 100}%`;
     }
     function toggleOverview(forceOff) {
       if (forceOff === true) document.body.classList.remove('overview-mode');
       else document.body.classList.toggle('overview-mode');
+      topOfChapter();
       fitViewport();
     }
     slides.forEach((s, idx) => s.addEventListener('click', () => {
@@ -1497,6 +1583,7 @@
     });
     document.getElementById('btnPrint').addEventListener('click', () => { toggleOverview(true); window.print(); });
     window.addEventListener('keydown', (e) => {
+      if (reader.matches && (e.target.closest('.reading-scroll') || (e.key === ' ' && e.target.closest('button, a')))) return;
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); toggleOverview(true); showSlide(current + 1); }
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); toggleOverview(true); showSlide(current - 1); }
       else if (e.key === 'Home') { toggleOverview(true); showSlide(0); }
@@ -1505,6 +1592,12 @@
       else if (e.key.toLowerCase() === 'f') { if (!document.fullscreenElement) document.documentElement.requestFullscreen?.(); else document.exitFullscreen?.(); }
       else if (e.key === 'Escape') { toggleOverview(true); }
     });
+    let restoreOverview = false;
+    window.addEventListener('beforeprint', () => {
+      restoreOverview = document.body.classList.contains('overview-mode');
+      if (restoreOverview) toggleOverview(true);
+    });
+    window.addEventListener('afterprint', () => { if (restoreOverview) toggleOverview(); });
     window.addEventListener('resize', fitViewport);
     showSlide(0);
     fitViewport();
