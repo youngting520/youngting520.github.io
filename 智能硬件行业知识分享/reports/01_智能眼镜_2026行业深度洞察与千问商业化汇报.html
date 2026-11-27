@@ -37,7 +37,7 @@
     background: #0B1120; color: var(--slate-700); overflow: hidden;
   }
   .deck-stage { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .slide-viewport { width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
+  .slide-viewport { flex: 0 0 auto; width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
   .slide { width: 1280px; height: 720px; background: #FFFFFF; position: absolute; inset: 0; display: none; flex-direction: column; overflow: hidden; }
   .slide.active { display: flex; }
   .slide-inner { padding: 34px 50px 26px 50px; flex: 1; display: flex; flex-direction: column; }
@@ -133,6 +133,14 @@
   .callout-strip { background: linear-gradient(90deg, #EEF2FF 0%, #F8FAFC 100%); border-left: 4px solid var(--indigo); border-radius: 0 10px 10px 0; padding: 11px 16px; font-size: 12.8px; color: var(--navy); line-height: 1.5; margin-top: 12px; }
 
   .cover-slide { background: linear-gradient(135deg, #090F1E 0%, #111D38 55%, #1E1B4B 100%); color: #FFFFFF; }
+
+  @media screen and (max-width: 640px) {
+    .hud-bar { width: max-content; max-width: calc(100vw - 16px); flex-wrap: wrap; justify-content: center; gap: 5px; }
+    .hud-progress { display: none; }
+    .hud-btn { white-space: nowrap; }
+    body.overview-mode .deck-stage { grid-template-columns: 1fr; padding: 16px 12px 100px; overflow: hidden; }
+    body.overview-mode .slide { zoom: min(0.4, calc((100vw - 24px) / 1280px)); transform: none; margin: 0; }
+  }
 </style>
 </head>
 <body>
@@ -158,7 +166,7 @@
       <div class="slide-inner" style="position:relative; z-index:2; padding:52px 70px 44px 70px; justify-content:space-between;">
         <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(79,70,229,0.28); border:1px solid rgba(129,140,248,0.5); color:#C7D2FE; padding:7px 18px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:1px; width:fit-content;">
           <span style="width:8px; height:8px; border-radius:50%; background:#38BDF8;"></span>
-          千问智能硬件团队 · 行业调研汇报 NO.01
+          个人行业调研 · 讨论稿 01
         </div>
 
         <div style="max-width:880px;">
@@ -167,8 +175,8 @@
             2026 智能眼镜行业深度洞察<br/>与千问商业化汇报
           </h1>
           <p style="font-size:17.5px; color:#CBD5E1; line-height:1.65; border-left:4px solid #6366F1; padding-left:20px;">
-            基于公开统计口径与生产级目录价的深度洞察：拆解国内“量增额降”、视光门店净贡献账、<br/>
-            全链路可复算云端成本模型，以及千问自研与外部生态的错位拓展思路
+            国内智能眼镜零售出现量增额降。对一家做外文菜单识读的品牌，<br/>
+            千问能争取哪些调用？门店、设备和云端各需要核对哪些账？
           </p>
         </div>
 
@@ -198,10 +206,10 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">核心速览 · 01 / 02</span>
-          <span class="top-meta">严格区分零售、出货、退货与成本四组口径</span>
+          <span class="top-meta">严格区分零售、出货、退货与成本的统计口径</span>
         </div>
-        <h2 class="slide-title">4 组核验数字，看懂 2026 智能眼镜的真实规模与结构分化</h2>
-        <p class="slide-lead">前三季度国内全渠道量额齐增，但三季度已现<strong>“量增额降、均价下探”</strong>；出货量、退货率与 30 日留存必须分开评估。</p>
+        <h2 class="slide-title">看懂国内智能眼镜市场的四组数字</h2>
+        <p class="slide-lead">前三季度国内全渠道零售量额齐增，三季度则出现<strong>销量同比增长、销售额同比下降</strong>。退货与配件成本使用独立口径。</p>
 
         <div class="slide-body" style="justify-content:center; gap:20px;">
           <div class="g-4">
@@ -218,7 +226,7 @@
                 <div class="kpi-label">2026H1 阿里大陆出货份额 (Omdia)</div>
                 <div class="kpi-num">17.4% 第1</div>
               </div>
-              <div class="kpi-desc">阿里居首，影目（14.6%）、小米（14.0%）分列二、三，前三合计仅 46.0%（原始精度舍入约 46.1%）仍分散；注：H1 统计不含 10 月开售的 N1 系列。</div>
+              <div class="kpi-desc">阿里居首，影目（14.6%）、小米（14.0%）分列二、三，前三按机构原文合计 46.1%仍分散；注：H1 统计不含 10 月开售的 N1 系列。</div>
             </div>
 
             <div class="kpi-card rose">
@@ -226,7 +234,7 @@
                 <div class="kpi-label">机构披露行业退货率区间 (洛图)</div>
                 <div class="kpi-num">30% – 70%</div>
               </div>
-              <div class="kpi-desc">洛图披露电商渠道退货区间，未分平台公布样本均值；实操须区分“付款取消、签收后退货、激活后 30 日留存”。</div>
+              <div class="kpi-desc">公开报道引述洛图的退货率区间，具体渠道、样本与观察窗口待核；实操须区分“付款取消、签收后退货、激活后 30 日留存”。</div>
             </div>
 
             <div class="kpi-card amber">
@@ -244,7 +252,7 @@
         </div>
 
         <div class="slide-footer">
-          <span>数据源：洛图科技 2026Q3 报告、Omdia 2026H1 大陆 AI 眼镜出货追踪；BOM 为第 9 页情景估算示例</span>
+          <span>数据来源　<a href="https://optics.ofweek.com/2026-11/ART-250003-8420-30712740.html" target="_blank" rel="noopener noreferrer">洛图科技季报</a> · <a href="https://omdia.tech.informa.com/pr/2026/sep/global-ai-glasses-shipments-more-than-doubled-in-1h26-hitting-a-record-4point2-million" target="_blank" rel="noopener noreferrer">Omdia 上半年出货追踪</a>　|　BOM 为第 9 页的情景估算。</span>
           <span class="pg">02 / 18</span>
         </div>
       </div>
@@ -257,13 +265,13 @@
           <span class="section-pill">核心速览 · 02 / 02</span>
           <span class="top-meta">经营规律（含验证指标）与千问商业化切入思路</span>
         </div>
-        <h2 class="slide-title">决定 2026–2027 胜负的 5 个经营关键与 3 条商业化思路</h2>
-        <p class="slide-lead">把公开数据与商业判断明确拆开：每条规律均附可落地的<strong>一线验证指标</strong>，便于入职后结合团队真实数据校准。</p>
+        <h2 class="slide-title">哪些经营判断值得用客户数据验证？</h2>
+        <p class="slide-lead">公开资料勾勒了市场和产品形态。下面五个问题仍需要机型实测、使用日志或门店订单才能回答。</p>
 
         <div class="slide-body">
           <div class="g-55-45" style="flex:1; align-items:stretch;">
             <div class="card-white" style="display:flex; flex-direction:column; justify-content:flex-start;">
-              <div class="card-h" style="margin-bottom:13px;">5 个行业底层经营判断（附验证抓手）</div>
+              <div class="card-h" style="margin-bottom:13px;">五个需要一线证据的问题</div>
               <div style="display:flex; flex-direction:column; gap:13px; flex:1; justify-content:space-between;">
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-indigo" style="margin-top:2px;">01</span>
@@ -271,19 +279,19 @@
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-indigo" style="margin-top:2px;">02</span>
-                  <div style="font-size:12.9px; line-height:1.48;"><strong>形态四分清晰，成镜配重决定日戴门槛：</strong>评估佩戴须测<strong>装处方片后总重（>45–50g 易疲劳）</strong>；Q3 均价 AR（2,817 元，含分体观影）远高于拍摄（877 元）。</div>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>形态四分清晰，成镜配重决定日戴门槛：</strong>评估佩戴须测<strong>装处方片后总重和佩戴反馈</strong>；Q3 均价 AR（2,817 元，含分体观影）远高于拍摄（877 元）。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-indigo" style="margin-top:2px;">03</span>
-                  <div style="font-size:12.9px; line-height:1.48;"><strong>视光门店的核心是单笔净贡献账：</strong>硬件返点叠加按 <strong>50%–65% 配片率</strong>折算的镜片毛利，再扣 3–4 倍试戴、教学与售后工时，才算清真实主推意愿。</div>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>门店每售出一副能赚多少？</strong>配片率乘以镜片毛利，只是其中一项。还需核实硬件返点、试戴人力、未成交客流与重配成本。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-indigo" style="margin-top:2px;">04</span>
-                  <div style="font-size:12.9px; line-height:1.48;"><strong>云端控本须算全链路且严守 API 规范：</strong>分开核算 ASR、<strong>TTS、VLM 与实时音视频流</strong>（TTS 与实时流最烧钱）；<strong>严禁将交互式 Token Plan 用于生产后端</strong>。</div>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>分别核算转写、播报、图片识读与实时语音。</strong>按功能记录付费调用，比较每次成功任务的成本。硬件后端使用获准生产的 API 或合同资源。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-indigo" style="margin-top:2px;">05</span>
-                  <div style="font-size:12.9px; line-height:1.48;"><strong>独立品牌普遍多模型化，抢高价值默认调用：</strong>如 Rokid 按地区/版本配置多模型，BD 应聚焦验证识物、翻译等视觉高频任务的准确率与延迟优势。</div>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>多模型机型由谁决定默认调用？</strong>如 Rokid 按地区与版本配置模型，需核对菜单识读等具体任务的当前供应商、效果和切换权限。</div>
                 </div>
               </div>
             </div>
@@ -293,7 +301,7 @@
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(129,140,248,0.4); border-radius:10px; padding:13px 15px;">
                 <div style="font-size:13.8px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">思路 01 · 深化标杆视觉与出海托管（Rokid / 雷鸟）</div>
-                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">Rokid（Style/Glasses 2/Color）与<strong>雷鸟 iO（2026.8 发、34g 轻光波导、国补 1,996 起、双 11 光波导单品 TOP1 且已接入通义千问）/ V3 / X3 Pro</strong> 标杆落地；重点抢占<strong>外文菜单、路牌识读与翻译</strong>的高毛利路由，并切入海外企业托管 API。</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">对 Rokid、雷鸟等公开已有 AI 功能的机型，先核实<strong>地区、版本以及谁决定默认模型</strong>。外文菜单、路牌可作为小样本测试任务，海外托管另查需求。</div>
               </div>
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(56,189,248,0.4); border-radius:10px; padding:13px 15px;">
@@ -323,8 +331,8 @@
           <span class="section-pill">01 · 市场全景</span>
           <span class="top-meta">双口径辨析、2026 国补硬规则与 Q3 零售信号</span>
         </div>
-        <h2 class="slide-title">国内 Q3 现“量增额降、均价骤降 25.4%”，须严守零售与出货口径边界</h2>
-        <p class="slide-lead">左图聚焦<strong>洛图 2026 国内全渠道零售分季实绩与全年预测</strong>；右栏对照 IDC 出货口径预测、Omdia 全球格局、双 11 战报与国补细则。</p>
+        <h2 class="slide-title">国内三季度零售量同比增 14.3%，均价同比降 16.2%、环比降 27.5%</h2>
+        <p class="slide-lead">左图聚焦<strong>洛图 2026 国内全渠道零售分季实绩与全年预测</strong>；右栏对照 IDC 出货口径预测、Omdia 全球格局、线上品类数据与国补细则。</p>
 
         <div class="slide-body">
           <div class="g-60-40" style="flex:1; align-items:stretch;">
@@ -382,7 +390,7 @@
                 <text x="141" y="92" font-size="11.6" font-weight="800" fill="#3730A3" text-anchor="middle">均价 ¥2,068</text>
                 <path d="M 202 88 Q 254 90 288 128" fill="none" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="5 3" marker-end="url(#arrDrop)"/>
                 <rect x="226" y="56" width="84" height="22" rx="11" fill="#DC2626"/>
-                <text x="268" y="71" font-size="11.2" font-weight="800" fill="#FFF" text-anchor="middle">骤降 -25.4%</text>
+                <text x="268" y="71" font-size="11.2" font-weight="800" fill="#FFF" text-anchor="middle">较 H1 -25.4%</text>
                 <rect x="262" y="132" width="136" height="24" rx="12" fill="#FEF2F2" stroke="#FCA5A5"/>
                 <text x="330" y="148" font-size="11.6" font-weight="800" fill="#991B1B" text-anchor="middle">均价跌至 ¥1,542</text>
                 <rect x="256" y="162" width="148" height="22" rx="6" fill="#FFFBEB" stroke="#FCD34D"/>
@@ -398,7 +406,7 @@
                 <text x="499" y="287" font-size="13" font-weight="800" fill="#0F172A" text-anchor="middle">2026E 全年预测</text>
                 <text x="499" y="301" font-size="10.4" fill="#64748B" text-anchor="middle">Q1–Q3 销额 27.2 亿</text>
               </svg>
-              <div style="font-size:10.5px; color:#64748B; line-height:1.38;">注：洛图 2026Q1–Q3 累计 145.3 万台 / 27.2 亿元（H1 90.9 万 / 18.8 亿；Q3 54.4 万 / 8.4 亿），预计全年零售 <strong>205–215 万台</strong>，不含 VR/MR 头显及部分 B 端（¥1,542 为洛图原始精度公布值，按 8.4 亿/54.4 万粗算约 ¥1,544）。</div>
+              <div style="font-size:10.5px; color:#64748B; line-height:1.38;">洛图公布三季度均价 1,542 元。图中 −25.4% 是与上半年均价 2,068 元比较。全年 205万–215 万台为机构预测。<a href="https://optics.ofweek.com/2026-11/ART-250003-8420-30712740.html" target="_blank" rel="noopener noreferrer">洛图科技季报</a></div>
             </div>
 
             <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
@@ -411,15 +419,15 @@
                 <p style="font-size:11.6px; line-height:1.42;">扣除商家优惠后<strong>单件 ≤ 6,000 元享 15% 补贴、封顶 500 元</strong>（≥ 3,333 元拿满）。千问 G1 标价 2,899 元（叠优惠+国补到手 1,997 元起），N1 标 2,899 / N1 Pro 标 3,399 元（到手 2,218 / 2,600 元起）；华为 2,499–2,899 元。</p>
               </div>
               <div class="card-rose" style="flex:1; padding:11px 14px;">
-                <div class="card-h" style="color:#991B1B; margin-bottom:4px; font-size:14px;"><span class="tag t-rose">Q3 &amp; 双 11</span> 低价分化与光波导高增</div>
-                <p style="font-size:11.6px; line-height:1.42;">洛图 Q3 线上无屏现<strong>清野销量 16.5% 第 1（额 6.0%）vs 华为销额 30.1% 第 1</strong>，拍摄均价跌至 877 元；<strong>2026 双 11 光波导高增</strong>，<strong>雷鸟双 11 市占 37.2%、全球累计出货破百万台</strong>，头部品牌正靠光学体验守住溢价。</p>
+                <div class="card-h" style="color:#991B1B; margin-bottom:4px; font-size:14px;"><span class="tag t-rose">Q3 线上监测</span> 分品类看销量与销额</div>
+                <p style="font-size:11.6px; line-height:1.42;">洛图三季度线上监测显示，无屏眼镜中清野销量占 16.5%、销额占 6.0%，华为销额占 30.1%。线上 AR 眼镜中，雷鸟销量占 36.3%。</p>
               </div>
             </div>
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 市场全景与政策口径</span>
+          <span>零售与出货口径　<a href="https://optics.ofweek.com/2026-11/ART-250003-8420-30712740.html" target="_blank" rel="noopener noreferrer">洛图科技季报</a> · <a href="https://omdia.tech.informa.com/pr/2026/sep/global-ai-glasses-shipments-more-than-doubled-in-1h26-hitting-a-record-4point2-million" target="_blank" rel="noopener noreferrer">Omdia 上半年出货追踪</a></span>
           <span class="pg">04 / 18</span>
         </div>
       </div>
@@ -468,7 +476,7 @@
               <tr class="hl">
                 <td class="b">千问生态观察</td>
                 <td>自有眼镜直连高德/支付宝/淘宝/钉钉；外部品牌合作须对齐非核心生活插件分级开放边界与数据隔离</td>
-                <td>瞄准未获 Android XR 首批授权的国产出海品牌，主推<strong>阿里云新加坡/欧美托管 API 与 PTU</strong>（开源权重仅作端侧/开发者生态钩子）</td>
+                <td>瞄准未获 Android XR 首批授权的国产出海品牌，主推<strong>阿里云新加坡/欧美托管 API 与 PTU</strong>（开源自部署另计云资源）</td>
               </tr>
             </tbody>
           </table>
@@ -492,7 +500,7 @@
           <span class="section-pill">02 · 形态与需求</span>
           <span class="top-meta">四大产品形态边界、价格锚点与海内外隐私合规红线</span>
         </div>
-        <h2 class="slide-title">产品形态四分：补齐分体观影盘，严守生物隐私与防偷拍新标杆</h2>
+        <h2 class="slide-title">四类眼镜的能力和使用场景有何差异？</h2>
         <p class="slide-lead">千问 G1 / N1 卡位无屏拍摄，S1 卡位单绿光波导；分体式 BirdBath 占国内 AR 线上出货基本盘，须与轻光波导分开研判。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
@@ -567,7 +575,7 @@
           </div>
 
           <div class="callout-strip" style="margin-top:10px; padding:9px 14px; background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D; font-size:12px; line-height:1.45;">
-            <strong>隐私与合规红线升级：</strong>① <strong>国内生物/健康红线：</strong>N1 Pro 虹膜支付与健康监测属 <strong>PIPL 敏感个人信息</strong>，健康功能须严守 <strong>NMPA 非医疗器械</strong>宣称边界；② <strong>海外防偷拍新标杆：</strong>Google Android XR 已标配<strong>“遮挡指示灯强制停录 + AI 视觉查询上传云端前路人人脸自动打码”</strong>，出海方案必须前置区域数据驻留与边缘脱敏。
+            <strong>隐私设计因产品和地区而异。</strong>虹膜与健康数据涉及敏感个人信息，产品宣称、处理目的及授权方式需由法务核对。Google 的联名眼镜设计为遮挡指示灯时停止录像，并在 Gemini 处理视觉查询前遮盖旁人人脸。<a href="https://blog.google/innovation-and-ai/technology/safety-security/intelligent-eyewear-privacy-protections/" target="_blank" rel="noopener noreferrer">Google 联名眼镜隐私说明</a>
           </div>
         </div>
 
@@ -583,9 +591,9 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">02 · 形态与需求</span>
-          <span class="top-meta">退货口径核验、法理边界与四大硬核工程红线</span>
+          <span class="top-meta">退货口径核验、法理边界与四类工程测试</span>
         </div>
-        <h2 class="slide-title">线上退货与留存怎么看？先厘清口径，再直面 4 条硬核工程红线</h2>
+        <h2 class="slide-title">线上退货如何计量，哪些佩戴问题值得实测？</h2>
         <p class="slide-lead">行业仅披露整体退货区间（30%–70%），须拆开取消、退货与 30 日活跃；日戴门槛取决于<strong>重量、温升、续航与手机 OS 保活</strong>。</p>
 
         <div class="slide-body">
@@ -600,7 +608,7 @@
                 <line x1="8" y1="24" x2="382" y2="24" stroke="#CBD5E1" stroke-width="1"/>
 
                 <!-- Row 1: Verified range -->
-                <text x="8" y="46" font-size="13" font-weight="800" fill="#991B1B">洛图披露行业退货区间（已公开）</text>
+                <text x="8" y="46" font-size="13" font-weight="800" fill="#991B1B">公开资料提及的退货区间（样本待核）</text>
                 <rect x="8" y="54" width="374" height="24" rx="5" fill="#F1F5F9"/>
                 <rect x="120" y="54" width="150" height="24" rx="5" fill="#DC2626"/>
                 <text x="394" y="71" font-size="14.5" font-weight="800" fill="#DC2626">30%–70%</text>
@@ -628,16 +636,16 @@
 
             <div style="display:flex; flex-direction:column; justify-content:space-between; gap:9px;">
               <div class="card-rose" style="padding:10px 14px;">
-                <div style="font-size:13.6px; font-weight:800; color:#991B1B; margin-bottom:2px;">1. 成镜 >45–50g 佩戴疲劳线（近视片另增 10–15g）</div>
-                <div style="font-size:12px; color:#334155; line-height:1.44;">常规眼镜仅约 20g；如 <strong>55g 全彩机加配近视片即达 65–70g</strong>，极易压鼻梁、滑落与夹头，评估必须以“装片成镜重量+前后重心”为准。</div>
+                <div style="font-size:13.6px; font-weight:800; color:#991B1B; margin-bottom:2px;">1. 装片后重量与配重</div>
+                <div style="font-size:12px; color:#334155; line-height:1.44;">记录具体镜框、镜片度数、装片后总重与前后重心。把连续佩戴时长和压鼻、滑落、夹头等反馈配对观察。</div>
               </div>
               <div class="card-amber" style="padding:10px 14px;">
-                <div style="font-size:13.6px; font-weight:800; color:#92400E; margin-bottom:2px;">2. 镜腿 >43°C 温升红线 &amp; 连续录像 30–45min 续航极限</div>
-                <div style="font-size:12px; color:#334155; line-height:1.44;">连续录像/实时视觉流极速触发 <strong>43°C 表面温升红线</strong>与降频，实用续航仅 <strong>30–45 分钟</strong>；千问 G1/S1/N1 双电池热插拔换电直击此痛点。</div>
+                <div style="font-size:13.6px; font-weight:800; color:#92400E; margin-bottom:2px;">2. 测镜腿表面温度和连续录像时长</div>
+                <div style="font-size:12px; color:#334155; line-height:1.44;">在相同环境温度、分辨率和电池状态下实测表面温度、降频点、停止录像时间，并记录换电能否恢复任务。</div>
               </div>
               <div class="card-indigo" style="padding:10px 14px;">
-                <div style="font-size:13.6px; font-weight:800; color:#3730A3; margin-bottom:2px;">3. 手机 OS 后台蓝牙保活限制（独立眼镜头号工程硬伤）</div>
-                <div style="font-size:12px; color:#334155; line-height:1.44;"><strong>iOS / HarmonyOS / 澎湃</strong>严苛杀后台导致非手机大厂眼镜频繁断连、消息漏报与唤醒失灵，手机厂拥系统白名单优势，独立品牌须靠 SDK 重连优化缓解。</div>
+                <div style="font-size:13.6px; font-weight:800; color:#3730A3; margin-bottom:2px;">3. 手机后台权限和蓝牙重连</div>
+                <div style="font-size:12px; color:#334155; line-height:1.44;">分 iOS、HarmonyOS 和安卓机型记录熄屏后的重连时间、漏报及唤醒失败率；保留系统版本与权限设置。</div>
               </div>
               <div class="card" style="padding:10px 14px;">
                 <div style="font-size:13.6px; font-weight:800; color:#0F172A; margin-bottom:2px;">4. 处方验配偏差与公共场景语音社交门槛</div>
@@ -710,8 +718,8 @@
           <span class="section-pill">03 · 供应链与成本</span>
           <span class="top-meta">BOM 严格等比拆解、芯片分层口径与整机 UE 压测</span>
         </div>
-        <h2 class="slide-title">BOM 校准与整机 UE 压测：纯卖硬件已兜不住长期云端费用</h2>
-        <p class="slide-lead">区分<strong>国产低本芯 / AR1+恒玄双芯 / 三芯旗舰</strong>三档底座；计入税费、投流与退货折损后，硬件毛利已无力兜底每年上百元云费。</p>
+        <h2 class="slide-title">物料成本如何影响一副眼镜可以承担的云服务费用？</h2>
+        <p class="slide-lead">物料表列出三类配置的估算。判断硬件能补贴多少云费，还需要品牌结算价、渠道费用、退货成本及用户活跃天数。</p>
 
         <div class="slide-body">
           <div class="g-55-45" style="flex:1; align-items:stretch;">
@@ -785,8 +793,8 @@
                 <p style="font-size:12px; line-height:1.46;">单色 MicroLED + 衍射光波导已支撑 3,000–4,000 元价位（示例光学占 41.6%）；双目全彩受限于光机与波导片良率，降本节奏仍取决于产线爬坡。</p>
               </div>
               <div class="card-rose" style="flex:1; padding:12px 15px;">
-                <div class="card-h" style="color:#991B1B; margin-bottom:5px; font-size:14.2px;"><span class="tag t-rose">整机 UE 警示</span> 硬件毛利兜不住长期云费</div>
-                <p style="font-size:12px; line-height:1.46;">计入 <strong>13% 增值税、20%+ 渠道投流与 40% 退货翻新折损</strong>后，1,999 元主流机与 877 元白牌纯卖硬件均承压甚至亏损，<strong>已无力兜底每年上百元云费</strong>；商业模式必须向<strong>“硬件预装基础额度包 + 增值功能（同传/会议/实时视觉）C 端订阅分成”</strong>演进。</p>
+                <div class="card-h" style="color:#991B1B; margin-bottom:5px; font-size:14.2px;"><span class="tag t-rose">整机贡献</span> 按最终留单核算</div>
+                <p style="font-size:12px; line-height:1.46;">按同一批订单，把不含税留单收入减去对应整机成本、渠道及投流费用，再扣退货逆向物流、翻新损失和质保。用剩余贡献与各活跃度的云账比较。需向品牌核实退货率和每件损失。</p>
               </div>
             </div>
           </div>
@@ -869,10 +877,10 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">03 · 渠道结构性壁垒</span>
-          <span class="top-meta">视光配镜网络与门店单笔净贡献账</span>
+          <span class="top-meta">门店订单、试戴工时与售后成本</span>
         </div>
-        <h2 class="slide-title">视光渠道壁垒：配镜网络已起势，胜负在门店单笔净贡献账</h2>
-        <p class="slide-lead">同一笔 O2O 订单带来镜片毛利与硬件返点，但须按<strong>50%–65% 处方配片率折算</strong>并扣<strong>3–4 倍试戴教学工时</strong>，方知真实净赚。</p>
+        <h2 class="slide-title">配镜门店每卖一副能留下多少贡献？</h2>
+        <p class="slide-lead">估算单位为一笔最终成交的硬件订单。先算镜片贡献，再查硬件结算及门店实际支出。线上和线下渠道分别统计。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="card-white" style="padding:13px 16px;">
@@ -888,13 +896,13 @@
                 <line x1="250" y1="56" x2="282" y2="56" stroke="#DC2626" stroke-width="2.2" marker-end="url(#arRed)"/>
                 <rect x="290" y="38" width="240" height="35" rx="6" fill="#FFF" stroke="#FCA5A5"/><text x="410" y="60" font-weight="700" fill="#0F172A">脸型夹头 / 近视盲配不适</text>
                 <line x1="535" y1="56" x2="567" y2="56" stroke="#DC2626" stroke-width="2.2" marker-end="url(#arRed)"/>
-                <rect x="575" y="38" width="240" height="35" rx="6" fill="#FFF" stroke="#FCA5A5"/><text x="695" y="60" font-weight="800" fill="#DC2626">签收后退货（行业区间 30%–70%）</text>
+                <rect x="575" y="38" width="240" height="35" rx="6" fill="#FFF" stroke="#FCA5A5"/><text x="695" y="60" font-weight="800" fill="#DC2626">按平台记录签收后退货率</text>
                 <line x1="820" y1="56" x2="852" y2="56" stroke="#DC2626" stroke-width="2.2" marker-end="url(#arRed)"/>
                 <rect x="860" y="38" width="240" height="35" rx="6" fill="#DC2626"/><text x="980" y="60" font-weight="800" fill="#FFF">计入翻新折损与逆向物流</text>
               </g>
 
               <rect x="4" y="102" width="1112" height="84" rx="10" fill="#ECFDF5" stroke="#A7F3D0"/>
-              <text x="20" y="124" font-size="13.2" font-weight="800" fill="#065F46">模式 B：线上预约 + 线下视光验配（分别核算门店单笔净贡献与 30 日留存）</text>
+              <text x="20" y="124" font-size="13.2" font-weight="800" fill="#065F46">模式 B：线上预约 + 线下验配（核对每笔成交的收入、工时、售后与 30 日留存）</text>
               <g font-size="12.8" text-anchor="middle">
                 <rect x="20" y="136" width="225" height="37" rx="6" fill="#FFF" stroke="#6EE7B7"/><text x="132" y="159" font-weight="700" fill="#0F172A">线上种草 → 到店试戴筛选</text>
                 <line x1="250" y1="154" x2="282" y2="154" stroke="#059669" stroke-width="2.2" marker-end="url(#arGrn)"/>
@@ -917,8 +925,8 @@
               <div style="font-size:11.9px; line-height:1.48; color:#334155;">小米可在有品定制明月镜片，也可在博士/宝岛/千叶等 <strong>400 余家合作门店</strong>验配；康耐特服务多家头部高折轻薄片。</div>
             </div>
             <div class="card-amber" style="padding:13px 15px;">
-              <div style="font-size:13.8px; font-weight:800; color:#92400E; margin-bottom:5px;">门店单笔净贡献测算</div>
-              <div style="font-size:11.9px; line-height:1.48; color:#334155;">镜片毛利 520–600 元按 <strong>50%–65% 处方配片率</strong>折算，期望镜片毛利约 <strong>¥260–390</strong>；叠 <strong>15%–20% 硬件返点</strong>再扣 <strong>3–4 倍试戴/教学导购工时</strong>，才是真实净赚。</div>
+              <div style="font-size:13.8px; font-weight:800; color:#92400E; margin-bottom:5px;">每笔成交的镜片贡献（假设）</div>
+              <div style="font-size:11.9px; line-height:1.48; color:#334155;">若配片毛利 520–600 元、配片率 50%–65%，每笔硬件成交期望镜片毛利为 <strong>260–390 元</strong>。硬件返点按合同结算基数计，扣除实际工时×时薪、未成交试戴分摊及重配售后。</div>
             </div>
             <div class="card-dark" style="padding:13px 15px;">
               <div style="font-size:13.8px; font-weight:800; color:#93C5FD; margin-bottom:5px;">传统眼镜品牌切口</div>
@@ -999,7 +1007,7 @@
 
                 <rect x="514" y="224" width="138" height="40" rx="20" fill="#0284C7"/>
                 <text x="583" y="242" font-size="11.3" font-weight="800" fill="#FFF" text-anchor="middle">雷鸟 iO / V3 / X3 Pro</text>
-                <text x="583" y="257" font-size="9.1" fill="#E0F2FE" text-anchor="middle">iO/V3 接千问 · 双11 37.2%</text>
+                <text x="583" y="257" font-size="9.1" fill="#E0F2FE" text-anchor="middle">雷鸟 Q3 线上 AR 量占 36.3%</text>
 
                 <rect x="492" y="278" width="160" height="40" rx="20" fill="#0EA5E9"/>
                 <text x="572" y="296" font-size="11.2" font-weight="800" fill="#FFF" text-anchor="middle">Rokid Glasses 2 / Color</text>
@@ -1021,11 +1029,11 @@
             <div style="display:flex; flex-direction:column; justify-content:space-between; gap:11px;">
               <div class="card-indigo" style="flex:1; padding:12px 15px;">
                 <div class="card-h" style="margin-bottom:4px; font-size:14.4px;">格局 1：大陆 H1 格局仍分散</div>
-                <p style="font-size:11.9px; line-height:1.46;">Omdia 2026H1 大陆 AI 眼镜出货前三为<strong>阿里（17.4%）、影目（14.6%）、小米（14.0%）</strong>，合计仅 <strong>46.0%（原始精度舍入约 46.1%）</strong>，未形成 Meta 全球 81.3% 式寡头垄断。</p>
+                <p style="font-size:11.9px; line-height:1.46;">Omdia 统计显示，上半年全球 AI 眼镜出货中 Meta 占 81.3%。中国大陆前三为阿里、影目、小米，机构公布合计为 46.1%。</p>
               </div>
               <div class="card-rose" style="flex:1; padding:12px 15px;">
-                <div class="card-h" style="color:#991B1B; margin-bottom:4px; font-size:14.4px;">格局 2：Q3 量额错位 &amp; 双 11 光波导高增</div>
-                <p style="font-size:11.9px; line-height:1.46;">Q3 线上无屏现<strong>清野销量 16.5% 第 1（额 6.0%）vs 华为销额 30.1% 第 1</strong>（前四：华为/小米/雷鸟/千问）；<strong>2026 双 11 光波导高增</strong>，<strong>雷鸟双 11 市占 37.2%、全球累计出货破百万台</strong>（雷鸟 iO 夺光波导单品 TOP1）。</p>
+                <div class="card-h" style="color:#991B1B; margin-bottom:4px; font-size:14.4px;">格局 2：Q3 线上 AR 与无屏份额</div>
+                <p style="font-size:11.9px; line-height:1.46;">洛图三季度线上监测中，雷鸟的 AR 眼镜销量份额为 36.3%，Rokid 为 22.0%。无屏眼镜中，清野销量第一（16.5%），华为销额第一（30.1%）。</p>
               </div>
               <div class="card" style="flex:1; padding:12px 15px;">
                 <div class="card-h" style="margin-bottom:4px; font-size:14.4px;">格局 3：现货单绿走量 · 全彩交付待验</div>
@@ -1082,8 +1090,8 @@
                 <td class="b">雷鸟 iO / V3 /<br/>X3 Pro</td>
                 <td><strong>iO 轻光波导 国补 1,996 起</strong><br/>V3 无屏 1,799 / X3 Pro 全彩 <strong>8,999 元</strong></td>
                 <td><strong>iO / V3 均接入通义千问</strong></td>
-                <td><strong>iO（2026.8 发，34g）夺双 11 光波导单品 TOP1</strong>；雷鸟双 11 市占 <strong>37.2%</strong>、全球累计出货破百万台，合资博士拓展线下</td>
-                <td>X3 Pro 优惠后仍为 <strong>8,999 元，超 6,000 元门槛不适用国补</strong>；多机型并存下须守住千问默认视觉路由</td>
+                <td>iO 为轻光波导机型，V3 为无屏拍摄机型。洛图三季度线上监测中，雷鸟各款 AR 眼镜合计销量份额为 36.3%。</td>
+                <td>X3 Pro 标价 8,999 元，若优惠后仍高于 6,000 元则超出补贴门槛。不同地区、版本的默认模型与付费份额需分别核实。</td>
               </tr>
               <tr class="hl">
                 <td class="b">Rokid Glasses 2 /<br/>Rokid Color</td>
@@ -1097,14 +1105,14 @@
                 <td>单绿官方 3,299(首发 2,999)<br/>Future <strong>4,999–5,999 元</strong>（<strong>约 125g+主动风扇</strong>）</td>
                 <td>智谱 + 移动九天等</td>
                 <td>Omdia 2026H1 占大陆 AI 眼镜出货 <strong>14.6%</strong>（第二）；Future 定位一体式空间计算（偏重度 AR），卡在国补线内</td>
-                <td><strong>约 125g+主动风扇</strong>远超第 7 页 >45–50g 日戴红线，非全天轻佩戴形态；亦缺 C 端生活交易闭环</td>
+                <td>约 125g 并带主动风扇。适合的佩戴时长需按目标人群实测，再与轻量款比较。</td>
               </tr>
               <tr>
                 <td class="b">Ray-Ban Meta /<br/>Google Android XR</td>
                 <td>Meta 约 2,150/5,750 元<br/>Google 联名 <strong>USD 395/449</strong></td>
                 <td>Meta AI /<br/>Gemini</td>
                 <td>依视路 2025 售 AI 眼镜<strong>超 700 万副</strong>（Omdia 全球占 81.3%）；Google 联名 Warby Parker/GM 11.12 预购、12.10 上市</td>
-                <td>Meta 未正式入华；Android XR 标配<strong>遮挡指示灯强制停录 + AI 视觉查询上传云端前路人人脸自动打码</strong>；苹果 N50 无官方上市日</td>
+                <td>Google 联名机型设计为遮灯停录，并在 Gemini 处理视觉查询前遮盖旁人人脸。见第 6 页出处。苹果 N50 暂无官方上市日。</td>
               </tr>
             </tbody>
           </table>
@@ -1127,8 +1135,8 @@
           <span class="section-pill">05 · 大模型选型与 POC 框架</span>
           <span class="top-meta">阿里云千问（百炼）vs 火山引擎（豆包）客观对比与验证方法</span>
         </div>
-        <h2 class="slide-title">模型选型：直面火山三大威胁与自研竞合，用同设备 POC 破局</h2>
-        <p class="slide-lead">不做主观打星，客观拆解<strong>火山引擎真实威胁</strong>、<strong>千问自研竞合死结</strong>与<strong>出海云商业化正轨</strong>，并用同设备盲测建信任。</p>
+        <h2 class="slide-title">千问与豆包如何在同一台眼镜上比较？</h2>
+        <p class="slide-lead">以同一批外文菜单样本测试任务正确率、延迟与成本，另向品牌确认现有供应商、采购周期和可开放的接口。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <table class="clean-tbl" style="font-size:11.6px; line-height:1.4;">
@@ -1142,34 +1150,34 @@
             <tbody>
               <tr>
                 <td class="b">第一视角视觉 (VLM)</td>
-                <td style="background:#EEF2FF;"><strong>已有量产实战验证：</strong>Qwen-VL 落地雷鸟 iO/V3 与千问自研机；POC 用第一视角压测<strong>识物、外文菜单与遮挡答对率</strong>。</td>
-                <td>多模态迭代快、偏泛内容理解；POC 用同一批第一视角图文样本，对比<strong>答对率、拒答质量与端到端耗时</strong>。</td>
+                <td style="background:#EEF2FF;">公开机型提供视觉问答功能。具体版本、模型 ID 及付费调用份额需向负责人核实。盲测使用<strong>相同菜单图像与判分规则</strong>。</td>
+                <td>在同一设备、网络与图像样本上，记录回答正确率、拒答是否适当，以及从点击到完整结果的耗时。</td>
               </tr>
               <tr>
                 <td class="b">实时语音 &amp; RTC</td>
-                <td style="background:#EEF2FF;">支持百炼实时语音或分段级联（ASR→LLM→TTS）灵活降本；重点帮客户平衡<strong>首音延迟与高昂的 TTS/实时流单价</strong>。</td>
-                <td><strong>真实强项：RTC 低延迟音视频底座 + 端到端实时语音</strong>；须在同弱网与通勤高噪下实测断连恢复、拟人度与全链路年本。</td>
+                <td style="background:#EEF2FF;">支持百炼实时语音或分段级联（ASR→LLM→TTS）灵活降本；重点帮客户平衡<strong>首音延迟、播报费用与实时语音时长</strong>。</td>
+                <td>可选 RTC 实时交互方案。在相同弱网与通勤噪声下比较重连时间、端到端延迟与年度用量费用。</td>
               </tr>
               <tr>
                 <td class="b">生产 API 计费</td>
                 <td style="background:#EEF2FF;"><strong>梯队透明：</strong><code>qwen-flash</code> ≤128K 输入 ¥0.15/输出 ¥1.5/M（<code>Qwen3.8-Flash</code> ¥0.80/¥2.70/M），配上下文缓存与资源包控本。</td>
-                <td>后付费单价激进、并发策略灵活；须核对同规格单价、TTS 计费口径与限流条款，按<strong>同一负载复算全年总账</strong>。</td>
+                <td>核对相同地区、并发和流量档位的单价、TTS 计费单位与限流条款，按同一负载计算全年费用。</td>
               </tr>
               <tr>
                 <td class="b">开源 &amp; 出海变现</td>
-                <td style="background:#EEF2FF;"><strong>纠正商业逻辑：开源 Qwen 权重仅作开发者生态钩子与端侧标准（跑在 AWS 阿里云不收 API 钱）</strong>；出海变现聚焦<strong>阿里云新加坡/欧美企业托管 API 与 PTU</strong>，专打未获 Android XR 首批授权的国产出海品牌。</td>
+                <td style="background:#EEF2FF;">客户使用开源权重自行部署时，云收入取决于其购买的计算或托管服务。先确认目标地区、托管意愿与使用规模，再比较按量和预置吞吐。</td>
                 <td>以闭源公有云 API 为主；出海须按目标国逐项核验海外可用地域、人脸脱敏合规与跨境数据处理审查边界。</td>
               </tr>
               <tr>
-                <td class="b">生态竞合 &amp; 威胁</td>
-                <td style="background:#EEF2FF;"><strong>直面竞合死结：</strong>阿里自研大陆第 1（G1/N1/N1 Pro/S1 覆盖 2,000–4,000 元），若生活接口全封闭则外部护城河落空；须向团队对齐<strong>非核心生活插件（高德轻导航/本地生活）分级开放边界</strong>。</td>
-                <td><strong>三大真实威胁：无自有眼镜包袱 + RTC 底座 + 抖音投流换模型</strong>；应对打法是将模型采购与渠道投流分开核算，用真实留单 CAC 与 30 日留存破局。</td>
+                <td class="b">产品与渠道关系</td>
+                <td style="background:#EEF2FF;">自有机型与外部品牌在部分价位重叠。对外可承诺的导航、生活服务等接口，以及客户数据隔离方式，应以各业务线确认结果为准。</td>
+                <td>RTC 方案与渠道资源可能影响采购。具体流量支持、价格和绑定条件须查客户书面条款，模型费用与留单获客成本分开核算。</td>
               </tr>
             </tbody>
           </table>
 
           <div class="callout-strip" style="background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D; padding:9px 14px; font-size:11.9px; margin-top:8px;">
-            <strong>计费合规红线：</strong>线上眼镜后端必须采用获准生产的<strong>按量 API / 企业协议资源包</strong>；阿里云百炼 <strong>Token Plan / Coding Plan 明令仅限交互式开发工具</strong>，严禁作为硬件生产计费依据！（华为/小米偏封闭自研，讯飞重政企方言，DeepSeek 常作文本路由层。）
+            <strong>计费合规红线：</strong>线上眼镜后端必须采用获准生产的<strong>按量 API / 企业协议资源包</strong>；阿里云百炼 <strong>Token Plan / Coding Plan 明令仅限交互式开发工具</strong>。
           </div>
         </div>
 
@@ -1185,10 +1193,10 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">05 · 商业算账模型</span>
-          <span class="top-meta">按百炼北京公开目录价全链路可复算测算（人民币）</span>
+          <span class="top-meta">百炼北京目录价 · 单台年度使用情景</span>
         </div>
-        <h2 class="slide-title">全链路云账升级：TTS 播报与实时音视频流才是真正成本黑洞</h2>
-        <p class="slide-lead">保留 ASR+LLM 底座，显式补齐无屏刚需 <strong>TTS 播报、会议总结、VLM 识图与全双工实时音频</strong>，帮客户把 TCO 压回盈利线。</p>
+        <h2 class="slide-title">一台眼镜一年要付多少转写、播报、识图与实时语音费？</h2>
+        <p class="slide-lead">按每年 180 个活跃日分别测算。文件转写适合异步场景，即时交互需实测延迟。实际账单随用户用量、地区与协议价格变化。</p>
 
         <div class="slide-body">
           <div class="g-60-40" style="flex:1; align-items:stretch;">
@@ -1198,8 +1206,8 @@
                   <tr>
                     <th style="width:19%; padding:7px 9px;">情景 / 链路模块</th>
                     <th style="width:31%; padding:7px 9px;">年用量假设（180 活跃天/年）</th>
-                    <th style="width:23%; padding:7px 9px;">文件 / 低配方案</th>
-                    <th style="width:27%; padding:7px 9px; background:#312E81;">实时 / 主流高体验</th>
+                    <th style="width:23%; padding:7px 9px;">文件转写方案</th>
+                    <th style="width:27%; padding:7px 9px; background:#312E81;">实时方案</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1216,48 +1224,48 @@
                     <td style="padding:6.5px 9px; background:#EEF2FF;"><strong>73.71 元/年</strong><br/><span style="font-size:10.4px; color:#3730A3;">实时转写占 71.28 元</span></td>
                   </tr>
                   <tr class="hl">
-                    <td class="b" style="padding:6px 9px;">情景 B 完整闭环<br/><span class="tag t-amber">补 TTS + 总结</span></td>
+                    <td class="b" style="padding:6px 9px;">情景 B 含播报<br/><span class="tag t-amber">补 TTS + 总结</span></td>
                     <td style="padding:6px 9px;">补齐无屏 5,400 轮刚需 TTS + 60h 会议总结（180 场×3k/400 tok）与 <code>Qwen3.8-Flash</code> 价差</td>
                     <td style="padding:6px 9px;"><strong>约 92.8 元/年</strong><br/><span style="font-size:9.8px; color:#475569;">含 <code>qwen-audio-3.1-tts-flash</code> <strong>+66.42</strong></span></td>
-                    <td style="padding:6px 9px; background:#FEF3C7;"><strong style="color:#92400E;">高达 251.9 元/年</strong><br/><span style="font-size:9.8px; color:#92400E;">实时+3.8Flash+CosyVoice <strong>+172.80</strong></span></td>
+                    <td style="padding:6px 9px; background:#FEF3C7;"><strong style="color:#92400E;">约 251.9 元/年</strong><br/><span style="font-size:9.8px; color:#92400E;">实时+3.8Flash+CosyVoice <strong>+172.80</strong></span></td>
                   </tr>
                   <tr>
                     <td class="b" style="padding:6px 9px;">情景 C 增量<br/><span class="tag t-rose">VLM / Live</span></td>
-                    <td style="padding:6px 9px;">VLM 识图（日均 5–10 张，1,500/200 tok）vs 全双工实时音频（活跃日仅 5 分钟）</td>
-                    <td style="padding:6px 9px; background:#ECFDF5;"><strong style="color:#065F46;">VLM +1.4–2.9 元/年</strong><br/><span style="font-size:9.9px; color:#059669;">Qwen-VL-Plus 北京价 0.8/2.0 元/M</span></td>
-                    <td style="padding:6px 9px; background:#FEF2F2;"><strong style="color:#991B1B;">Live +179.8 元/年</strong><br/><span style="font-size:9.9px; color:#991B1B;">qwen-audio-3.1-live 北京价·须封顶</span></td>
+                    <td style="padding:6px 9px;">VLM 识图（日均 5–10 张，1,500/200 tok）vs 另计双工语音（活跃日连接 5 分钟）</td>
+                    <td style="padding:6px 9px; background:#ECFDF5;"><strong style="color:#065F46;">识图 +1.57–3.13 元/年</strong><br/><span style="font-size:9.9px;color:#059669;">Qwen3.8-Flash 北京 0.80/2.70 元/M</span></td>
+                    <td style="padding:6px 9px; background:#FEF2F2;"><strong style="color:#991B1B;">实时语音 +179.8 元/年</strong><br/><span style="font-size:9.9px;color:#991B1B;">仅指北京会话费，不含视觉处理</span></td>
                   </tr>
                 </tbody>
               </table>
 
               <div class="callout-strip" style="margin-top:7px; padding:8px 13px; font-size:11.6px; line-height:1.42; background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D;">
-                <strong>核心洞察升级：</strong>王牌 <strong>VLM 拍照识图仅 +1.4–2.9 元/年</strong>，<strong>TTS 播报（+66.42–172.80 元）与全双工实时音视频流（Live +179.8 元/年起）才是成本黑洞</strong>！必须帮客户用“端侧轻 TTS / <code>qwen-audio-3.1-tts-flash</code> 降本 + 增值能力按次/会员封顶”将 TCO 压回可盈利区间。
+                <strong>同一用量下，播报和持续连接更影响预算。</strong>5,400 次云端播报约 66.42 或 172.80 元。若另开实时语音，每个活跃日连接 5 分钟，再增加约 179.8 元。若语音会话替代原有问答，应扣除重叠的转写和播报。
               </div>
               <div style="font-size:9.6px; color:#64748B; line-height:1.34; margin-top:4px;">
-                * 复算口径（2026 北京标准价）：每轮 15s、1,000/200 tok；Paraformer v2 文件 0.288/实时 0.864 元/h；<code>qwen-flash</code> 0.15/1.5 元/M，<code>Qwen3.8-Flash</code> 0.80/2.70 元/M；会议总结 180 场×3k/400 tok；TTS <code>qwen-audio-3.1-tts-flash</code> 1.5/12 元/M（每轮 200/1,000 tok × 5,400 轮 = +66.42 元），<code>CosyVoice-v3.5-Flash</code> 0.8 元/万字符、200 汉字=400 字符（+172.80 元）；<code>Qwen-VL-Plus</code> 北京 0.8/2.0 元/M（1,500/200 tok）；<code>qwen-audio-3.1-live</code> 北京 0.00333 元/s × 300s × 180 天 ≈ +179.8 元（新加坡出海节点 0.005177 元/s ≈ +279.6 元；未含 RTC 带宽与云存储）。
+                每轮 15 秒、输入/输出 1,000/200 token。文件/实时转写 0.288/0.864 元每小时，qwen-flash 输入/输出 0.15/1.5 元每百万 token，Qwen3.8-Flash 为 0.80/2.70 元。会议总结 180 场×3,000/400 token。TTS Flash 输入/输出 1.5/12 元每百万，每轮 200/1,000 token。CosyVoice 为 0.8 元/万字符，假设每轮 200 汉字折合 400 字符。实时语音 54,000 秒×北京 0.003330 元/秒，新加坡 0.005177 元/秒；静音计时，后台模型、RTC 与存储另计。
               </div>
             </div>
 
             <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between; padding:16px 18px;">
-              <div class="card-h" style="color:#93C5FD; margin-bottom:2px;">把全链路 TCO 压回盈利区的三级控本机制</div>
+              <div class="card-h" style="color:#93C5FD; margin-bottom:2px;">三个可以随实测调整的用量参数</div>
               <div style="background:rgba(99,102,241,0.22); border:1px solid #818CF8; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13.1px; font-weight:800; color:#FFF;">① 端侧 KWS + 轻 TTS 降本拦截</div>
-                <div style="font-size:11.9px; color:#E0E7FF; margin-top:4px; line-height:1.46;">恒玄 MCU/DSP 跑离线唤醒与短指令；常规状态提示走<strong>端侧轻 TTS</strong>，云端播报首选 <strong>qwen-audio-3.1-tts-flash</strong> 替代高价音色，单台立省百元/年。</div>
+                <div style="font-size:13.1px; font-weight:800; color:#FFF;">① 测量端侧播报能覆盖的调用</div>
+                <div style="font-size:11.9px; color:#E0E7FF; margin-top:4px; line-height:1.46;">设备可在端侧处理固定提示音与短指令。对需云端播报的内容，按实际字数、音频时长和音质要求选择 TTS。</div>
               </div>
               <div style="background:rgba(2,132,199,0.22); border:1px solid #38BDF8; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13.1px; font-weight:800; color:#FFF;">② 以拍照 VLM 替代常开实时流</div>
-                <div style="font-size:11.9px; color:#BAE6FD; margin-top:4px; line-height:1.46;">优先用“按需拍照 + <strong>Qwen-VL-Plus</strong>”（仅 <strong>+1.4–2.9 元/年</strong>）承接高频识物翻译；高价全双工音视频流仅在用户显式触发时开启。</div>
+                <div style="font-size:13.1px; font-weight:800; color:#FFF;">② 按需拍照，记录单次识图消耗</div>
+                <div style="font-size:11.9px; color:#BAE6FD; margin-top:4px; line-height:1.46;">每张图假设输入 1,500、输出 200 token，目录价 <strong>0.00174 元/次</strong>。每日 5–10 张、180 天合计 1.57–3.13 元。应从真实图片和回答量测 token。</div>
               </div>
               <div style="background:rgba(5,150,105,0.22); border:1px solid #34D399; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13.1px; font-weight:800; color:#FFF;">③ 缓存降本 + 增值能力按次/会员封顶</div>
-                <div style="font-size:11.9px; color:#A7F3D0; margin-top:4px; line-height:1.46;">固定系统提示词走 Context Cache；对全双工通话、同传、会议总结与云相册前置免费额度封顶，超额转按次加油包或 C 端会员分成。</div>
+                <div style="font-size:13.1px; font-weight:800; color:#FFF;">③ 用实际会话时长核定费用</div>
+                <div style="font-size:11.9px; color:#A7F3D0; margin-top:4px; line-height:1.46;">按交互任务设置实时语音连接和静音超时，核对高频用户消耗。视频若另走抽帧或实时视觉服务，需单独计费。</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 可复算云端成本模型</span>
+          <span>核对依据　<a href="https://help.aliyun.com/zh/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">百炼目录价</a> · <a href="https://help.aliyun.com/zh/model-studio/qwen3-8-flash" target="_blank" rel="noopener noreferrer">Qwen3.8-Flash 模型与价格</a> · <a href="https://help.aliyun.com/zh/model-studio/qwen-audio-3-1-live" target="_blank" rel="noopener noreferrer">Live 计时与输入模态</a></span>
           <span class="pg">15 / 18</span>
         </div>
       </div>
@@ -1270,35 +1278,35 @@
           <span class="section-pill">05 · 客户选型顾虑预判</span>
           <span class="top-meta">基于公开资料拟定的 3 类高频异议与试点验证方法</span>
         </div>
-        <h2 class="slide-title">预判外部客户最可能的 3 类顾虑，用最小试点（POC）破冰</h2>
-        <p class="slide-lead">模型效果、渠道获客与产品竞合分开拆账——不靠口号说服客户，而是用透明测试指标建立长期专业信任。</p>
+        <h2 class="slide-title">与眼镜品牌讨论模型选择时，可以先确认哪三件事？</h2>
+        <p class="slide-lead">以下是拟议访谈问题。品牌的现有合同、默认调用、预算和采购意愿均待核实。</p>
 
         <div class="slide-body">
           <div class="g-3" style="flex:1; align-items:stretch;">
             <div class="card-white" style="border-top:4px solid #DC2626; padding:15px 17px;">
-              <div class="tag t-rose" style="margin-bottom:8px;">顾虑 01 · 火山无硬件包袱 + RTC + 抖音投流</div>
-              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“火山不做自有眼镜，还给 RTC 底座和抖音投流换模型，为何选千问？”</div>
+              <div class="tag t-rose" style="margin-bottom:8px;">问题 01 · 语音与采购成本</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“现有语音方案满足哪些延迟要求？渠道与模型是否分别采购？”</div>
               <ul class="pts" style="gap:8px;">
-                <li style="font-size:12.4px;"><strong>流量与模型分开算账：</strong>正视火山 RTC 优势与抖音冷启动价值，但须将直播单扣减退货折损算清真实留单 CAC，不拿底层模型换短期流量。</li>
-                <li style="font-size:12.4px;"><strong>同设备盲测打硬仗：</strong>用第一视角菜单/识物与高噪通勤语料同场压测千问 vs 豆包，比拼 VLM 准确度、端到端耗时与含 TTS 全链路 TCO。</li>
+                <li style="font-size:12.4px;"><strong>了解客户的真实报价。</strong>分列实时通信、模型、流量资源及其有效期，再比较留单后的获客成本。</li>
+                <li style="font-size:12.4px;"><strong>用同设备做盲测。</strong>对同一批外文菜单标注菜名、价格与单位，比较字段任务正确率、P95 延迟和每次成功识读成本。</li>
               </ul>
             </div>
 
             <div class="card-white" style="border-top:4px solid #D97706; padding:15px 17px;">
-              <div class="tag t-amber" style="margin-bottom:8px;">顾虑 02 · 自研覆盖 2,000–4,000 元竞合死结</div>
-              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“阿里自研占大陆第 1（G1/N1/N1 Pro/S1），外部接入如何防冲突且拿生态？”</div>
+              <div class="tag t-amber" style="margin-bottom:8px;">问题 02 · 自有产品与接口开放</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“外部品牌可调用哪些生活服务？各方如何管理用户数据？”</div>
               <ul class="pts" style="gap:8px;">
-                <li style="font-size:12.4px;"><strong>坦诚划界 + 错位垂类：</strong>不回避 2,000–4,000 元主流盘交集，对外主攻<strong>全彩旗舰、户外运动、跨境出海、传统框型</strong>，以雷鸟 iO/V3 与 Rokid 案例及阿里云租户隔离背书。</li>
-                <li style="font-size:12.4px;"><strong>争取插件分级开放：</strong>若生活接口一概封闭则生态护城河落空，需对内对齐<strong>高德轻导航、本地生活等非核心插件的分级开放边界</strong>。</li>
+                <li style="font-size:12.4px;"><strong>核对目标人群和价位。</strong>先了解自有机型与该品牌的重叠程度及对方顾虑，再确认数据隔离与许可范围。</li>
+                <li style="font-size:12.4px;"><strong>核对接口清单。</strong>高德轻导航、本地生活等接口的权限和商业条款，由对应业务负责人确认。</li>
               </ul>
             </div>
 
             <div class="card-white" style="border-top:4px solid #4F46E5; padding:15px 17px;">
-              <div class="tag t-indigo" style="margin-bottom:8px;">顾虑 03 · 多模型解耦与出海云变现路径</div>
-              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“我们多模型路由且要出海，如何在合规、质量与云成本间选千问？”</div>
+              <div class="tag t-indigo" style="margin-bottom:8px;">问题 03 · 机型与地区的默认模型</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:10px;">“同一款机型在不同市场由谁选模型？菜单识读和语音对话分别由哪家服务？”</div>
               <ul class="pts" style="gap:8px;">
-                <li style="font-size:12.4px;"><strong>抢 VLM 子路由 + 瞄准出海托管：</strong>主打第一视角 <strong>Qwen-VL 识物/翻译</strong>默认路由；面向未获 Android XR 首批授权的国产出海品牌，主推<strong>阿里云新加坡/欧美托管 API 与 PTU</strong>（开源 Qwen 仅作生态钩子与端侧标准）。</li>
-                <li style="font-size:12.4px;"><strong>零水分全链路算账：</strong>严禁 Token Plan 充数，按生产目录价含 TTS/VLM 压测，前置人脸打码与数据驻留合规。</li>
+                <li style="font-size:12.4px;"><strong>按任务访谈。</strong>先核实版本、语言、当前默认模型、改动权限和供应商切换成本，再估该功能可产生的付费调用。</li>
+                <li style="font-size:12.4px;"><strong>按地区核算。</strong>比较相同负载下的合同价格、延迟和可用地域，向客户确认数据处理与存储要求。</li>
               </ul>
             </div>
           </div>
@@ -1320,18 +1328,18 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">06 · 客户生态地图与优先级</span>
-          <span class="top-meta">区分存量标杆深化、上游公版杠杆与新人补位切口</span>
+          <span class="top-meta">区分公开产品线索、公版方案与待核机会</span>
         </div>
-        <h2 class="slide-title">行业客户分层与盘子估算：深化标杆 VLM 子路由，沉淀 1 套 RDK 公版</h2>
-        <p class="slide-lead">在智能硬件<strong>三大赛道（录音设备 / 智能眼镜 / 儿童陪伴玩具）</strong>横向排序中，智能眼镜列<strong>“其次推进（仅次于录音设备）”</strong>——重在卡位高毛利视觉路由与低冲突外部增量。</p>
+        <h2 class="slide-title">哪些品牌、机型和任务值得优先访谈？</h2>
+        <p class="slide-lead">若团队当前目标是取得外部品牌付费调用，建议将眼镜列为<strong>第二个验证方向</strong>。只有任务份额、价格和对接成本得到确认，才能判断其商业吸引力。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="g-2" style="flex:1; gap:13px; align-items:stretch;">
             <div class="card-indigo" style="padding:13px 16px;">
-              <div class="card-h" style="margin-bottom:6px; font-size:14.4px;"><span class="tag t-indigo">第 1 梯队 · 标杆深化（优先）</span> 头部独立 AR 先锋</div>
+              <div class="card-h" style="margin-bottom:6px; font-size:14.4px;"><span class="tag t-indigo">优先核对 · 公开适配机型</span> 头部独立 AR 先锋</div>
               <div style="font-size:13.5px; font-weight:800; color:#3730A3; margin-bottom:6px;">乐奇 Rokid · 雷鸟创新 · 影目 INMO</div>
               <ul class="pts" style="gap:5px;">
-                <li style="font-size:11.8px; line-height:1.42;"><strong>Rokid &amp; 雷鸟（存量高优）：</strong>Rokid（Glasses 2 现货/Color 2027.04 交付）重点抢占<strong>外文菜单/路牌等 VLM 子路由</strong>默认权重；<strong>雷鸟 iO（2026.8 发、34g 轻光波导、国补 1,996 起、双 11 单品 TOP1）/ V3</strong> 均已接千问，延伸至 X3 Pro 与出海托管 API。</li>
+                <li style="font-size:11.8px; line-height:1.42;"><strong>Rokid 与雷鸟：</strong>先按具体型号、地区和功能核实默认模型。若已有负责人且品牌愿意提供脱敏样本，可优先测试外文菜单或路牌识读。</li>
                 <li style="font-size:12.1px; line-height:1.45;"><strong>影目（H1 14.6%）：</strong>先核实其现有模型供应商与出海语种缺口，再评估消费线视觉切入点。</li>
               </ul>
             </div>
@@ -1364,7 +1372,7 @@
           </div>
 
           <div class="callout-strip" style="margin-top:10px; padding:9px 14px; font-size:11.6px; line-height:1.42;">
-            <strong>外部可触达云盘子情景估算（基于公开体量，待内部数据校准）：</strong>剔除自研及封闭手机大厂后，若按国内第三方年新增激活 <strong>30–50 万台</strong>、单机中度语音+视觉年云消耗 <strong>50–100 元</strong>粗测，现阶段外部纯 API 盘属<strong>千万级（约 1,500 万–5,000 万元）慢变量入口</strong>；因此重心不在短期摊大饼，而在抢占 <strong>Rokid / 雷鸟高毛利 VLM 子路由</strong>与沉淀 <strong>1 套可复用 RDK 公版</strong>（本汇报聚焦 C 端消费级盘；B 端工业/文旅眼镜 API 拟作后续专项补充）。
+            <strong>行业支出假设：</strong>30 万–50 万台第三方设备若都达到全年设定活跃度，所有语音与视觉服务按 50–100 元/台年估计，年化支出为 1,500 万–5,000 万元。<strong>只看拍照识图：</strong>沿用第 15 页每次 0.00174 元，即使这些设备全部使用千问，年化目录金额也仅约 47 万–157 万元。实际收入取决于上线月份、活跃设备、付费调用份额和合同折扣。推理和交付成本需另行核算。
           </div>
         </div>
 
@@ -1375,39 +1383,39 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 18: NEWCOMER ACTION PLAN & ALIGNMENT ==================== -->
+    <!-- ==================== SLIDE 18: GLASSES PILOT QUESTIONS ==================== -->
     <section class="slide">
       <div class="slide-inner">
         <div class="top-bar">
-          <span class="section-pill">07 · 新人落地计划与内部对齐</span>
-          <span class="top-meta">向千问智能硬件行业总监汇报 · 脚踏实地、严守边界</span>
+          <span class="section-pill">07 · 眼镜赛道验证事项</span>
+          <span class="top-meta">试点条件与继续投入的依据</span>
         </div>
-        <h2 class="slide-title">新人 90 天可控推进计划、结构性风控与待请教的 3 个内部问题</h2>
-        <p class="slide-lead">深知硬件开案周期长（6–12 个月）、头部大客已有团队深耕——我愿<strong>先沉底对齐内部口径，再聚焦指定单一切口做出最小验证</strong>。</p>
+        <h2 class="slide-title">先验证一款机型的一项功能：外文菜单识读</h2>
+        <p class="slide-lead">建议先由现有客户负责人确认对象和授权。我可以准备测试集、复算表和结果摘要，供团队决定是否继续。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="card-white" style="padding:15px 20px;">
-            <div style="font-size:14.5px; font-weight:800; color:#0F172A; margin-bottom:10px;">90 天 100% 可控执行动作（严格服从团队分工与阶段目标）</div>
+            <div style="font-size:14.5px; font-weight:800; color:#0F172A; margin-bottom:10px;">一次评估要回答的三个问题</div>
             <div class="g-3" style="gap:16px;">
               <div style="border-left:3.5px solid #0284C7; padding-left:13px;">
-                <div style="font-size:13.2px; font-weight:800; color:#0369A1;">前 30 天 · 对齐与校准</div>
+                <div style="font-size:13.2px; font-weight:800; color:#0369A1;">谁能决定默认调用？</div>
                 <ul class="pts" style="gap:5px; margin-top:5px;">
-                  <li style="font-size:12.2px;">吃透千问 C 端硬件与百炼对外商业化分工、生产 API 阶梯价与存量客户状态；</li>
-                  <li style="font-size:12.2px;">申请旁听资深同事 5–10 场客户拜访，把目录价算账器校准为一线实用工具。</li>
+                  <li style="font-size:12.2px;">核实具体机型、销售地区、现有模型供应商和负责人。</li>
+                  <li style="font-size:12.2px;">记录可调整的任务、可获取的调用量，以及品牌是否愿意参与。</li>
                 </ul>
               </div>
               <div style="border-left:3.5px solid #4F46E5; padding-left:13px;">
-                <div style="font-size:13.2px; font-weight:800; color:#3730A3;">30–60 天 · 补位与摸排</div>
+                <div style="font-size:13.2px; font-weight:800; color:#3730A3;">识读质量是否改善？</div>
                 <ul class="pts" style="gap:5px; margin-top:5px;">
-                  <li style="font-size:12.2px;">协助准备 Rokid / 雷鸟等标杆客户 POC 视觉测试集、竞品拆解与异议 FAQ；</li>
-                  <li style="font-size:12.2px;">主动承接团队精力覆盖不足的<strong>腰部垂类品牌与深圳 IDH 方案商</strong>建档摸排。</li>
+                  <li style="font-size:12.2px;">用授权或公开样本标注菜名、价格、单位和不应编答的模糊字段。</li>
+                  <li style="font-size:12.2px;">在同设备、同网络盲测现有方案和候选方案，保留样本、失败例与判分规则。</li>
                 </ul>
               </div>
               <div style="border-left:3.5px solid #059669; padding-left:13px;">
-                <div style="font-size:13.2px; font-weight:800; color:#065F46;">60–90 天 · 最小闭环</div>
+                <div style="font-size:13.2px; font-weight:800; color:#065F46;">付费份额能否覆盖投入？</div>
                 <ul class="pts" style="gap:5px; margin-top:5px;">
-                  <li style="font-size:12.2px;">在团队指导下，推动 <strong>1–2 家腰部垂类或出海方案商</strong>进入沙箱技术评估；</li>
-                  <li style="font-size:12.2px;">输出 1 份经一线验证的《眼镜垂类痛点与 TCO 破冰复盘》，尽快独立担责。</li>
+                  <li style="font-size:12.2px;">以实测 token、重试、播报与付费调用占比核算每次成功识读成本。</li>
+                  <li style="font-size:12.2px;">将测试费用、后续适配工时与可获得收入分别列示，标明待确认项。</li>
                 </ul>
               </div>
             </div>
@@ -1415,26 +1423,26 @@
 
           <div class="g-2" style="margin-top:14px; gap:18px; flex:1; align-items:stretch;">
             <div class="card-rose" style="padding:13px 16px;">
-              <div style="font-size:13.5px; font-weight:800; color:#991B1B; margin-bottom:6px;">3 条需持续警惕的行业结构性风险</div>
+              <div style="font-size:13.5px; font-weight:800; color:#991B1B; margin-bottom:6px;">开展外部测试前</div>
               <ul class="pts" style="gap:5px;">
-                <li style="font-size:12px; line-height:1.45;"><strong>补贴退坡与退货折损：</strong>持续跟踪国补周期与分渠道退货/翻新损耗，对中小客户坚持预付费资源包；</li>
-                <li style="font-size:12px; line-height:1.45;"><strong>海外 OS 生态收紧：</strong>Android XR（AURA / Google 联名）落地加快，出海客户需前置新加坡/欧美托管与接口兼容；</li>
-                <li style="font-size:11.8px; line-height:1.42;"><strong>隐私与生物特征红线：</strong>严守虹膜支付/健康监测的 <strong>PIPL 敏感信息与 NMPA 非医疗红线</strong>；出海对标 Android XR <strong>遮挡指示灯强制停录 + AI 视觉查询上传云端前路人人脸自动打码</strong>。</li>
+                <li style="font-size:12px; line-height:1.45;">客户负责人同意范围，品牌能提供合法样本及既有方案作比较。</li>
+                <li style="font-size:12px; line-height:1.45;">与客户约定字段正确率、P95 端到端延迟和单次成功任务成本的通过条件。</li>
+                <li style="font-size:11.8px; line-height:1.42;">确认授权边界、图像是否留存以及失败时如何回退。</li>
               </ul>
             </div>
             <div class="card-amber" style="padding:13px 16px;">
-              <div style="font-size:13.5px; font-weight:800; color:#92400E; margin-bottom:6px;">汇报口径边界 &amp; 待向总监请教的 3 个问题</div>
+              <div style="font-size:13.5px; font-weight:800; color:#92400E; margin-bottom:6px;">怎样判断是否继续</div>
               <ul class="pts" style="gap:5px;">
-                <li style="font-size:12px; line-height:1.45;"><strong>竞合与插件开放边界：</strong>千问自研与对外赋能间哪些客群须避让？<strong>高德轻导航、本地生活等非核心生活插件</strong>能否分级开放？</li>
-                <li style="font-size:12px; line-height:1.45;"><strong>存量与价格政策：</strong>Rokid/雷鸟当前调用份额及针对硬件大客的生产 API 阶梯资源包（含 TTS/VLM）底价如何校准？</li>
-                <li style="font-size:12px; line-height:1.45;"><strong>新人优先切口：</strong>本季度团队最希望我先从哪一条细分客群（如深圳纯 IDH 或垂类品牌）单线切入补位？</li>
+                <li style="font-size:12px; line-height:1.45;">达到质量和延迟要求，费用在客户预算内，且有人负责切换与结算，再讨论小范围试点。</li>
+                <li style="font-size:12px; line-height:1.45;">若默认模型不可切换、使用过低或效果未达到约定标准，记录原因并保留现有方案。</li>
+                <li style="font-size:12px; line-height:1.45;">提供可复算的用量表、盲测结果及未解决问题，由团队决定下一步。</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能眼镜行业深度洞察与千问商业化汇报 · 汇报完（恳请总监批评指正）</span>
+          <span>智能眼镜行业调研 · 验证问题与决策条件</span>
           <span class="pg">18 / 18</span>
         </div>
       </div>

@@ -34,7 +34,7 @@
     background: #0B1120; color: var(--slate-700); overflow: hidden;
   }
   .deck-stage { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .slide-viewport { width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
+  .slide-viewport { flex: 0 0 auto; width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
   .slide { width: 1280px; height: 720px; background: #FFFFFF; position: absolute; inset: 0; display: none; flex-direction: column; overflow: hidden; }
   .slide.active { display: flex; }
   .slide-inner { padding: 34px 50px 26px 50px; flex: 1; display: flex; flex-direction: column; }
@@ -131,6 +131,14 @@
   .callout-strip { background: linear-gradient(90deg, #ECFDF5 0%, #F8FAFC 100%); border-left: 4px solid var(--emerald); border-radius: 0 10px 10px 0; padding: 11px 16px; font-size: 12.8px; color: var(--navy); line-height: 1.5; margin-top: 12px; }
 
   .cover-slide { background: linear-gradient(135deg, #061D17 0%, #0D2E2A 52%, #132240 100%); color: #FFFFFF; }
+
+  @media screen and (max-width: 640px) {
+    .hud-bar { width: max-content; max-width: calc(100vw - 16px); flex-wrap: wrap; justify-content: center; gap: 5px; }
+    .hud-progress { display: none; }
+    .hud-btn { white-space: nowrap; }
+    body.overview-mode .deck-stage { grid-template-columns: 1fr; padding: 16px 12px 100px; overflow: hidden; }
+    body.overview-mode .slide { zoom: min(0.4, calc((100vw - 24px) / 1280px)); transform: none; margin: 0; }
+  }
 </style>
 </head>
 <body>
@@ -157,7 +165,7 @@
       <div class="slide-inner" style="position:relative; z-index:2; padding:52px 70px 44px 70px; justify-content:space-between;">
         <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(5,150,105,0.28); border:1px solid rgba(52,211,153,0.5); color:#A7F3D0; padding:7px 18px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:1px; width:fit-content;">
           <span style="width:8px; height:8px; border-radius:50%; background:#34D399;"></span>
-          千问智能硬件团队 · 行业调研汇报 NO.03（有条件推进赛道）
+          智能硬件行业调研 · 个人讨论稿 03 · 有条件验证
         </div>
 
         <div style="max-width:880px;">
@@ -166,8 +174,8 @@
             2026 智能儿童陪伴玩具行业洞察<br/>与千问商业化汇报
           </h1>
           <p style="font-size:17.5px; color:#CBD5E1; line-height:1.65; border-left:4px solid #34D399; padding-left:20px;">
-            拆透狭义大模型玩具真实体量、199 元退货亏损真相与 2 年活跃云账本，<br/>
-            严守中美儿童强监管与毛利底线，主攻千元硬壳视觉伴学与预付费模组生态池
+            参考全龄玩具监测数据，测算 199 元入门款的退货压力与两年用云成本。<br/>
+            优先验证一款面向境内家庭的绘本识读设备，核对实际采购需求与儿童数据处理方式。
           </p>
         </div>
 
@@ -178,11 +186,11 @@
           </div>
           <div>
             <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">汇报角色与视角</div>
-            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">行业新人 · 商业化与合规风控</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">新入职同事 · 公开资料研究</div>
           </div>
           <div>
             <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">核心数据基准</div>
-            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">魔镜 / Sandalwood / 工信部 / 百炼价</div>
+            <div style="font-size:13.5px; color:#F8FAFC; font-weight:600;">魔镜洞察 / 百炼公开价 / 法规原文</div>
           </div>
           <div>
             <div style="font-size:11.5px; color:#94A3B8; margin-bottom:4px;">编制时点</div>
@@ -197,53 +205,53 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">核心速览 · 01 / 02</span>
-          <span class="top-meta">严格区分宏观大盘、线上细分、成本假设与退货样本口径</span>
+          <span class="top-meta">市场监测、单款观测与成本假设</span>
         </div>
-        <h2 class="slide-title">4 组核心数字，看清 2026 AI 儿童玩具的真实体量与亏损真相</h2>
-        <p class="slide-lead">剥离广义早教大盘水分后，狭义线上规模仍在十亿级放量期；量增价跌叠加 30% 退货，已彻底证伪“199 元白牌靠投流赚钱”。</p>
+        <h2 class="slide-title">儿童绘本设备值得验证，公开数据支持到哪一步？</h2>
+        <p class="slide-lead">家庭需要什么、品牌愿为识读付多少，以及高活跃设备的用云成本，分别要从产品测试、采购访谈和账单中求证。</p>
 
         <div class="slide-body" style="justify-content:center; gap:18px;">
           <div class="g-4">
             <div class="kpi-card emerald">
               <div>
-                <div class="kpi-label">国内线上狭义推算 (2026E)</div>
-                <div class="kpi-num" style="font-size:28px;">约 ¥12.8 亿E</div>
+                <div class="kpi-label">2025 国内线上全龄 AI 玩具</div>
+                <div class="kpi-num" style="font-size:28px;">7.4 亿元</div>
               </div>
-              <div class="kpi-desc">魔镜 MAT2025 线上 <strong>7.4 亿 / 160.4 万件</strong>（单款 BubblePal 占量 19.6%），按 26 年增速推算 <strong>~12.8 亿 / ~415 万件</strong>；与工信部广义盘（290/342 亿E）存在 <strong>25 年约 39 倍、26E 约 27 倍</strong>口径差。</div>
+              <div class="kpi-desc">魔镜监测销量 <strong>160.4 万件</strong>，涵盖教辅、成人潮玩、机器人等。儿童陪伴且调用云模型的设备占比待查。</div>
             </div>
 
             <div class="kpi-card indigo">
               <div>
-                <div class="kpi-label">2026.1–7 线上量增 vs 均价跌</div>
-                <div class="kpi-num" style="font-size:27px;">+158.7% / -33.3%</div>
+                <div class="kpi-label">单款观测 · BubblePal</div>
+                <div class="kpi-num" style="font-size:27px;">31.4 万件</div>
               </div>
-              <div class="kpi-desc">据媒体转引 Sandalwood 监测，销量 <strong>+158.7%</strong>、销额 <strong>+72.7%</strong>、均价 <strong>-33.3%</strong>，低价纯语音毛绒加速洗牌，单机毛利持续恶化。</div>
+              <div class="kpi-desc">魔镜统计该款销售额约 <strong>1.2 亿元</strong>，销量约占上述全龄口径的 19.6%。品牌销量无法直接换算模型采购额。</div>
             </div>
 
             <div class="kpi-card amber">
               <div>
-                <div class="kpi-label">入门整机出厂成本 (不含税)</div>
+                <div class="kpi-label">入门整机出厂成本假设（不含税）</div>
                 <div class="kpi-num" style="font-size:28px;">约 ¥68–¥78</div>
               </div>
-              <div class="kpi-desc">纯 Wi-Fi 模组 ¥12–18，完整电子机芯总成（含声学/电池/PCB/SMT）<strong>¥38–45</strong>，直接料 ~¥58，加人工包装出厂 ¥68–78（未含开模与 3C/SRRC 认证）。</div>
+              <div class="kpi-desc">以纯 Wi-Fi 模组 12–18 元、机芯总成 38–45 元作示例。工厂报价、批量、模具和认证摊销需另核。</div>
             </div>
 
             <div class="kpi-card rose">
               <div>
-                <div class="kpi-label">199 元白牌 30% 退货实测</div>
-                <div class="kpi-num" style="font-size:28px;">实亏 ¥15–30/单</div>
+                <div class="kpi-label">199 元白牌 · 30% 退货情景</div>
+                <div class="kpi-num" style="font-size:28px;">−24.9 元/净留单</div>
               </div>
-              <div class="kpi-desc">30% 退货率下净留 1 单需发 1.43 单且投流费不退，平台+投流+退损高达 ¥103–116，199 元纯白牌靠付费投流单单倒亏（第 8 页拆解）。</div>
+              <div class="kpi-desc">成本中点下，每净留一单约发 1.43 单。退货率、广告费和退损均为假设，成本端点对应 −39.9 至 −9.9 元。</div>
             </div>
           </div>
 
           <div class="callout-strip" style="margin-top:0;">
-            <strong>战略定位判断（轻人力 · 有条件推进）：</strong>按 2026 国内狭义 ~415 万件推算，千问占 10%–20% 份额对应年 API 盘子仅约 <strong>340 万–1,820 万元</strong>（待内部校准）；本赛道定位<strong>“有条件推进”</strong>——放弃百元语音红海，主攻<strong>千元硬壳视觉伴学</strong>与<strong>预付费模组生态池</strong>，严守合规与毛利底线。
+            <strong>验证范围</strong>　先选一款境内绘本识读设备。取得品牌付费方、现用方案、可测样机和云费预算后，再建议安排与现供的同题对比。
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>数据源：工信部 2025.11 发布会、魔镜洞察白皮书（MAT2025）、Sandalwood 线上监测报道与第 8 页情景模型</span>
+          <span>依据　<a style="color:inherit; text-decoration:underline;" href="https://pdf.dfcfw.com/pdf/H3_AP202602071819822660_1.pdf" target="_blank" rel="noopener noreferrer">魔镜《2025 年消费行业新潜力白皮书》</a>（73、79–80 页） · 本报告第 8 页压力测试</span>
           <span class="pg">02 / 18</span>
         </div>
       </div>
@@ -254,55 +262,55 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">核心速览 · 02 / 02</span>
-          <span class="top-meta">五个核心商业规律（含 2026 新规）与三条商业化切入思路</span>
+          <span class="top-meta">一个产品假设与启动条件</span>
         </div>
-        <h2 class="slide-title">决定 2026–2027 胜负的 5 条底层规律与 3 条务实切入主线</h2>
-        <p class="slide-lead">认清 199 元白牌亏损、2 年活跃云账与中美强监管拐点（<strong>中国 7.15《拟人化办法》+ 加州 SB 867/1119 及纽约州禁令</strong>），明确轻人力破局路径。</p>
+        <h2 class="slide-title">一款绘本设备能否形成千问的付费机会？</h2>
+        <p class="slide-lead">建议从拍页识读这个具体任务入手。先判断客户会不会换方案，再比较识读表现与每台设备的实际成本。</p>
 
         <div class="slide-body">
           <div class="g-55-45" style="flex:1; align-items:stretch;">
             <div class="card-white" style="display:flex; flex-direction:column; justify-content:flex-start;">
-              <div class="card-h" style="margin-bottom:12px;">5 条行业底层规律</div>
+              <div class="card-h" style="margin-bottom:12px;">影响采购的五个问题</div>
               <div style="display:flex; flex-direction:column; gap:11px; flex:1; justify-content:space-between;">
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-emerald" style="margin-top:2px;">01</span>
-                  <div style="font-size:12.7px; line-height:1.46;"><strong>买单者（家长）≠ 使用者（儿童）：</strong>家长盯安全、护眼与 2.4GHz 无感配网；孩子盯 <strong>&lt;600ms</strong> 响应与防误唤醒，体验不过关即触发 30%+ 退货。</div>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>谁决定购买和续用？</strong> 家长关心内容与控制权。儿童能否读完一本书、是否持续使用，要看观察记录和激活批次。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-emerald" style="margin-top:2px;">02</span>
-                  <div style="font-size:12.7px; line-height:1.46;"><strong>价格带剧烈分化：</strong>199 元白牌靠付费投流单单实亏 <strong>15–30 元</strong>；唯有千元硬壳探索机（灵宇宙 1,099–1,299）、强 IP 与潮玩守住毛利池。</div>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>谁承担退货和获客成本？</strong> 199 元例子在设定的成本中点下每净留单亏 24.9 元。须用品牌分渠道订单核算。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-emerald" style="margin-top:2px;">03</span>
-                  <div style="font-size:12.7px; line-height:1.46;"><strong>“健身房卡模型”云账：</strong>5,000 轮吃灰基线仅 <strong>11.70–39.55 元/年</strong>，但高活 2 年模型+RTC 可破 <strong>115–342 元</strong>，须靠预付费固定轮次卡密兜底。</div>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>高活用户花多少钱？</strong> 每台每年 5,000 轮，目录组合示例为 11.70–39.55 元。RTC、知识库服务与审核仍需另算。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-emerald" style="margin-top:2px;">04</span>
-                  <div style="font-size:12.7px; line-height:1.46;"><strong>安全护栏与认证一票否决：</strong>2026.11 PIRG 复测显示 FoloToy 整改通过，但多款同测 AI 玩具长对话护栏仍易衰减；国内须配齐 <strong>3C + SRRC + CTA</strong> 及音频零留存方案。</div>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>哪些数据可以处理？</strong> 设备发往云端的图像、音频、转写和日志各有用途。由品牌和供应商逐项核对同意、留存及删除。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-emerald" style="margin-top:2px;">05</span>
-                  <div style="font-size:12.7px; line-height:1.46;"><strong>先判产品能否销售，再定云部署：</strong>加州 <strong>SB 867/1119</strong> 与纽约州禁令已签署、中国 <strong>7.15 新规</strong>及新版 <strong>GB 6675</strong> 已实施，<strong>换云商改变不了产品禁售</strong>，且中小厂无力运维自托管。</div>
+                  <div style="font-size:12.7px; line-height:1.46;"><strong>产品有哪些功能？</strong> 单次绘本问答和持续情感陪伴应分别判断。依据销售地、适龄标识与实际功能核对准入要求。</div>
                 </div>
               </div>
             </div>
 
             <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between;">
-              <div class="card-h" style="color:#6EE7B7; margin-bottom:2px;">千问“有条件推进”的 3 条主线</div>
+              <div class="card-h" style="color:#6EE7B7; margin-bottom:2px;">启动一次联测的三个条件</div>
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(52,211,153,0.42); border-radius:10px; padding:12px 15px;">
-                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 01 · 主攻千元硬壳视觉伴学与早教龙头转型</div>
-                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">绕开“火山+抖音”纯语音毛绒红海，以 <strong>Qwen-VL 绘本/识物</strong>主攻灵宇宙（1,099–1,299）及火火兔/阿尔法蛋转型视觉伴学新线。</div>
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">产品条件 · 一款境内在研设备</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">品牌提供样机、预期年龄段、正版测试绘本和拟上市时间，并说明现用识读方案的具体短板。</div>
               </div>
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(56,189,248,0.42); border-radius:10px; padding:12px 15px;">
-                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 02 · 1 对 N 预付费模组池 + 阿里鱼/淘天协同</div>
-                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">借涂鸦/移远 30+ 芯片池轻人力走量，实行<strong>“出厂预付费卡密 + 满额降级”</strong>控坏账；联动<strong>阿里鱼 IP + 淘天母婴货架</strong>共创 599+ 新品。</div>
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">商务条件 · 预算与签约主体明确</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">确认谁付模型账单、谁负责固件、每活跃台月预算。设备订阅是否合算，取决于真实功能组合和资源池用量。</div>
               </div>
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(129,140,248,0.42); border-radius:10px; padding:12px 15px;">
-                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">主线 03 · 存量审慎维护 + 出海合规分区试点</div>
-                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">实丰 SF-Hola 降级为存量样板严防账期，奥飞/汤姆猫按子路由切入；出海主推<strong>东南亚/中东合规节点</strong>，欧美 &lt;16 岁禁售区严设法务白名单。</div>
+                <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">评估条件 · 约定同一套验收标准</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">双方先商定识读正确率、P95 响应延迟、安全用例和成本门槛。严重风险未解决时暂停试用。</div>
               </div>
             </div>
           </div>
@@ -320,22 +328,22 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">01 · 市场全景</span>
-          <span class="top-meta">三套市场口径同框对齐与三大价格带分化</span>
+          <span class="top-meta">全龄线上监测口径与实际销售示例</span>
         </div>
-        <h2 class="slide-title">狭义线上 2026E 约 12.8 亿 / 415 万件：拆清与广义 342 亿的近 30 倍鸿沟</h2>
-        <p class="slide-lead">狭义大模型 AI 玩具仍处早期爆款驱动放量期（BubblePal 单款占量 19.6%）；广义大盘含大量不调云端大模型的传统早教设备，严禁混算云盘。</p>
+        <h2 class="slide-title">2025 年线上全龄 AI 玩具销售 7.4 亿元，其中有多少属于儿童绘本设备？</h2>
+        <p class="slide-lead">魔镜统计包含教辅、潮玩、机器人等。以下把全样本与单款分开列示。儿童设备占比、外采模型比例及活跃率均待核实。</p>
 
         <div class="slide-body">
           <div class="g-60-40" style="flex:1; align-items:stretch;">
             <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between; padding:14px 17px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
-                <span style="font-size:13.8px; font-weight:800; color:#0F172A;">国内线上狭义大模型 AI 玩具放量测算（主视觉）</span>
-                <span class="tag t-emerald">魔镜 MAT2025 + Sandalwood 26.1–7</span>
+                <span style="font-size:13.8px; font-weight:800; color:#0F172A;">2025 年国内线上全龄 AI 玩具与单款产品</span>
+                <span class="tag t-emerald">魔镜洞察 · 同期样本</span>
               </div>
               <svg viewBox="0 0 640 242" style="width:100%; height:auto;">
                 <!-- Left Panel: Revenue (亿元), scale: y=206 (0) to y=66 (15亿), 9.33px per 1亿 -->
                 <rect x="6" y="4" width="306" height="232" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
-                <text x="20" y="24" font-size="12" font-weight="800" fill="#065F46">线上销额（亿元）· 额增 +72.7%</text>
+                <text x="20" y="24" font-size="12" font-weight="800" fill="#065F46">线上销售额（亿元）</text>
                 <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 3">
                   <line x1="44" y1="66" x2="296" y2="66"/><line x1="44" y1="113" x2="296" y2="113"/><line x1="44" y1="160" x2="296" y2="160"/>
                 </g>
@@ -345,21 +353,21 @@
                 </g>
                 <!-- 7.4亿 -> 7.4 * 9.33 = 69.1px (y=136.9..206); BubblePal 1.2亿 -> 11.2px (y=194.8..206) -->
                 <rect x="74" y="136.9" width="66" height="69.1" rx="5" fill="#6EE7B7"/>
-                <rect x="74" y="194.8" width="66" height="11.2" rx="2" fill="#047857"/>
+
                 <text x="107" y="128" font-size="13.2" font-weight="800" fill="#065F46" text-anchor="middle">7.4 亿</text>
-                <text x="107" y="176" font-size="9.2" font-weight="700" fill="#064E3B" text-anchor="middle">BubblePal 1.2亿</text>
-                <text x="107" y="188" font-size="8.8" font-weight="700" fill="#047857" text-anchor="middle">(单款占 16.2%)</text>
-                <text x="107" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">MAT2025</text>
-                <!-- 12.8亿 -> 12.8 * 9.33 = 119.5px (y=86.5..206) -->
-                <rect x="196" y="86.5" width="66" height="119.5" rx="5" fill="#059669"/>
-                <text x="229" y="77" font-size="13.5" font-weight="800" fill="#065F46" text-anchor="middle">~12.8 亿E</text>
+
+
+                <text x="107" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">全龄线上样本</text>
+
+                <rect x="196" y="194.8" width="66" height="11.2" rx="5" fill="#059669"/>
+                <text x="229" y="186" font-size="13.5" font-weight="800" fill="#065F46" text-anchor="middle">1.2 亿</text>
                 <rect x="184" y="38" width="90" height="20" rx="10" fill="#ECFDF5" stroke="#34D399"/>
-                <text x="229" y="51.5" font-size="10.2" font-weight="800" fill="#059669" text-anchor="middle">同比 +72.7%</text>
-                <text x="229" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">2026E 推算</text>
+                <text x="229" y="51.5" font-size="10.2" font-weight="800" fill="#059669" text-anchor="middle">占比约 16.2%</text>
+                <text x="229" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">BubblePal</text>
 
                 <!-- Right Panel: Volume (万件), scale: y=206 (0) to y=76 (450万), 0.2889px per 1万件 -->
                 <rect x="328" y="4" width="306" height="232" rx="10" fill="#F8FAFC" stroke="#E2E8F0"/>
-                <text x="342" y="24" font-size="12" font-weight="800" fill="#3730A3">线上销量（万件）· 均价 -33.3%</text>
+                <text x="342" y="24" font-size="12" font-weight="800" fill="#3730A3">线上销量（万件）</text>
                 <g stroke="#E2E8F0" stroke-width="1" stroke-dasharray="3 3">
                   <line x1="366" y1="76" x2="618" y2="76"/><line x1="366" y1="119.3" x2="618" y2="119.3"/><line x1="366" y1="162.7" x2="618" y2="162.7"/>
                 </g>
@@ -367,43 +375,43 @@
                 <g font-size="10.2" fill="#64748B" text-anchor="end">
                   <text x="360" y="80">450</text><text x="360" y="123.3">300</text><text x="360" y="166.7">150</text><text x="360" y="210">0</text>
                 </g>
-                <!-- 160.4万 -> 160.4 * 0.2889 = 46.3px (y=159.7..206); BubblePal 31.4万 -> 9.1px (y=196.9..206) -->
+
                 <rect x="396" y="159.7" width="66" height="46.3" rx="5" fill="#A5B4FC"/>
-                <rect x="396" y="196.9" width="66" height="9.1" rx="2" fill="#3730A3"/>
+
                 <text x="429" y="150" font-size="13" font-weight="800" fill="#3730A3" text-anchor="middle">160.4 万</text>
-                <text x="429" y="191" font-size="9.0" font-weight="700" fill="#312E81" text-anchor="middle">31.4万(19.6%)</text>
-                <text x="429" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">MAT2025</text>
-                <!-- 415万 -> 415 * 0.2889 = 119.9px (y=86.1..206) -->
-                <rect x="518" y="86.1" width="66" height="119.9" rx="5" fill="#4F46E5"/>
-                <text x="551" y="77" font-size="13.5" font-weight="800" fill="#3730A3" text-anchor="middle">~415 万E</text>
+
+                <text x="429" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">全龄线上样本</text>
+
+                <rect x="518" y="196.9" width="66" height="9.1" rx="5" fill="#4F46E5"/>
+                <text x="551" y="188" font-size="13.5" font-weight="800" fill="#3730A3" text-anchor="middle">31.4 万</text>
                 <rect x="502" y="38" width="98" height="20" rx="10" fill="#EEF2FF" stroke="#818CF8"/>
-                <text x="551" y="51.5" font-size="10.2" font-weight="800" fill="#4F46E5" text-anchor="middle">量增 +158.7%</text>
-                <text x="551" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">2026E 推算</text>
+                <text x="551" y="51.5" font-size="10.2" font-weight="800" fill="#4F46E5" text-anchor="middle">占比约 19.6%</text>
+                <text x="551" y="224" font-size="11.5" font-weight="800" fill="#0F172A" text-anchor="middle">BubblePal</text>
               </svg>
               <div style="font-size:11.2px; color:#334155; background:#FFFBEB; border:1px solid #FDE68A; padding:8px 11px; border-radius:8px; line-height:1.45; margin-top:6px;">
-                <strong style="color:#92400E;">广义大盘辅助对照（与狭义差：25 年约 39 倍、26E 约 27 倍）：</strong>工信部 2025.11 披露广义 AI 玩具 2024 年 <strong>246 亿</strong> → 2025E <strong>290 亿</strong>（+17.9%）→ 2026E <strong>342 亿</strong>（作者等速外推）。广义口径包含大量<strong>传统早教机、故事机、点读笔及线下外贸</strong>，绝大部分不调用云端大模型，切忌拿 342 亿倒推千问 API 盘子！
+                <strong>大盘口径</strong>　工信部在 2025 年 11 月发布会提到 2024 年全国 AI 玩具约 246 亿元、2025 年预计 290 亿元。与三平台全龄线上样本的覆盖范围不同。<a style="color:inherit; text-decoration:underline;" href="https://dzswgf.mofcom.gov.cn/news/phone/43/2025/11/m-1763617474270.html" target="_blank" rel="noopener noreferrer">发布会报道</a>
               </div>
             </div>
 
             <div style="display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
               <div class="card-rose" style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:12px 15px; border-left:4px solid #DC2626;">
-                <div style="font-size:13.4px; font-weight:800; color:#991B1B;">99 – 299 元 · 白牌洗牌亏损区</div>
-                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.48;">开源“小智 AI”与百元毛绒打穿门槛，但 30% 退货下 199 元靠付费投流单单实亏 <strong>15–30 元</strong>（第 8 页拆解），无力承担持续云账。</div>
+                <div style="font-size:13.4px; font-weight:800; color:#991B1B;">99–299 元 · 入门语音款</div>
+                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.48;">199 元样机的预算取决于获客成本、退货和售后。第 8 页列出成本假设与盈亏平衡点，供核对渠道数据。</div>
               </div>
               <div class="card-emerald" style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:12px 15px; border-left:4px solid #059669;">
-                <div style="font-size:13.4px; font-weight:800; color:#065F46;">399 – 699 元 · IP 与潮玩甜点带</div>
-                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.48;">BubblePal（399）、华为智能憨憨（399）、奥特曼对话器（599）与实丰中高端线（149–399）；可覆盖轻聊云费，高活全双工仍须严控。</div>
+                <div style="font-size:13.4px; font-weight:800; color:#065F46;">399–799 元 · IP 玩具与拍学机</div>
+                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.48;">BubblePal 参考价 399 元。魔镜列示噜咔博士拍学机零售价 599–799 元、销量 9.5 万件，说明此价位也有视觉产品。</div>
               </div>
               <div class="card-indigo" style="flex:1.25; display:flex; flex-direction:column; justify-content:center; padding:12px 15px; border-left:4px solid #4F46E5;">
-                <div style="font-size:13.4px; font-weight:800; color:#3730A3;">1,000 – 2,500 元 · 千元硬壳视觉与高阶带</div>
-                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.46;"><strong>灵宇宙“小方机”</strong>官方标价 <strong>~1,299 元（补贴到手 ~1,000–1,100 元）</strong>，双 11 登顶京东双榜第一、获 2 亿 Pre-A 轮（BOM ~230 元仅千元档可盈利）；汤姆猫 1,499–1,999 元；<strong>Ropet</strong> 为 <strong>USD 299–349（约 2,150–2,500 元</strong>，1,200–1,500 仅早期众筹早鸟价，面向成人 Z 世代）。</div>
+                <div style="font-size:13.4px; font-weight:800; color:#3730A3;">千元及以上 · 硬壳探索与高端 IP</div>
+                <div style="font-size:12px; color:#334155; margin-top:4px; line-height:1.46;">灵宇宙小方机和汤姆猫 AI 童伴可作高价带参照。判断是否有空间采购视觉模型，需看渠道结算收入和单机贡献。</div>
               </div>
             </div>
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 市场全景与口径对齐</span>
+          <span>来源　<a style="color:inherit; text-decoration:underline;" href="https://pdf.dfcfw.com/pdf/H3_AP202602071819822660_1.pdf" target="_blank" rel="noopener noreferrer">魔镜《2025 年消费行业新潜力白皮书》</a>（73、79–80 页）</span>
           <span class="pg">04 / 18</span>
         </div>
       </div>
@@ -413,11 +421,11 @@
     <section class="slide">
       <div class="slide-inner">
         <div class="top-bar">
-          <span class="section-pill">02 · 需求真相</span>
+          <span class="section-pill">02 · 家庭使用需求</span>
           <span class="top-meta">购买决策（家长）与持续使用（儿童）的分离</span>
         </div>
-        <h2 class="slide-title">底层商业悖论：“买单者（家长）≠ 使用者（儿童）”</h2>
-        <p class="slide-lead">家长决定首购成交，孩子决定次月留存；分开拆解两类诉求，才能用激活批次数据准确衡量续用与复购。</p>
+        <h2 class="slide-title">家长决定首购，儿童体验影响续用</h2>
+        <p class="slide-lead">候选需求可用家长访谈和激活批次验证。产品价值先看孩子能否顺利完成一次阅读，再看是否愿意回来。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="g-2" style="flex:1; align-items:stretch;">
@@ -426,10 +434,10 @@
                 <span class="tag t-indigo">决策买单方</span> 家长真正掏钱的 4 个动因
               </div>
               <ul class="pts" style="gap:13px;">
-                <li><strong>无屏护眼（核心痛点）：</strong>主动减少 3–8 岁儿童对手机/平板的依赖；大龄段则须面对电话手表等随身入口分流。</li>
+                <li><strong>减少看屏时间。</strong> 了解家长希望替代的设备与场景，验证无屏使用能否满足翻页、识字和纠错需求。</li>
                 <li><strong>启蒙与语言输入：</strong>英语口语陪练、科普百科与绘本探索，把玩具支出合理化为“轻早教投入”。</li>
                 <li><strong>解放双手 + 家长可控：</strong>睡前讲故事与陪伴；要求家长端具备时长管控、角色筛选与使用记录查看能力。</li>
-                <li><strong>内容安全与物理卫生：</strong>零不当诱导、过 3C/防误吞测试、<strong>毛绒款支持内胆快拆水洗</strong>与锂电池安全防护。</li>
+                <li><strong>内容与物理安全。</strong> 询问误识、意外录音与材料清洁顾虑。按具体形态评估小部件、电池、毛绒拆洗等要求。</li>
               </ul>
             </div>
 
@@ -447,7 +455,7 @@
           </div>
 
           <div class="callout-strip">
-            <strong>留存口径严谨提示：</strong>公开市场材料并无“70% 设备 7 日后显著衰减”的可核验大样本；一线评估客户产品力时，应按激活批次追踪<strong>第 7 日与第 30 日留存率、每台活跃日均轮数</strong>，再核算真实单台云成本与复购模型。
+            <strong>数据口径</strong>　按激活批次计算第 7 天、第 30 天留存、每活跃日问答与拍照轮数，注明观察天数和分母；将重度用户单列估算云费。
           </div>
         </div>
 
@@ -465,7 +473,7 @@
           <span class="section-pill">02 · 产品形态分化</span>
           <span class="top-meta">四大主流物理形态图谱与视觉交互边界（2026.11）</span>
         </div>
-        <h2 class="slide-title">四大形态分化：挂件/毛绒起量，硬壳探索机与大 IP 守高客单</h2>
+        <h2 class="slide-title">挂件、视觉探索机、IP 玩具与成人桌宠服务不同人群</h2>
         <p class="slide-lead">视觉多模态对镜头防抖、取景角度与隐私提示要求高——软毛绒须顾及拆洗与卧室隐私，<strong>硬壳随身机与固定底座</strong>更适合测试视觉交互。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
@@ -482,12 +490,12 @@
 
             <div class="card" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #0284C7;">
               <div>
-                <span class="tag t-cyan" style="margin-bottom:9px;">形态 ② · 千元视觉主攻</span>
+                <span class="tag t-cyan" style="margin-bottom:9px;">形态 ② · 视觉识读候选</span>
                 <div style="font-size:17px; font-weight:800; color:#0F172A; margin-bottom:5px;">硬壳多模态探索机</div>
                 <div style="font-size:12.2px; font-weight:700; color:#0369A1; margin-bottom:9px;">灵宇宙“小方机” · 标价 ~1,299 元</div>
-                <p style="font-size:12.2px; line-height:1.5;">补贴到手 ~1,000–1,100 元，双 11 登顶京东 AI 玩具双榜第一、获 2 亿 Pre-A 轮；挂脖拍绘本/实物并在 CES 2026 出海（~230 元 BOM 须千元档盈利）。</p>
+                <p style="font-size:12.2px; line-height:1.5;">硬壳便于安装摄像头。用同一套绘本在日光、暗光、斜拍和翻页条件下验证可读性；599–799 元拍学机可作对照。</p>
               </div>
-              <div style="font-size:11.6px; color:#0369A1; border-top:1px solid #E2E8F0; padding-top:8px;">定位：主攻 Qwen-VL 视觉伴学</div>
+              <div style="font-size:11.6px; color:#0369A1; border-top:1px solid #E2E8F0; padding-top:8px;">可验证绘本识读与设备响应</div>
             </div>
 
             <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between; border-top:4px solid #4F46E5;">
@@ -530,24 +538,24 @@
           <span class="section-pill">02 · 工程细节</span>
           <span class="top-meta">儿童语音交互的四大工程门槛与原型测试指标</span>
         </div>
-        <h2 class="slide-title">工程深水区：半秒级延迟标杆、2.4GHz 配网杀手与防误唤醒</h2>
-        <p class="slide-lead">传统玩具厂易误以为“接通 API 即可上市”，实操中<strong>延迟超标、老人配网崩溃与客厅误唤醒</strong>才是 30%–40% 高退货的真正元凶。</p>
+        <h2 class="slide-title">先测配网、误唤醒和响应延迟，再核对退货原因</h2>
+        <p class="slide-lead">将工程指标与品牌售后工单分开记录。某种故障是否引发退货，需要同一批次订单、退货原因和分渠道数据支持。</p>
 
         <div class="slide-body">
           <div class="g-2" style="flex:1; align-items:stretch;">
             <div class="card-white" style="border-left:4px solid #059669; padding:15px 18px;">
               <div class="card-h"><span class="tag t-emerald">难点 01</span> 客厅电视/多娃防误唤醒与童声 ASR</div>
-              <p style="font-size:12.6px; line-height:1.52;">3–7 岁高音调、吐字不清叠加<strong>客厅电视与多娃嘈杂环境极易误唤醒</strong>（空耗云费且扰民）；须做端侧双麦降噪与唤醒阈值精调，<strong>中高端童声场景须用标准 ASR 而非极简 ASR</strong>（以同批童声集实测字错率）。</p>
+              <p style="font-size:12.6px; line-height:1.52;">准备经授权的童声音频，加入电视背景声与多人讲话。在同一批录音上比较识别字错率、误唤醒次数和单位成本。</p>
             </div>
 
             <div class="card-white" style="border-left:4px solid #4F46E5; padding:15px 18px;">
               <div class="card-h"><span class="tag t-indigo">难点 02</span> 分层延迟指标与全双工 AEC/VAD 联调</div>
-              <p style="font-size:12.6px; line-height:1.52;">2026 实时语音标杆已入半秒级，须分层设指标：<strong>百元半双工串联走量款 &lt;1.2 秒，中高端全双工实时打断 &lt;500–600ms</strong>（高延迟恰是 30%–40% 退货元凶）；须深度联调腔体声学、AEC 回声消除与 VAD。</p>
+              <p style="font-size:12.6px; line-height:1.52;">按键说话与实时可打断对话分别记录 P50/P95。统一计时起止点、网络条件、轮数和设备。用品牌现供实测值设验收线。</p>
             </div>
 
             <div class="card-white" style="border-left:4px solid #0284C7; padding:15px 18px;">
-              <div class="card-h"><span class="tag t-cyan">难点 03</span> 2.4GHz 配网崩溃与 4G 成本权衡</div>
-              <p style="font-size:12.6px; line-height:1.52;"><strong>低龄家庭核心退货杀手：</strong>老人带娃遇家用 2.4G/5G 混频路由极易配网失败；须上 <strong>BLE/声波无感配网</strong>，或权衡改用 <strong>Cat.1 4G 模组（BOM +25–35 元及次年流量 15–25 元/年）</strong>兼顾户外断网兜底。</p>
+              <div class="card-h"><span class="tag t-amber">难点 03</span> 配网成功率与 4G 成本</div>
+              <p style="font-size:12.6px; line-height:1.52;">家庭混合频段路由、弱网与首次配网分别测试，记录一次成功率及耗时。4G 方案需取得模组和流量报价再比较。</p>
             </div>
 
             <div class="card-white" style="border-left:4px solid #D97706; padding:15px 18px;">
@@ -557,7 +565,7 @@
           </div>
 
           <div class="callout-strip">
-            <strong>云端交付价值：</strong>针对研发偏薄弱的玩具品牌，阿里云百炼多模态开发套件已整合低延迟流式链路、标准童声 ASR 选型、儿童内容安全审核与 30+ 芯片适配，直击量产高退货工程痛点。
+            <strong>给方案商的记录项</strong>　列明具体样机、固件、网络、模型版本与样本数，再给出 P95 延迟及失败原因；涉及儿童数据时先确认合法来源和处理方式。
           </div>
         </div>
 
@@ -572,16 +580,16 @@
     <section class="slide">
       <div class="slide-inner">
         <div class="top-bar">
-          <span class="section-pill">03 · 供应链与财务真相</span>
+          <span class="section-pill">03 · 供应链与单笔贡献</span>
           <span class="top-meta">两类 BOM 情景与 199 元一般计税单笔贡献测算（人民币）</span>
         </div>
-        <h2 class="slide-title">199 元白牌财务真相：30% 退货叠加投流，单单实亏 ¥15–30</h2>
-        <p class="slide-lead">严拆“纯模组 vs 完整电子机芯总成 vs 整机出厂成本”；一般计税（13%）下计入 30% 退货（净留 1 单需发 1.43 单且投流费不退），证伪百元白牌投流盈利。</p>
+        <h2 class="slide-title">199 元入门款在 30% 退货压力下，每净留一单贡献多少？</h2>
+        <p class="slide-lead">示范使用 13% 增值税率、退货广告费不退与一般计税假设。退货率和成本是模型输入，未取得渠道结算或订单样本。</p>
 
         <div class="slide-body">
           <div class="g-55-45" style="flex:1; align-items:stretch;">
             <div class="card-white" style="display:flex; flex-direction:column; justify-content:space-between; padding:15px 17px;">
-              <div class="card-h" style="margin-bottom:6px;">两类 AI 玩具成本拆解（严格等比标尺：2.1px / ¥1）</div>
+              <div class="card-h" style="margin-bottom:6px;">两类硬件成本示例（人民币，不含税）</div>
               <svg viewBox="0 0 600 272" style="width:100%; height:auto;">
                 <!-- Legend -->
                 <g font-size="10.8" fill="#334155" font-weight="600">
@@ -617,7 +625,7 @@
 
                 <!-- Bar 2: High-end Hard-shell Visual Companion (Direct BOM 230 -> 230 * 2.1 = 483.0px, x=10..493) -->
                 <!-- Segs: 主控/4G 48 (100.8), 声学 22 (46.2), 镜头+屏/防抖 85 (178.5), 电池 25 (52.5), 硬壳结构 50 (105.0) -->
-                <text x="10" y="158" font-size="12.6" font-weight="800" fill="#0F172A">② 千元硬壳视觉伴学 / 桌宠（如灵宇宙 ¥1,099–1,299 · 直接料 ~¥230，千元档方可盈利）</text>
+                <text x="10" y="158" font-size="12.6" font-weight="800" fill="#0F172A">② 硬壳视觉方案 · 假设直接材料约 230 元，实际报价随选料与批量变化</text>
                 <rect x="10" y="169" width="100.8" height="38" rx="3" fill="#059669"/><text x="60.4" y="192" font-size="11.2" fill="#FFF" font-weight="700" text-anchor="middle">主控/4G ¥48</text>
                 <rect x="110.8" y="169" width="46.2" height="38" fill="#0284C7"/><text x="133.9" y="192" font-size="11.2" fill="#FFF" font-weight="700" text-anchor="middle">¥22</text>
                 <rect x="157.0" y="169" width="178.5" height="38" fill="#4F46E5"/><text x="246.2" y="192" font-size="11.2" fill="#FFF" font-weight="800" text-anchor="middle">镜头+屏/防抖结构 ¥85</text>
@@ -638,12 +646,12 @@
                 </g>
               </svg>
               <div style="font-size:10.9px; color:#475569; background:#F8FAFC; padding:7px 10px; border-radius:7px; line-height:1.45;">
-                <strong>未摊销项提醒：</strong>以上均<strong>未含开模费（10–20 万）与 3C/SRRC 认证（5–8 万）摊销</strong>；加配 Cat.1 4G 模组+首年流量约增 25–35 元；正版 IP 授权另占零售价 8%–15%。
+                <strong>未摊销项</strong>　开模、认证、研发、IP 授权、售后与硬件改版费用按项目另核。左侧材料示例不代表某品牌出厂报价。
               </div>
             </div>
 
             <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between; padding:17px 19px;">
-              <div class="card-h" style="color:#FCA5A5; margin-bottom:4px;">199 元纯白牌留单损益（30% 退货压测）</div>
+              <div class="card-h" style="color:#FCA5A5; margin-bottom:4px;">30% 退货率压力测试 · 每净留一单</div>
               <div style="display:flex; flex-direction:column; gap:7px; font-size:12.1px;">
                 <div style="display:flex; justify-content:space-between; padding:7px 11px; background:rgba(255,255,255,0.08); border-radius:8px;">
                   <span>含税售价 ÷ 1.13 → 不含税销售收入</span><strong style="color:#FFFFFF;">¥199 → ¥176.1</strong>
@@ -655,17 +663,17 @@
                   <div style="display:flex; justify-content:space-between;">
                     <span>30% 退货（发 1.43 单）投流+扣点+物流+报废</span><strong style="color:#FCA5A5;">- ¥103 ~ ¥116</strong>
                   </div>
-                  <div style="font-size:10.5px; color:#FECACA;">按常态 ROI 3.5–3.0 算，仅不退还投流即 ¥77–89（扣 6% 进项税），叠加双向运费与毛绒报废</div>
+                  <div style="font-size:10.5px; color:#FECACA;">示例投流回报率为 3.0–3.5，广告费按发货前成交额计、假设可抵扣进项税。平台佣金、逆向运费及报废率待订单验证。</div>
                 </div>
                 <div style="display:flex; justify-content:space-between; padding:7px 11px; background:rgba(52,211,153,0.16); border:1px solid #34D399; border-radius:8px;">
                   <span>预留基础纯语音 AI 云预算（低活跃假设）</span><strong style="color:#6EE7B7;">- ¥15 ~ ¥22</strong>
                 </div>
                 <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; padding:8px 11px; background:rgba(220,38,38,0.34); border:1px solid #F87171; border-radius:8px;">
-                  <span style="font-weight:700; color:#FFF; font-size:11.6px;">未扣模具/认证/研发/IP 单笔净贡献</span><strong style="color:#FDE047; font-size:12.4px; white-space:nowrap;">常态实亏 ¥15 – ¥30（中点 -24.9）</strong>
+                  <span style="font-weight:700; color:#FFF; font-size:11.6px;">未扣模具/认证/研发/IP 单笔净贡献</span><strong style="color:#FDE047; font-size:12.4px; white-space:nowrap;">−39.9 至 −9.9 元（中点 −24.9）</strong>
                 </div>
               </div>
               <div style="font-size:11.4px; color:#E2E8F0; line-height:1.48; margin-top:6px;">
-                <strong>中点复核：</strong><code>176.1 − 73 − 109.5 − 18.5 = -24.9</code> 元（极端高成本单亏近 40 元；即便仅扣直接料 58–62 元中点亦亏 <strong>-11.9 元</strong>）。彻底证伪“199 元白牌靠付费投流能赚钱”！
+                <strong>中点复核</strong>　176.1 − 73 − 109.5 − 18.5 = −24.9 元。每净留单可承担的投流、平台、履约及退损合计为 <strong>84.6 元</strong>，超过即为负贡献。
               </div>
             </div>
           </div>
@@ -683,25 +691,25 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">03 · 产业链与决策链</span>
-          <span class="top-meta">百炼 30+ 芯片适配基础 × 汕头试点与买单分工</span>
+          <span class="top-meta">品牌、方案商、模组商与制造方</span>
         </div>
-        <h2 class="slide-title">产业链现实：百炼已支持 30+ 芯片平台，初访须先厘清云账单买单人</h2>
+        <h2 class="slide-title">为一款设备找到规格决定人、账单支付方和固件维护人</h2>
         <p class="slide-lead">OEM、ODM 与 IDH 项目分工差异巨大——对品牌、方案商与制造厂分别核对<strong>谁定规格、谁付云费与谁维护固件</strong>。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="g-4">
             <div class="card-emerald" style="padding:14px 16px;">
-              <div class="tag t-emerald" style="margin-bottom:7px;">开源与先锋首选</div>
+              <div class="tag t-emerald" style="margin-bottom:7px;">开源原型</div>
               <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:4px;">乐鑫科技</div>
               <div style="font-size:11.8px; color:#065F46; font-weight:700; margin-bottom:6px;">ESP32-S3 + 开源“小智 AI”</div>
-              <p style="font-size:12.2px; line-height:1.48;">开源 <code>xiaozhi-esp32</code> 支持切换多模型，大幅拉低原型开发门槛；百炼已具备成熟 ESP 平台适配基础。</p>
+              <p style="font-size:12.2px; line-height:1.48;">ESP32-S3 可作原型平台。进入验证前核对摄像头接口、内存、端侧固件与需要的云组件。</p>
             </div>
 
             <div class="card-indigo" style="padding:14px 16px;">
-              <div class="tag t-indigo" style="margin-bottom:7px;">免开发 PaaS 平台</div>
+              <div class="tag t-indigo" style="margin-bottom:7px;">多模型平台</div>
               <div style="font-size:15px; font-weight:800; color:#0F172A; margin-bottom:4px;">涂鸦智能</div>
               <div style="font-size:11.8px; color:#3730A3; font-weight:700; margin-bottom:6px;">T5 / T5-E1 / T5AI-Core</div>
-              <p style="font-size:12.2px; line-height:1.48;">已打通千问等多家大模型（并助力 Fuzozo 等出海），重点在平台侧提升千问推荐权重与标杆联调。</p>
+              <p style="font-size:12.2px; line-height:1.48;">核对该模组和 SDK 当前支持的模型、实际路由、价格及切换权限，记录谁负责上线后的升级。</p>
             </div>
 
             <div class="card-cyan" style="padding:13px 15px;">
@@ -721,17 +729,17 @@
 
           <div class="card-dark" style="margin-top:12px; padding:16px 19px; display:grid; grid-template-columns:1.18fr 1fr; gap:18px; align-items:center;">
             <div>
-              <div class="tag t-emerald" style="margin-bottom:6px;">澄海商业现实 · 结算与出海边界</div>
-              <div style="font-size:15.5px; font-weight:800; color:#FFFFFF; margin-bottom:5px;">传统玩具厂绝不背开放式云账单，须用“预付费卡密”闭环</div>
+              <div class="tag t-emerald" style="margin-bottom:6px;">结算与服务期限</div>
+              <div style="font-size:15.5px; font-weight:800; color:#FFFFFF; margin-bottom:5px;">谁购买资源、谁承担超额和到期服务？</div>
               <p style="font-size:12.1px; color:#CBD5E1; line-height:1.52;">
-                <strong>① 传统厂现金流现实：</strong>澄海线下/外贸出厂供货价仅占零售价 <strong>30%–40%</strong>，净利薄（<strong>5%–10%</strong>）且账期长达 <strong>60–120 天</strong>，绝不愿承担 2–3 年无上限云账单。<br/>
-                <strong>② 汕头跨境试点边界：</strong>东南亚试点将推理回传汕头合规算力专区，复制到其他市场前须逐地核查儿童隐私法规，严禁直套北美。
+                <strong>问品牌。</strong> 记录订单规模、约定服务期、退款后的资源处理和每活跃台预算，取得可对账的报价单。
+                <strong>问方案商。</strong> 取得真实 SDK、固件版本、设备标识绑定方式和限额实现。明确断网与额度用完时家长看到什么。
               </p>
             </div>
             <div style="background:rgba(52,211,153,0.14); border:1px solid #34D399; border-radius:10px; padding:12px 14px;">
-              <div style="font-size:13.2px; font-weight:800; color:#6EE7B7; margin-bottom:5px;">落地结算机制与授信红线</div>
+              <div style="font-size:13.2px; font-weight:800; color:#6EE7B7; margin-bottom:5px;">官方设备订阅与需开发的能力</div>
               <p style="font-size:12px; color:#E2E8F0; line-height:1.5;">
-                对中小玩具厂与 IDH <strong>严禁开放无上限后付费授信</strong>；主推<strong>“出厂预付费固定轮次卡密（License Key）+ 满额优雅降级本地轻模型”</strong>，先锁定付费主体与固件维护责任，彻底隔离坏账风险。
+                <a style="color:inherit; text-decoration:underline;" href="https://docs.bailian.console.aliyun.com/zh/model-studio/product-billing" target="_blank" rel="noopener noreferrer">百炼多模态交互开发套件计费</a>按台/年订阅，100 台起购，2/5/10 元档，可在工作空间共享资源池。可用轮数随功能组合变化。单机封顶、告警与离线降级需另行开发、测试和约定。
               </p>
             </div>
           </div>
@@ -791,7 +799,7 @@
 
                 <rect x="198" y="48" width="148" height="42" rx="21" fill="#0284C7"/>
                 <text x="272" y="66" font-size="11.8" font-weight="800" fill="#FFF" text-anchor="middle">灵宇宙 小方机</text>
-                <text x="272" y="81" font-size="9.1" fill="#E0F2FE" text-anchor="middle">标价~1,299 · 双11榜一</text>
+                <text x="272" y="81" font-size="9.1" fill="#E0F2FE" text-anchor="middle">硬壳视觉探索机</text>
 
                 <rect x="172" y="104" width="170" height="40" rx="20" fill="#0EA5E9"/>
                 <text x="257" y="122" font-size="11.4" font-weight="800" fill="#FFF" text-anchor="middle">跃然 BubblePal / 奥特曼</text>
@@ -799,7 +807,7 @@
 
                 <rect x="56" y="152" width="166" height="36" rx="18" fill="#475569"/>
                 <text x="139" y="168" font-size="10.8" font-weight="700" fill="#FFF" text-anchor="middle">海外 Curio (Grok)</text>
-                <text x="139" y="181" font-size="8.6" fill="#CBD5E1" text-anchor="middle">USD 99+订阅 · 北美监管承压</text>
+                <text x="139" y="181" font-size="8.6" fill="#CBD5E1" text-anchor="middle">陪伴玩具 · 逐州核适用性</text>
 
                 <rect x="466" y="220" width="178" height="40" rx="20" fill="#047857"/>
                 <text x="555" y="238" font-size="11.6" font-weight="800" fill="#FFF" text-anchor="middle">实丰文化 SF-Hola</text>
@@ -816,23 +824,23 @@
                 <text x="171" y="256" font-size="11.2" font-weight="700" fill="#FFF" text-anchor="middle">开源“小智 AI”硬件生态</text>
 
                 <rect x="74" y="290" width="194" height="40" rx="20" fill="#DC2626"/>
-                <text x="171" y="308" font-size="11.8" font-weight="800" fill="#FFF" text-anchor="middle">百元白牌对话公仔军团</text>
-                <text x="171" y="322" font-size="9.4" fill="#FEE2E2" text-anchor="middle">99–199 元 · 投流单单实亏</text>
+                <text x="171" y="308" font-size="11.8" font-weight="800" fill="#FFF" text-anchor="middle">入门语音公仔</text>
+                <text x="171" y="322" font-size="9.4" fill="#FEE2E2" text-anchor="middle">99–199 元 · 核对留单成本</text>
               </svg>
             </div>
 
             <div style="display:flex; flex-direction:column; justify-content:space-between; gap:12px;">
               <div class="card-emerald" style="flex:1; padding:13px 16px;">
-                <div class="card-h" style="color:#065F46; margin-bottom:5px;">格局 1：千元硬壳视觉登顶，字节催化毛绒</div>
-                <p style="font-size:12.4px; line-height:1.5;">灵宇宙小方机以 <strong>1,099–1,299 元</strong>双 11 登顶京东双榜第一并获 2 亿 Pre-A 轮；Ropet 零售达 <strong>USD 299–349（约 2,150–2,500 元）</strong>；字节“显眼包”催化百元语音毛绒爆发。</p>
+                <div class="card-h" style="color:#065F46; margin-bottom:5px;">视觉设备覆盖多个价格带</div>
+                <p style="font-size:12.4px; line-height:1.5;">对照硬壳小方机与中价拍学机，分别记录识读任务、用户年龄、可替换功能。价格和榜单不能说明云服务预算。</p>
               </div>
               <div class="card-indigo" style="flex:1; padding:13px 16px;">
-                <div class="card-h" style="margin-bottom:5px;">格局 2：财报与模型格局须实事求是拆解</div>
-                <p style="font-size:12.4px; line-height:1.5;">实丰 2025 营收 4.17 亿、<strong>归母净亏 1.75 亿</strong>，SF-Hola 多模并行；汤姆猫核心为自研 MoE + 豆包/DeepSeek（行业估算 AI 机器人年销数千万）；选客须严审现金流实力。</p>
+                <div class="card-h" style="margin-bottom:5px;">上市公司按披露范围解读</div>
+                <p style="font-size:12.4px; line-height:1.5;">集团经营情况可帮助确定是否需要核对账期。SKU 月活、模型采购量与单款毛利仍需品牌单独披露。</p>
               </div>
               <div class="card-rose" style="flex:1; padding:13px 16px;">
-                <div class="card-h" style="color:#991B1B; margin-bottom:5px;">格局 3：北美强监管施压订阅与陪伴模式</div>
-                <p style="font-size:12.4px; line-height:1.5;">海外 Curio（Grok，USD 99+订阅）在北美强监管下承压；FoloToy 2026.11 PIRG 复测虽修补旧弱点，但立法门槛正加速洗牌。</p>
+                <div class="card-h" style="color:#991B1B; margin-bottom:5px;">海外样本用于检查安全边界</div>
+                <p style="font-size:12.4px; line-height:1.5;">关注重复提问、长对话及版本更新后的表现。单次复测和某州规定的适用范围均应单独注明。</p>
               </div>
             </div>
           </div>
@@ -852,8 +860,8 @@
           <span class="section-pill">04 · 竞争格局</span>
           <span class="top-meta">六组代表品牌比较：形态、监测销量与合规动态（2026.11）</span>
         </div>
-        <h2 class="slide-title">代表品牌硬核对标：补全财报真相、价格纠偏与海内外参照</h2>
-        <p class="slide-lead">客观披露上市公司实销体量与亏损风险，统一各品牌价格口径，精准识别千问真正的高毛利视觉与生态切口。</p>
+        <h2 class="slide-title">品牌和产品对照：哪类信息可以用于判断采购机会？</h2>
+        <p class="slide-lead">价格和公开销量用于挑选同类样本。是否开放模型采购、付款主体和单机预算都要由品牌确认。</p>
 
         <div class="slide-body">
           <table class="clean-tbl" style="font-size:11.4px; line-height:1.4;">
@@ -870,51 +878,51 @@
               <tr class="hl">
                 <td class="b" style="padding:7px 10px;">灵宇宙（Ling）<br/>“小方机”</td>
                 <td style="padding:7px 10px;"><strong>标价 ~1,299 元</strong><br/>补贴 1,000–1,100</td>
-                <td style="padding:7px 10px;">双 11 京东双榜第一<br/>获 <strong>2 亿 Pre-A 轮</strong></td>
-                <td style="padding:7px 10px;">3–12 岁挂脖硬壳视觉探索机（BOM ~230 元，千元档方可盈利），拍绘本/实物并在 CES 2026 出海</td>
-                <td style="padding:7px 10px;"><strong>第 1 梯队标杆：</strong>主推 <strong>Qwen-VL 绘本识图</strong>、防抖低延迟与非美出海多语言</td>
+                <td style="padding:7px 10px;">上市定价样本</td>
+                <td style="padding:7px 10px;">挂脖视觉探索机，可拍摄绘本与实物。单机材料和贡献利润须以供应链报价核实。</td>
+                <td style="padding:7px 10px;">候选访谈对象。先确认境内绘本 SKU 及现供问题，再提出同题测试。</td>
               </tr>
               <tr>
                 <td class="b" style="padding:7px 10px;">实丰文化 &amp;<br/>汤姆猫 AI 童伴</td>
                 <td style="padding:7px 10px;">实丰 <strong>149–399</strong><br/>汤姆猫 1,499–1,999</td>
                 <td style="padding:7px 10px;">实丰 25 营收 4.17 亿<br/><strong style="color:#DC2626;">归母净亏 1.75 亿</strong></td>
-                <td style="padding:7px 10px;">实丰 SF-Hola 同时接千问/豆包/文心；汤姆猫系<strong>联手西湖心辰自研 MoE</strong> + 豆包/DeepSeek（25 年报未单列，行业估算年销数千万 / 约 1.5–3 万台）</td>
-                <td style="padding:7px 10px;"><strong>存量审慎维护：</strong>警惕实丰现金流与账期风险、严守预付费；汤姆猫按子路由切入</td>
+                <td style="padding:7px 10px;">集团财报与业务公开介绍用于了解商业背景。单款设备销量、回款与模型分流比例待核。</td>
+                <td style="padding:7px 10px;">询问付款主体、结算周期和可替换能力。</td>
               </tr>
               <tr>
                 <td class="b" style="padding:7px 10px;">跃然创新 Haivivi<br/>BubblePal / 奥特曼</td>
                 <td style="padding:7px 10px;">399 元 /<br/>奥特曼 599 元</td>
                 <td style="padding:7px 10px;">BubblePal <strong>31.4 万件</strong><br/>销额 1.2 亿（魔镜）</td>
-                <td style="padding:7px 10px;">单款占线上销量 19.6%，采用<strong>“买断 + 送基础/终身会员”</strong>模式；CocoMate 深绑火山豆包</td>
-                <td style="padding:7px 10px;">避开纯语音存量缠斗，在其视觉/出海新品中比拼多语言与合规节点</td>
+                <td style="padding:7px 10px;">此单款占魔镜全龄线上样本销量约 19.6%。随设备附带的权益需按购买档位核对。</td>
+                <td style="padding:7px 10px;">向品牌区分硬件收入、随设备附赠服务及续费收入。</td>
               </tr>
               <tr>
                 <td class="b" style="padding:7px 10px;">华为“智能憨憨” /<br/>珞博 Fuzozo / 显眼包</td>
                 <td style="padding:7px 10px;">399 – 599 元<br/>（显眼包催化毛绒）</td>
                 <td style="padding:7px 10px;">憨憨 399 售罄爆款<br/><strong>字节显眼包</strong>生态催化</td>
                 <td style="padding:7px 10px;">华为憨憨接小艺/鸿蒙；Fuzozo 联手涂鸦出海；字节“显眼包”带火火山豆包+纯语音毛绒生态</td>
-                <td style="padding:7px 10px;">严分成人潮玩与儿童线；依托涂鸦多模型底座与阿里鱼 IP 抢 599+ 新品</td>
+                <td style="padding:7px 10px;">按使用者年龄区分成人潮玩与儿童产品，核对相关能力是否面向外部供应商采购。</td>
               </tr>
               <tr>
                 <td class="b" style="padding:7px 10px;">奥飞娱乐 IP 矩阵</td>
                 <td style="padding:7px 10px;">299 – 699 元</td>
                 <td style="padding:7px 10px;">国民国漫 IP 群<br/>喜羊羊 2.0 等落地</td>
                 <td style="padding:7px 10px;">喜羊羊 2.0 等采用移远 EC800M 4G 方案，对品牌声誉、价值观安全与未成年人合规要求极严</td>
-                <td style="padding:7px 10px;">主打<strong>三层分龄安全护栏 + 音频零留存合规包</strong>，消除 IP 翻车顾虑</td>
+                <td style="padding:7px 10px;">核对 IP 授权、分龄内容审核、原始音频留存期和合同责任。</td>
               </tr>
               <tr>
                 <td class="b" style="padding:7px 10px;">海外参照：Curio<br/>&amp; FoloToy</td>
                 <td style="padding:7px 10px;">Curio USD 99+订阅<br/>FoloToy 按型询价</td>
-                <td style="padding:7px 10px;">Curio 北美监管承压<br/>FoloToy <strong>26.11 复测改善</strong></td>
-                <td style="padding:7px 10px;">Curio（Grok）硬件+订阅在北美强监管下承压；FoloToy 25.11 停售整改，<strong>26.11 PIRG 复测旧弱点已修正</strong></td>
-                <td style="padding:7px 10px;">出海合规范本：先审目的地禁售红线，每次模型升级必做长对话红队复测</td>
+                <td style="padding:7px 10px;">不同销售地分别核查</td>
+                <td style="padding:7px 10px;">有情感陪伴功能的产品须按实际用途、年龄和销售地判断准入；安全整改依据测试版本和样本逐项记录。</td>
+                <td style="padding:7px 10px;">将长对话用例纳入模型升级复测。</td>
               </tr>
             </tbody>
           </table>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 标杆品牌对标</span>
+          <span>来源　<a style="color:inherit; text-decoration:underline;" href="https://pdf.dfcfw.com/pdf/H3_AP202602071819822660_1.pdf" target="_blank" rel="noopener noreferrer">魔镜《2025 年消费行业新潜力白皮书》</a>（79–80 页） · <a href="https://static.cninfo.com.cn/finalpage/2026-04-25/1225188928.PDF" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline;">实丰文化 2025 年报</a>（集团口径）</span>
           <span class="pg">11 / 18</span>
         </div>
       </div>
@@ -927,49 +935,49 @@
           <span class="section-pill">05 · 供应商选型对比</span>
           <span class="top-meta">阿里云千问（百炼）vs 火山引擎（豆包）同条件 POC 框架</span>
         </div>
-        <h2 class="slide-title">千问 vs 豆包破局策略：正视火山四重闭环，打出视觉与阿里生态王牌</h2>
-        <p class="slide-lead">直面字节在纯语音毛绒红海的强压制，<strong>务实放弃“中小厂开源自托管”幻想</strong>，用 <strong>Qwen-VL + 阿里鱼 IP + 淘天母婴</strong>错位抢高毛利增量。</p>
+        <h2 class="slide-title">同一台样机、同一套绘本，怎样比较千问与品牌现供？</h2>
+        <p class="slide-lead">客户现供若为豆包，可并行测试千问。先商定任务和预算，锁定硬件、网络、页面、问题和打分人。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <table class="clean-tbl" style="font-size:11.6px; line-height:1.42;">
             <thead>
               <tr>
-                <th style="width:16%; padding:8px 10px;">竞争与破局维度</th>
-                <th style="width:42%; background:#065F46; padding:8px 10px;">阿里云 · 通义千问（差异化破局打法）</th>
-                <th style="width:42%; padding:8px 10px;">火山引擎 · 豆包（客观正视其强压制）</th>
+                <th style="width:16%; padding:8px 10px;">比较维度</th>
+                <th style="width:42%; background:#065F46; padding:8px 10px;">千问方案</th>
+                <th style="width:42%; padding:8px 10px;">客户现供方案</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="b" style="padding:7.5px 10px;">纯语音与生态闭环</td>
-                <td style="background:#ECFDF5; padding:7.5px 10px;">百炼已适配 <strong>30+ 芯片</strong>并支持全双工打断；不与对手在百元毛绒打补贴战，专注标准童声 ASR 准确率与 <code>&lt;600ms</code> 实时实测。</td>
-                <td style="padding:7.5px 10px;"><strong>强压制四重闭环：</strong>芯片预集成（乐鑫/博通/蓝讯/移远）+ 火山 RTC 低延迟语音 + 扣子零代码编排 + 抖音流量闭环，深度统治纯语音红海。</td>
+                <td class="b" style="padding:7.5px 10px;">语音链路</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;">列出 ASR、意图、对话和语音合成的实际型号。按相同噪声、拾音距离与网络记录识别字错率和 P95 延迟。</td>
+                <td style="padding:7.5px 10px;">取得现供版本、参数与报价，回放同一批经授权的音频。记录失败重试和打断恢复。</td>
               </tr>
               <tr>
-                <td class="b" style="padding:7.5px 10px;">千元级视觉伴学</td>
-                <td style="background:#ECFDF5; padding:7.5px 10px;"><strong>核心差异化王牌：</strong>以 <strong>Qwen-VL</strong> 主攻千元级硬壳视觉探索机与固定伴学底座，凭绘本翻页识读与实物科普抢占高 ARPU 增量。</td>
-                <td style="padding:7.5px 10px;">强项集中在端到端语音拟人陪伴；视觉伴学需用同批绘本与暗光实物集实测答对率、耗时与综合调用成本。</td>
+                <td class="b" style="padding:7.5px 10px;">绘本识读</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;">统一绘本页、图片分辨率和题目，盲评文字识读、场景问答与拒答质量，单列暗光和斜拍。</td>
+                <td style="padding:7.5px 10px;">同题同设备测试。按正确回答数计分，记录每页首次响应与完成时间、调用次数和费用。</td>
               </tr>
               <tr>
-                <td class="b" style="padding:7.5px 10px;">集团 IP 与渠道杠杆</td>
-                <td style="background:#ECFDF5; padding:7.5px 10px;"><strong>阿里独有生态牌：</strong>联动<strong>阿里鱼正版 IP 授权撮合</strong> + <strong>淘天母婴/潮玩货架流量协同</strong>，用高确定性搜索货架<strong>对冲抖音 30%+ 高退货</strong>！</td>
-                <td style="padding:7.5px 10px;">抖音直播/短视频脉冲起量极快，但退货率高且投流费不退，导致 199 元白牌难以留存利润。</td>
+                <td class="b" style="padding:7.5px 10px;">内容与授权</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;">由品牌说明哪些绘本已获授权、图片是否可传云、是否允许留存。对缺授权的内容使用替代材料。</td>
+                <td style="padding:7.5px 10px;">核对现供已授权范围和内容维护工时。IP 联名与货架资源需另评估合作条件。</td>
               </tr>
               <tr>
-                <td class="b" style="padding:7.5px 10px;">部署模式与出海</td>
-                <td style="background:#ECFDF5; padding:7.5px 10px;"><strong>明确放弃中小厂自托管：</strong>中小玩具厂无力运维开源自托管（大厂自托管阿里云亦不创收）；主推<strong>东南亚/中东合规云节点</strong>，欧美先过法务白名单。</td>
-                <td style="padding:7.5px 10px;">以公有云托管为主；欧美出海同样受加州 SB 867/1119、纽约州禁令与 DOJ 数据规则严管，无法绕开产品准入红线。</td>
+                <td class="b" style="padding:7.5px 10px;">部署与数据</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;">列出境内部署地域、设备上传与云端处理路径，核对图像、音频、转写及日志的用途和期限。</td>
+                <td style="padding:7.5px 10px;">以同一数据流表核对留存、删除、模型训练用途和分包服务商。记录差异及客户要求。</td>
               </tr>
               <tr>
-                <td class="b" style="padding:7.5px 10px;">合规与结算控本</td>
-                <td style="background:#ECFDF5; padding:7.5px 10px;">标配<strong>原始音频零留存 + 禁训模型 + DPA 责任切割</strong>；推“出厂预付费固定轮次卡密 + 满额降级”，隔离中小厂坏账风险。</td>
-                <td style="padding:7.5px 10px;">同套分龄题库评测长对话护栏衰减；全周期核算须将模型单价、RTC 分钟费与 2 年活跃周期合并对账。</td>
+                <td class="b" style="padding:7.5px 10px;">费用与安全</td>
+                <td style="background:#ECFDF5; padding:7.5px 10px;">测试按组件列价，核对共享设备订阅和按量两种方案；另记知识库、RTC 和审核费用。</td>
+                <td style="padding:7.5px 10px;">同一批分龄题、重复提问和长对话复测，记录严重用例表现及复现条件，核对账单样例。</td>
               </tr>
             </tbody>
           </table>
 
           <div class="callout-strip" style="margin-top:10px;">
-            <strong>千问破局公式：</strong>绝不在百元纯语音毛绒里硬碰字节四重闭环——坚决打出<strong>“Qwen-VL 千元视觉伴学 + 阿里鱼正版 IP + 淘天母婴低退货货架 + 东南亚/中东合规云节点”</strong>四张错位王牌！
+            <strong>交付给品牌</strong>　一张同题结果表：识读正确率、P95 延迟、严重安全用例、每活跃台月费用及替换现供的工程工时。
           </div>
         </div>
 
@@ -987,8 +995,8 @@
           <span class="section-pill">05 · 商业算账模型</span>
           <span class="top-meta">统一按每台每年 5,000 轮可比测算（百炼后付费公开目录价）</span>
         </div>
-        <h2 class="slide-title">云账深度压测：吃灰基线 11.70–39.55 元/年，真实高活 2 年叠加 RTC 可破 300 元</h2>
-        <p class="slide-lead">低价买断玩具本质是<strong>“吃灰用户补贴高活用户的健身房卡模型”</strong>；一旦叠加真实活跃 2 年周期与全双工 RTC 底座费，中低价买断机极易倒亏。</p>
+        <h2 class="slide-title">同样的 5,000 轮，轻聊与绘本问答分别花多少钱？</h2>
+        <p class="slide-lead">表中仅算指定交互组件。轮数、活跃日和 RTC 单价为情景输入；知识库运行、检索、审核、网络及合同折扣另列。</p>
 
         <div class="slide-body">
           <div class="g-60-40" style="flex:1; align-items:stretch; grid-template-columns:1.62fr 1fr; gap:18px;">
@@ -998,9 +1006,9 @@
                   <tr>
                     <th style="width:15%; padding:6px 8px;">功能配置档位</th>
                     <th style="width:22%; padding:6px 8px;">百炼公开参考单价*</th>
-                    <th style="width:16%; background:#065F46; padding:6px 8px;">吃灰摊薄基线<br/>(5,000轮/年·5-7分/天)</th>
-                    <th style="width:16%; background:#991B1B; padding:6px 8px;">真实高活×2年<br/>(15,000轮/年×2年)</th>
-                    <th style="width:31%; padding:6px 8px;">盈利边界与增量提示</th>
+                    <th style="width:16%; background:#065F46; padding:6px 8px;">基准用量<br/>5,000 轮/年</th>
+                    <th style="width:16%; background:#991B1B; padding:6px 8px;">高用量情景<br/>15,000 轮/年 × 2 年</th>
+                    <th style="width:31%; padding:6px 8px;">增量费用与预算校验</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1008,47 +1016,47 @@
                     <td class="b" style="padding:6px 8px;">极简纯语音<br/><span class="tag t-slate">轻聊</span></td>
                     <td style="padding:6px 8px;"><strong>2.34 元 / 千轮</strong><br/><span style="font-size:9.6px; color:#64748B;">ASR 0.05+TTS 0.09+聊 2.20</span></td>
                     <td style="background:#ECFDF5; padding:6px 8px;"><strong>11.70 元 / 年</strong><br/><span class="tag t-emerald">摊薄基线</span></td>
-                    <td style="background:#FEF2F2; padding:6px 8px;"><strong style="color:#991B1B;">70.20 元 / 2年</strong><br/><span style="font-size:9.6px; color:#991B1B;">仅纯模型费</span></td>
-                    <td style="padding:6px 8px;">换标准童声 ASR（0.75 元/千轮）：5k 轮年增 <strong>3.5 元</strong>，高活 1.5 万轮年增 <strong>10.5 元</strong></td>
+                    <td style="background:#FEF2F2; padding:6px 8px;"><strong>70.20 元 / 2 年</strong><br/>指定交互组件</td>
+                    <td style="padding:6px 8px;">换 0.75 元/千次的标准 ASR，基准年增 3.50 元、高用量年增 10.50 元。以具体模型及倍率核价。</td>
                   </tr>
                   <tr class="hl">
                     <td class="b" style="padding:6px 8px;">中高端 IP<br/><span class="tag t-cyan">知识库</span></td>
                     <td style="padding:6px 8px;"><strong>6.25 元 / 千轮</strong><br/><span style="font-size:9.6px; color:#64748B;">0.05+0.80+1.70+3.70</span></td>
-                    <td style="background:#ECFDF5; padding:6px 8px;"><strong>31.25 元 / 年</strong><br/><span class="tag t-amber">高活预警</span></td>
-                    <td style="background:#FEF2F2; padding:6px 8px;"><strong style="color:#991B1B;">187.50 元 / 2年</strong><br/><span style="font-size:9.6px; color:#991B1B;">+RTC 将超 230</span></td>
-                    <td style="padding:6px 8px;">399 买断机（不含税 353 元，扣 BOM/渠道毛利余约 120–160 元）若放开 2 年高活+RTC（233–293 元），将<strong>单台倒亏约 70–170 元</strong></td>
+                    <td style="background:#ECFDF5; padding:6px 8px;"><strong>31.25 元 / 年</strong><br/>交互组件</td>
+                    <td style="background:#FEF2F2; padding:6px 8px;"><strong>187.50 元 / 2 年</strong><br/>另计 RTC</td>
+                    <td style="padding:6px 8px;">若启用下列 RTC 方案，两年合计 232.50–292.50 元。知识库规格、向量化、检索和审核需另计。</td>
                   </tr>
                   <tr>
                     <td class="b" style="padding:6px 8px;">硬壳视觉伴学<br/><span class="tag t-indigo">4:1 问答/拍</span></td>
                     <td style="padding:6px 8px;">知识库 <strong>6.25</strong> / 千轮<br/>视觉高级版 <strong>14.55</strong> / 千轮*</td>
                     <td style="background:#ECFDF5; padding:6px 8px;"><strong>39.55 元 / 年</strong><br/><span class="tag t-indigo">4k问答+1k拍照</span></td>
-                    <td style="background:#FEF2F2; padding:6px 8px;"><strong style="color:#991B1B;">237.30 元 / 2年</strong><br/><span style="font-size:9.6px; color:#991B1B;">+RTC 可破 300</span></td>
-                    <td style="padding:6px 8px;">仅 <strong>1,000+ 千元视觉机</strong>或付费内容包方可覆盖</td>
+                    <td style="background:#FEF2F2; padding:6px 8px;"><strong>237.30 元 / 2 年</strong><br/>另计 RTC</td>
+                    <td style="padding:6px 8px;">同样启用 RTC，两年合计 282.30–342.30 元。再用品牌可用预算比较。</td>
                   </tr>
                 </tbody>
               </table>
 
               <div class="callout-strip" style="margin-top:8px; padding:8px 12px; font-size:11.4px; line-height:1.42; border-left-color:#DC2626; background:linear-gradient(90deg, #FEF2F2 0%, #F8FAFC 100%);">
-                <strong style="color:#991B1B;">被严重低估的底座暗账（RTC + 流量 + 审核）：</strong>高活按 <strong>30 分/天 × 250 天 = 15,000 轮/年</strong>计，若用全双工 <strong>RTC 音频流（0.003–0.007 元/分钟）</strong>，2 年（1.5 万分钟）仅 RTC 费即达 <strong>45–105 元</strong>（占轻聊 2 年模型费 70.2 元的 0.6–1.5 倍，高档已反超模型本身！）；另须单计安全审核与 4G 次年流量（<strong>15–25 元/年</strong>）。
+                <strong>RTC 情景</strong>　假设每年 250 个活跃日、每天 30 分钟、每分钟 2 轮，两年共 30,000 轮、15,000 分钟。假设 0.003–0.007 元/计费分钟，另增 45–105 元；实际按链路、参与方、时长和合同核价。
               </div>
               <div style="font-size:10.0px; color:#64748B; line-height:1.38; margin-top:5px;">
-                * 口径注：① <code>14.55 元/千轮</code> 为百炼官方轻量 ASR(0.05)+意图(0.80)+标准 TTS(1.70)+拍照问答高级版(12.00) 组合参考价（不含文本知识库）；② <code>2/5/10 元/台/年</code> 预付费资源包须严格核定轮次上限与超额降级机制，特定高级模型按倍率计费。
+                <a style="color:inherit; text-decoration:underline;" href="https://docs.bailian.console.aliyun.com/zh/model-studio/product-billing" target="_blank" rel="noopener noreferrer">百炼多模态交互开发套件计费</a>列示视觉组合 14.55 元/千轮。知识库问答的 3.70 元/千次只含相应推理，知识库服务另计；指定高级语音与模型有倍率。4G 流量、审核、内容授权和设备运维需另核。
               </div>
             </div>
 
             <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between; padding:16px 18px;">
-              <div class="card-h" style="color:#6EE7B7; margin-bottom:2px;">硬核风控与定价分层三红线</div>
+              <div class="card-h" style="color:#6EE7B7; margin-bottom:2px;">怎样换成品牌自己的账单</div>
               <div style="background:rgba(220,38,38,0.20); border:1px solid #F87171; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13px; font-weight:800; color:#FFF;">① 399 元以下强制半双工 + 预付费卡密</div>
-                <div style="font-size:11.8px; color:#FEE2E2; margin-top:4px; line-height:1.46;">严禁开放高价 RTC 与无上限知识库；强制 <strong>WebSocket 半双工 + 出厂预付费固定轮次卡密 + 满额降级本地轻模型</strong>。</div>
+                <div style="font-size:13px; font-weight:800; color:#FFF;">① 取得实际用量分布</div>
+                <div style="font-size:11.8px; color:#FEE2E2; margin-top:4px; line-height:1.46;">记录各激活月份的设备数、活跃天数、问答/拍照比例和高活用户分位数。模型费用与 RTC 分钟分别汇总。</div>
               </div>
               <div style="background:rgba(99,102,241,0.22); border:1px solid #818CF8; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13px; font-weight:800; color:#FFF;">② 千元级视觉伴学机方开放高阶多模态</div>
-                <div style="font-size:11.8px; color:#E0E7FF; margin-top:4px; line-height:1.46;">仅在 1,000+ 硬壳伴学机或高溢价 IP 线开放 Qwen-VL 拍照、标准童声 ASR 与全双工 RTC，严守单机云费红线。</div>
+                <div style="font-size:13px; font-weight:800; color:#FFF;">② 对比购买方式</div>
+                <div style="font-size:11.8px; color:#E0E7FF; margin-top:4px; line-height:1.46;">设备订阅采用共享资源池。用同一批用量比较按量及订阅，核对资源到期、追加购买和退款处理。</div>
               </div>
               <div style="background:rgba(52,211,153,0.16); border:1px solid #34D399; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13px; font-weight:800; color:#FFF;">③ 每日防沉迷熔断 + 固频音频走本地/CDN</div>
-                <div style="font-size:11.8px; color:#D1FAE5; margin-top:4px; line-height:1.46;">静态儿歌/睡前故事直走本地 Flash 或 CDN；借《拟人化办法》强制每日时长上限，从产品层锁死极端高活账单。</div>
+                <div style="font-size:13px; font-weight:800; color:#FFF;">③ 明确预算上限与体验</div>
+                <div style="font-size:11.8px; color:#D1FAE5; margin-top:4px; line-height:1.46;">可测试本地播放已授权故事或提示家长续用。限额和降级由产品实现，按实际年龄和交互功能另审时长设置。</div>
               </div>
             </div>
           </div>
@@ -1065,52 +1073,52 @@
     <section class="slide">
       <div class="slide-inner">
         <div class="top-bar">
-          <span class="section-pill">05 · 安全与合规生命线</span>
-          <span class="top-meta">FoloToy 时间线复盘 × 中美欧 2026 最新监管红线</span>
+          <span class="section-pill">05 · 安全与适用法规</span>
+          <span class="top-meta">按销售地、年龄和功能核对</span>
         </div>
-        <h2 class="slide-title">安全是一票否决项：补全中美儿童法规、强制认证与音频零留存方案</h2>
-        <p class="slide-lead">儿童基础法、拟人化禁令、无线电强制认证与隐私保护缺一不可；<strong>换云商无法绕开禁售令，须前置工程合规包与 DPA 责任切割</strong>。</p>
+        <h2 class="slide-title">绘本问答与情感陪伴的适用边界，应在设计样机时确认</h2>
+        <p class="slide-lead">先画出设备实际能做什么、给谁使用、数据去哪里，再由法务、产品与云服务负责人对照适用条款。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="card-rose" style="padding:10px 15px; display:flex; align-items:center; gap:14px; border-left:5px solid #DC2626;">
-            <span class="tag t-rose" style="font-size:11px; padding:4px 8px;">2025–2026 警钟</span>
+            <span class="tag t-rose" style="font-size:11px; padding:4px 8px;">样机审查</span>
             <div style="font-size:12px; color:#7F1D1D; line-height:1.46;">
-              <strong>FoloToy Kumma 熊完整时间线：</strong>2025.11 美国 PIRG 实测曝光不当回答，停售且遭 OpenAI 暂停开发者资格；整改复售后，<strong>2026.11 PIRG 复测确认旧弱点已修正</strong>，但长对话护栏衰减已直接催化欧美立法全面收紧。
+              请品牌现场演示三个环节：孩子按键拍页、模型如何回答、家长如何查看和删除记录。记录是否主动发起持续情感互动和保存儿童偏好。
             </div>
           </div>
 
           <div class="g-3" style="flex:1; align-items:stretch; margin-top:11px; gap:15px;">
             <div class="card-emerald" style="padding:13px 15px; display:flex; flex-direction:column; justify-content:flex-start;">
-              <div class="card-h" style="color:#065F46; font-size:14.2px; margin-bottom:7px;"><span class="tag t-emerald">中国法规与认证</span> 7.15 新规 + 强制国标</div>
+              <div class="card-h" style="color:#065F46; font-size:14.2px; margin-bottom:7px;"><span class="tag t-emerald">境内</span> 按实际交互功能区分</div>
               <ul class="pts" style="gap:6px;">
-                <li style="font-size:11.8px; line-height:1.45;"><strong>7.15《拟人化办法》第 14 条：</strong>明禁向未成年人提供虚拟亲属/伴侣等亲密服务；&lt;14 岁须监护人同意，强制未成年人模式与情绪告警。</li>
-                <li style="font-size:11.8px; line-height:1.45;"><strong>儿童基础法与国标：</strong>叠加《<strong>儿童个人信息网络保护规定</strong>》《<strong>未成年人网络保护条例</strong>》及新版 <strong>GB 6675 强制国标（2026.11.1 已实施）</strong>。</li>
-                <li style="font-size:11.8px; line-height:1.45;"><strong>联网强制认证清单：</strong><strong>3C 认证 + SRRC 无线电型号核准（Wi-Fi/蓝牙必做）+ CTA 进网许可证（4G 蜂窝必做）</strong>，并验拆洗与电池安全。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>绘本识读。</strong> 不涉及持续情感互动的知识问答、学习教育不适用《拟人化办法》（第 2 条）。仍须落实儿童个人信息保护等其他要求。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>持续情感互动。</strong> 第 14 条禁止向未成年人提供虚拟亲属、伴侣等服务，并规定未成年人模式和时长设置；第 18 条要求连续使用每超过两小时提醒。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>硬件与信息。</strong> 按产品分类、所用无线模组及入网方式核实玩具安全、CCC、无线电和进网适用项；核对儿童数据处理所需的监护人同意。</li>
               </ul>
             </div>
 
             <div class="card-indigo" style="padding:13px 15px; display:flex; flex-direction:column; justify-content:flex-start;">
-              <div class="card-h" style="color:#3730A3; font-size:14.2px; margin-bottom:7px;"><span class="tag t-indigo">欧美禁令与追责</span> SB 867 + SB 1119</div>
+              <div class="card-h" style="color:#3730A3; font-size:14.2px; margin-bottom:7px;"><span class="tag t-indigo">美国州法</span> 两州分别判断</div>
               <ul class="pts" style="gap:6px;">
-                <li style="font-size:11.8px; line-height:1.45;"><strong>加州 SB 867（已签署）：</strong><strong>2027.1.1 起 4 年</strong>禁在加州产销面向 <strong>&lt;16 岁</strong>的陪伴聊天实体玩具（纽约州亦已签署 ≤12 岁 5 年禁令，2027.2.22 生效，违规最高罚 USD 1.5 万/天）；换云商改变不了禁售！</li>
-                <li style="font-size:11.8px; line-height:1.45;"><strong>加州 SB 1119 ("Adam's Law")：</strong>同期签署，确立 AI 陪伴产品引发未成年人伤害的<strong>民事赔偿追责机制</strong>，出海风险急剧放大。</li>
-                <li style="font-size:11.8px; line-height:1.45;"><strong>联邦 &amp; 欧盟：</strong>美国 COPPA（&lt;13 岁可验证家长同意）、EO 14117 敏感数据跨境禁令及欧盟 GDPR 严审全链路留存与删除。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>加州。</strong> SB 867 对法定范围内、含陪伴聊天机器人的玩具设置限期禁令。自 2027 年 1 月起按玩具定义、目标年龄和例外逐项核对。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>加州。</strong> SB 1119 单独规范儿童使用陪伴聊天机器人的安全措施，包括家长控制、危机处置及提示。<a style="color:inherit; text-decoration:underline;" href="https://www.gov.ca.gov/2026/09/10/governor-newsom-signs-the-strongest-child-safety-chatbot-and-social-media-laws-in-the-nation/" target="_blank" rel="noopener noreferrer">加州政府签署说明</a></li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>纽约州。</strong> S9408A 涵盖嵌入或集成法定 AI 陪伴功能、为 12 岁及以下儿童玩耍设计的玩具。2027 年 2 月 22 日起实施五年。<a style="color:inherit; text-decoration:underline;" href="https://www.nysenate.gov/legislation/bills/2025/S9408/amendment/A" target="_blank" rel="noopener noreferrer">纽约州 S9408A 正文</a></li>
               </ul>
             </div>
 
             <div class="card-amber" style="padding:13px 15px; display:flex; flex-direction:column; justify-content:flex-start;">
-              <div class="card-h" style="color:#92400E; font-size:14.2px; margin-bottom:7px;"><span class="tag t-amber">百炼工程合规包</span> 零留存与责任切割</div>
+              <div class="card-h" style="color:#92400E; font-size:14.2px; margin-bottom:7px;"><span class="tag t-amber">方案核对</span> 数据与责任</div>
               <ul class="pts" style="gap:6px;">
-                <li style="font-size:11.8px; line-height:1.45;"><strong>音频零留存 &amp; 禁训：</strong>默认开启<strong>儿童原始音频零留存</strong>、合同承诺<strong>绝不用于模型训练</strong>，且<strong>严禁未成年人声纹克隆</strong>。</li>
-                <li style="font-size:11.8px; line-height:1.45;"><strong>DPA 责任清晰切割：</strong>合同明确云端底座安全护栏与客户自定义 Prompt/人设的 <strong>DPA 法律边界</strong>，版本更新必做红队复测。</li>
-                <li style="font-size:11.8px; line-height:1.45;"><strong>摄像头物理隐私：</strong>视觉拍摄须配物理触发与可见指示灯，向家长开放一键删除权，严禁软毛绒带镜头进入卧室场景。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>保存与训练。</strong> 分别核对原始音频、图像、转写和日志的默认保存期、关闭选项、删除机制以及训练用途。以产品配置和合同为准。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>责任与复测。</strong> 说明品牌、模组商、云服务商各自处理的数据和职责，记录模型、人设或版本变化后的高风险用例复测。</li>
+                <li style="font-size:11.8px; line-height:1.45;"><strong>拍摄与法域。</strong> 测试拍摄提示、监护人控制和误拍处理。销售地变化时重新审查当地准入与数据要求。</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 安全与合规专题</span>
+          <span>法规原文　<a style="color:inherit; text-decoration:underline;" href="https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm" target="_blank" rel="noopener noreferrer">国家网信办《拟人化互动服务管理暂行办法》</a>（第 2、14、17、18 条） · <a style="color:inherit; text-decoration:underline;" href="https://www.gov.ca.gov/2026/09/10/governor-newsom-signs-the-strongest-child-safety-chatbot-and-social-media-laws-in-the-nation/" target="_blank" rel="noopener noreferrer">加州政府签署说明</a> · <a style="color:inherit; text-decoration:underline;" href="https://www.nysenate.gov/legislation/bills/2025/S9408/amendment/A" target="_blank" rel="noopener noreferrer">纽约州 S9408A 正文</a></span>
           <span class="pg">14 / 18</span>
         </div>
       </div>
@@ -1121,43 +1129,43 @@
       <div class="slide-inner">
         <div class="top-bar">
           <span class="section-pill">05 · 客户选型顾虑预判</span>
-          <span class="top-meta">基于公开调研拟定的 3 类高频异议与应对方法</span>
+          <span class="top-meta">供品牌与方案商访谈使用</span>
         </div>
-        <h2 class="slide-title">预判玩具品牌与 IDH 的 3 大顾虑，用生态、卡密与工程合规破局</h2>
-        <p class="slide-lead">正视豆包语音闭环、工厂怕背云账单与内容追责焦虑——靠<strong>视觉伴学 + 阿里生态 + 出厂卡密 + 零留存合规包</strong>建立专业信任。</p>
+        <h2 class="slide-title">品牌决定是否评估绘本识读方案前，先问清三个问题</h2>
+        <p class="slide-lead">以下是访谈提纲，客户反馈、成本与采购进度均待采集。</p>
 
         <div class="slide-body">
           <div class="g-3" style="flex:1; align-items:stretch;">
             <div class="card-white" style="border-top:4px solid #DC2626;">
-              <div class="tag t-rose" style="margin-bottom:9px;">顾虑 01 · 火山四重闭环强压制</div>
-              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“火山有芯片+RTC+扣子+抖音一整套闭环，为什么还要接千问？”</div>
+              <div class="tag t-rose" style="margin-bottom:9px;">现供表现</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“现有方案哪一种绘本识读任务经常失败？”</div>
               <ul class="pts">
-                <li><strong>错位拼视觉与货架生态：</strong>不在百元语音毛绒硬拼，用 <strong>Qwen-VL 千元视觉伴学</strong>切入高毛利新品，联动<strong>阿里鱼 IP + 淘天母婴货架</strong>对冲抖音 30%+ 退货。</li>
-                <li><strong>务实出海节点：</strong>面向东南亚/中东推区域合规托管节点，不误导中小厂做无力运维的开源自托管。</li>
+                <li>请品牌给出脱敏失败样例、测试绘本和当前模型版本，标明使用场景与允许的数据处理方式。</li>
+                <li>提前约定评分规则、采样网络及 P95 延迟起止点，避免更换配置影响比较。</li>
               </ul>
             </div>
 
             <div class="card-white" style="border-top:4px solid #D97706;">
-              <div class="tag t-amber" style="margin-bottom:9px;">顾虑 02 · 工厂怕背开放式云账单</div>
-              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“模组已接别家，而且传统厂净利薄、账期长，最怕背 2–3 年云账单？”</div>
+              <div class="tag t-amber" style="margin-bottom:9px;">结算和资源</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“谁购买云服务？设备一年可以花多少？”</div>
               <ul class="pts">
-                <li><strong>30+ 芯片轻切增量新品：</strong>百炼已适配乐鑫/涂鸦/移远（明确区分 Wi-Fi FCM665D 与 4G EC800M），不动老爆款，从新视觉/联名 SKU 起步。</li>
-                <li><strong>预付费固定轮次卡密兜底：</strong>采用<strong>出厂预付费 License Key + 满额降级本地轻模型</strong>，锁死工厂单机成本，零后付费失控风险。</li>
+                <li>向品牌财务核对单机可用预算、实际合同价和付款主体。向方案商核对用量明细及固件维护责任。</li>
+                <li>官方预付费设备订阅提供共享资源池。单机限额、到期提示、离线播放若为刚需，应另列工程与支持成本。</li>
               </ul>
             </div>
 
             <div class="card-white" style="border-top:4px solid #059669;">
-              <div class="tag t-emerald" style="margin-bottom:9px;">顾虑 03 · 极度警惕安全追责</div>
-              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“FoloToy 停售叠加 7.15 新规与加州 SB 867/1119，如何确保不毁 IP？”</div>
+              <div class="tag t-emerald" style="margin-bottom:9px;">家长和内容安全</div>
+              <div style="font-size:13.8px; font-weight:800; color:#0F172A; line-height:1.4; margin-bottom:10px;">“哪些内容可以上传？严重错误怎样发现和处理？”</div>
               <ul class="pts">
-                <li><strong>百炼儿童硬件合规包：</strong>提供<strong>原始音频零留存 + 禁用于训练 + 禁未成年人声纹克隆</strong>，以 <strong>DPA 清晰切割</strong>云端与客户 Prompt 责任。</li>
-                <li><strong>可验证红队复测：</strong>POC 现场实测分龄高危题库与长对话防衰减，书面约定每次版本升级执行复测留档。</li>
+                <li>让产品与法务标出数据类型、处理方、留存期、删除途径及监护人同意方式，保留书面确认。</li>
+                <li>在授权样本上复测反复追问、长对话和不适龄内容。约定严重问题处理人、关闭路径与复测条件。</li>
               </ul>
             </div>
           </div>
 
           <div class="callout-strip" style="margin-top:12px; background:#06281E; color:#F8FAFC; border-left-color:#34D399;">
-            <strong style="color:#6EE7B7;">选型交付标准包：</strong> 面向客户一次性交付<strong>“2 年活跃+RTC 全周期 TCO 表 + 出厂预付费卡密方案 + Qwen-VL 绘本实测 + 音频零留存与红队复测报告”</strong>，彻底跳出低价同质内卷。
+            <strong>每次访谈的产出</strong>　记下具体 SKU、付款主体、现供痛点、预算范围，以及下一步谁能提供样机与可用数据。
           </div>
         </div>
 
@@ -1172,64 +1180,64 @@
     <section class="slide">
       <div class="slide-inner">
         <div class="top-bar">
-          <span class="section-pill">06 · 客户生态地图与优先级</span>
-          <span class="top-meta">按品牌、方案商与制造分工锁定真实买单人</span>
+          <span class="section-pill">06 · 客户筛选</span>
+          <span class="top-meta">按产品、预算、技术权限与数据条件判断</span>
         </div>
-        <h2 class="slide-title">云盘子估算与客群重排：轻人力主攻千元视觉伴学与预付费模组池</h2>
-        <p class="slide-lead">先用公开体量算清外部云盘天花板（夯实<strong>“有条件推进”</strong>财务依据），告别“单一押注实丰”，重排 4 大优先梯队与出海红线。</p>
+        <h2 class="slide-title">从年度市场规模转向一款客户可以采购的绘本设备</h2>
+        <p class="slide-lead">全龄线上销量不能直接换算儿童设备的云支出。把估算落到品牌、具体 SKU 和分月激活批次，再判断是否投入联测。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="card-dark" style="padding:10px 15px; margin-bottom:10px; display:flex; align-items:center; justify-content:space-between; gap:14px;">
             <div style="flex-shrink:0; background:rgba(52,211,153,0.2); border:1px solid #34D399; border-radius:8px; padding:6px 10px; text-align:center;">
-              <div style="font-size:11.2px; font-weight:800; color:#6EE7B7;">外部可触达云盘估算</div>
-              <div style="font-size:9.8px; color:#CBD5E1;">公开数据推算 · 待内部校准</div>
+              <div style="font-size:11.2px; font-weight:800; color:#6EE7B7;">千问收入如何测算</div>
+              <div style="font-size:9.8px; color:#CBD5E1;">客户提供数据后填列</div>
             </div>
             <div style="font-size:11.6px; color:#E2E8F0; line-height:1.45; flex:1;">
-              按 2026 国内线上狭义 <strong>~415 万件</strong> × <strong>70% 激活</strong>（~290.5 万台）× 单台年有效消耗 <strong>11.70–31.25 元</strong>测算，千问若占 <strong>10%–20% 份额</strong>，年 API 盘子仅约 <strong style="color:#FDE047; font-size:12.6px;">340 万–1,820 万元</strong> —— 这正是本赛道必须定性为<strong style="color:#6EE7B7;">“有条件推进（轻人力复用既有能力、绝不打低价战）”</strong>的核心财务依据！
+              <strong>按月汇总</strong>　可外采的儿童 SKU 激活设备 × 当月活跃比例 × 各功能计费用量 × 千问实际路由比例 × 合同结算单价。若选设备订阅，改按合同设备数和期限核算。成本、渠道分成和交付人天另列。
             </div>
           </div>
 
           <div class="g-2" style="flex:1; align-items:stretch; gap:13px;">
             <div class="card-emerald" style="padding:12px 15px;">
-              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-emerald">新第 1 梯队 · 视觉增量</span> 千元级硬壳视觉伴学探索机</div>
-              <div style="font-size:12.6px; font-weight:800; color:#065F46; margin-bottom:5px;">灵宇宙（1,099–1,299） · 火火兔 / 阿尔法蛋传统早教转型线</div>
+              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-emerald">品牌</span> 谁决策、谁付费？</div>
+              <div style="font-size:12.6px; font-weight:800; color:#065F46; margin-bottom:5px;">一款面向境内家庭的绘本识读设备</div>
               <ul class="pts" style="gap:5px;">
-                <li style="font-size:11.6px; line-height:1.42;">避开百元纯语音红海，锚定自带镜头、毛利充裕的千元级硬壳探索机与早教龙头转型新品；</li>
-                <li style="font-size:11.6px; line-height:1.42;">以 <strong>Qwen-VL 绘本识读 / 户外识物 + 正版早教 RAG</strong> 抢占高 ARPU 增量 SKU。</li>
+                <li style="font-size:11.6px; line-height:1.42;">取得品类负责人、采购决策人及付费主体，核对是否有新品或现供替换窗口。</li>
+                <li style="font-size:11.6px; line-height:1.42;">收集同类 SKU 的分月激活、月活和云支出。新 SKU 缺样本时标清可比性。</li>
               </ul>
             </div>
 
             <div class="card-indigo" style="padding:12px 15px;">
-              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-indigo">新第 1 梯队 · 生态走量</span> 预付费模组池 &amp; 阿里鱼/淘天协同</div>
-              <div style="font-size:12.6px; font-weight:800; color:#3730A3; margin-bottom:5px;">涂鸦 / 移远 1 对 N 模组池 + 阿里鱼 IP &amp; 淘天母婴 599+ 新品</div>
+              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-indigo">方案商</span> 谁能改动设备？</div>
+              <div style="font-size:12.6px; font-weight:800; color:#3730A3; margin-bottom:5px;">模组、固件、前后端接口与账单归属</div>
               <ul class="pts" style="gap:5px;">
-                <li style="font-size:11.6px; line-height:1.42;">依托 30+ 芯片适配以<strong>轻人力标准化走量</strong>，统一推行“出厂预付费固定轮次卡密 + 满额降级”；</li>
-                <li style="font-size:11.6px; line-height:1.42;">联动<strong>阿里鱼正版 IP 授权撮合 + 淘天母婴货架流量</strong>，打造 599+ 联名新品对冲抖音退货。</li>
+                <li style="font-size:11.6px; line-height:1.42;">确认镜头、图像分辨率、算力、网络和接口；核对模型能否切换以及试验预估工时。</li>
+                <li style="font-size:11.6px; line-height:1.42;">确认共享资源池能否按设备归集用量，是否需要开发告警或离线处理。</li>
               </ul>
             </div>
 
             <div class="card-white" style="padding:12px 15px;">
-              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-slate">第 2 梯队 · 存量审慎</span> 存量维护与多模型子路由切入</div>
-              <div style="font-size:12.6px; font-weight:800; color:#334155; margin-bottom:5px;">实丰文化 SF-Hola（降级为存量样板） · 奥飞娱乐 · 汤姆猫</div>
+              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-slate">预算</span> 哪类成本决定取舍？</div>
+              <div style="font-size:12.6px; font-weight:800; color:#334155; margin-bottom:5px;">以客户的实际结算和服务期为准</div>
               <ul class="pts" style="gap:5px;">
-                <li style="font-size:11.6px; line-height:1.42;"><strong>实丰文化：</strong>2025 年净亏 <strong>1.75 亿</strong>，降级为存量联调样板，严控现金流账期与预付费红线；</li>
-                <li style="font-size:11.6px; line-height:1.42;"><strong>奥飞 / 汤姆猫：</strong>尊重多模型与自研 MoE 现状，以三层安全护栏与视觉子路由审慎切入。</li>
+                <li style="font-size:11.6px; line-height:1.42;">索取匿名化的现供单机账单和报价，补足知识库、审核、RTC 及技术支持。</li>
+                <li style="font-size:11.6px; line-height:1.42;">算出每活跃台月费、每完成一次识读的费用，以及千问侧贡献与投入。</li>
               </ul>
             </div>
 
             <div class="card-amber" style="padding:12px 15px;">
-              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-amber">出海策略 · 合规分区</span> 东南亚/中东试点 + 欧美白名单拦截</div>
-              <div style="font-size:12.6px; font-weight:800; color:#92400E; margin-bottom:5px;">东南亚 / 中东合规云节点试点 · 欧美 &lt;16 岁禁售区严控</div>
+              <div class="card-h" style="font-size:13.8px; margin-bottom:5px;"><span class="tag t-amber">准入</span> 能否获得可测样本？</div>
+              <div style="font-size:12.6px; font-weight:800; color:#92400E; margin-bottom:5px;">核对绘本授权、使用年龄和图像处理范围</div>
               <ul class="pts" style="gap:5px;">
-                <li style="font-size:11.6px; line-height:1.42;">优先在<strong>东南亚、中东</strong>试点合规云节点托管与本地多语言，放弃无运维力的中小厂自托管；</li>
-                <li style="font-size:11.6px; line-height:1.42;"><strong>欧美 &lt;16 岁禁售区（加州 SB 867/1119 及纽约州 ≤12 岁禁令）严设法务白名单前置拦截</strong>，不合规不接入。</li>
+                <li style="font-size:11.6px; line-height:1.42;">由品牌确认拍摄、上传与留存的授权范围。测试采用获准的样本。</li>
+                <li style="font-size:11.6px; line-height:1.42;">如含持续情感陪伴或拟转境外销售，应重新核对适用要求与产品边界。</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 客户生态地图</span>
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 客户筛选</span>
           <span class="pg">16 / 18</span>
         </div>
       </div>
@@ -1239,58 +1247,58 @@
     <section class="slide">
       <div class="slide-inner">
         <div class="top-bar">
-          <span class="section-pill">06 · 破内卷与客单升级思路</span>
-          <span class="top-meta">严守物理、合规与单台财务边界的 3 个产品升级方向</span>
+          <span class="section-pill">06 · 样机方案</span>
+          <span class="top-meta">绘本识读、家长控制与持续服务</span>
         </div>
-        <h2 class="slide-title">跳出低价与订阅幻想：高客单视觉伴学 + 预付费卡密 + 实体防伪闭环</h2>
-        <p class="slide-lead">直面国内纯软件续费率极低与实体卡防伪成本现实，帮客户用<strong>“出厂预付费卡密 + 千元视觉伴学”</strong>跑通可验证的单机净利。</p>
+        <h2 class="slide-title">把绘本识读做成一次可以重复的样机测试</h2>
+        <p class="slide-lead">先定读哪一页、答哪个问题、怎样算答对，再用同一台设备和网络比较千问与品牌现供。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="g-3" style="flex:1; align-items:stretch;">
             <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="tag t-indigo" style="margin-bottom:9px;">升级 01 · 高客单视觉伴学</div>
-                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">千元硬壳探索机 / 固定伴学底座</div>
+                <div class="tag t-indigo" style="margin-bottom:9px;">场景一 · 识读</div>
+                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">从拍下书页到读出答案</div>
                 <ul class="pts">
-                  <li><strong>不给软毛绒硬塞镜头：</strong>规避防抖失焦、破坏水洗结构与卧室隐私争议。</li>
-                  <li>聚焦 <strong>1,000+ 挂脖硬壳机（如灵宇宙）与固定俯拍底座</strong>，靠 <strong>Qwen-VL 绘本/识物</strong>拉厚硬件毛利池，从源头覆盖多模态与 RTC 费用。</li>
+                  <li>用品牌已授权的绘本，覆盖翻页、相似插图、斜拍和暗光。由人工标注题目、页码和可接受答案。</li>
+                  <li>同时记录首句延迟、完整回答、误识或漏读。失败时观察孩子是否能用一次操作重试。</li>
                 </ul>
               </div>
-              <div style="font-size:11.5px; color:#3730A3; border-top:1px solid #C7D2FE; padding-top:8px;"><strong>闭环：</strong>高客单硬件毛利 + 出厂预付费固定轮次卡密</div>
+              <div style="font-size:11.5px; color:#3730A3; border-top:1px solid #C7D2FE; padding-top:8px;">交付物　同页对比、错误类型与 P95 延迟</div>
             </div>
 
             <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="tag t-emerald" style="margin-bottom:9px;">升级 02 · 合规零留存记忆</div>
-                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">故事进度记忆与音频零留存底座</div>
+                <div class="tag t-emerald" style="margin-bottom:9px;">场景二 · 家长控制</div>
+                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">从开始拍摄到删除记录</div>
                 <ul class="pts">
-                  <li>仅在监护人授权下保存故事进度，并开放<strong>一键查看与彻底删除</strong>；默认执行<strong>原始音频零留存 + 禁训模型 + 禁未成年人声纹克隆</strong>。</li>
-                  <li>严守 7.15《拟人化办法》亲密关系禁令，用每日防沉迷熔断兼顾护眼与云费封顶。</li>
+                  <li>验证拍摄提示、撤回授权、删除历史等路径。按实际架构查图像、录音、转写及日志的留存与删除。</li>
+                  <li>若加入故事进度记忆，先确认保存目的、最短期限和监护人控制。涉及持续情感互动时提交额外适用性审查。</li>
                 </ul>
               </div>
-              <div style="font-size:11.5px; color:#065F46; border-top:1px solid #A7F3D0; padding-top:8px;"><strong>底线：</strong>合规护栏前置 + 每日时长上限锁死云账</div>
+              <div style="font-size:11.5px; color:#065F46; border-top:1px solid #A7F3D0; padding-top:8px;">交付物　经确认的数据流与安全用例记录</div>
             </div>
 
             <div class="card-cyan" style="display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="tag t-cyan" style="margin-bottom:9px;">升级 03 · 破除续费幻想</div>
-                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">直面软件低转化与实体 NFC 成本</div>
+                <div class="tag t-cyan" style="margin-bottom:9px;">场景三 · 持续服务</div>
+                <div style="font-size:16px; font-weight:800; color:#0F172A; margin-bottom:7px;">高活跃、断网与额度耗尽</div>
                 <ul class="pts">
-                  <li><strong>国内纯软件订阅转化极低（&lt;5%–10%）</strong>，绝不能指望次年会员费去填补低价硬件的亏损窟窿。</li>
-                  <li>借鉴 Toniebox 试销实体 IP 配件时，须严算<strong>防伪 NFC 芯片、开模与正版分成成本</strong>（严防廉价纸卡被盗版），优先靠买断+卡密兜底。</li>
+                  <li>使用实际功能比例和高活设备分位数，对照付费报价算每台每月服务费。再测试断网、资源不足时的告知。</li>
+                  <li>若客户要求离线读书，测算本地存储、已授权资源大小、固件维护和额度管理成本，再讨论可行性。</li>
                 </ul>
               </div>
-              <div style="font-size:11.5px; color:#0369A1; border-top:1px solid #BAE6FD; padding-top:8px;"><strong>现实：</strong>放弃虚幻软件续费，严算实体防伪真实净利</div>
+              <div style="font-size:11.5px; color:#0369A1; border-top:1px solid #BAE6FD; padding-top:8px;">交付物　单台成本范围及到期体验</div>
             </div>
           </div>
 
           <div class="callout-strip">
-            <strong>商业化价值升维：</strong>帮客户彻底告别 199 元白牌亏本投流与虚幻的软件续费——以<strong>“千元硬壳视觉伴学 + 出厂预付费卡密 + 阿里鱼正版 IP 联名”</strong>建立区别于纯 API 价格战的核心专业度。
+            <strong>决定是否继续</strong>　同一 SKU 的体验提升、严重安全用例和付费预算一并达标，才有依据讨论下一步投入。
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 客单与留存升级</span>
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 样机验证</span>
           <span class="pg">17 / 18</span>
         </div>
       </div>
@@ -1300,35 +1308,35 @@
     <section class="slide">
       <div class="slide-inner">
         <div class="top-bar">
-          <span class="section-pill">07 · 新人落地计划与内部对齐</span>
-          <span class="top-meta">向千问智能硬件行业总监汇报 · 脚踏实地、严守合规底线</span>
+          <span class="section-pill">07 · 赛道验证事项</span>
+          <span class="top-meta">境内绘本识读设备 · 讨论稿</span>
         </div>
-        <h2 class="slide-title">新人 90 天单线聚焦计划、结构性风控与待请教的 3 个问题</h2>
-        <p class="slide-lead">清晰认知本赛道年 API 天花板（估算约 340 万–1,820 万）与强监管红线——我愿<strong>轻人力沉底筑基，聚焦千元视觉与预付费模组池跑通闭环</strong>。</p>
+        <h2 class="slide-title">哪些证据齐备后，值得投入一次联合测试？</h2>
+        <p class="slide-lead">验证对象为一款境内绘本设备。由客户与团队在测试前确认样本、门槛及负责人。</p>
 
         <div class="slide-body" style="justify-content:space-between;">
           <div class="card-white" style="padding:14px 18px;">
-            <div style="font-size:14.2px; font-weight:800; color:#0F172A; margin-bottom:9px;">90 天 100% 可控单线执行动作（严控人力投入，服从团队分工）</div>
+            <div style="font-size:14.2px; font-weight:800; color:#0F172A; margin-bottom:9px;">启动前需要的三项输入</div>
             <div class="g-3" style="gap:15px;">
               <div style="border-left:3.5px solid #059669; padding-left:12px;">
-                <div style="font-size:13px; font-weight:800; color:#065F46;">前 30 天 · 对齐与筑基</div>
+                <div style="font-size:13px; font-weight:800; color:#065F46;">品牌与采购</div>
                 <ul class="pts" style="gap:5px; margin-top:5px;">
-                  <li style="font-size:11.9px; line-height:1.45;">吃透百炼多模态定价、RTC 分钟费、出厂预付费卡密机制、30+ 芯片 Wi-Fi/4G 制式及音频零留存规范；</li>
-                  <li style="font-size:11.9px; line-height:1.45;">随前辈拜访 10–15 家深圳/珠三角 IDH 与模组商，一线校准真实活跃轮次与配网痛点。</li>
+                  <li style="font-size:11.9px; line-height:1.45;">指定真实 SKU、采购决策人、付款主体及可试用窗口。</li>
+                  <li style="font-size:11.9px; line-height:1.45;">提供现供痛点、预算上限和合同服务期。</li>
                 </ul>
               </div>
               <div style="border-left:3.5px solid #4F46E5; padding-left:12px;">
-                <div style="font-size:13px; font-weight:800; color:#3730A3;">30–60 天 · 建账与聚焦</div>
+                <div style="font-size:13px; font-weight:800; color:#3730A3;">样机与数据</div>
                 <ul class="pts" style="gap:5px; margin-top:5px;">
-                  <li style="font-size:11.9px; line-height:1.45;">沉淀《2 年活跃+RTC 全周期 TCO 表》与《中美欧合规及 3C/SRRC/CTA 检查表》为一线工具；</li>
-                  <li style="font-size:11.9px; line-height:1.45;">重点摸排<strong>千元硬壳视觉伴学新锐、早教龙头转型线与涂鸦/移远模组池</strong>，审慎维护存量样本。</li>
+                  <li style="font-size:11.9px; line-height:1.45;">取得可测样机、固件、现供配置和经授权的绘本样本。</li>
+                  <li style="font-size:11.9px; line-height:1.45;">共同确认年龄段、数据用途、存储地域和处理期限。</li>
                 </ul>
               </div>
               <div style="border-left:3.5px solid #0284C7; padding-left:12px;">
-                <div style="font-size:13px; font-weight:800; color:#0369A1;">60–90 天 · 最小闭环</div>
+                <div style="font-size:13px; font-weight:800; color:#0369A1;">用量与成本</div>
                 <ul class="pts" style="gap:5px; margin-top:5px;">
-                  <li style="font-size:11.9px; line-height:1.45;">配合资深同事与 SA，推动 <strong>1–2 家千元视觉伴学品牌或预付费模组伙伴</strong>完成 Qwen-VL 识图与红队评测；</li>
-                  <li style="font-size:11.9px; line-height:1.45;">输出 1 份经一线验证的《AI 玩具 2 年 TCO 与合规破冰复盘》，逐步独立跟单。</li>
+                  <li style="font-size:11.9px; line-height:1.45;">取得匿名激活批次、月活、轮数及真实账单样例。</li>
+                  <li style="font-size:11.9px; line-height:1.45;">核对视觉、RTC、知识库、审核、折扣及维护工时。</li>
                 </ul>
               </div>
             </div>
@@ -1336,26 +1344,26 @@
 
           <div class="g-2" style="margin-top:12px; gap:16px; flex:1; align-items:stretch;">
             <div class="card-rose" style="padding:13px 16px;">
-              <div style="font-size:13.4px; font-weight:800; color:#991B1B; margin-bottom:6px;">3 条需严守的行业结构性风险底线</div>
+              <div style="font-size:13.4px; font-weight:800; color:#991B1B; margin-bottom:6px;">建议验收门槛 · 测试前共同确认</div>
               <ul class="pts" style="gap:5.5px;">
-                <li style="font-size:11.9px; line-height:1.44;"><strong>强监管与认证红线：</strong>严守 7.15 新规、新版 GB 6675、加州 SB 867/1119 及纽约州禁令与 3C/SRRC/CTA，落实音频零留存与升级必复测；</li>
-                <li style="font-size:11.9px; line-height:1.44;"><strong>白牌亏损与坏账风险：</strong>199 元白牌 30% 退货实亏 15–30 元，传统厂账期长，严禁对中小厂开放后付费授信；</li>
-                <li style="font-size:11.9px; line-height:1.44;"><strong>高活 2 年与 RTC 反噬：</strong>399 以下强制 WebSocket 半双工 + 预付费卡密 + 防沉迷熔断，严防越活越亏。</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>效果。</strong> 在同一套绘本和网络条件下，识读正确率和 P95 响应延迟满足客户预先约定的阈值。</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>安全。</strong> 在双方确认的严重用例中没有未解决的问题，数据处理路径和删除方式核查通过。</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>成本。</strong> 每活跃台月费用不超过品牌预算，跨批次、超额及高活情景也有明确处理方式。</li>
               </ul>
             </div>
             <div class="card-amber" style="padding:13px 16px;">
-              <div style="font-size:13.4px; font-weight:800; color:#92400E; margin-bottom:6px;">汇报口径边界 &amp; 待向总监请教的 3 个问题</div>
+              <div style="font-size:13.4px; font-weight:800; color:#92400E; margin-bottom:6px;">如何使用结果</div>
               <ul class="pts" style="gap:5.5px;">
-                <li style="font-size:11.9px; line-height:1.44;"><strong>合规白名单口径：</strong>法务对国内拟人化玩具及欧美禁售区（加州 SB 867/1119 及纽约州禁令）的正式准入审批边界？</li>
-                <li style="font-size:11.9px; line-height:1.44;"><strong>阿里生态协同路径：</strong>面向 599–1,299 元新品，团队能否联动<strong>阿里鱼正版 IP 与淘天母婴货架</strong>做联合打法？</li>
-                <li style="font-size:11.9px; line-height:1.44;"><strong>预付费卡密政策：</strong>面向涂鸦/移远模组池与中小玩具厂，百炼<strong>出厂预付费固定轮次卡密与满额降级</strong>的商务政策是什么？</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>材料齐全。</strong> 由团队与品牌确认试用窗口和可投入人天，再安排一次联合测试。</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>输入不足。</strong> 标注缺项、负责人和对决策的影响，暂列观察。</li>
+                <li style="font-size:11.9px; line-height:1.44;"><strong>测试结束。</strong> 报告提升幅度、未解决安全问题、成本差额与工程工时，提出继续、复测或暂停的建议。</li>
               </ul>
             </div>
           </div>
         </div>
 
         <div class="slide-footer">
-          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 汇报完（恳请总监批评指正）</span>
+          <span>2026 智能儿童陪伴玩具行业洞察与千问商业化汇报 · 验证条件</span>
           <span class="pg">18 / 18</span>
         </div>
       </div>

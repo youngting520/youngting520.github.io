@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>2026 千问智能硬件三大赛道协同格局与商业化总览</title>
+<title>智能硬件三个方向的初步判断与验证建议</title>
 <style>
   @page { size: 1280px 720px; margin: 0; }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
@@ -33,7 +33,7 @@
     background: #0B1120; color: var(--slate-700); overflow: hidden;
   }
   .deck-stage { width: 100vw; height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-  .slide-viewport { width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
+  .slide-viewport { flex: 0 0 auto; width: 1280px; height: 720px; position: relative; transform-origin: center center; box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55); border-radius: 6px; overflow: hidden; }
   .slide { width: 1280px; height: 720px; background: #FFFFFF; position: absolute; inset: 0; display: none; flex-direction: column; overflow: hidden; }
   .slide.active { display: flex; }
   .slide-inner { padding: 30px 48px 22px 48px; flex: 1; display: flex; flex-direction: column; }
@@ -105,6 +105,45 @@
   .callout-strip { background: linear-gradient(90deg, #EEF2FF 0%, #F0F9FF 50%, #ECFDF5 100%); border-left: 4px solid var(--indigo); border-radius: 0 10px 10px 0; padding: 10px 15px; font-size: 12.1px; color: var(--navy); line-height: 1.46; margin-top: 10px; }
 
   .cover-slide { background: linear-gradient(135deg, #090F1E 0%, #121F3B 48%, #0E2936 100%); color: #FFFFFF; }
+
+  .report-page { padding: 42px 60px 26px; }
+  .report-page .top-bar { margin-bottom: 21px; }
+  .report-page .slide-title { font-size: 32px; line-height: 1.3; }
+  .report-page .slide-lead { font-size: 18px; line-height: 1.6; margin: 7px 0 22px; }
+  .report-body { display: flex; flex: 1; flex-direction: column; gap: 18px; }
+  .report-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .report-card { padding: 22px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .report-card h3 { font-size: 22px; line-height: 1.35; color: var(--navy); }
+  .report-card p, .report-row p { font-size: 17px; line-height: 1.6; }
+  .report-card .sources { margin-top: auto; padding-top: 5px; }
+  .report-body a { color: #2743a3; text-underline-offset: 3px; }
+  .report-card .sources, .report-note { font-size: 14px; line-height: 1.58; }
+  .report-note { color: var(--slate-600); }
+  .report-note a { margin-right: 8px; }
+  .report-table { table-layout: fixed; }
+  table.report-table thead th { font-size: 17px; padding: 12px 14px; }
+  table.report-table tbody td { font-size: 16px; line-height: 1.55; padding: 14px; vertical-align: top; }
+  .report-callout { font-size: 18px; line-height: 1.55; padding: 14px 18px; margin-top: 0; }
+  .report-row { display: grid; grid-template-columns: 180px 1fr; column-gap: 24px; align-items: start; padding: 16px 20px; }
+  .report-row h3 { font-size: 20px; line-height: 1.5; color: var(--navy); }
+  .report-foot { font-size: 13px; margin-top: auto; }
+  .report-cover { position: relative; justify-content: space-between; padding: 55px 70px 52px; }
+  .cover-date { color: #b5d7f4; font-size: 17px; }
+  .report-cover h1 { font-size: 50px; line-height: 1.25; color: white; margin-bottom: 22px; }
+  .report-cover .question { max-width: 790px; color: #d7e4ef; font-size: 22px; line-height: 1.6; }
+  .cover-option { display: block; border-top: 2px solid #6d9fbd; padding-top: 12px; color: white; text-decoration: none; }
+  .cover-option span { color: #acd4f0; font-size: 15px; }
+  .cover-option strong { display: block; padding-top: 6px; font-size: 20px; }
+  .cover-option:hover strong, .cover-option:focus strong { text-decoration: underline; }
+
+
+  @media screen and (max-width: 640px) {
+    .hud-bar { width: max-content; max-width: calc(100vw - 16px); flex-wrap: wrap; justify-content: center; gap: 5px; }
+    .hud-progress { display: none; }
+    .hud-btn { white-space: nowrap; }
+    body.overview-mode .deck-stage { grid-template-columns: 1fr; padding: 16px 12px 100px; overflow: hidden; }
+    body.overview-mode .slide { zoom: min(0.4, calc((100vw - 24px) / 1280px)); transform: none; margin: 0; }
+  }
 </style>
 </head>
 <body>
@@ -112,7 +151,7 @@
 <div class="deck-stage">
   <div class="slide-viewport" id="viewport">
 
-    <!-- ==================== SLIDE 01: COVER ==================== -->
+
     <section class="slide cover-slide active">
       <svg style="position:absolute; inset:0; width:100%; height:100%; opacity:0.65; pointer-events:none;" viewBox="0 0 1280 720">
         <defs>
@@ -130,295 +169,57 @@
           <circle cx="978" cy="312" r="22" fill="#FFFFFF" fill-opacity="0.14" stroke="#FFFFFF"/>
         </g>
       </svg>
-
-      <div class="slide-inner" style="position:relative; z-index:2; padding:52px 70px 44px 70px; justify-content:space-between;">
-        <div style="display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.22); color:#E2E8F0; padding:7px 18px; border-radius:999px; font-size:13px; font-weight:700; letter-spacing:1px; width:fit-content;">
-          <span style="width:8px; height:8px; border-radius:50%; background:#38BDF8;"></span>
-          <span style="width:8px; height:8px; border-radius:50%; background:#818CF8;"></span>
-          <span style="width:8px; height:8px; border-radius:50%; background:#34D399;"></span>
-          千问智能硬件行业总监汇报 · 5 页配套总纲（2026 年 11 月）
+      <div class="slide-inner report-cover">
+        <p class="cover-date">个人入职调研 · 讨论稿　/　2026 年 11 月</p>
+        <div>
+          <h1>智能硬件三个方向的<br>初步判断与验证建议</h1>
+          <p class="question">一家硬件品牌在什么情况下，愿意把某项功能交给千问，并且持续付费？我建议先从一款面向海外会议的录音设备查起。</p>
         </div>
-
-        <div style="max-width:860px;">
-          <div style="font-size:14px; font-weight:700; color:#93C5FD; letter-spacing:2.5px; margin-bottom:14px;">QWEN SMART HARDWARE · 3-TRACK SYNERGY EXECUTIVE OVERVIEW</div>
-          <h1 style="font-size:46px; font-weight:800; line-height:1.22; letter-spacing:-0.8px; color:#FFFFFF; margin-bottom:20px;">
-            千问智能硬件三大赛道<br/>协同格局与商业化汇报总览
-          </h1>
-          <p style="font-size:17.2px; color:#CBD5E1; line-height:1.65; border-left:4px solid #38BDF8; padding-left:20px;">
-            智能录音设备（优先推进）× 智能眼镜（其次推进）× 智能儿童陪伴玩具（有条件推进）<br/>
-            一页拉齐核验数据口径、全链路百炼/听悟云账、外部标杆重排与新人 90 天落地计划
-          </p>
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
-          <div style="background:rgba(2,132,199,0.26); border:1px solid rgba(56,189,248,0.5); border-radius:10px; padding:14px 18px;">
-            <div style="font-size:12px; color:#BAE6FD; font-weight:700;">优先 · NO.02 智能录音设备</div>
-            <div style="font-size:14px; color:#FFF; font-weight:700; margin-top:4px;">Q3 钉钉 19.7% 登顶 · 主攻出海与商务耳机</div>
-          </div>
-          <div style="background:rgba(79,70,229,0.24); border:1px solid rgba(129,140,248,0.45); border-radius:10px; padding:14px 18px;">
-            <div style="font-size:12px; color:#C7D2FE; font-weight:700;">其次 · NO.01 智能眼镜</div>
-            <div style="font-size:14px; color:#FFF; font-weight:700; margin-top:4px;">前三季 145.3 万台 · 深化 Rokid/雷鸟视觉</div>
-          </div>
-          <div style="background:rgba(5,150,105,0.22); border:1px solid rgba(52,211,153,0.42); border-radius:10px; padding:14px 18px;">
-            <div style="font-size:12px; color:#A7F3D0; font-weight:700;">有条件 · NO.03 儿童陪伴玩具</div>
-            <div style="font-size:14px; color:#FFF; font-weight:700; margin-top:4px;">严守中美新规与毛利 · 主攻千元视觉与模组池</div>
-          </div>
+        <div class="report-grid">
+          <a class="cover-option" href="https://youngting520.github.io/%E6%99%BA%E8%83%BD%E7%A1%AC%E4%BB%B6%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/reports/02_%E6%99%BA%E8%83%BD%E5%BD%95%E9%9F%B3%E8%AE%BE%E5%A4%87_2026%E8%A1%8C%E4%B8%9A%E6%B7%B1%E5%BA%A6%E6%B4%9E%E5%AF%9F%E4%B8%8E%E5%8D%83%E9%97%AE%E5%95%86%E4%B8%9A%E5%8C%96%E6%B1%87%E6%8A%A5.html"><span>首先验证 · 录音设备</span><strong>海外会议转写 ↗</strong></a>
+          <a class="cover-option" href="https://youngting520.github.io/%E6%99%BA%E8%83%BD%E7%A1%AC%E4%BB%B6%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/reports/01_%E6%99%BA%E8%83%BD%E7%9C%BC%E9%95%9C_2026%E8%A1%8C%E4%B8%9A%E6%B7%B1%E5%BA%A6%E6%B4%9E%E5%AF%9F%E4%B8%8E%E5%8D%83%E9%97%AE%E5%95%86%E4%B8%9A%E5%8C%96%E6%B1%87%E6%8A%A5.html"><span>其次验证 · 智能眼镜</span><strong>菜单与路牌识读 ↗</strong></a>
+          <a class="cover-option" href="https://youngting520.github.io/%E6%99%BA%E8%83%BD%E7%A1%AC%E4%BB%B6%E8%A1%8C%E4%B8%9A%E7%9F%A5%E8%AF%86%E5%88%86%E4%BA%AB/reports/03_%E6%99%BA%E8%83%BD%E5%84%BF%E7%AB%A5%E9%99%AA%E4%BC%B4%E7%8E%A9%E5%85%B7_2026%E8%A1%8C%E4%B8%9A%E6%B7%B1%E5%BA%A6%E6%B4%9E%E5%AF%9F%E4%B8%8E%E5%8D%83%E9%97%AE%E5%95%86%E4%B8%9A%E5%8C%96%E6%B1%87%E6%8A%A5.html"><span>有条件验证 · 儿童玩具</span><strong>境内绘本识读 ↗</strong></a>
         </div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 02: STRATEGIC ROLE DIVISION ==================== -->
     <section class="slide">
-      <div class="slide-inner">
-        <div class="top-bar">
-          <span class="section-pill">总览 · 01 / 04</span>
-          <span class="top-meta">三大赛道组织脉络、商业角色与外部切入优先级</span>
-        </div>
-        <h2 class="slide-title">三赛道互补定位与千问推进次序：避让自研红海，重排真体量外部标杆</h2>
-        <p class="slide-lead">直面<strong>千问 C 端、千问办公（钉钉）与阿里云百炼</strong>竞合边界，淘汰亏损小盘假标杆，把对外资源压在最高确定性真增量上。</p>
-
-        <div class="slide-body" style="justify-content:space-between;">
-          <div class="g-3" style="flex:1; align-items:stretch;">
-            <div class="card-cyan" style="display:flex; flex-direction:column; justify-content:space-between; border-top:5px solid #0284C7;">
-              <div>
-                <span class="tag t-cyan" style="margin-bottom:8px;">第一优先 · 生产力出海与耳机大盘</span>
-                <div style="font-size:19px; font-weight:800; color:#0F172A; margin-bottom:9px;">智能录音设备</div>
-                <ul class="pts">
-                  <li><strong>自研格局：</strong>千问办公与钉钉一体（A1/A1 Pro → <strong>QwenNote A2：0.95 寸 OLED 彩屏 + 6 麦 + 4G + 67g</strong> + 千问×Bose 1,099 首发价耳机），奥维 Q3 监测钉钉 19.7% 登顶线上销额第一。</li>
-                  <li><strong>外部切口：</strong>避让国内通用卡红海，第一优先切<strong>出海多语种品牌/公版 IDH 与商务 AI 耳机（含蚂蚁/传音两轮领投 Viaim 及声学大厂）</strong>，并行企微生态与垂直 ISV；出门问问（中报营收 -56%、亏 4,960 万）降级为存量示范。</li>
-                  <li><strong>核心红线：</strong>严禁低价买断送不限次；严分 SOC 2、GDPR/HIPAA、实名声纹及双边同意州法规。</li>
-                </ul>
-              </div>
-              <div style="padding-top:8px; border-top:1px solid #BAE6FD; font-size:11.8px; font-weight:800; color:#0369A1;">关键词：海外合规 ASR · 耳机大盘 · 分层路由</div>
-            </div>
-
-            <div class="card-indigo" style="display:flex; flex-direction:column; justify-content:space-between; border-top:5px solid #4F46E5;">
-              <div>
-                <span class="tag t-indigo" style="margin-bottom:8px;">其次推进 · 第一视角视觉入口</span>
-                <div style="font-size:19px; font-weight:800; color:#0F172A; margin-bottom:9px;">智能眼镜</div>
-                <ul class="pts">
-                  <li><strong>自研格局：</strong>千问 C 端事业群 H1 凭 G1/S1 占大陆 AI 眼镜出货 <strong>17.4% 第 1</strong>（不含 10 月 N1/N1 Pro），Q3 线上量增额降、均价骤降 25.4% 至 1,542 元。</li>
-                  <li><strong>外部切口：</strong>优先深化 <strong>雷鸟 iO/V3（iO 34g 双 11 光波导 TOP1 已接千问）与 Rokid（Glasses 2/Style）</strong>第一视角高毛利 VLM 子路由；跑通 1 款 RDK 公版，出海主推<strong>阿里云海外托管 API</strong>（非不创收纯自托管）。</li>
-                  <li><strong>核心红线：</strong>国补限 ≤6,000 元封顶 500 元；<strong>严禁 Token Plan 作生产后端</strong>；严控虹膜/健康与海外人脸脱敏。</li>
-                </ul>
-              </div>
-              <div style="padding-top:8px; border-top:1px solid #C7D2FE; font-size:11.8px; font-weight:800; color:#3730A3;">关键词：抢 VLM 子路由 · 控 TTS/流账 · 透明竞合</div>
-            </div>
-
-            <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:space-between; border-top:5px solid #059669;">
-              <div>
-                <span class="tag t-emerald" style="margin-bottom:8px;">有条件推进 · 轻人力守毛利与合规</span>
-                <div style="font-size:19px; font-weight:800; color:#0F172A; margin-bottom:9px;">智能儿童陪伴玩具</div>
-                <ul class="pts">
-                  <li><strong>生态现状：</strong>百炼已适配 <strong>30+ 芯片平台</strong>；实丰（2025 总营收 4.17 亿、<strong>亏 1.75 亿</strong>）仅作存量预付费样本；汤姆猫主力系西湖心辰+豆包，行业估年销数千万。</li>
-                  <li><strong>外部切口：</strong>不卷 199 亏损白牌，优先国内切入<strong>千元硬壳视觉伴学（如灵宇宙 1,099–1,299 元及早教龙头转型线）</strong>、<strong>涂鸦/移远 1 对 N 预付费模组池</strong>与<strong>阿里鱼 IP 599+ 新品</strong>。</li>
-                  <li><strong>核心红线：</strong>中国 <strong>7.15《拟人化办法》</strong>+GB 6675（11.1 实施）+3C/SRRC/CTA；<strong>加州 SB 867/1119 + 纽约州 ≤12 岁 5 年禁令（2027.2.22 生效）</strong>——换云商无法绕开！</li>
-                </ul>
-              </div>
-              <div style="padding-top:8px; border-top:1px solid #A7F3D0; font-size:11.8px; font-weight:800; color:#065F46;">关键词：安全一票否决 · 预付费卡密 · 视觉伴学</div>
-            </div>
-          </div>
-
-          <div class="callout-strip">
-            <strong>底层复用与算账纪律：</strong>三赛道共享<strong>“百炼生产 API + 通义听悟 + Qwen 家族”</strong>与上游芯片/IDH（恒玄、蓝讯、乐鑫、移远、涂鸦）；硬件零售额不能换算为云收入，须按<strong>全链路生产云账（含 TTS/VLM/RAG/RTC）</strong>与外部可触达云盘子配置轻重人力。
-          </div>
-        </div>
-
-        <div class="slide-footer">
-          <span>2026 千问智能硬件三大赛道协同格局与商业化总览 · 战略分工与标杆重排</span>
-          <span class="pg">02 / 05</span>
-        </div>
+      <div class="slide-inner report-page">
+        <div class="top-bar"><span class="section-pill">市场与采购</span><span class="top-meta">个人入职调研 · 讨论稿</span></div>
+        <h2 class="slide-title">三个方向各有需求，采购窗口仍需逐款确认</h2>
+        <p class="slide-lead">以下是我从公开资料得到的起点。品牌的采购意向、当前报价与实际调用份额，都需由项目负责人确认。</p>
+        <div class="report-body"><div class="report-grid"><article class="card-cyan report-card"><h3>录音设备</h3><p>Plaud 披露年化经常性收入达到 1 亿美元。微软的客户案例显示，Plaud 已使用 Azure 的语音和模型服务。</p><p><strong>我想核实</strong>　哪款新机型还有外采窗口？品牌是否愿意提供样本和现用方案作对照？</p><p class="sources"><a href="https://www.plaud.ai/blogs/news/plaud-scales-from-1m-to-100m-arr">Plaud 业务披露</a> · <a href="https://www.microsoft.com/en/customers/story/26496-plaud-azure-speech-in-foundry-tools">微软客户案例</a></p></article><article class="card-indigo report-card"><h3>智能眼镜</h3><p>洛图统计的 2026 年三季度全渠道均价为 1,542 元，同比下降 16.2%，环比下降 27.5%。这是整机零售价格，单项识图的采购预算仍待品牌确认。</p><p><strong>我想核实</strong>　像雷鸟、Rokid 这样的品牌，某款设备的识图功能由谁选模型？调用量有多大？</p><p class="sources"><a href="https://optics.ofweek.com/2026-11/ART-250003-8420-30712740.html">洛图科技三季度报告</a></p></article><article class="card-emerald report-card"><h3>儿童陪伴玩具</h3><p>魔镜统计的国内线上 AI 玩具涵盖全年龄产品，包含教辅、机器人和潮玩。儿童绘本识读只是其中一个场景。</p><p><strong>我想核实</strong>　哪些型号确实使用云端识图？云费由品牌、方案商还是家长续付？</p><p class="sources"><a href="https://pdf.dfcfw.com/pdf/H3_AP202602071819822660_1.pdf#page=73">魔镜白皮书，第 73–80 页</a></p></article></div><div class="callout-strip report-callout">建议的验证顺序取决于能否拿到真实样本、找到付费方，以及做一次对比需要投入多少工作。</div></div>
+        <div class="slide-footer report-foot"><span>千问与外部硬件品牌合作 · 2026 年 11 月</span><span class="pg">02 / 05</span></div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 03: CROSS-TRACK HARD COMPARISON ==================== -->
     <section class="slide">
-      <div class="slide-inner">
-        <div class="top-bar">
-          <span class="section-pill">总览 · 02 / 04</span>
-          <span class="top-meta">三赛道核验口径全拉齐（含外部盘子情景估算与全链路生产云账）</span>
-        </div>
-        <h2 class="slide-title">核心指标横评：拉齐真实体量、完整硬件 UE 与全链路可复算云账</h2>
-        <p class="slide-lead">全部数据经 2026.11 交叉核验，严格区分公开实证与情景测算；补齐 TTS / VLM / 跨会 RAG / RTC 等核心生产大头成本。</p>
-
-        <div class="slide-body">
-          <table class="clean-tbl">
-            <thead>
-              <tr>
-                <th style="width:14%;">核心商业维度</th>
-                <th style="width:28.7%; background:#0369A1;">NO.02 智能录音设备（优先）</th>
-                <th style="width:28.7%; background:#312E81;">NO.01 智能眼镜（其次）</th>
-                <th style="width:28.6%; background:#065F46;">NO.03 儿童陪伴玩具（有条件）</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="b">核验市场规模与<br/>外部云盘估算</td>
-                <td>奥维 Q3 线上（监测汇总）<strong>58.5 万台 / 2.4 亿</strong>（Q1 公开基线 39.4 万/1.4 亿；Q3 钉钉 19.7%、讯飞 17.4%、安克 8.0%）；Plaud 200 万+台 / 1 亿美元 ARR；<strong>国内第三方卡云盘 &lt;3,000 万/年，增量在出海与耳机</strong></td>
-                <td>洛图前三季 <strong>145.3 万台 / 27.2 亿</strong>（H1 均价 2,068→Q3 1,542；全年 205–215 万）；Omdia H1 阿里 <strong>17.4% 第 1</strong>（前三 46.0%，舍入约 46.1%）；Meta 占全球 <strong>81.3%</strong></td>
-                <td>魔镜 MAT2025 线上全龄 <strong>7.4 亿 / 160.4 万件</strong>（2026E 约 12.8 亿 / 415 万件，BubblePal 占量 19.6%）；工信部广义 246→290E（26E 差约 27 倍）；<strong>10–20% 份额云盘约 340–1,820 万/年</strong></td>
-              </tr>
-              <tr>
-                <td class="b">主流售价 vs<br/>BOM 与完整 UE</td>
-                <td>正规军 499–1,299（白牌 99–249）；蓝牙卡 BOM <strong>¥75（占白牌 30–76%）/ ¥160（高配 799–1,299 占 12–20%）</strong>；4G 彩屏卡估 ¥280–350；扣税/投流/3 年赠额后 1,199 档高活易倒亏</td>
-                <td>Q3 均价：音频 701 / 拍摄 877 / AR 2,817（含 BirdBath 观影）；BOM 音频 ¥360 / 国产拍摄 ¥800–950 / <strong>AR1 双芯 ¥1,060–1,180</strong> / 单绿 ¥1,730；门店期望镜片毛利 ¥260–390</td>
-                <td>1–7 月量 +158.7%、额 +72.7%、均价 -33.3%；纯 Wi-Fi 模组 ¥12–18、完整机芯 ¥38–45；<strong>199 白牌在 30% 退货+投流 ROI 3.0–3.5 下常态实亏 ¥15–30</strong>，须上移千元视觉带</td>
-              </tr>
-              <tr>
-                <td class="b">退货与合规<br/>硬红线</td>
-                <td>重度 3 年云费 448–1,198 元<strong>证伪买断不限次</strong>；严分 SOC 2 与 GDPR/HIPAA/实名声纹及美双边同意州；“删原音 vs 回听”做成企业可配开关</td>
-                <td>洛图退货 <strong>30%–70%</strong>；国补 ≤6,000 封顶 500；<strong>严禁 Token Plan 作生产后端</strong>；严守虹膜/健康 PIPL 与海外防遮灯+AI 视觉上传前路人人脸打码</td>
-                <td>30%–40% 电商退货；中国 <strong>7.15《拟人化办法》</strong>+GB 6675（11.1 实施）+3C/SRRC/CTA；<strong>加州 SB 867/1119 + 纽约州 ≤12 岁 5 年禁令（2027.2.22 生效）</strong>；严禁中小厂后付费赊账</td>
-              </tr>
-              <tr>
-                <td class="b">全链路百炼<br/>目录云账*</td>
-                <td>北京离线基础 <strong>0.2076 元/h（ASR 97%）</strong>、听悟 <strong>0.5544 元/h（76%）</strong>；跨会 RAG +0.14–0.75、流式实时翻译 3.35–4.79 元/h；<strong>新加坡合规离线 ASR USD 0.126/h（≈¥0.91/h，较海外竞品低 51–65%）</strong></td>
-                <td>纯转写+问答中度 26.19 / 73.71 元/年；<strong>补齐无屏刚需 TTS + 纪要后跃升至 92.8–251.9 元/年</strong>；VLM 现行价 +1.4–2.9 元/年；<strong>全双工实时音频北京 +179.8 元/年</strong>（新加坡 +279.6）</td>
-                <td>吃灰基线（5,000 轮/年）11.70–39.55 元；<strong>中度高活（30min/天×2 年）模型 70.2–237.3 元 + RTC 45–105 元</strong>（达轻聊模型 0.6–1.5 倍）→ 399 以下强制预付费卡密+每日熔断</td>
-              </tr>
-              <tr>
-                <td class="b">格局关键<br/>新变量</td>
-                <td>Plaud One 探索版（USD 249.99 <strong>全球限量 2,000 台</strong>）；<strong>Viaim 150 万+（蚂蚁 A 轮+传音 A+ 轮）</strong>；<strong>企微联盟（讯飞/TicNote/得力）</strong>；出门问问中报营收 -56%/整体毛利 46.6%/硬件清库承压</td>
-                <td><strong>双 11 雷鸟 iO（34g/1,996 起/接千问）登顶光波导且雷鸟破百万台</strong>；Rokid Glasses 2 现货（Color 2027.04 交付）；影目 Future 125g；Google 联名 12.10 上市（USD 395/449）</td>
-                <td><strong>2026.11 PIRG 复测 FoloToy 通过</strong>（多款同测品长对话仍衰减）；<strong>灵宇宙小方机（1,099–1,299 元）登双 11 京东第一</strong>；实丰 2025 营收 4.17 亿/亏 1.75 亿；移远 FCM665D 系纯 Wi-Fi 6</td>
-              </tr>
-              <tr>
-                <td class="b">重排首选外部<br/>标杆与切口</td>
-                <td><strong>出海多语种品牌/公版 IDH &amp; 商务 AI 耳机（含 Viaim/声学大厂）</strong> + 企微生态/垂直 ISV（出门问问 TicNote 作示范案例）</td>
-                <td><strong>雷鸟（iO/V3）&amp; 乐奇 Rokid（Glasses 2/Style）</strong>第一视角 VLM 识读翻译高毛利子路由 + 1 款 RDK 公版 + 运动/出海托管</td>
-                <td><strong>千元硬壳视觉伴学（灵宇宙/早教龙头）&amp; 涂鸦/移远 1 对 N 预付费模组池</strong> + 阿里鱼 IP 联名（实丰作存量预付费样本）</td>
-              </tr>
-            </tbody>
-          </table>
-          <div style="font-size:10.3px; color:#64748B; margin-top:4px;">* 基准说明：按 2026 阿里云百炼/通义听悟公开目录价复算（不含大客阶梯协议折扣）；外部云盘估算系基于公开出货/零售体量的情景推演，具体客户预算、合同与调用份额待入组后内部核实。</div>
-        </div>
-
-        <div class="slide-footer">
-          <span>2026 千问智能硬件三大赛道协同格局与商业化总览 · 指标横评</span>
-          <span class="pg">03 / 05</span>
-        </div>
+      <div class="slide-inner report-page">
+        <div class="top-bar"><span class="section-pill">付费方与用量</span><span class="top-meta">个人入职调研 · 讨论稿</span></div>
+        <h2 class="slide-title">按具体功能估算能争取的收入</h2>
+        <p class="slide-lead">先找到付款和选型的人，再按机型、功能、月份计算。分册保留硬件成本和模型目录价的假设。</p>
+        <div class="report-body"><table class="clean-tbl report-table"><thead><tr><th scope="col">场景与可能的付费方</th><th scope="col">千问可提供的能力</th><th scope="col">最缺的证据</th><th scope="col">怎么验证</th></tr></thead><tbody><tr><td><strong>海外会议录音</strong><br>品牌或方案商，待确认签约方。</td><td>离线多语种转写、说话人区分与纪要。</td><td>每月有效录音时长、现供方案、采购窗口和数据处理要求。</td><td>用同批会议音频比较转写错误、修订工时和每小时成本。</td></tr><tr><td><strong>智能眼镜</strong><br>品牌或应用运营方，待确认模型选型权。</td><td>按次调用的菜单或路牌识读。</td><td>日均识图次数、默认模型份额，以及设备端能完成哪些任务。</td><td>同一设备、图像与网络条件下比较答对率、响应时间和每次成功识读成本。</td></tr><tr><td><strong>境内绘本识读</strong><br>家长购买设备，品牌与方案商的云费分工待确认。</td><td>绘本识图、内容问答与安全审核。</td><td>适用年龄、监护人授权、活跃设备用量和续费安排。</td><td>用获授权绘本做分龄测试，核对严重错误、授权流程及每台活跃设备月成本。</td></tr></tbody></table><div class="callout-strip report-callout"><strong>每月估算</strong>　活跃设备数 × 每台月均使用量 × 交给千问的调用比例 × 实际结算单价。分月加总后，再核对推理成本和交付工时。</div></div>
+        <div class="slide-footer report-foot"><span>千问与外部硬件品牌合作 · 2026 年 11 月</span><span class="pg">03 / 05</span></div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 04: QWEN VS DOUBAO & PRIORITY ==================== -->
     <section class="slide">
-      <div class="slide-inner">
-        <div class="top-bar">
-          <span class="section-pill">总览 · 03 / 04</span>
-          <span class="top-meta">千问（百炼）vs 火山引擎（豆包）与企微/讯飞客评差异与推进次序</span>
-        </div>
-        <h2 class="slide-title">竞合打法与推进排序：正视火山生态与企微联盟，打出百炼公开价与视觉王牌</h2>
-        <p class="slide-lead">客观直面火山引擎“无自有眼镜/卡片包袱 + RTC + 抖音流量换模型”压制，把千问的<strong>“公开价优势 + 视觉/听悟精度 + 阿里系生态协同 + 合规风控”</strong>打在刀刃上。</p>
-
-        <div class="slide-body" style="justify-content:space-between;">
-          <table class="clean-tbl" style="font-size:11.3px; line-height:1.42;">
-            <thead>
-              <tr>
-                <th style="width:13%;">推进梯队</th>
-                <th style="width:27%;">核心对手优势（须客观正视）</th>
-                <th style="width:31%; background:#312E81;">千问 / 百炼差异化切入筹码</th>
-                <th style="width:29%;">首个标杆验证动作（POC）</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="b"><span class="tag t-cyan">优先 · 录音</span></td>
-                <td><strong>企业微信开放硬件反击联盟</strong>（联讯飞/TicNote/得力）；飞书×安克 10g 轻穿戴；讯飞政企线下盘与方言积淀</td>
-                <td style="background:#F0F9FF;"><strong>北京 Paraformer 0.288 元/h（比火山 ~0.80 元/h 便宜 64%）+ 新加坡合规 ASR（USD 0.126/h，比海外竞品低 51–65%）+ 听悟精度</strong></td>
-                <td>面向<strong>出海品牌与商务耳机大厂（含 Viaim/声学厂）</strong>：用同批多语种实录验证转写精度、流式实时底价与新加坡合规节点</td>
-              </tr>
-              <tr>
-                <td class="b"><span class="tag t-indigo">其次 · 眼镜</span></td>
-                <td><strong>火山引擎无自有眼镜包袱 + RTC + 抖音投流换模型</strong>；华为（30.1% 销额，非鸿蒙 6+ 受限）/小米强绑手机底盘</td>
-                <td style="background:#EEF2FF;"><strong>Qwen-VL 已有雷鸟 iO/V3 与 Rokid 落地验证 + 全链路 TTS/VLM 控本架构 + 探讨非核心生活插件分级开放</strong></td>
-                <td>围绕<strong>雷鸟 iO/V3 &amp; 乐奇 Rokid</strong>：实测第一视角外文菜单/路牌识读翻译精度、端云延迟与高毛利 VLM 子路由占比</td>
-              </tr>
-              <tr>
-                <td class="b"><span class="tag t-emerald">有条件 · 玩具</span></td>
-                <td><strong>豆包“芯片预集成 + RTC + 扣子 + 抖音流量”四重闭环</strong>，在跃然/汤姆猫/奥飞与白牌模组渗透极深</td>
-                <td style="background:#ECFDF5;"><strong>Qwen-VL 千元视觉伴学 + 阿里鱼正版 IP 撮合 + 淘天母婴货架流量协同 + 分龄安全护栏与预付费卡密风控</strong></td>
-                <td>聚焦国内<strong>千元硬壳视觉（灵宇宙/早教龙头）与涂鸦/移远模组池</strong>：验证绘本识物精度、分龄红队护栏与预付费卡密闭环</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="card-dark" style="margin-top:12px; display:flex; align-items:center; justify-content:space-between; gap:20px;">
-            <div style="flex:1.25;">
-              <div style="font-size:13.8px; font-weight:800; color:#93C5FD; margin-bottom:5px;">千问对外商业化的 3 条不可逾越专业底线</div>
-              <p style="font-size:12.2px; color:#E2E8F0; line-height:1.52;">
-                <strong>① 计费与授信零违规：</strong>严禁 Token Plan 作生产后端，严禁向中小硬件厂开放无上限后付费赊账；<strong>② 法规零盲区：</strong>出海先查产品准入（SB 867/1119、拟人化办法、人脸脱敏、实名声纹）再谈云部署；<strong>③ 全链路算账零水分：</strong>绝不鼓吹“买断不限次”，帮客户把 TTS、VLM、跨会 RAG 与 RTC 全部算清并落分层路由。
-              </p>
-            </div>
-            <div style="flex:0.75; background:rgba(56,189,248,0.18); border:1px solid #38BDF8; border-radius:10px; padding:11px 14px; text-align:center;">
-              <div style="font-size:11.2px; color:#BAE6FD; margin-bottom:4px;">三赛道统一商业共识</div>
-              <div style="font-size:14.2px; font-weight:800; color:#FFFFFF; line-height:1.4;">不卷亏损白牌红海<br/>帮客户“算全账 · 守合规 · 找真增量”</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="slide-footer">
-          <span>2026 千问智能硬件三大赛道协同格局与商业化总览 · 竞合与排序</span>
-          <span class="pg">04 / 05</span>
-        </div>
+      <div class="slide-inner report-page">
+        <div class="top-bar"><span class="section-pill">对比设计</span><span class="top-meta">个人入职调研 · 讨论稿</span></div>
+        <h2 class="slide-title">哪一次测试能改变采购决定？</h2>
+        <p class="slide-lead">由品牌和技术负责人先约定可接受的质量、成本和数据条件。每个候选方案使用相同的样本与判定标准。</p>
+        <div class="report-body"><div class="card-cyan report-row"><h3>录音设备</h3><p>选一个中英混合会议场景。用同一设备的录音比较现有方案与千问，记录人名与术语错误、人工修订分钟数和每小时费用。需要零留存的客户，还要确认具体模型、推理地域和功能范围。</p></div><div class="card-indigo report-row"><h3>智能眼镜</h3><p>选外文菜单或路牌中的一种任务。事先和客户约定正确标准及可接受等待时间，用同批图像盲测。若品牌不能更换这一功能的默认模型，先记录限制。</p></div><div class="card-emerald report-row"><h3>儿童绘本识读</h3><p>先确认产品功能与适用年龄。对一款境内设备，使用获授权的绘本和分龄题目，记录识读、拒答与严重安全错误，再拿实际用量和品牌预算核算可承受成本。</p></div><p class="report-note">参考依据　<a href="https://www.alibabacloud.com/help/en/model-studio/singapore-regional-access-information">百炼地域与推理范围</a><a href="https://www.alibabacloud.com/help/en/model-studio/data-retention-policy">百炼数据留存政策</a><a href="https://www.cac.gov.cn/2026-04/10/c_1777558395078289.htm">网信办《人工智能拟人化互动服务管理暂行办法》</a></p></div>
+        <div class="slide-footer report-foot"><span>千问与外部硬件品牌合作 · 2026 年 11 月</span><span class="pg">04 / 05</span></div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 05: NEWCOMER EXECUTION & ALIGNMENT ==================== -->
     <section class="slide">
-      <div class="slide-inner">
-        <div class="top-bar">
-          <span class="section-pill">总览 · 04 / 04</span>
-          <span class="top-meta">向千问智能硬件行业总监汇报 · 聚焦单线、脚踏实地</span>
-        </div>
-        <h2 class="slide-title">新人 90 天单线聚焦落地计划，以及希望向总监请教的 3 个全局问题</h2>
-        <p class="slide-lead">系统拆解三赛道是为了建立全局视野与全链路算账纪律；实际执行中我<strong>绝不贪大求全</strong>，完全服从团队分工，先沉下心把指定一条细分切口做透。</p>
-
-        <div class="slide-body" style="justify-content:space-between;">
-          <div class="card-white" style="padding:14px 18px;">
-            <div style="font-size:13.8px; font-weight:800; color:#0F172A; margin-bottom:9px;">90 天 100% 可控执行节奏（按总监指定的单一优先赛道落地）</div>
-            <div class="g-3" style="gap:15px;">
-              <div style="border-left:3.5px solid #0284C7; padding-left:12px;">
-                <div style="font-size:12.8px; font-weight:800; color:#0369A1; margin-bottom:5px;">前 30 天 · 沉底对齐口径</div>
-                <ul class="pts" style="gap:5px;">
-                  <li style="font-size:11.9px;">吃透自研硬件与百炼对外分工、生产 API 阶梯底价、海外 ZDR/DPA 条款及存量客户合同状态；</li>
-                  <li style="font-size:11.9px;">旁听资深同事 5–10 场拜访，把目录价全链路算账表（含 TTS/VLM/RAG/RTC）校准为一线实用 TCO 工具。</li>
-                </ul>
-              </div>
-              <div style="border-left:3.5px solid #4F46E5; padding-left:12px;">
-                <div style="font-size:12.8px; font-weight:800; color:#3730A3; margin-bottom:5px;">30–60 天 · 补位与 POC 支撑</div>
-                <ul class="pts" style="gap:5px;">
-                  <li style="font-size:11.9px;">协助前辈与 SA 准备标杆客群（出海/商务耳机、Rokid/雷鸟、千元视觉与模组池）同条件实测集与异议 FAQ；</li>
-                  <li style="font-size:11.9px;">主动承接团队覆盖不足的<strong>深圳/珠三角出海 IDH、腰部垂类与预付费模组渠道</strong>摸排建档。</li>
-                </ul>
-              </div>
-              <div style="border-left:3.5px solid #059669; padding-left:12px;">
-                <div style="font-size:12.8px; font-weight:800; color:#065F46; margin-bottom:5px;">60–90 天 · 跑通最小闭环</div>
-                <ul class="pts" style="gap:5px;">
-                  <li style="font-size:11.9px;">在团队指导下，推动 <strong>1–2 家腰部/出海线索</strong>进入沙箱技术评估或预付费卡密 Demo 联调；</li>
-                  <li style="font-size:11.9px;">输出经一线校验的细分客群破冰复盘，尽快具备独立跟进中小项目的实战能力。</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-amber" style="margin-top:11px; padding:13px 16px;">
-            <div style="font-size:13.3px; font-weight:800; color:#92400E; margin-bottom:7px;">基于公开资料仍有 3 个关键内部边界，恳请总监指导对齐：</div>
-            <div class="g-3" style="gap:15px;">
-              <div style="font-size:11.9px; line-height:1.48; color:#334155;"><strong>1. 组织避让与生态开放：</strong>千问 C 端/千问办公（钉钉）与对外百炼如何划定避让红线？高德/支付宝/阿里鱼/淘天资源能否对外部大客分级协同？</div>
-              <div style="font-size:11.9px; line-height:1.48; color:#334155;"><strong>2. 存量标杆与政策底牌：</strong>Viaim/出门问问、Rokid/雷鸟、灵宇宙/涂鸦移远目前的真实合作进度，以及海外 ZDR/DPA 与预付费卡密政策边界？</div>
-              <div style="font-size:11.9px; line-height:1.48; color:#334155;"><strong>3. 新人首要补位切口：</strong>本季度团队最希望我先沉入哪一条赛道、哪一类客群（标杆协助 vs 深圳出海 IDH/模组池摸排）建立战功？</div>
-            </div>
-          </div>
-
-          <div class="callout-strip" style="margin-top:9px;">
-            <strong>汇报说明：</strong>本总览与三份分赛道深度报告（NO.01 智能眼镜 / NO.02 智能录音设备 / NO.03 智能儿童陪伴玩具）均已完成 2026.11 公开数据核验、全链路云账补全与外部标杆尽调重排，恳请总监批评指正！
-          </div>
-        </div>
-
-        <div class="slide-footer">
-          <span>2026 千问智能硬件三大赛道协同格局与商业化总览 · 汇报完（恳请总监批评指正）</span>
-          <span class="pg">05 / 05</span>
-        </div>
+      <div class="slide-inner report-page">
+        <div class="top-bar"><span class="section-pill">个人入职安排</span><span class="top-meta">个人入职调研 · 讨论稿</span></div>
+        <h2 class="slide-title">入职前三个月，我想先做实的一件事</h2>
+        <p class="slide-lead">我刚进入硬件行业。我想先弄清，做海外会议录音的品牌，在什么条件下愿意把一部分转写交给千问。</p>
+        <div class="report-body"><div class="report-grid"><article class="card-cyan report-card"><h3>第一个月 · 算清一款设备</h3><p>我想请教产品、销售和解决方案同事，弄清谁选模型、谁付云费、每台设备每月实际录多久。</p><p><strong>交付</strong>　一张可替换参数的成本表，分别标明报价来源、使用假设和待客户确认的数据。</p></article><article class="card-indigo report-card"><h3>第二个月 · 做一次对比</h3><p>围绕一款设备准备一组经授权的中英会议样本，按相同口径记录人名和术语错误、人工修订时间以及每小时成本。</p><p><strong>交付</strong>　一份可复用的样本清单、评测记录和费用对照。</p></article><article class="card-emerald report-card"><h3>第三个月 · 复盘取舍</h3><p>总结哪些判断得到了支持，哪些需要推翻。若有合适的客户与测试窗口，我愿承担试测准备和记录。</p><p><strong>交付</strong>　一份继续或暂缓的建议。暂缺客户反馈的地方，逐项写明还需什么证据。</p></article></div><div class="callout-strip report-callout"><strong>想请总监指点</strong>　团队现在有没有一款设备，或一个客户反复问到、但还缺成本或效果数据的问题，适合我先接下来？</div></div>
+        <div class="slide-footer report-foot"><span>千问与外部硬件品牌合作 · 2026 年 11 月</span><span class="pg">05 / 05</span></div>
       </div>
     </section>
 
