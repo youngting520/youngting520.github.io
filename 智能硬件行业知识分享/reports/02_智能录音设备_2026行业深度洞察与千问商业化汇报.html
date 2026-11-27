@@ -293,7 +293,7 @@
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-cyan" style="margin-top:2px;">03</span>
-                  <div style="font-size:12.6px; line-height:1.46;"><strong>按使用场景算账</strong>　北京基础离线情景约 ¥0.21/原始小时。新加坡指定型号 ASR 目录价为 USD 0.126/输入小时。翻译、摘要、存储和计费时长另计。</div>
+                  <div style="font-size:12.6px; line-height:1.46;"><strong>按使用场景算账</strong>　新加坡 fun-asr 为 $0.126/输入小时，若设备实际预裁 30%，为 $0.0882/原始小时。要求零留存时另选模型，并按实测 token 重算。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-cyan" style="margin-top:2px;">04</span>
@@ -311,7 +311,7 @@
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(56,189,248,0.42); border-radius:10px; padding:12px 15px;">
                 <div style="font-size:13.6px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">首轮验证 · 一款出海录音设备</div>
-                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">与一家珠三角整机方案商确认终端品牌、上线市场和中英会议需求。取得授权后，用相同录音对比现有服务与候选 ASR，并按实测输入时长计费。</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">与一家珠三角整机方案商确认终端品牌、上线市场和中英会议需求。取得授权后，用相同录音对比现有服务与候选 ASR，并按相应的计费秒数或 token 用量对账。</div>
               </div>
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(129,140,248,0.42); border-radius:10px; padding:12px 15px;">
@@ -497,7 +497,7 @@
               <div class="card-h" style="color:#991B1B;">国内通用转写受到免费额度与购机赠额挤压</div>
               <ul class="pts" style="gap:8px;">
                 <li style="font-size:12.6px;">以 A2 所列权益为例，1,200 分钟/月 × 36 月合计最多 720 小时。赠额兑现率、付费转换与到期续费要按实际用户批次观察。</li>
-                <li style="font-size:12.6px;">若另行承诺不限时使用，按第 14 页 60 小时/月的重度情景，三年基础链路约 448 元，听悟三项摘要链路约 1,198 元。此为不限时压力测试。</li>
+                <li style="font-size:12.6px;">若另行承诺不限时使用，按每月 60 个原始小时和第 14 页的北京单价演算，三年基础链路约 448 元，听悟三项摘要链路约 1,198 元。此为不限时压力测试。</li>
               </ul>
             </div>
             <div class="card-indigo" style="padding:15px 18px;">
@@ -727,7 +727,7 @@
                   </tbody>
                 </table>
                 <div style="font-size:10.3px; color:#7F1D1D; line-height:1.38; margin-top:6px;">
-                  * 含税售价÷1.13 ×（1−15% 渠道−18% 投流−12% 退货净损失假设）−BOM−包装/认证/良率预提 25–45 元。4G 示例另扣 20h/月×36×0.2076≈149 元云费及假设三年流量 53 元。未扣 25–45 元前约 66 元。前两行列可用于后续服务的余额。
+                  * 含税售价÷1.13 ×（1−15% 渠道−18% 投流−12% 退货净损失假设）−BOM−包装/认证/良率预提 25–45 元。4G 境内示例按第 14 页北京基础链路另扣 20h/月×36×0.2076≈149 元云费及假设三年流量 53 元。未扣 25–45 元前约 66 元。前两行列可用于后续服务的余额。
                 </div>
               </div>
 
@@ -990,146 +990,68 @@
       </div>
     </section>
 
-    <!-- ==================== SLIDE 13: MODEL PK ==================== -->
+    <!-- ==================== SLIDE 13: TRANSCRIPTION PROCUREMENT ==================== -->
     <section class="slide">
       <div class="slide-inner">
         <div class="top-bar">
-          <span class="section-pill">05 · 大模型与生态对比</span>
-          <span class="top-meta">文件转写、会议摘要与企业部署的比较维度</span>
+          <span class="section-pill">05 · 海外转写选型</span>
+          <span class="top-meta">一款设备 · 同一批中英会议 · 会后文件转写</span>
         </div>
-        <h2 class="slide-title">转写采购先对齐型号、计费时长、数据地域和测试语料</h2>
-        <p class="slide-lead">同一场录音分别测试各服务，保留参考文本、语言组合、说话人标签和服务账单。客户成交价及折扣须另行确认。</p>
-
-        <div class="slide-body">
-          <table class="clean-tbl compact">
-            <thead>
-              <tr>
-                <th style="width:15%;">选型核心维度</th>
-                <th style="width:32%; background:#312E81;">阿里云 · 通义千问 + 听悟</th>
-                <th style="width:26%;">火山引擎 · 豆包 + 飞书</th>
-                <th style="width:27%;">科大讯飞 · 星火大模型</th>
-              </tr>
-            </thead>
+        <h2 class="slide-title">客户换掉现有转写服务，能解决哪一个问题？</h2>
+        <p class="slide-lead">先由品牌说清现用型号、最常见的错误和下次选型时间，再用同一批授权录音比较。微软披露 Plaud 的用例，可作为海外参照。目标品牌的供应商仍待确认。</p>
+        <div class="slide-body" style="gap:16px;">
+          <table class="clean-tbl">
+            <thead><tr><th style="width:20%;">对照对象</th><th style="width:40%;">能核实的产品与调用方式</th><th>到客户现场要查什么</th></tr></thead>
             <tbody>
-              <tr>
-                <td class="b">官网公开目录价<br/>(基础离线 ASR)</td>
-                <td style="background:#EEF2FF;">北京 <code>paraformer-v2</code> 文件转写目录价 ¥0.288/输入小时。听悟转写 ¥0.60/小时，摘要另计。新加坡指定文件转写型号按 USD 0.126/输入小时计。</td>
-                <td>报价时注明录音文件识别版本、按量或资源包、语种及发言人功能，下载同日期价目与客户账单再比较。</td>
-                <td>按语音引擎调用包与离线 SDK 授权分别报价；纯离线授权前期门槛高，按装机量摊销。</td>
-              </tr>
-              <tr>
-                <td class="b">ASR 与编排边界</td>
-                <td style="background:#EEF2FF;">转写与听悟的摘要、章节、翻译分别选型与计费。用有标注样本评估中英混说、术语和说话人归属。</td>
-                <td>支持流式转写与录音文件识别 2.0；用同一录音样本对比首字延迟、口语流畅度与整段 WER。</td>
-                <td><strong>政企离线部署、极端方言与复杂远场噪声积淀深厚</strong>，司法/医疗专有词库成熟。</td>
-              </tr>
-              <tr>
-                <td class="b">办公与企微生态</td>
-                <td style="background:#EEF2FF;">内部与钉钉/千问办公一体；外部对接自有 App 与 ISV 走 API/MCP。<strong>竞争压力：企业微信开放硬件接口（1,400 万+ 组织）正吸引硬件直连分流职场工作流。</strong></td>
-                <td>飞书妙记与多维表格协同顺畅；但向非飞书体系（企微/外部 SCRM）开放写入权限较受限。</td>
-                <td>已借 Pokee 接入<strong>企业微信开放硬件生态联盟</strong>，在微信职场流与政企内网具备先发触点。</td>
-              </tr>
-              <tr>
-                <td class="b">政企合规与出海</td>
-                <td style="background:#EEF2FF;">新加坡为接入与静态数据存储地域。International 部署范围允许推理在中国内地以外的节点执行。零数据留存另受具体模型、工作空间和调用路径限制。</td>
-                <td>按服务地域与合同角色评估；欧美跨境传输与数据主权合规审查门槛较高。</td>
-                <td>国内政企本地化成熟；海外多语种云节点覆盖与合规体系相对薄弱。</td>
-              </tr>
-              <tr>
-                <td class="b">开源与私有化弹性</td>
-                <td style="background:#EEF2FF;">选择客户自管部署时，需核所选权重许可、算力、维护与交付分工。仅将客户实际向阿里采购的服务计入云收入。</td>
-                <td>以闭源云 API 为主，私有化部署成本高、授权边界严。</td>
-                <td>离线转写引擎成熟，但摘要与 Agent 大模型开源生态偏弱。</td>
-              </tr>
+              <tr><td class="b">目标品牌现用服务<br/><span class="tag t-slate">优先取得的基线</span></td>
+                <td>由客户提供供应商、模型与版本、处理地域、账单月份及已开功能。若提供商负责转写和摘要，先拆出转写费用。</td>
+                <td>取同一批音频的现有转写结果、校对稿和结算明细。确认谁能试切流量、可切比例以及预算上限。</td></tr>
+              <tr><td class="b">Azure Speech<br/><span class="tag t-cyan">有公开案例的参照</span></td>
+                <td>微软披露 Plaud 用 Azure Speech 快速转写处理长录音，并用 Azure OpenAI 支持模型工作。Fast Transcription 接口同步返回，默认模型支持发言人区分。</td>
+                <td>演示价取东南亚区 Fast Transcription。比较整场返回耗时、跨语种专名和说话人归属，品牌的真实折扣与地区份额待核。</td></tr>
+              <tr class="hl"><td class="b">阿里云百炼<br/><span class="tag t-indigo">两条待测路径</span></td>
+                <td>普通会后长文件可走 <code>fun-asr</code>。若品牌要求零数据留存（ZDR），先核准工作空间和接口，再评估分段同步转写。</td>
+                <td>同一机型、同一音源，检查切片前后的漏词、跨段发言人编号和整场完成时间。按第 14 页统一成本口径。</td></tr>
             </tbody>
           </table>
+          <div class="g-2">
+            <div class="card-cyan"><div class="card-h">效果怎么记</div><ul class="pts">
+              <li>中文按字、英文按词统计识别错误。单列中英切换处与人名、产品名，记录错分发言人的段数及总段数。</li>
+              <li>同一校对标准下，记录每原始小时的人工修订分钟、整场返回耗时和失败样例。由客户事前定验收门槛。</li>
+            </ul></div>
+            <div class="card-white"><div class="card-h">哪些服务进入同测</div><ul class="pts">
+              <li>如目标品牌在用或正在评估 Deepgram、OpenAI 直连或自建模型，按其实际型号补入同一张对照表。</li>
+              <li>评估整场可交付的转写。摘要、翻译、人工修订与接口迁移分别计价。</li>
+            </ul></div>
+          </div>
         </div>
-
-        <div class="slide-footer">
-          <span>目录与地域口径　<a href="https://help.aliyun.com/zh/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">百炼国内目录价</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">百炼国际站目录价</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/singapore-regional-access-information" target="_blank" rel="noopener noreferrer">新加坡接入与推理范围</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/data-retention-policy" target="_blank" rel="noopener noreferrer">零数据留存政策 §4、§6</a></span>
-          <span class="pg">13 / 18</span>
-        </div>
+        <div class="slide-footer"><span>来源　<a href="https://www.microsoft.com/en/customers/story/26496-plaud-azure-speech-in-foundry-tools" target="_blank" rel="noopener noreferrer">微软与 Plaud 客户案例</a>　<a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create" target="_blank" rel="noopener noreferrer">Azure 快速转写接口</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/non-realtime-speech-recognition-user-guide" target="_blank" rel="noopener noreferrer">百炼文件转写与时长限制</a></span><span class="pg">13 / 18</span></div>
       </div>
     </section>
 
-    <!-- ==================== SLIDE 14: PER-HOUR AUDIO COST MATH (EXACT!) ==================== -->
+    <!-- ==================== SLIDE 14: OVERSEAS TRANSCRIPTION COST ==================== -->
     <section class="slide">
       <div class="slide-inner">
-        <div class="top-bar">
-          <span class="section-pill">05 · 商业算账模型</span>
-          <span class="top-meta">按阿里云百炼 / 听悟公开目录价测算（含 RAG / 翻译 / 新加坡节点）</span>
-        </div>
-        <h2 class="slide-title">同一小时录音的服务费用取决于裁切、摘要和翻译</h2>
-        <p class="slide-lead">前三项为会后离线情景，假设设备先裁掉 30% 静音。实时单向翻译按连续流无裁切列示，避免把模型检测到的静音误作已扣除的计费时长。</p>
-
-        <div class="slide-body">
-          <div class="g-60-40" style="flex:1; align-items:stretch;">
-            <div style="display:flex; flex-direction:column; justify-content:space-between;">
-              <table class="clean-tbl compact">
-                <thead>
-                  <tr>
-                    <th style="width:19%;">用量情景<br/>(月原始录音)</th>
-                    <th style="width:19%;">基础离线*<br/>0.2076 元/h</th>
-                    <th style="width:21%; background:#312E81;">听悟三摘要*<br/>0.5544 元/h</th>
-                    <th style="width:20%; background:#0369A1;">+离线翻译<br/>0.9044 元/h</th>
-                    <th style="width:21%; background:#991B1B;">+实时单向翻译<br/>4.792 元/h</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="b">轻度 5h/月<br/><span style="font-size:10.5px; color:#64748B;">300 分/月</span></td>
-                    <td><strong>¥12.5 / 年</strong><br/><span style="font-size:10.2px; color:#64748B;">ASR 占 97%</span></td>
-                    <td style="background:#EEF2FF;"><strong>¥33 / 年</strong><br/><span class="tag t-emerald">可入基础赠额</span></td>
-                    <td><strong>¥54 / 年</strong><br/><span style="font-size:10.2px; color:#0369A1;">3 年 ¥163</span></td>
-                    <td style="background:#FEF2F2;"><strong>¥288 / 年</strong><br/>连续流</td>
-                  </tr>
-                  <tr class="hl">
-                    <td class="b">中度 20h/月<br/><span style="font-size:10.5px; color:#64748B;">1,200 分/月</span></td>
-                    <td><strong>¥50 / 年</strong><br/><span style="font-size:10.2px; color:#64748B;">3 年 ¥149</span></td>
-                    <td style="background:#EEF2FF;"><strong>¥133 / 年</strong><br/><span class="tag t-amber">须月度封顶</span></td>
-                    <td><strong style="color:#0369A1;">¥217 / 年</strong><br/><span style="font-size:10.2px; color:#0369A1;">3 年 ¥651</span></td>
-                    <td style="background:#FEF2F2;"><strong>¥1,150 / 年</strong><br/>连续流</td>
-                  </tr>
-                  <tr>
-                    <td class="b">重度 60h/月<br/><span style="font-size:10.5px; color:#64748B;">3,600 分/月</span></td>
-                    <td><strong>¥149 / 年</strong><br/><span style="font-size:10.2px; color:#991B1B;">3 年 ¥448</span></td>
-                    <td style="background:#FEF2F2;"><strong style="color:#991B1B;">¥399 / 年</strong><br/><span style="font-size:10.2px; color:#991B1B;">3 年 ¥1,198</span></td>
-                    <td style="background:#FEF2F2;"><strong style="color:#991B1B;">¥651 / 年</strong><br/><span style="font-size:10.2px; color:#991B1B;">3 年 ¥1,954</span></td>
-                    <td style="background:#FEF2F2;"><strong>¥3,450 / 年</strong><br/>连续流</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="callout-strip" style="margin-top:7px; padding:8px 12px; font-size:11.4px; line-height:1.42;">
-                附加检索与待办按调用模型、输入输出 token、搜索及存储单列。离线仅裁 15% 时，前两项为 0.2508、0.6732 元/原始小时。实时中英双向翻译费按时长翻倍，单项由 4 元变为 8 元/小时。
-              </div>
-              <div style="font-size:10.1px; color:#475569; line-height:1.38; margin-top:5px;">
-                北京计价示例：基础离线 0.288×70%＋0.006＝0.2076 元/原始小时，其中 0.006 为文本处理假设。三摘要（0.60＋3×0.064）×70%＝0.5544。另加离线翻译 0.50×70%。实时单向 0.60＋3×0.064＋4＝4.792 元/小时。存储、网络、重试另计。
-              </div>
-            </div>
-
-            <div class="card-dark" style="display:flex; flex-direction:column; justify-content:space-between; padding:16px 18px;">
-              <div class="card-h" style="color:#7DD3FC; margin-bottom:2px;">从目录算例走到生产报价</div>
-              <div style="background:rgba(5,150,105,0.24); border:1px solid #34D399; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13px; font-weight:800; color:#FFF;">① 实测免费额度的兑现率</div>
-                <div style="font-size:11.9px; color:#A7F3D0; margin-top:4px; line-height:1.46;">按免费与付费用户分别抽样，计算实际上传时长和单机成本。转写、翻译、摘要按实际开通项目分别报价。</div>
-              </div>
-              <div style="background:rgba(2,132,199,0.22); border:1px solid #38BDF8; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13px; font-weight:800; color:#FFF;">② 新加坡文件转写 USD 0.126/输入小时</div>
-                <div style="font-size:11.9px; color:#BAE6FD; margin-top:4px; line-height:1.46;">按汇率 7.2 约 ¥0.91。实际预裁 30% 后约 ¥0.64/原始小时。要求零留存时，改按支持的模型和调用路径重新测价。</div>
-              </div>
-              <div style="background:rgba(99,102,241,0.22); border:1px solid #818CF8; border-radius:10px; padding:11px 13px;">
-                <div style="font-size:13px; font-weight:800; color:#FFF;">③ 实测 VAD 裁切率 + 分级路由</div>
-                <div style="font-size:11.9px; color:#E0E7FF; margin-top:4px; line-height:1.46;">记录原始时长、上传时长、账单时长与漏字。若裁切损害识别质量，调高保留时长后重算费用。</div>
-              </div>
-            </div>
+        <div class="top-bar"><span class="section-pill">05 · 每小时转写账本</span><span class="top-meta">公开目录价 · 2026 年 11 月 27 日</span></div>
+        <h2 class="slide-title">一小时中英会议，品牌为转写付多少钱？</h2>
+        <p class="slide-lead">统一分母为裁切前的原始录音小时。按时长计价的公开算例取单声道文件，假设 60 分钟原始音频在设备端去除 18 分钟静音，上传且计费 42 分钟。表内美元金额仅计语音识别（ASR）。</p>
+        <div class="slide-body" style="gap:13px;">
+          <table class="clean-tbl">
+            <thead><tr><th style="width:23%;">转写服务</th><th style="width:35%;">计费单位和输入</th><th>每原始小时费用（USD）及证据</th></tr></thead>
+            <tbody>
+              <tr><td class="b">目标品牌现供</td><td>取同批录音或同账期可归属的转写费、原始录音时长，注明功能、税费、折扣与币种。</td><td><strong>待客户提供账单。</strong> 同口径转写结算额 ÷ 原始小时数。</td></tr>
+              <tr class="hl"><td class="b">百炼新加坡 · 普通路径<br/><code>fun-asr</code> 文件转写</td><td>目录价 $0.000035/输入秒，即 $0.126/输入小时。实际裁切和计费时长需对账。</td><td><strong>$0.0882</strong> ＝ 42 × 60 × $0.000035，按 7.2 折合 ¥0.635。整小时上传则为 $0.126。该型号未列入 ZDR 名单。</td></tr>
+              <tr><td class="b">百炼新加坡 · ZDR 候选<br/><code>qwen-audio-3.1-asr-flash</code></td><td>每百万 token 输入 $0.15、输出 $0.47。分别汇总全部计费请求的输入 I 和输出 O，包括有费用的重试。</td><td><strong>待采集整场用量。</strong>（0.15 × I ＋ 0.47 × O）÷ 1,000,000 ÷ 原始小时数。同步切片的重叠部分计入 I 和 O。</td></tr>
+              <tr><td class="b">Azure · 东南亚公开参照<br/>Fast Transcription</td><td>微软公开按量计费表列 $0.36/音频小时。此处演算一次单声道快速转写，品牌合同价待核。</td><td><strong>$0.252</strong> ＝ $0.36 × 42/60。整小时上传为 $0.36。两种服务的处理方式及完成时延不同。</td></tr>
+              <tr><td class="b">四路共用效果记录</td><td colspan="2"><strong>四路均未用客户语料实测。</strong> 逐路填写每原始小时人工修订 ___ 分钟、人名与术语识别错误 ___ 处/共 ___ 处、说话人错分 ___ 段/共 ___ 段，以及整场返回耗时 ___ 分钟。</td></tr>
+            </tbody>
+          </table>
+          <div class="g-2">
+            <div class="card-cyan"><div class="card-h">怎样复核 token 账单</div><p style="font-size:13px; line-height:1.5;">百炼同步接口文档的 4 秒示例返回输入 48、输出 13 个 token。该次目录金额为 (48 × 0.15 ＋ 13 × 0.47) ÷ 1,000,000 ＝ <strong>$0.00001331</strong>。整场会议须汇总各段实际回执，另计客户所需的摘要、存储、网络和拼接成本。</p></div>
+            <div class="card-white"><div class="card-h">境内设备的成本假设（供第 6、9 页复核）</div><p style="font-size:13px; line-height:1.5;">北京按预裁 30% 演算。基础链路 0.288 × 70% ＋ 0.006 ＝ <strong>¥0.2076/原始小时</strong>，含假设的文本处理费。听悟转写加三项摘要为 (0.60 ＋ 3 × 0.064) × 70% ＝ ¥0.5544/原始小时。</p></div>
           </div>
         </div>
-
-        <div class="slide-footer">
-          <span>来源　<a href="https://help.aliyun.com/zh/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">百炼国内目录价</a>　<a href="https://help.aliyun.com/zh/tingwu/pricing-and-billing-rules" target="_blank" rel="noopener noreferrer">听悟计费规则</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">百炼国际站目录价</a>。按目录价演算，尚未取得客户生产账单。</span>
-          <span class="pg">14 / 18</span>
-        </div>
+        <div class="slide-footer"><span>依据　<a href="https://www.alibabacloud.com/help/en/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">百炼国际站目录价</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/qwen-audio-asr-http-api" target="_blank" rel="noopener noreferrer">同步接口与用量示例</a>　<a href="https://prices.azure.com/api/retail/prices?%24filter=armRegionName+eq+%27southeastasia%27+and+productName+eq+%27Azure+Speech%27+and+skuName+eq+%27Fast+Transcription%27+and+priceType+eq+%27Consumption%27" target="_blank" rel="noopener noreferrer">微软东南亚按量价</a>　<a href="https://help.aliyun.com/zh/model-studio/model-pricing" target="_blank" rel="noopener noreferrer">百炼北京目录价</a>　<a href="https://help.aliyun.com/zh/tingwu/pricing-and-billing-rules" target="_blank" rel="noopener noreferrer">听悟计费</a></span><span class="pg">14 / 18</span></div>
       </div>
     </section>
 
@@ -1141,7 +1063,7 @@
           <span class="top-meta">录音告知、声纹用途与云端数据处理路径</span>
         </div>
         <h2 class="slide-title">录音出海先确认谁同意采集、在哪里处理、保留到何时</h2>
-        <p class="slide-lead">按设备、App、语音识别、摘要、知识库逐段列出数据处理地点、保存期限、删除和分包方。每个客户的合同与目标市场要分别判断。</p>
+        <p class="slide-lead">新加坡是百炼的接入和静态数据存储地域，International 部署允许在中国内地以外的节点推理。按目标市场与合同核对设备、App、模型、对象存储和摘要各环节。</p>
 
         <div class="slide-body">
           <div class="g-2" style="flex:1; align-items:stretch;">
@@ -1149,7 +1071,7 @@
               <div>
                 <div class="card-h"><span class="tag t-indigo">出海录音</span> 按市场与模型逐项核对</div>
                 <ul class="pts" style="gap:9px; margin-top:8px;">
-                  <li style="font-size:12.4px; line-height:1.48;"><strong>阿里云 ZDR（零数据留存）</strong>　截至 11 月 17 日，公开语音识别名单从 qwen-audio-3.1-asr-flash 等系列起。第 14 页按新加坡价列举的 fun-asr、qwen3-asr-flash 未列入。托管知识库、Agent 编排、批量推理和异步任务另有保留规则。</li>
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>阿里云 ZDR（零数据留存）</strong>　国际站企业客户须申请并在工作空间启用 ZDR，选用政策列明的模型和调用路径。同步型号 qwen-audio-3.1-asr-flash 在名单内，fun-asr 未列入。批量推理、异步任务管理、托管知识库与 Agent 编排各有留存规则。</li>
                   <li style="font-size:12.4px; line-height:1.48;"><strong>录音告知与同意</strong>　例如加州《刑法》第 632 条涉及对保密通信录音时取得各方同意。适用范围按市场、沟通场景与雇主管理制度确认。提示灯和播报是可用的产品设计，不能单独证明各方已同意。</li>
                   <li style="font-size:12.4px; line-height:1.48;"><strong>声纹识别</strong>　欧盟 GDPR 第 9 条针对以唯一识别个人为目的的生物识别数据，并规定例外条件。中国《个人信息保护法》第 28–30 条规定敏感个人信息处理要求。单场区分发言人与跨会议实名识别分别评估。</li>
                 </ul>
@@ -1158,11 +1080,11 @@
 
             <div class="card-emerald" style="display:flex; flex-direction:column; justify-content:space-between; padding:15px 18px;">
               <div>
-                <div class="card-h" style="color:#065F46;"><span class="tag t-emerald">企业部署</span> 保存、回听与权限</div>
+                <div class="card-h" style="color:#065F46;"><span class="tag t-emerald">长会议</span> 零留存路径与回听要求</div>
                 <ul class="pts" style="gap:9px; margin-top:8px;">
-                  <li style="font-size:12.4px; line-height:1.48;">如客户需要回听，核实音频保存期、授权范围、删除与加密密钥控制。客户要求转写后立即删除时，改为文本核验，并向客户说明回听限制。</li>
-                  <li style="font-size:12.4px; line-height:1.48;"><strong>审慎评估重交付销售工牌：</strong>循环智能、讯飞与钉钉深耕多年；试点须实测告知方式、佩戴率及驻场实施成本。</li>
-                  <li style="font-size:12.4px; line-height:1.48;">如须自托管，列明谁维护、谁承担算力与安全审计，区分模型 API 服务与离线交付。数据处理协议（DPA）和医疗业务伙伴协议（BAA）按适用业务另核。</li>
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>一小时会议怎么处理</strong>　同步型号单次最多 5 分钟。可评估在客户控制端切片、同步直传，再拼回全文。需测试跨段漏词、重复、发言人归属、重试与总耗时。</li>
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>整段文件与异步任务</strong>　长文件型号虽在模型名单，异步任务管理 API 的输入与结果按任务规则留存。客户要求整条链路零留存时，先取得具体调用路径的书面确认。</li>
+                  <li style="font-size:12.4px; line-height:1.48;"><strong>回听与删除</strong>　让品牌确认音频由谁保存、谁能回听及何时删除。逐项核对临时缓存、上传文件、业务日志与安全例外能否满足客户条款，必要时另核 DPA 或 BAA。</li>
                 </ul>
               </div>
             </div>
@@ -1174,7 +1096,7 @@
         </div>
 
         <div class="slide-footer">
-          <span>依据　<a href="https://www.alibabacloud.com/help/en/model-studio/data-retention-policy" target="_blank" rel="noopener noreferrer">零数据留存政策 §4、§6</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/singapore-regional-access-information" target="_blank" rel="noopener noreferrer">新加坡接入与推理范围</a>　<a href="https://courts.ca.gov/system/files/2024-08/judicial_council_of_california_civil_jury_instructions_2024.pdf" target="_blank" rel="noopener noreferrer">加州法院对 §632 的说明</a>　<a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng" target="_blank" rel="noopener noreferrer">GDPR 第 9 条</a>　<a href="https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/bgt/art/2023/art_f374e8245320413181742e6d1baf4366.html" target="_blank" rel="noopener noreferrer">个人信息保护法</a></span>
+          <span>依据　<a href="https://www.alibabacloud.com/help/en/model-studio/data-retention-policy" target="_blank" rel="noopener noreferrer">零数据留存政策 §2–7</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/non-realtime-speech-recognition-user-guide" target="_blank" rel="noopener noreferrer">同步与异步调用</a>　<a href="https://www.alibabacloud.com/help/en/model-studio/singapore-regional-access-information" target="_blank" rel="noopener noreferrer">新加坡接入与推理范围</a>　<a href="https://courts.ca.gov/system/files/2024-08/judicial_council_of_california_civil_jury_instructions_2024.pdf" target="_blank" rel="noopener noreferrer">加州法院对 §632 的说明</a>　<a href="https://eur-lex.europa.eu/eli/reg/2016/679/oj/eng" target="_blank" rel="noopener noreferrer">GDPR 第 9 条</a>　<a href="https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/bgt/art/2023/art_f374e8245320413181742e6d1baf4366.html" target="_blank" rel="noopener noreferrer">个人信息保护法</a></span>
           <span class="pg">15 / 18</span>
         </div>
       </div>
@@ -1202,8 +1124,8 @@
             </div>
 
             <div class="card-white" style="border-top:4px solid #D97706; padding:15px 17px;">
-              <div class="tag t-amber" style="margin-bottom:8px;">顾虑 02 · 已绑定豆包/飞书语音方案</div>
-              <div style="font-size:13.4px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:9px;">“我们已接火山豆包/飞书或讯飞方案，切到百炼与千问能带来哪些可验证改善？”</div>
+              <div class="tag t-amber" style="margin-bottom:8px;">顾虑 02 · 已有转写供应商</div>
+              <div style="font-size:13.4px; font-weight:800; color:#0F172A; line-height:1.38; margin-bottom:9px;">“我们已经有转写服务。哪类会议切给千问，能减少多少错词或校对时间？每小时多花或少花多少？”</div>
               <ul class="pts" style="gap:7px;">
                 <li style="font-size:12.0px; line-height:1.44;">在同一批中英会议上比较现有与候选服务。按转写错误、漏掉的专有名词、说话人混淆、结果返回耗时及实际账单记录差异。</li>
                 <li style="font-size:12.0px; line-height:1.44;">客户有强制处理地域或零留存条件时，核对具体型号、推理和存储路径。需要改用其他模型时，重测质量与总价。</li>
@@ -1240,7 +1162,7 @@
           <span class="top-meta">首轮访谈对象、采购条件与收入情景</span>
         </div>
         <h2 class="slide-title">从一款出海录音设备估算千问可以获得的调用收入</h2>
-        <p class="slide-lead">客户每月活跃机数 × 每活跃机月均录音时长 × 计费时长比例 × 路由至千问比例 × 实际每小时成交价，按月相加。规模化之前另核上线率、采购概率和支持成本。</p>
+        <p class="slide-lead">按月估算：活跃设备数 × 单机月均原始录音小时 × 按原始时长计的千问路由份额 × 千问每路由原始小时实际结算额，全年逐月相加。最后一项用计费时长或输入、输出 token 配合成交价折算，裁切和路由各计一次。</p>
 
         <div class="slide-body">
           <div style="background:linear-gradient(90deg, #0F172A 0%, #1E293B 100%); color:#F8FAFC; border-radius:10px; padding:9px 15px; margin-bottom:9px; display:grid; grid-template-columns:1fr 1.28fr; gap:16px; border-left:4px solid #38BDF8;">
@@ -1334,7 +1256,7 @@
               <div style="border-left:3.5px solid #059669; padding-left:13px;">
                 <div style="font-size:13px; font-weight:800; color:#065F46;">成本与数据</div>
                 <ul class="pts" style="gap:5px; margin-top:5px;">
-                  <li style="font-size:12px; line-height:1.44;">按原始时长、实际计费时长、模型、折扣、重试和存储对账，计算每原始小时费用。</li>
+                  <li style="font-size:12px; line-height:1.44;">按原始时长、计费秒数或输入/输出 token、模型与折扣对账。纳入计费重试，另列存储等附加费用，统一折算每原始小时。</li>
                   <li style="font-size:12px; line-height:1.44;">核实数据可在哪些地点处理、要保留多久、是否须零留存，以及候选模型与 API 能否满足。</li>
                 </ul>
               </div>
