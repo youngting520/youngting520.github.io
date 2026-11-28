@@ -308,8 +308,8 @@
           <span class="section-pill">核心速览 · 02 / 02</span>
           <span class="top-meta">经营规律（含验证指标）与千问商业化切入思路</span>
         </div>
-        <h2 class="slide-title">哪些经营判断值得用客户数据验证？</h2>
-        <p class="slide-lead">公开资料勾勒了市场和产品形态。下面五个问题仍需要机型实测、使用日志或门店订单才能回答。</p>
+        <h2 class="slide-title">先用外文菜单测识读效果，再核实能拿到多少付费调用</h2>
+        <p class="slide-lead">若 1 万台眼镜每年各活跃 180 天、每天识图 5–10 次，全部识图按北京目录价约合 <strong>1.57 万–3.13 万元/年</strong>。菜单占其中多少，要看使用记录。</p>
 
         <div class="slide-body">
           <div class="g-55-45" style="flex:1; align-items:stretch;">
@@ -330,7 +330,7 @@
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-indigo" style="margin-top:2px;">04</span>
-                  <div style="font-size:12.9px; line-height:1.48;"><strong>分别核算转写、播报、图片识读与实时语音。</strong>按功能记录付费调用，比较每次成功任务的成本。硬件后端使用获准生产的 API 或合同资源。</div>
+                  <div style="font-size:12.9px; line-height:1.48;"><strong>这项识读值得追加人手吗？</strong>用能交给千问的调用量乘合同单价，再扣除推理、售前和适配成本。每次成功识读的成本也要计入重试。</div>
                 </div>
                 <div style="display:flex; gap:11px; align-items:flex-start;">
                   <span class="tag t-indigo" style="margin-top:2px;">05</span>
@@ -343,8 +343,8 @@
               <div class="card-h" style="color:#93C5FD; margin-bottom:2px;">千问外部商业化的 3 条优先思路</div>
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(129,140,248,0.4); border-radius:10px; padding:13px 15px;">
-                <div style="font-size:13.8px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">思路 01 · 深化标杆视觉与出海托管（Rokid / 雷鸟）</div>
-                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">对 Rokid、雷鸟等公开已有 AI 功能的机型，先核实<strong>地区、版本以及谁决定默认模型</strong>。外文菜单、路牌可作为小样本测试任务，海外托管另查需求。</div>
+                <div style="font-size:13.8px; font-weight:800; color:#FFFFFF; margin-bottom:4px;">思路 01 · 从一款机型、一个任务做起</div>
+                <div style="font-size:12.3px; color:#CBD5E1; line-height:1.48;">按地区和版本找 Rokid 或雷鸟的功能负责人，用同批菜单盲测。要扩大到<strong>语音播报或海外托管</strong>，再核实相应采购权限、用量及预算。</div>
               </div>
 
               <div style="background:rgba(255,255,255,0.07); border:1px solid rgba(56,189,248,0.4); border-radius:10px; padding:13px 15px;">
@@ -886,11 +886,11 @@
 
             <div class="card" style="background:#F0F9FF; border-color:#BAE6FD; display:flex; flex-direction:column; justify-content:space-between;">
               <div>
-                <div class="card-h"><span class="tag t-cyan">角色精准拆解</span> 纯 ODM/IDH vs 品牌方案商 vs 云竞合</div>
+                <div class="card-h"><span class="tag t-cyan">合作角色</span> 硬件方案商、品牌与云平台</div>
                 <div style="font-size:13.4px; font-weight:800; color:#0369A1; margin-bottom:8px;">纯 ODM/IDH（亿境/龙旗等）· 品牌方（蜂巢/界环）· IoT 云（涂鸦）</div>
                 <ul class="pts">
-                  <li><strong>角色边界：</strong><strong>亿境虚拟、龙旗及深圳出海 IDH</strong> 为纯硬件交钥匙方案商，无品牌冲突是 1 对 N 优选；<strong>蜂巢科技</strong>自带“界环”品牌须防定位竞争；<strong>涂鸦</strong>属 IoT 云平台，存在明显云生态竞合。</li>
-                  <li><strong>验证路径：</strong>优先锁定纯 ODM/IDH，用 <strong>1 款公版机型</strong>跑通交付工时与转产成本后再扩面。</li>
+                  <li><strong>硬件与品牌。</strong>亿境、龙旗可承接硬件方案，蜂巢自有“界环”品牌。先用一款公版机型核对交付工时和转产成本。</li>
+                  <li><strong>涂鸦。</strong>品牌可借助其 IoT 平台接入设备与模型。具体机型由谁设定默认模型、谁有权切换、谁向千问结算，要逐项确认。</li>
                 </ul>
               </div>
             </div>
@@ -1238,8 +1238,8 @@
           <span class="section-pill">05 · 商业算账模型</span>
           <span class="top-meta">百炼北京目录价 · 单台年度使用情景</span>
         </div>
-        <h2 class="slide-title">一台眼镜一年要付多少转写、播报、识图与实时语音费？</h2>
-        <p class="slide-lead">按每年 180 个活跃日分别测算。文件转写适合异步场景，即时交互需实测延迟。实际账单随用户用量、地区与协议价格变化。</p>
+        <h2 class="slide-title">一年活跃 180 天，单台识图约 1.6–3.1 元，云端播报更贵</h2>
+        <p class="slide-lead">按北京目录价，假设每个活跃日识图 5–10 次、播报 30 次。文件转写适合异步任务，即时问答要实测响应时间。</p>
 
         <div class="slide-body">
           <div class="g-60-40" style="flex:1; align-items:stretch;">
@@ -1250,7 +1250,7 @@
                     <th style="width:19%; padding:7px 9px;">情景 / 链路模块</th>
                     <th style="width:31%; padding:7px 9px;">年用量假设（180 活跃天/年）</th>
                     <th style="width:23%; padding:7px 9px;">文件转写方案</th>
-                    <th style="width:27%; padding:7px 9px; background:#312E81;">实时方案</th>
+                    <th style="width:27%; padding:7px 9px; background:#312E81;">实时转写方案</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1268,24 +1268,22 @@
                   </tr>
                   <tr class="hl">
                     <td class="b" style="padding:6px 9px;">情景 B 含播报<br/><span class="tag t-amber">补 TTS + 总结</span></td>
-                    <td style="padding:6px 9px;">补齐无屏 5,400 轮刚需 TTS + 60h 会议总结（180 场×3k/400 tok）与 <code>Qwen3.8-Flash</code> 价差</td>
-                    <td style="padding:6px 9px;"><strong>约 92.8 元/年</strong><br/><span style="font-size:9.8px; color:#475569;">含 <code>qwen-audio-3.1-tts-flash</code> <strong>+66.42</strong></span></td>
-                    <td style="padding:6px 9px; background:#FEF3C7;"><strong style="color:#92400E;">约 251.9 元/年</strong><br/><span style="font-size:9.8px; color:#92400E;">实时+3.8Flash+CosyVoice <strong>+172.80</strong></span></td>
+                    <td style="padding:6px 9px;">5,400 次云端播报、180 场会议总结，连同转写与问答计入小计</td>
+                    <td style="padding:6px 9px;"><strong>小计 92.8 元/年</strong><br/><span style="font-size:9.8px; color:#475569;">qwen-flash 问答与总结，TTS Flash 播报占 <strong>66.42 元</strong></span></td>
+                    <td style="padding:6px 9px; background:#FEF3C7;"><strong style="color:#92400E;">小计 251.9 元/年</strong><br/><span style="font-size:9.8px; color:#92400E;">Qwen3.8-Flash 问答与总结，CosyVoice 播报占 <strong>172.80 元</strong></span></td>
                   </tr>
                   <tr>
-                    <td class="b" style="padding:6px 9px;">情景 C 增量<br/><span class="tag t-rose">VLM / Live</span></td>
-                    <td style="padding:6px 9px;">VLM 识图（日均 5–10 张，1,500/200 tok）vs 另计双工语音（活跃日连接 5 分钟）</td>
-                    <td style="padding:6px 9px; background:#ECFDF5;"><strong style="color:#065F46;">识图 +1.57–3.13 元/年</strong><br/><span style="font-size:9.9px;color:#059669;">Qwen3.8-Flash 北京 0.80/2.70 元/M</span></td>
-                    <td style="padding:6px 9px; background:#FEF2F2;"><strong style="color:#991B1B;">实时语音 +179.8 元/年</strong><br/><span style="font-size:9.9px;color:#991B1B;">仅指北京会话费，不含视觉处理</span></td>
+                    <td class="b" style="padding:6px 9px;">另计功能<br/><span class="tag t-rose">识图 / Live</span></td>
+                    <td colspan="3" style="padding:6px 9px;">识图，每活跃日 5–10 张，<strong>每台每年 1.57–3.13 元</strong>。<br/>Live 双工语音，每活跃日连接 5 分钟，<strong>每台每年 179.8 元会话费</strong>。</td>
                   </tr>
                 </tbody>
               </table></div>
 
               <div class="callout-strip" style="margin-top:7px; padding:8px 13px; font-size:11.6px; line-height:1.42; background:#FEF2F2; border-left-color:#DC2626; color:#7F1D1D;">
-                <strong>同一用量下，播报和持续连接更影响预算。</strong>5,400 次云端播报约 66.42 或 172.80 元。若另开实时语音，每个活跃日连接 5 分钟，再增加约 179.8 元。若语音会话替代原有问答，应扣除重叠的转写和播报。
+                <strong>如何估整机费用？</strong>选一种转写与播报组合，再按实际使用加上识图、实时语音。若 Live 替代原有问答，扣除被替代的转写和播报。
               </div>
               <div style="font-size:9.6px; color:#64748B; line-height:1.34; margin-top:4px;">
-                每轮 15 秒、输入/输出 1,000/200 token。文件/实时转写 0.288/0.864 元每小时，qwen-flash 输入/输出 0.15/1.5 元每百万 token，Qwen3.8-Flash 为 0.80/2.70 元。会议总结 180 场×3,000/400 token。TTS Flash 输入/输出 1.5/12 元每百万，每轮 200/1,000 token。CosyVoice 为 0.8 元/万字符，假设每轮 200 汉字折合 400 字符。实时语音 54,000 秒×北京 0.003330 元/秒，新加坡 0.005177 元/秒；静音计时，后台模型、RTC 与存储另计。
+                问答每轮 15 秒，输入/输出 1,000/200 token，会议总结每场 3,000/400 token。文件/实时转写 0.288/0.864 元每小时。按每百万输入/输出 token 计，qwen-flash 为 0.15/1.5 元，Qwen3.8-Flash 为 0.80/2.70 元，qwen-audio-3.1-tts-flash 为 1.5/12 元（每轮 200/1,000 token）。CosyVoice 每万字符 0.8 元，每轮按 200 汉字折 400 字符。Live 全年 54,000 秒，北京 0.003330 元/秒，新加坡 0.005177 元/秒。静音计时，后台模型、RTC 和存储另计。
               </div>
             </div>
 
@@ -1293,11 +1291,11 @@
               <div class="card-h" style="color:#93C5FD; margin-bottom:2px;">三个可以随实测调整的用量参数</div>
               <div style="background:rgba(99,102,241,0.22); border:1px solid #818CF8; border-radius:10px; padding:11px 13px;">
                 <div style="font-size:13.1px; font-weight:800; color:#FFF;">① 测量端侧播报能覆盖的调用</div>
-                <div style="font-size:11.9px; color:#E0E7FF; margin-top:4px; line-height:1.46;">设备可在端侧处理固定提示音与短指令。对需云端播报的内容，按实际字数、音频时长和音质要求选择 TTS。</div>
+                <div style="font-size:11.9px; color:#E0E7FF; margin-top:4px; line-height:1.46;">统计固定提示音在设备上播放的比例。用实际播报文本调用云端 TTS，记录音频秒数和返回的输入、输出 token，校正每轮 1,000 个输出 token 的假设。</div>
               </div>
               <div style="background:rgba(2,132,199,0.22); border:1px solid #38BDF8; border-radius:10px; padding:11px 13px;">
                 <div style="font-size:13.1px; font-weight:800; color:#FFF;">② 按需拍照，记录单次识图消耗</div>
-                <div style="font-size:11.9px; color:#BAE6FD; margin-top:4px; line-height:1.46;">每张图假设输入 1,500、输出 200 token，目录价 <strong>0.00174 元/次</strong>。每日 5–10 张、180 天合计 1.57–3.13 元。应从真实图片和回答量测 token。</div>
+                <div style="font-size:11.9px; color:#BAE6FD; margin-top:4px; line-height:1.46;">Qwen3.8-Flash 可直接接收图片。单次按输入 1,500、输出 200 token 估算，约 <strong>0.00174 元</strong>。用目标机型拍摄的菜单复测用量和重试次数。</div>
               </div>
               <div style="background:rgba(5,150,105,0.22); border:1px solid #34D399; border-radius:10px; padding:11px 13px;">
                 <div style="font-size:13.1px; font-weight:800; color:#FFF;">③ 用实际会话时长核定费用</div>
